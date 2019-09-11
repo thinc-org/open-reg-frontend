@@ -1,0 +1,15 @@
+<p>home works!</p>
+
+<a [routerLink]="['login']">Go Login!"</a>
+<a (click)="refresh$.next(undefined)">Refresh !</a>
+<button (click)="click$.next()">
+  Hi
+</button>
+<ul *ngIf="display$ | async as display">
+  {{
+    display[0]
+  }}
+  <li *ngFor="let post of display[1]">
+    {{ post.title }}
+  </li>
+</ul>
