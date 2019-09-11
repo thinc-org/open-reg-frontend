@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { registerLocaleData } from '@angular/common';
 import localeTh from '@angular/common/locales/th';
 // Localization
@@ -19,7 +18,10 @@ import {
 } from '@angular/common/http';
 import { GlobalErrorHandler } from './core/global-error-handler.service';
 import { ServerErrorInterceptor } from './core/services/server-error.interceptor';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { NgZorroAntdModule, NZ_I18N, en_US } from 'ng-zorro-antd';
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import en from '@angular/common/locales/en';
 
 registerLocaleData(localeTh, 'th');
 
@@ -32,7 +34,6 @@ export function HttpLoaderFactory(http: HttpClient) {
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
     HttpClientModule,
     TranslateModule.forRoot({
       loader: {
@@ -41,7 +42,9 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
-    MatSnackBarModule
+    NgZorroAntdModule,
+    FormsModule,
+    BrowserAnimationsModule
   ],
   exports: [TranslateModule],
   providers: [
@@ -51,7 +54,8 @@ export function HttpLoaderFactory(http: HttpClient) {
       provide: HTTP_INTERCEPTORS,
       useClass: ServerErrorInterceptor,
       multi: true
-    }
+    },
+    { provide: NZ_I18N, useValue: en_US }
   ],
   bootstrap: [AppComponent]
 })
