@@ -1,1 +1,38 @@
-<p>register works!</p>
+<ng-container *ngIf="isSSOAuthenticated$ | async; else notSSOAuthenticated">
+  <h2 nz-title>You are logged in with ChulaSSO</h2>
+  <button nz-button nzType="primary" (click)="logoutSSO()">
+    Logout from ChulaSSO
+  </button>
+  <nz-steps [nzCurrent]="currentStep$ | async">
+    <nz-step
+      *ngFor="let step of steps"
+      [nzTitle]="step.title"
+      [nzSubtitle]="step.subtitle"
+      [nzDescription]="step.description"
+    ></nz-step>
+  </nz-steps>
+
+  <button
+    nz-button
+    nzType="primary"
+    [disabled]="(currentStep$ | async) <= 0"
+    (click)="previousStep()"
+  >
+    Previous
+  </button>
+  <button
+    nz-button
+    nzType="primary"
+    [disabled]="(currentStep$ | async) >= totalSteps"
+    (click)="nextStep()"
+  >
+    Next
+  </button>
+</ng-container>
+
+<ng-template #notSSOAuthenticated>
+  <h2 nz-title>You are not logged in with ChulaSSO</h2>
+  <button nz-button nzType="primary" (click)="loginSSO()">
+    Login with ChulaSSO
+  </button>
+</ng-template>

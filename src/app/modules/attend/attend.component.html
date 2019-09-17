@@ -1,0 +1,21 @@
+<h1 nz-title>Choose your Department</h1>
+<nz-list
+  [nzDataSource]="departments$ | async"
+  [nzRenderItem]="item"
+  [nzItemLayout]="'horizontal'"
+  [nzLoading]="loading$ | async"
+>
+  <ng-template #item let-item>
+    <nz-list-item (click)="selectDepartment(item)">
+      <nz-list-item-meta
+        [nzTitle]="nzTitle"
+        [nzAvatar]="item.avatar"
+        [nzDescription]="item.description"
+      >
+        <ng-template #nzTitle>
+          <a href="https://ng.ant.design">{{ item.name }}</a>
+        </ng-template>
+      </nz-list-item-meta>
+    </nz-list-item>
+  </ng-template>
+</nz-list>

@@ -1,6 +1,11 @@
+<h1 nz-title>Loykratong Staff Registration</h1>
+<button nz-button nzType="primary" [routerLink]="['login']">Sign Up!</button>
+<button nz-button nzType="default" [routerLink]="['register']">
+  Register!
+</button>
+
 <p>home works!</p>
 
-<a [routerLink]="['login']">Go Login!"</a>
 <a (click)="refresh$.next(undefined)">Refresh !</a>
 <button (click)="click$.next()">
   Hi
@@ -13,3 +18,4 @@
     {{ post.title }}
   </li>
 </ul>
+>
