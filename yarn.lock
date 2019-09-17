@@ -5098,6 +5098,11 @@ ng-zorro-antd@^8.1.2:
     date-fns "^1.30.1"
     tslib "^1.9.0"
 
+ngx-strongly-typed-forms@^8.0.1:
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/ngx-strongly-typed-forms/-/ngx-strongly-typed-forms-8.0.1.tgz#93e12b04adaa8351517cf48a9e2c61416e1fde0b"
+  integrity sha512-0p32ILEy366xEHdYVBHZnhh+nKRHxsZs+8jL0FCaC+SwV/ogb7wybOe+scGlp+M09hNB6/3ZHCfmUWhTrBeDEQ==
+
 nice-try@^1.0.4:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"

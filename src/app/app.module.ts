@@ -3,6 +3,7 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { registerLocaleData } from '@angular/common';
+import { NgxStronglyTypedFormsModule } from 'ngx-strongly-typed-forms';
 import localeTh from '@angular/common/locales/th';
 // Localization
 import {
@@ -52,7 +53,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
     NgZorroAntdModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxStronglyTypedFormsModule
   ],
   exports: [TranslateModule],
   providers: [
