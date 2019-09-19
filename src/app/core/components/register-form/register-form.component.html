@@ -3,13 +3,24 @@
     <topic [mainText]="step.title" [subText]="step.subtitle"></topic>
   </div>
   <form [formGroup]="form">
-    <form-input
-      class="grid-items"
-      nz-col
-      nzSpan="12"
-      [question]="question"
-      *ngFor="let question of questions"
-      [form]="form"
-    ></form-input>
+    <div nz-row *ngFor="let question of precessedQuestions">
+      <!-- <div nz-row> -->
+        <form-input
+          class="grid-items"
+          nz-col
+          nzSpan="12"
+          [question]="question[0]"
+          [form]="form"
+        ></form-input>
+        <form-input
+        *ngIf="question.length == 2"
+          class="grid-items"
+          nz-col
+          nzSpan="12"
+          [question]="question[1]"
+          [form]="form"
+        ></form-input>
+      <!-- </div> -->
+    </div>
   </form>
 </div>
