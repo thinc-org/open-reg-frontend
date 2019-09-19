@@ -7,7 +7,7 @@ import { FormGroup } from '@angular/forms';
 @Component({
   selector: 'register-form',
   templateUrl: './register-form.component.html',
-  styleUrls: ['./register-form.component.scss']
+  styleUrls: ['./register-form.component.scss'],
 })
 export class RegisterFormComponent implements OnInit {
   @Input() questions: BaseQuestion<any>[];

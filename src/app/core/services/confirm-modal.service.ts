@@ -3,7 +3,7 @@ import { CoreModule } from '../core.module';
 import { NzModalService, NzButtonType } from 'ng-zorro-antd';
 
 @Injectable({
-  providedIn: CoreModule
+  providedIn: CoreModule,
 })
 export class ConfirmModalService {
   constructor(private modalService: NzModalService) {}
@@ -15,7 +15,7 @@ export class ConfirmModalService {
     okType = 'primary',
     cancelText = 'Cancel',
     onOk,
-    onCancel = () => {}
+    onCancel = () => {},
   }: {
     title: string;
     content: string;
@@ -32,7 +32,7 @@ export class ConfirmModalService {
       nzOkType: okType,
       nzOnOk: onOk,
       nzCancelText: cancelText,
-      nzOnCancel: onCancel
+      nzOnCancel: onCancel,
     });
   }
 }

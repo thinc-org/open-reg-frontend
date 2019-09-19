@@ -8,7 +8,7 @@ import { Validators } from '@angular/forms';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
   isSSOAuthenticated$ = this.chulaSSOService.isSSOAuthenticated$;
@@ -28,16 +28,16 @@ export class RegisterComponent implements OnInit {
   steps: Step[] = [
     {
       title: 'First Step',
-      subtitle: 'Basic Info'
+      subtitle: 'Basic Info',
     },
     {
       title: 'Second Step',
-      subtitle: 'More Info'
+      subtitle: 'More Info',
     },
     {
       title: 'Final Step',
-      subtitle: 'Lots of more info'
-    }
+      subtitle: 'Lots of more info',
+    },
   ];
   currentStep$ = new BehaviorSubject<number>(0);
   totalSteps = this.steps.length;

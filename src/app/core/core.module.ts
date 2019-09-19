@@ -13,7 +13,7 @@ import {
   NzInputModule,
   NzGridModule,
   NzLayoutModule,
-  NzIconModule
+  NzIconModule,
 } from 'ng-zorro-antd';
 
 @NgModule({
@@ -23,7 +23,7 @@ import {
     FormInputComponent,
     RegisterFormComponent,
     RegisterNavigatorComponent,
-    TopicComponent
+    TopicComponent,
   ],
   imports: [
     CommonModule,
@@ -33,7 +33,7 @@ import {
     NzInputModule,
     NzGridModule,
     NzLayoutModule,
-    NzIconModule
+    NzIconModule,
   ],
   entryComponents: [],
   exports: [
@@ -42,7 +42,7 @@ import {
     FormInputComponent,
     RegisterFormComponent,
     RegisterNavigatorComponent,
-    TopicComponent
-  ]
+    TopicComponent,
+  ],
 })
 export class CoreModule {}

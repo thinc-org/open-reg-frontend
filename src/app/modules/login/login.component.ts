@@ -7,7 +7,7 @@ import { AuthService, LoginInfo } from 'src/app/core/services/auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup<LoginInfo>;
@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.fb.group<LoginInfo>({
       username: [null, [Validators.required]],
       password: [null, [Validators.required]],
-      remember: [true]
+      remember: [true],
     });
   }
 

@@ -3,7 +3,7 @@ import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 @Component({
   selector: 'register-navigator',
   templateUrl: './register-navigator.component.html',
-  styleUrls: ['./register-navigator.component.scss']
+  styleUrls: ['./register-navigator.component.scss'],
 })
 export class RegisterNavigatorComponent implements OnInit {
   @Output() nextStep: EventEmitter<any> = new EventEmitter();

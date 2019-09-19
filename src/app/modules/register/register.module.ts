@@ -7,7 +7,7 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import {
   NzButtonModule,
   NzTypographyModule,
-  NzStepsModule
+  NzStepsModule,
 } from 'ng-zorro-antd';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { RegisterFormComponent } from 'src/app/core/components/register-form/register-form.component';
