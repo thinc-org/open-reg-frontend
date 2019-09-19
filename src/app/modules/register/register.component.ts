@@ -10,20 +10,20 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
   isSSOAuthenticated$ = this.chulaSSOService.isSSOAuthenticated$;
-
+  questions = ['test', 'test2', 'test3', 'test4', 'test5'];
   //Steps
   steps: Step[] = [
     {
       title: 'First Step',
-      description: 'Basic Info'
+      subtitle: 'Basic Info'
     },
     {
       title: 'Second Step',
-      description: 'More Info'
+      subtitle: 'More Info'
     },
     {
       title: 'Final Step',
-      description: 'Lots of more info'
+      subtitle: 'Lots of more info'
     }
   ];
   currentStep$ = new BehaviorSubject<number>(0);
@@ -56,8 +56,7 @@ export class RegisterComponent implements OnInit {
   }
 }
 
-interface Step {
+export interface Step {
   title: string;
-  subtitle?: string;
-  description: string;
+  subtitle: string;
 }

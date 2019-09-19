@@ -1,0 +1,21 @@
+<div class="registration-footer">
+  <arrow-text
+    class="arrow-text-l"
+    (onClick)="previousStepEmitter.emit($event)"
+    *ngIf="currentStep > 0; else blank"
+    [isRight]="false"
+  ></arrow-text>
+  <arrow-text
+    class="arrow-text-r"
+    (onClick)="nextStepEmitter.emit($event)"
+    *ngIf="currentStep < totalSteps - 1; else button"
+    [isRight]="true"
+  ></arrow-text>
+  <ng-template #button>
+    <div class="button-register-container">
+      <button class="button-register" (click)="nextStepEmitter.emit($event)" nz-button nzType="primary">
+        ยืนยัน
+      </button>
+    </div>
+  </ng-template>
+</div>

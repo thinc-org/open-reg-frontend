@@ -30,6 +30,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import en from '@angular/common/locales/en';
 import { CoreModule } from './core/core.module';
+import { FormInputComponent } from './core/components/form-input/form-input.component';
 
 registerLocaleData(localeTh, 'th');
 

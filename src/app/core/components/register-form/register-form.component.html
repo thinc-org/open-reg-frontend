@@ -1,0 +1,12 @@
+<div nz-row class="grid-container">
+  <div class="topic">
+    <topic [mainText]="topic.title" [subText]="topic.subtitle"></topic>
+  </div>
+  <form-input
+    class="grid-items"
+    nz-col
+    nzSpan="12"
+    [name]="question"
+    *ngFor="let question of questions"
+  ></form-input>
+</div>
