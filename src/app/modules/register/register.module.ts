@@ -18,6 +18,9 @@ import { ContentContainerComponent } from 'src/app/core/components/content-conta
 import { ArrowTextComponent } from 'src/app/core/components/arrow-text/arrow-text.component';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { TopicComponent } from 'src/app/core/components/topic/topic.component';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { HttpLoaderFactory } from 'src/app/app.module';
+import { HttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,14 @@ import { TopicComponent } from 'src/app/core/components/topic/topic.component';
     NzInputModule,
     NzGridModule,
     NzLayoutModule,
-    NzIconModule
+    NzIconModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ]
 })
 export class RegisterModule {}

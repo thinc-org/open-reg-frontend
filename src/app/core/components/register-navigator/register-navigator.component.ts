@@ -6,11 +6,27 @@ import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
   styleUrls: ['./register-navigator.component.scss']
 })
 export class RegisterNavigatorComponent implements OnInit {
-  @Output('nextStep') nextStepEmitter: EventEmitter<any> = new EventEmitter();
-  @Output('previousStep') previousStepEmitter: EventEmitter<any> = new EventEmitter();
-  @Input('currentStep') currentStep = 0;
-  @Input('totalSteps') totalSteps = 0;
+  @Output() nextStep: EventEmitter<any> = new EventEmitter();
+  @Output() previousStep: EventEmitter<any> = new EventEmitter();
+  @Input() currentStep = 0;
+  @Input() totalSteps = 0;
   constructor() { }
+
+  next() {
+    this.nextStep.emit(undefined);
+  }
+
+  previous() {
+    this.previousStep.emit(undefined);
+  }
+
+  get notFirstPage() { 
+    return this.currentStep > 0; 
+  }
+
+  get notLastPage() { 
+    return this.currentStep < this.totalSteps - 1;
+  }
 
   ngOnInit() {
   }

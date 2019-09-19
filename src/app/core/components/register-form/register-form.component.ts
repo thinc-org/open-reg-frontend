@@ -7,8 +7,8 @@ import { Step } from 'src/app/modules/register/register.component';
   styleUrls: ['./register-form.component.scss']
 })
 export class RegisterFormComponent implements OnInit {
-  @Input('questions') questions = [];
-  @Input('step') topic: Step = {title: null, subtitle: null};
+  @Input() questions = [];
+  @Input() step: Step = {title: null, subtitle: null};
   constructor() { }
 
   ngOnInit() {

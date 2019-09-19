@@ -6,8 +6,8 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./form-input.component.scss']
 })
 export class FormInputComponent implements OnInit {
-  @Input('placeholder') placeholder: string = null;
-  @Input('name') text: string = null; 
+  @Input() placeholder: string = null;
+  @Input() name: string = null; 
   constructor() {}
 
   ngOnInit() {}

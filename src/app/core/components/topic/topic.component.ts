@@ -6,8 +6,8 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./topic.component.scss']
 })
 export class TopicComponent implements OnInit {
-  @Input('mainText') mainText = null;
-  @Input('subText') subText = null;
+  @Input() mainText = null;
+  @Input() subText = null;
   constructor() { }
 
   ngOnInit() {
