@@ -12,9 +12,7 @@ export class FormGeneratorService {
   toFormGroup(questions: BaseQuestion<any>[]) {
     let group: any = {};
     questions.forEach(question => {
-      group[question.key] = question.required
-        ? new FormControl(question.value || '', Validators.required)
-        : new FormControl(question.value || '');
+      group[question.key] = new FormControl(question.value || '', question.validators)
     });
     return new FormGroup(group);
   }

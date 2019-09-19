@@ -1,25 +1,29 @@
+import {
+  ValidatorFn,
+  AbstractControlOptions
+} from '@angular/forms';
+
 export class BaseQuestion<T> {
   order: number;
   value: T;
   label: string;
   title: string;
   description: string;
-  required: boolean;
+  // required: boolean;
   choices: string[];
   key: string;
   controlType: string;
+  validators: (ValidatorFn | ValidatorFn[] |AbstractControlOptions);
 
-  constructor(
-    options: QuestionOptions<T> = {}
-  ) {
+  constructor(options: QuestionOptions<T> = {}) {
     this.value = options.value;
     this.key = options.key || '';
     this.label = options.label || '';
-    this.required = !!options.required;
+    // this.required = !!options.required;
     this.order = options.order === undefined ? 1 : options.order;
-    // this.type = QuestionTypes[options.type || null] || '';
     this.description = options.description || '';
     this.title = options.title || '';
+    this.validators = options.validators || [];
   }
 }
 
@@ -68,9 +72,9 @@ export interface QuestionOptions<T> {
   value?: T;
   key?: string;
   label?: string;
-  required?: boolean;
+  // required?: boolean;
   order?: number;
-  // type?: QuestionTypes;
   title?: string;
   description?: string;
+  validators?: (ValidatorFn | ValidatorFn[] |AbstractControlOptions);
 }
