@@ -2,11 +2,14 @@
   <div class="topic">
     <topic [mainText]="step.title" [subText]="step.subtitle"></topic>
   </div>
-  <form-input
-    class="grid-items"
-    nz-col
-    nzSpan="12"
-    [name]="question"
-    *ngFor="let question of questions"
-  ></form-input>
+  <form [formGroup]="form">
+    <form-input
+      class="grid-items"
+      nz-col
+      nzSpan="12"
+      [question]="question"
+      *ngFor="let question of questions"
+      [form]="form"
+    ></form-input>
+  </form>
 </div>

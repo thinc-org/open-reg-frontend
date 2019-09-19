@@ -21,6 +21,7 @@ import { TopicComponent } from 'src/app/core/components/topic/topic.component';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { HttpClient } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { HttpClient } from '@angular/common/http';
     TopicComponent
   ],
   imports: [
+    ReactiveFormsModule,
     CommonModule,
     RegisterRoutingModule,
     NzButtonModule,
