@@ -8,15 +8,37 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./form-input.component.scss']
 })
 export class FormInputComponent implements OnInit {
-  // @Input() placeholder: string = null;
   @Input() question: TextboxQuestion;
   @Input() form: FormGroup;
-  constructor() {
-  }
+  constructor() {}
 
-  get isValid() { return this.form.controls[this.question.key].valid; }
-  
+  get isValid() {
+    return this.form.controls[this.question.key].valid;
+  }
+  get formControl() {
+    return this.form.controls[this.question.key];
+  }
+  get isRequired() {
+    return this.formControl.errors.required;
+  }
+  get isMax() {
+    const maxObj = this.formControl.errors.maxlength;
+    return maxObj ? maxObj.requiredLength < maxObj.actualLength: false;
+  }
+  get isMin() {
+    const minObj = this.formControl.errors.minlength; 
+    return minObj ? minObj.requiredLength >= minObj.actualLength: false;
+  }
+  get dirty() {
+    return this.formControl.dirty;
+  }
+  get touched() {
+    return this.formControl.touched;
+  }
+  get email() {
+    return this.formControl.errors.email;
+  }
   ngOnInit() {
-    console.log(this.question, 'init')
+    console.log(this.form.controls[this.question.key]);
   }
 }

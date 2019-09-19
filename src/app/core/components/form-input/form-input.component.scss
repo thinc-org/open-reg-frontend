@@ -25,5 +25,10 @@ p {
 }
 
 .error-message {
+  display: flex;
+  flex-direction: column;
+}
+
+.error-message {
   margin-top: 5px;
 }
