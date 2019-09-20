@@ -1,9 +1,9 @@
 <div nz-row class="grid-container">
   <div class="topic">
-    <!-- <topic [mainText]="step.title" [subText]="step.description"></topic> -->
+    <topic [mainText]="step.title" [subText]="step.description"></topic>
   </div>
   <form [formGroup]="form">
-    <div nz-row *ngFor="let question of precessedQuestions">
+    <div nz-row *ngFor="let question of processedQuestions">
       <form-input
         class="grid-items"
         nz-col
@@ -12,7 +12,7 @@
         [form]="form"
       ></form-input>
       <form-input
-        *ngIf="question.length == 2"
+        
         class="grid-items"
         nz-col
         nzSpan="12"

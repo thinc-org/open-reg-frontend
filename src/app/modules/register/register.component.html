@@ -23,8 +23,9 @@
           [step]="steps[currentStep$.value]"
           nzOffset="6"
           nzSpan="12"
-          [questions]="questions[currentStep$.value] || []"
-          [form] = "form.controls[currentStep$.value]"
+          [questions$]="questions$"
+          [currentStep]="currentStep$.value"
+          [form]="form.controls[0] ? form.controls[currentStep$.value] : form"
         ></register-form>
         <register-navigator
           [currentStep]="currentStep$ | async"

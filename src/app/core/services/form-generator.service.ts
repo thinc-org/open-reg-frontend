@@ -8,16 +8,16 @@ import { BaseQuestion } from '../model/questions.model';
 export class FormGeneratorService {
   constructor() {}
 
-  toFormGroup(questions: BaseQuestion<any>[][]) {
-    let pages = {};
+  toFormGroup(emptyForm: FormGroup, questions: BaseQuestion<any>[][]) {
+    // let pages = {};
     questions.forEach((questionSet, i) => {
       let group = {};
       questionSet.forEach(question => {
         group[question.key] = new FormControl(question.value || '', question.validators)
       })
-      pages[i] = new FormGroup(group);
+      emptyForm.addControl('' + i, new FormGroup(group));
     });
-    console.log(pages, 'pages');
-    return new FormGroup(pages);
+    // console.log(pages, 'pages');
+    // return new FormGroup(pages);
   }
 }

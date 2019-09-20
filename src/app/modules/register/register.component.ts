@@ -23,15 +23,15 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
   
   debug() {
-    console.log(this.questions, this.steps, this.form, 'debug')
+    console.log(this.questions$.value, this.steps, this.form, this.questions$, 'debug')
   }
 
   get form() {
     return this.registerService.form;
   }
 
-  get questions() {
-    return this.registerService.questions;
+  get questions$() {
+    return this.registerService.questions$;
   }
 
   get steps() {

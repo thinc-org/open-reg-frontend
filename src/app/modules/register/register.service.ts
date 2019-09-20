@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BaseQuestion } from '../../core/model/questions.model';
 import { ApiService } from '../../core/services/api.service';
 import { share, takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
+import { Subject, BehaviorSubject } from 'rxjs';
 import { FormGeneratorService } from 'src/app/core/services/form-generator.service';
 import { FormGroup } from '@angular/forms';
 
@@ -15,11 +15,14 @@ export class RegisterService {
     share(),
     takeUntil(this.destroy$)
   );
-  questions: BaseQuestion<any>[][] = [];
+  questions$: BehaviorSubject<BaseQuestion<any>[][]> = new BehaviorSubject<
+    BaseQuestion<any>[][]
+  >([]);
   groups: Step[] = [];
-  form: FormGroup;
+  form: FormGroup = new FormGroup({});
 
   complete() {
+    console.log('complete');
     this.destroy$.next(undefined);
     this.destroy$.unsubscribe();
   }
@@ -28,11 +31,16 @@ export class RegisterService {
     private api: ApiService,
     private formGenerator: FormGeneratorService
   ) {
+    this.questions$.pipe(takeUntil(this.destroy$)).subscribe(e => console.log(e, 'go'))
     this.apiResult$.subscribe(result => {
       this.groups = result.group;
-      this.questions = this.convertQuestions(result.questions, this.groups.length);
-      this.form = this.formGenerator.toFormGroup(this.questions);
+      this.questions$.next(
+        this.convertQuestions(result.questions, this.groups.length)
+      );
+      this.formGenerator.toFormGroup(this.form, this.questions$.value);
     });
+    this.destroy$.subscribe(() => console.log('destroy'));
+    // console.log(this.form, 'this.form');
   }
 
   convertQuestions(
