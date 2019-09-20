@@ -31,9 +31,7 @@ export class RegisterService {
     private api: ApiService,
     private formGenerator: FormGeneratorService
   ) {
-    this.questions$
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(e => console.log(e, 'go'));
+    this.questions$.pipe(takeUntil(this.destroy$)).subscribe();
     this.apiResult$.subscribe(result => {
       this.groups = result.group;
       const convertedQuestions = this.convertQuestions(
@@ -45,11 +43,19 @@ export class RegisterService {
     combineLatest(this.currentStep$, this.apiResult$)
       .pipe(takeUntil(this.destroy$))
       .subscribe(([currentStep, apiResult]) => {
-        const convertedQuestions = this.convertQuestions(
+        let convertedQuestions = this.convertQuestions(
           apiResult.questions,
           this.groups.length
-        )[currentStep - 1];
-        this.questions$.next(convertedQuestions);
+        );
+        for (let i = 0; i < convertedQuestions[currentStep - 1].length; i++) {
+          const valueGroup = this.form.value[currentStep - 1];
+          const key = convertedQuestions[currentStep - 1][i].key;
+          if (valueGroup[key] !== undefined) {
+            convertedQuestions[currentStep - 1][i].value = valueGroup[key];
+          }
+        }
+        console.log(convertedQuestions, 'convertedQuestions', this.form);
+        this.questions$.next(convertedQuestions[currentStep - 1]);
       });
   }
 

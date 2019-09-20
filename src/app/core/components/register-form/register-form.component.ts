@@ -38,9 +38,9 @@ export class RegisterFormComponent implements OnInit {
     this.precessedQuestions$.subscribe(result => {
       this.processedQuestions = result;
     });
-    timer(2000, 4000).subscribe(() =>
-      console.log(this, 'this of form')
-    );
+    // timer(2000, 4000).subscribe(() =>
+    //   console.log(this, 'this of form')
+    // );
   }
 
   ngOnDestroy() {

@@ -31,7 +31,7 @@ export class RegisterNavigatorComponent implements OnInit {
   }
 
   ngOnInit() {
-    timer(1000).subscribe(() => console.log(this, 'this'))
+    // timer(1000).subscribe(() => console.log(this, 'this'))
   }
 
 }
