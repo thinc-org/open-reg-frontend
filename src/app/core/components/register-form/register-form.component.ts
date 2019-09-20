@@ -12,19 +12,16 @@ import { map, reduce, tap, catchError, takeUntil } from 'rxjs/operators';
   styleUrls: ['./register-form.component.scss']
 })
 export class RegisterFormComponent implements OnInit {
-  @Input() questions$: BehaviorSubject<BaseQuestion<any>[][]>;
+  @Input() questions$: BehaviorSubject<BaseQuestion<any>[]>;
   @Input('step') _step: Step;
   @Input() form: FormGroup;
-  @Input() currentStep: number;
+  // @Input() currentStep: number;
 
   precessedQuestions$: Observable<BaseQuestion<any>[][]>;
   processedQuestions: BaseQuestion<any>[][];
   destroy$ = new Subject<any>();
 
   constructor() {
-    // timer(3000).subscribe(() =>
-    //   console.log(this.questions$, this.precessedQuestions$, 'this')
-    // );
   }
 
   get step() {
@@ -34,13 +31,16 @@ export class RegisterFormComponent implements OnInit {
   ngOnInit() {
     this.precessedQuestions$ = this.questions$.pipe(
       takeUntil(this.destroy$),
-      map(e => e[this.currentStep]),
+      // map(e => e[this.currentStep - 1]),
       map(e => e ? e.sort((a, b) => a.order - b.order) : []),
       map(this.reduce),
     );
     this.precessedQuestions$.subscribe(result => {
       this.processedQuestions = result;
     });
+    timer(2000, 4000).subscribe(() =>
+      console.log(this, 'this of form')
+    );
   }
 
   ngOnDestroy() {

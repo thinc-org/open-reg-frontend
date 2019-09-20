@@ -10,8 +10,7 @@ import { RegisterService } from './register.service';
 })
 export class RegisterComponent implements OnInit, OnDestroy {
   isSSOAuthenticated$ = this.chulaSSOService.isSSOAuthenticated$;
-  currentStep$ = new BehaviorSubject<number>(0);
-  totalSteps = this.steps.length;
+  currentStep$ = this.registerService.currentStep$;
 
   constructor(
     private chulaSSOService: ChulaSsoService,
@@ -38,6 +37,10 @@ export class RegisterComponent implements OnInit, OnDestroy {
     return this.registerService.groups;
   }
 
+  get totalSteps() {
+    return this.steps.length;
+  }
+
   loginSSO() {
     this.chulaSSOService.login();
   }
@@ -46,7 +49,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   nextStep() {
-    if (this.currentStep$.value === this.totalSteps - 1) {
+    if (this.currentStep$.value === this.totalSteps) {
       this.router.navigate(['/attend']);
     } else {
       this.currentStep$.next(this.currentStep$.value + 1);

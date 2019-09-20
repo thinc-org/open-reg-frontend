@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BaseQuestion } from '../../core/model/questions.model';
 import { ApiService } from '../../core/services/api.service';
-import { share, takeUntil } from 'rxjs/operators';
-import { Subject, BehaviorSubject } from 'rxjs';
+import { share, takeUntil, flatMap } from 'rxjs/operators';
+import { Subject, BehaviorSubject, combineLatest } from 'rxjs';
 import { FormGeneratorService } from 'src/app/core/services/form-generator.service';
 import { FormGroup } from '@angular/forms';
 
@@ -15,14 +15,14 @@ export class RegisterService {
     share(),
     takeUntil(this.destroy$)
   );
-  questions$: BehaviorSubject<BaseQuestion<any>[][]> = new BehaviorSubject<
-    BaseQuestion<any>[][]
+  questions$: BehaviorSubject<BaseQuestion<any>[]> = new BehaviorSubject<
+    BaseQuestion<any>[]
   >([]);
   groups: Step[] = [];
   form: FormGroup = new FormGroup({});
+  currentStep$ = new BehaviorSubject<number>(1);
 
   complete() {
-    console.log('complete');
     this.destroy$.next(undefined);
     this.destroy$.unsubscribe();
   }
@@ -31,19 +31,29 @@ export class RegisterService {
     private api: ApiService,
     private formGenerator: FormGeneratorService
   ) {
-    this.questions$.pipe(takeUntil(this.destroy$)).subscribe(e => console.log(e, 'go'))
+    this.questions$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(e => console.log(e, 'go'));
     this.apiResult$.subscribe(result => {
       this.groups = result.group;
-      this.questions$.next(
-        this.convertQuestions(result.questions, this.groups.length)
+      const convertedQuestions = this.convertQuestions(
+        result.questions,
+        this.groups.length
       );
-      this.formGenerator.toFormGroup(this.form, this.questions$.value);
+      this.formGenerator.toFormGroup(this.form, convertedQuestions);
     });
-    this.destroy$.subscribe(() => console.log('destroy'));
-    // console.log(this.form, 'this.form');
+    combineLatest(this.currentStep$, this.apiResult$)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(([currentStep, apiResult]) => {
+        const convertedQuestions = this.convertQuestions(
+          apiResult.questions,
+          this.groups.length
+        )[currentStep - 1];
+        this.questions$.next(convertedQuestions);
+      });
   }
 
-  convertQuestions(
+  private convertQuestions(
     questions: BaseQuestion<any>[],
     groupNumber: number = 0
   ): BaseQuestion<any>[][] {

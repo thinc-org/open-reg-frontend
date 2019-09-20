@@ -20,12 +20,11 @@
     <ng-container *ngIf="isSSOAuthenticated$ | async; else notSSOAuthenticated">
       <content-container>
         <register-form
-          [step]="steps[currentStep$.value]"
+          [step]="steps[currentStep$.value - 1]"
           nzOffset="6"
           nzSpan="12"
           [questions$]="questions$"
-          [currentStep]="currentStep$.value"
-          [form]="form.controls[0] ? form.controls[currentStep$.value] : form"
+          [form]="form.controls[0] ? form.controls[currentStep$.value - 1] : form"
         ></register-form>
         <register-navigator
           [currentStep]="currentStep$ | async"

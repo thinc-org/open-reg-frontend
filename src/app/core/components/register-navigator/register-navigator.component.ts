@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'register-navigator',
@@ -14,6 +15,7 @@ export class RegisterNavigatorComponent implements OnInit {
 
   next() {
     this.nextStep.emit(undefined);
+    console.log(this, 'this')
   }
 
   previous() {
@@ -21,14 +23,15 @@ export class RegisterNavigatorComponent implements OnInit {
   }
 
   get notFirstPage() { 
-    return this.currentStep > 0; 
+    return this.currentStep > 1; 
   }
 
   get notLastPage() { 
-    return this.currentStep < this.totalSteps - 1;
+    return this.currentStep < this.totalSteps;
   }
 
   ngOnInit() {
+    timer(1000).subscribe(() => console.log(this, 'this'))
   }
 
 }
