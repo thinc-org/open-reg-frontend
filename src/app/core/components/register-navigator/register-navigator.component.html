@@ -3,6 +3,7 @@
     class="arrow-text-l"
     (onClick)="previous()"
     *ngIf="notFirstPage; else blank"
+    [mainText]="previousStepObject.title"
     [isRight]="false"
   ></arrow-text>
   <arrow-text
@@ -10,6 +11,7 @@
     class="arrow-text-r"
     (onClick)="next()"
     *ngIf="notLastPage; else button"
+    [mainText]="nextStepObject.title"
     [isRight]="true"
   ></arrow-text>
   <ng-template #button>

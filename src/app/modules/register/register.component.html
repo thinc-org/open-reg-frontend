@@ -32,6 +32,7 @@
           (previousStep)="previousStep()"
           (nextStep)="nextStep()"
           [form]="form.controls[0] ? form.controls[currentStep$.value - 1] : form"
+          [steps]="steps"
         >
         </register-navigator>
       </content-container>

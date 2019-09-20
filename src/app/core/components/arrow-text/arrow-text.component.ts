@@ -8,6 +8,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 export class ArrowTextComponent implements OnInit {
   @Input() isRight: boolean = true;
   @Input() disabled: boolean = false;
+  @Input() mainText:string;
   @Output() onClick: EventEmitter<any> = new EventEmitter();
   constructor() {}
 

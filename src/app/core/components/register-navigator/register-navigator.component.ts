@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { timer } from 'rxjs';
 import { FormGroup } from '@angular/forms';
+import { Step } from 'src/app/modules/register/register.service';
 
 @Component({
   selector: 'register-navigator',
@@ -13,6 +14,7 @@ export class RegisterNavigatorComponent implements OnInit {
   @Input() currentStep = 0;
   @Input() totalSteps = 0;
   @Input() form: FormGroup;
+  @Input() steps: Step[];
   constructor() { }
 
   next() {
@@ -22,6 +24,14 @@ export class RegisterNavigatorComponent implements OnInit {
 
   previous() {
     this.previousStep.emit(undefined);
+  }
+
+  get previousStepObject() {
+    return this.steps[this.currentStep - 2];
+  }
+
+  get nextStepObject() {
+    return this.steps[this.currentStep];
   }
 
   get notFirstPage() { 

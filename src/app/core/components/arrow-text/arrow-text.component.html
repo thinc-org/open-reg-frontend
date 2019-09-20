@@ -9,9 +9,9 @@
   >
     <div class="arrow-container">
       <ng-container *ngIf="isRight; else left">
-        <div class="text-container">
-          <span class="subtext">อยูในหอพัก</span>
-          <span class="text">test1</span>
+        <div class="text-container text-right">
+          <span class="subtext">{{ 'next step' | translate }}</span>
+          <span class="text">{{ mainText || '' }}</span>
         </div>
         <i
           class="arrow arrow-right"
@@ -29,9 +29,9 @@
           nzTheme="outline"
           nzColor="#FFFFFF"
         ></i>
-        <div class="text-container">
-          <span class="subtext">อยูในหอพัก</span>
-          <span class="text">test1</span>
+        <div class="text-container text-left">
+          <span class="subtext">{{ 'previous step' | translate }}</span>
+          <span class="text">{{ mainText || '' }}</span>
         </div>
       </ng-template>
     </div>

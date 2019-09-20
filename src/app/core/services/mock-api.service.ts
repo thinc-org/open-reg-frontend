@@ -32,8 +32,8 @@ export class MockApiService implements ApiInterface {
             }),
             group: [
               { n: 1, title: 'Group A', description: 'ABC' },
-              { n: 2, title: 'Group A', description: 'ABC' },
-              { n: 3, title: 'Group A', description: 'ABC' }
+              { n: 2, title: 'Group B', description: 'ABC' },
+              { n: 3, title: 'Group C', description: 'ABC' }
             ]
           });
         });
