@@ -31,6 +31,7 @@
           [totalSteps]="totalSteps"
           (previousStep)="previousStep()"
           (nextStep)="nextStep()"
+          [form]="form.controls[0] ? form.controls[currentStep$.value - 1] : form"
         >
         </register-navigator>
       </content-container>

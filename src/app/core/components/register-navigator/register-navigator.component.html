@@ -6,6 +6,7 @@
     [isRight]="false"
   ></arrow-text>
   <arrow-text
+    [disabled]="!isAbleToProceed"
     class="arrow-text-r"
     (onClick)="next()"
     *ngIf="notLastPage; else button"
@@ -14,6 +15,7 @@
   <ng-template #button>
     <div class="button-register-container">
       <button
+        [disabled]="!isAbleToProceed"
         class="button-register"
         (click)="next()"
         nz-button

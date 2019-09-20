@@ -15,7 +15,6 @@ export class RegisterFormComponent implements OnInit {
   @Input() questions$: BehaviorSubject<BaseQuestion<any>[]>;
   @Input('step') _step: Step;
   @Input() form: FormGroup;
-  // @Input() currentStep: number;
 
   precessedQuestions$: Observable<BaseQuestion<any>[][]>;
   processedQuestions: BaseQuestion<any>[][];

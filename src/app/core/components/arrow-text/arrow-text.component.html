@@ -1,28 +1,39 @@
-<div (click)="onClick.emit($event)" [ngClass]="{'flex-right': isRight,'flex-left': !isRight}" class="arrow-container">
-  <ng-container *ngIf="isRight; else left">
-    <div class="text-container">
-      <span class="subtext">อยูในหอพัก</span>
-      <span class="text">test1</span>
+<div
+  class="container"
+  [ngClass]="{ 'flex-right': isRight, 'flex-left': !isRight }"
+>
+  <button
+    (click)="onClick.emit($event)"
+    class="invisible-button"
+    [disabled]="disabled"
+  >
+    <div class="arrow-container">
+      <ng-container *ngIf="isRight; else left">
+        <div class="text-container">
+          <span class="subtext">อยูในหอพัก</span>
+          <span class="text">test1</span>
+        </div>
+        <i
+          class="arrow arrow-right"
+          nz-icon
+          nzType="arrow-right"
+          nzTheme="outline"
+          nzColor="#FFFFFF"
+        ></i>
+      </ng-container>
+      <ng-template #left>
+        <i
+          class="arrow arrow-left"
+          nz-icon
+          nzType="arrow-left"
+          nzTheme="outline"
+          nzColor="#FFFFFF"
+        ></i>
+        <div class="text-container">
+          <span class="subtext">อยูในหอพัก</span>
+          <span class="text">test1</span>
+        </div>
+      </ng-template>
     </div>
-    <i
-      class="arrow arrow-right"
-      nz-icon
-      nzType="arrow-right"
-      nzTheme="outline"
-      nzColor="#FFFFFF"
-    ></i>
-  </ng-container>
-  <ng-template #left>
-    <i
-      class="arrow arrow-left"
-      nz-icon
-      nzType="arrow-left"
-      nzTheme="outline"
-      nzColor="#FFFFFF"
-    ></i>
-    <div class="text-container">
-      <span class="subtext">อยูในหอพัก</span>
-      <span class="text">test1</span>
-    </div>
-  </ng-template>
+  </button>
 </div>

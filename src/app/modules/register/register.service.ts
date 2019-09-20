@@ -54,7 +54,6 @@ export class RegisterService {
             convertedQuestions[currentStep - 1][i].value = valueGroup[key];
           }
         }
-        console.log(convertedQuestions, 'convertedQuestions', this.form);
         this.questions$.next(convertedQuestions[currentStep - 1]);
       });
   }
