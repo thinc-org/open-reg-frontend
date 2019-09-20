@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Step } from 'src/app/modules/register/register.component';
-import { FormGeneratorService } from '../../services/form-generator.service';
+// import { FormGeneratorService } from '../../services/form-generator.service';
 import { BaseQuestion } from '../../model/questions.model';
 import { FormGroup } from '@angular/forms';
+import { Step } from 'src/app/modules/register/register.service';
 
 @Component({
   selector: 'register-form',
@@ -11,13 +11,14 @@ import { FormGroup } from '@angular/forms';
 })
 export class RegisterFormComponent implements OnInit {
   @Input() questions: BaseQuestion<any>[];
-  @Input() step: Step = { title: null, subtitle: null };
+  @Input() step: Step = { title: null, description: null, n: 1 };
+  @Input() form: FormGroup;
   precessedQuestions: BaseQuestion<any>[][];
-  form: FormGroup;
-  constructor(private formGenerator: FormGeneratorService) {}
+  
+  constructor() {}
 
   ngOnInit() {
-    this.form = this.formGenerator.toFormGroup(this.questions);
+    // this.form = this.formGenerator.toFormGroup(this.questions);
     this.precessedQuestions = this.questions
       .sort((a, b) => a.order - b.order)
       .reduce((result, question, i) => {

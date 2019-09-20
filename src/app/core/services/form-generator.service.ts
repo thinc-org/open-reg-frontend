@@ -5,23 +5,19 @@ import { BaseQuestion } from '../model/questions.model';
 @Injectable({
   providedIn: 'root'
 })
-
 export class FormGeneratorService {
   constructor() {}
 
-  toFormGroup(questions: BaseQuestion<any>[]) {
-    let group: any = {};
-    questions.forEach(question => {
-      group[question.key] = new FormControl(question.value || '', question.validators)
+  toFormGroup(questions: BaseQuestion<any>[][]) {
+    let pages = {};
+    questions.forEach((questionSet, i) => {
+      let group = {};
+      questionSet.forEach(question => {
+        group[question.key] = new FormControl(question.value || '', question.validators)
+      })
+      pages[i] = new FormGroup(group);
     });
-    return new FormGroup(group);
+    console.log(pages, 'pages');
+    return new FormGroup(pages);
   }
-
-  toQuestions(jsonArray: any): BaseQuestion<any>[] {
-    // Not implemented
-    // Maybe use Rxjs instead of this method
-    return null;
-  }
-
-  private toFormControl() {}
 }

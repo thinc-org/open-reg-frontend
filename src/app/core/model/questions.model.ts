@@ -13,6 +13,7 @@ export class BaseQuestion<T> {
   choices: string[];
   key: string;
   controlType: string;
+  group: number;
   validators: (ValidatorFn | ValidatorFn[] |AbstractControlOptions);
 
   constructor(options: QuestionOptions<T> = {}) {
@@ -24,6 +25,7 @@ export class BaseQuestion<T> {
     this.description = options.description || '';
     this.title = options.title || '';
     this.validators = options.validators || [];
+    this.group = options.group;
   }
 }
 
@@ -77,4 +79,5 @@ export interface QuestionOptions<T> {
   title?: string;
   description?: string;
   validators?: (ValidatorFn | ValidatorFn[] |AbstractControlOptions);
+  group?: number;
 }

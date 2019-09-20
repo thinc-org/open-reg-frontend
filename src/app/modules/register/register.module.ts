@@ -22,6 +22,8 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { HttpClient } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ApiService } from 'src/app/core/services/api.service';
+import { MockApiService } from 'src/app/core/services/mock-api.service';
 
 @NgModule({
   declarations: [
@@ -51,6 +53,6 @@ import { ReactiveFormsModule } from '@angular/forms';
         deps: [HttpClient]
       }
     })
-  ]
+  ],
 })
 export class RegisterModule {}

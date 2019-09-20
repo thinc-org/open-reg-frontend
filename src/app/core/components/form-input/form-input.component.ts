@@ -13,7 +13,7 @@ export class FormInputComponent implements OnInit {
   constructor() {}
 
   get isValid() {
-    return this.form.controls[this.question.key].valid;
+    return this.formControl.valid;
   }
   get formControl() {
     return this.form.controls[this.question.key];
@@ -38,7 +38,5 @@ export class FormInputComponent implements OnInit {
   get email() {
     return this.formControl.errors.email;
   }
-  ngOnInit() {
-    console.log(this.form.controls[this.question.key]);
-  }
+  ngOnInit() {}
 }
