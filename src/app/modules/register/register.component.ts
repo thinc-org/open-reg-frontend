@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ChulaSsoService } from 'src/app/core/services/chula-sso.service';
-import { BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
 import { RegisterService } from './register.service';
 @Component({
@@ -15,11 +14,11 @@ export class RegisterComponent implements OnInit, OnDestroy {
   constructor(
     private chulaSSOService: ChulaSsoService,
     private router: Router,
-    private registerService: RegisterService,
+    private registerService: RegisterService
   ) {}
 
   ngOnInit() {}
-  
+
   debug() {
     // console.log(this.questions$.value, this.steps, this.form, this.questions$, 'debug')
   }
@@ -34,6 +33,16 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   get steps() {
     return this.registerService.groups;
+  }
+
+  get currentStepObj() {
+    return this.steps[this.currentStep$.value - 1];
+  }
+
+  get currentFormObj() {
+    return this.form.controls[0]
+      ? this.form.controls[this.currentStep$.value - 1]
+      : this.form;
   }
 
   get totalSteps() {

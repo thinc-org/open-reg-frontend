@@ -45,8 +45,6 @@ export class RegisterNavigatorComponent implements OnInit {
     return this.form.valid;
   }
 
-  ngOnInit() {
-    // timer(1000).subscribe(() => console.log(this, 'this'))
-  }
+  ngOnInit() {}
 
 }

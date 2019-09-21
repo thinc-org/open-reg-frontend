@@ -20,18 +20,18 @@
     <ng-container *ngIf="isSSOAuthenticated$ | async; else notSSOAuthenticated">
       <content-container>
         <register-form
-          [step]="steps[currentStep$.value - 1]"
+          [step]="currentStepObj"
           nzOffset="6"
           nzSpan="12"
           [questions$]="questions$"
-          [form]="form.controls[0] ? form.controls[currentStep$.value - 1] : form"
+          [form]="currentFormObj"
         ></register-form>
         <register-navigator
           [currentStep]="currentStep$ | async"
           [totalSteps]="totalSteps"
           (previousStep)="previousStep()"
           (nextStep)="nextStep()"
-          [form]="form.controls[0] ? form.controls[currentStep$.value - 1] : form"
+          [form]="currentFormObj"
           [steps]="steps"
         >
         </register-navigator>
@@ -46,4 +46,4 @@
   </nz-content>
   <nz-footer>Project Open Registration by Thinc.</nz-footer>
 </nz-layout>
-<button (click)="debug()"></button>
+<!-- <button (click)="debug()"></button> -->
