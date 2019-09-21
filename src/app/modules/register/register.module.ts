@@ -22,8 +22,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { HttpClient } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ApiService } from 'src/app/core/services/api.service';
-import { MockApiService } from 'src/app/core/services/mock-api.service';
+import { NgxStronglyTypedFormsModule } from 'ngx-strongly-typed-forms';
 
 @NgModule({
   declarations: [
@@ -36,6 +35,7 @@ import { MockApiService } from 'src/app/core/services/mock-api.service';
     TopicComponent
   ],
   imports: [
+    NgxStronglyTypedFormsModule,
     ReactiveFormsModule,
     CommonModule,
     RegisterRoutingModule,
@@ -53,6 +53,6 @@ import { MockApiService } from 'src/app/core/services/mock-api.service';
         deps: [HttpClient]
       }
     })
-  ],
+  ]
 })
 export class RegisterModule {}

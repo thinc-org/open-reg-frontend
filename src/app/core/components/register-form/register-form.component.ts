@@ -1,10 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-// import { FormGeneratorService } from '../../services/form-generator.service';
 import { BaseQuestion } from '../../model/questions.model';
 import { FormGroup } from '@angular/forms';
 import { Step } from 'src/app/modules/register/register.service';
 import { BehaviorSubject, Observable, timer, of, Subject } from 'rxjs';
-import { map, reduce, tap, catchError, takeUntil } from 'rxjs/operators';
+import { map, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'register-form',
@@ -30,7 +29,6 @@ export class RegisterFormComponent implements OnInit {
   ngOnInit() {
     this.precessedQuestions$ = this.questions$.pipe(
       takeUntil(this.destroy$),
-      // map(e => e[this.currentStep - 1]),
       map(e => e ? e.sort((a, b) => a.order - b.order) : []),
       map(this.reduce),
     );

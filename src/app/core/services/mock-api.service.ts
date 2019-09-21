@@ -24,7 +24,7 @@ export class MockApiService implements ApiInterface {
                 key: `question ${i}`,
                 label: `label ${i}`,
                 order: i,
-                validators: [Validators.required, Validators.email],
+                validators: [Validators.required, Validators.email], // not dynamic yet
                 title: `QUESTION ${i}`,
                 value: `prefilled value`,
                 group: Math.ceil(i / 4)

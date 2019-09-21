@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl } from 'ngx-strongly-typed-forms';
 import { BaseQuestion } from '../model/questions.model';
 
 @Injectable({
@@ -8,16 +8,16 @@ import { BaseQuestion } from '../model/questions.model';
 export class FormGeneratorService {
   constructor() {}
 
-  toFormGroup(emptyForm: FormGroup, questions: BaseQuestion<any>[][]) {
-    // let pages = {};
+  toFormGroup(emptyForm: FormGroup<any>, questions: BaseQuestion<any>[][]) {
     questions.forEach((questionSet, i) => {
       let group = {};
       questionSet.forEach(question => {
-        group[question.key] = new FormControl(question.value || '', question.validators)
-      })
-      emptyForm.addControl('' + i, new FormGroup(group));
+        group[question.key] = new FormControl<BaseQuestion<any>>(
+          question.value || '',
+          question.validators
+        );
+      });
+      emptyForm.addControl('' + i, new FormGroup<any>(group));
     });
-    // console.log(pages, 'pages');
-    // return new FormGroup(pages);
   }
 }
