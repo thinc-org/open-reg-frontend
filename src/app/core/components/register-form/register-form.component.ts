@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { BaseQuestion } from '../../model/questions.model';
 import { FormGroup } from '@angular/forms';
 import { Step } from 'src/app/modules/register/register.service';
-import { BehaviorSubject, Observable, timer, of, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 
 @Component({

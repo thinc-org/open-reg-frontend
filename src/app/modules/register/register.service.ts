@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { BaseQuestion } from '../../core/model/questions.model';
 import { ApiService } from '../../core/services/api.service';
-import { share, takeUntil, flatMap } from 'rxjs/operators';
+import { share, takeUntil } from 'rxjs/operators';
 import { Subject, BehaviorSubject, combineLatest } from 'rxjs';
 import { FormGeneratorService } from 'src/app/core/services/form-generator.service';
-import { FormGroup } from '@angular/forms';
+import { FormGroup } from 'ngx-strongly-typed-forms';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,7 @@ export class RegisterService {
     BaseQuestion<any>[]
   >([]);
   groups: Step[] = [];
-  form: FormGroup = new FormGroup({});
+  form: FormGroup<any> = new FormGroup<any>({});
   currentStep$ = new BehaviorSubject<number>(1);
 
   complete() {

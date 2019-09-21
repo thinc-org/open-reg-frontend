@@ -18,7 +18,6 @@ export class RegisterNavigatorComponent implements OnInit {
   constructor() { }
 
   next() {
-    console.log(this.form)
     this.nextStep.emit(undefined);
   }
 
