@@ -23,10 +23,6 @@
     >
       <nz-option *ngFor="let option of question.choices; index as i" [nzLabel]="option" [nzValue]="'' + i"></nz-option>
     </nz-select>
-    <!-- <select
-    *ngSwitchCase="'dropdown'">
-      <option value="">
-    </select> -->
   </div>
   <div class="error-message" *ngIf="!isValid && (touched || dirty)">
     <span *ngIf="isRequired" nz-text nzType="danger">{{

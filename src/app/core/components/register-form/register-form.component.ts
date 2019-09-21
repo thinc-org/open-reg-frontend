@@ -14,6 +14,7 @@ export class RegisterFormComponent implements OnInit {
   @Input() questions$: BehaviorSubject<BaseQuestion<any>[]>;
   @Input('step') _step: Step;
   @Input() form: FormGroup;
+  @Input() eventName: string;
 
   precessedQuestions$: Observable<BaseQuestion<any>[][]>;
   processedQuestions: BaseQuestion<any>[][];
@@ -24,6 +25,10 @@ export class RegisterFormComponent implements OnInit {
 
   get step() {
     return this._step ? this._step : { title: null, description: null, n: 1 };
+  }
+
+  get noQuestion() {
+    return this.processedQuestions.length === 0;
   }
 
   ngOnInit() {

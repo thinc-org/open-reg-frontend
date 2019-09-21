@@ -1,5 +1,4 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
-import { timer } from 'rxjs';
 import { FormGroup } from '@angular/forms';
 import { Step } from 'src/app/modules/register/register.service';
 

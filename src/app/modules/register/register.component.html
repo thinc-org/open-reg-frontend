@@ -20,6 +20,7 @@
     <ng-container *ngIf="isSSOAuthenticated$ | async; else notSSOAuthenticated">
       <content-container>
         <register-form
+          [eventName]="eventName"
           [step]="currentStepObj"
           nzOffset="6"
           nzSpan="12"

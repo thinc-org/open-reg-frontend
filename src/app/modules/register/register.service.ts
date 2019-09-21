@@ -21,6 +21,7 @@ export class RegisterService {
   groups: Step[] = [];
   form: FormGroup<any> = new FormGroup<any>({});
   currentStep$ = new BehaviorSubject<number>(1);
+  eventName: string;
 
   complete() {
     this.destroy$.next(undefined);
@@ -32,14 +33,22 @@ export class RegisterService {
     private formGenerator: FormGeneratorService
   ) {
     this.questions$.pipe(takeUntil(this.destroy$)).subscribe();
+
     this.apiResult$.subscribe(result => {
+      (result.group as Step[]).push({
+        description: 'CONFIRMATION',
+        n: result.length + 1,
+        title: 'ยืนยันการลงทะเบียน'
+      });
       this.groups = result.group;
+      this.eventName = result.title;
       const convertedQuestions = this.convertQuestions(
         result.questions,
         this.groups.length
       );
       this.formGenerator.toFormGroup(this.form, convertedQuestions);
     });
+
     combineLatest(this.currentStep$, this.apiResult$)
       .pipe(takeUntil(this.destroy$))
       .subscribe(([currentStep, apiResult]) => {

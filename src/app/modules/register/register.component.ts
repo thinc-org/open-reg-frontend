@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   ngOnInit() {}
 
   debug() {
-    console.log(this.questions$.value, this.steps, this.form, this.questions$, 'debug')
+    // console.log(this.questions$.value, this.steps, this.form, this.questions$, 'debug')
   }
 
   get form() {
@@ -47,6 +47,10 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   get totalSteps() {
     return this.steps.length;
+  }
+
+  get eventName() {
+    return this.registerService.eventName;
   }
 
   loginSSO() {
