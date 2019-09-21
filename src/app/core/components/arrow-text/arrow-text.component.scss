@@ -3,10 +3,6 @@
   color: #ffffff;
 }
 
-.arrow:hover {
-  opacity: 0.7;
-}
-
 .arrow-right {
   margin-left: 20px;
 }
@@ -56,6 +52,10 @@
 
 .invisible-button:disabled {
   opacity: 0.5;
+}
+
+.invisible-button:not([disabled]):hover {
+  opacity: 0.7;
 }
 
 .container {
