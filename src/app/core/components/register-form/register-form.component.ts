@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { BaseQuestion } from '../../model/questions.model';
 import { FormGroup } from '@angular/forms';
-import { Step, RegisterService } from 'src/app/modules/register/register.service';
+import { RegisterService } from 'src/app/modules/register/register.service';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { map, takeUntil, tap } from 'rxjs/operators';
+import { map, takeUntil} from 'rxjs/operators';
 
 @Component({
   selector: 'register-form',
@@ -11,8 +11,6 @@ import { map, takeUntil, tap } from 'rxjs/operators';
   styleUrls: ['./register-form.component.scss']
 })
 export class RegisterFormComponent implements OnInit {
-  // @Input() questions$: BehaviorSubject<BaseQuestion<any>[]>;
-  // @Input('step') _step: Step;
   @Input() form: FormGroup;
   
   questions$: BehaviorSubject<BaseQuestion<any>[]>;
@@ -25,10 +23,6 @@ export class RegisterFormComponent implements OnInit {
     this.questions$ = this.registerService.questions$;
     this.eventName = this.registerService.eventName;
   }
-
-  // get step() {
-  //   return this._step ? this._step : { title: null, description: null, n: 1 };
-  // }
 
   ngOnInit() {
     this.precessedQuestions$ = this.questions$.pipe(

@@ -49,6 +49,10 @@ export class RegisterService {
       this.formGenerator.toFormGroup(this.form, convertedQuestions);
     });
 
+    // As a user, every time he/she change step,
+    // the system need to save user's answered question form this.form into this.questions$ array
+    // so that when user go back to the previous step,
+    // the answered question will not disappear from the form
     combineLatest(this.currentStep$, this.apiResult$)
       .pipe(takeUntil(this.destroy$))
       .subscribe(([currentStep, apiResult]) => {

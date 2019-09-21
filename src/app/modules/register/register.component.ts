@@ -32,11 +32,14 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   get currentStepType() {
-    const isLastStep = this.registerService.currentStep$.value === this.steps.length;
-    if(isLastStep) {
-      return 'confirm'
+    const isLastStep =
+      this.registerService.currentStep$.value === this.steps.length;
+    if (isLastStep) {
+      return 'confirm';
+    } else if (this.registerService.questions$.value[0]) {
+      return 'form';
     }
-    return 'form'
+    return 'loading';
   }
 
   get currentStepObj() {
