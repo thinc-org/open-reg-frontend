@@ -1,0 +1,33 @@
+.sticky {
+  position: sticky;
+  top: 0;
+}
+.navbar {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  height: 70px;
+  margin-left: 17.36%;
+  margin-right: 17.36%;
+  width: 100%;
+}
+.list {
+  width: 100%;
+  list-style-type: none;
+  display: flex;
+  flex: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+.orlogo {
+  margin-right: 2.78%;
+  align-items: center;
+}
+.vl {
+  border-left: 1px solid #b3b3b3;
+  height: 30px;
+  margin-right: 2.78%;
+}
