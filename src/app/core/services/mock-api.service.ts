@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiInterface } from './api.service';
 import { Observable, timer, Subject } from 'rxjs';
-import { TextboxQuestion } from '../model/questions.model';
+import { TextboxQuestion, DropdownQuestion } from '../model/questions.model';
 import { Validators } from '@angular/forms';
 
 @Injectable({
@@ -19,16 +19,31 @@ export class MockApiService implements ApiInterface {
           response.next({
             questions: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0].map((e, i) => {
               i += 1;
-              return new TextboxQuestion({
-                description: `something ${i}`,
-                key: `question ${i}`,
-                label: `label ${i}`,
-                order: i,
-                validators: [Validators.required, Validators.email], // not dynamic yet
-                title: `QUESTION ${i}`,
-                value: `prefilled value`,
-                group: Math.ceil(i / 4)
-              });
+              if (i === 4) {
+                return new DropdownQuestion({
+                  description: `something special`,
+                  key: `question dropdown`,
+                  label: `label dropdown`,
+                  order: 30,
+                  validators: [Validators.required], // not dynamic yet
+                  title: 'QUESTION special',
+                  value: '0',
+                  group: 1,
+                  choices: ['go', 'go2', 'go3']
+                });
+              } else {
+                return new TextboxQuestion({
+                  description: `something ${i}`,
+                  key: `question ${i}`,
+                  label: `label ${i}`,
+                  order: i,
+                  validators: [Validators.required, Validators.email], // not dynamic yet
+                  title: `QUESTION ${i}`,
+                  value: `prefilled value`,
+                  type: 'email',
+                  group: Math.ceil(i / 4)
+                });
+              }
             }),
             group: [
               { n: 1, title: 'Group A', description: 'ABC' },

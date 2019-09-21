@@ -35,7 +35,7 @@ export class DropdownQuestion extends BaseQuestion<string> {
 
   constructor(options: QuestionOptions<string> = {}) {
     super(options);
-    this.choices = options['options'] || [];
+    this.choices = options['choices'] || [];
   }
 }
 
@@ -80,4 +80,6 @@ export interface QuestionOptions<T> {
   description?: string;
   validators?: (ValidatorFn | ValidatorFn[] |AbstractControlOptions);
   group?: number;
+  choices?: string[];
+  type?: string;
 }

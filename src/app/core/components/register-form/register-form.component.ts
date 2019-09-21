@@ -3,7 +3,7 @@ import { BaseQuestion } from '../../model/questions.model';
 import { FormGroup } from '@angular/forms';
 import { Step } from 'src/app/modules/register/register.service';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { map, takeUntil } from 'rxjs/operators';
+import { map, takeUntil, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'register-form',
@@ -30,7 +30,7 @@ export class RegisterFormComponent implements OnInit {
     this.precessedQuestions$ = this.questions$.pipe(
       takeUntil(this.destroy$),
       map(e => e ? e.sort((a, b) => a.order - b.order) : []),
-      map(this.reduce),
+      map(this.reduce)
     );
     this.precessedQuestions$.subscribe(result => {
       this.processedQuestions = result;

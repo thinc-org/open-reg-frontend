@@ -23,6 +23,7 @@ import { HttpLoaderFactory } from 'src/app/app.module';
 import { HttpClient } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxStronglyTypedFormsModule } from 'ngx-strongly-typed-forms';
+import { NzSelectModule } from 'ng-zorro-antd/select';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { NgxStronglyTypedFormsModule } from 'ngx-strongly-typed-forms';
     NzGridModule,
     NzLayoutModule,
     NzIconModule,
+    NzSelectModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

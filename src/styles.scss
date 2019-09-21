@@ -56,3 +56,14 @@ body {
   margin: 0;
   font-family: 'Noto Sans Thai UI', 'Inter';
 }
+
+.ant-select-selection  {
+  background-color: #f9f9f9;
+  border-radius: 6px;
+  box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.02);
+  border: 0;
+}
+
+.ant-select-selection:focus {
+  box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.02);
+}
