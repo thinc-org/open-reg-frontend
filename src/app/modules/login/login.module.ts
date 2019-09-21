@@ -12,9 +12,11 @@ import {
   NzFormModule,
   NzCheckboxModule
 } from 'ng-zorro-antd';
+import { NavbarComponent } from 'src/app/core/components/navbar/navbar.component';
+import { TopicComponent } from 'src/app/core/components/topic/topic.component';
 
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [LoginComponent, NavbarComponent, TopicComponent],
   imports: [
     CommonModule,
     LoginRoutingModule,
