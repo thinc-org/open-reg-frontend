@@ -18,15 +18,22 @@
   </nz-header>
   <nz-content>
     <ng-container *ngIf="isSSOAuthenticated$ | async; else notSSOAuthenticated">
-      <content-container>
-        <register-form
-          [eventName]="eventName"
-          [step]="currentStepObj"
-          nzOffset="6"
-          nzSpan="12"
-          [questions$]="questions$"
-          [form]="currentFormObj"
-        ></register-form>
+      <content-container
+        [title]="currentStepObj.title"
+        [subtitle]="currentStepObj.description"
+      >
+        <ng-container [ngSwitch]="currentStepType">
+          <register-form
+            *ngSwitchCase="'form'"
+            nzOffset="6"
+            nzSpan="12"
+            [form]="currentFormObj"
+          ></register-form>
+          <confirm-content
+            *ngSwitchCase="'confirm'"
+            [eventName]="eventName"
+          ></confirm-content>
+        </ng-container>
         <register-navigator
           [currentStep]="currentStep$ | async"
           [totalSteps]="totalSteps"

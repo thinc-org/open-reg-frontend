@@ -1,3 +1,6 @@
 <div nz-row class="content-container">
-    <ng-content></ng-content>
+    <div class="topic-container">
+        <topic [mainText]="title || ''" [subText]="subtitle || ''"></topic>
+    </div>
+  <ng-content></ng-content>
 </div>

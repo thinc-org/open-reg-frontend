@@ -20,23 +20,29 @@ export class RegisterComponent implements OnInit, OnDestroy {
   ngOnInit() {}
 
   debug() {
-    // console.log(this.questions$.value, this.steps, this.form, this.questions$, 'debug')
+    // console.log(this.registerService.questions$.value, this.steps, this.form, this.registerService.questions$, 'debug')
   }
 
   get form() {
     return this.registerService.form;
   }
 
-  get questions$() {
-    return this.registerService.questions$;
-  }
-
   get steps() {
     return this.registerService.groups;
   }
 
+  get currentStepType() {
+    const isLastStep = this.registerService.currentStep$.value === this.steps.length;
+    if(isLastStep) {
+      return 'confirm'
+    }
+    return 'form'
+  }
+
   get currentStepObj() {
-    return this.steps[this.currentStep$.value - 1];
+    return this.steps[this.currentStep$.value - 1]
+      ? this.steps[this.currentStep$.value - 1]
+      : { title: null, description: null, n: 1 };
   }
 
   get currentFormObj() {
@@ -47,10 +53,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   get totalSteps() {
     return this.steps.length;
-  }
-
-  get eventName() {
-    return this.registerService.eventName;
   }
 
   loginSSO() {

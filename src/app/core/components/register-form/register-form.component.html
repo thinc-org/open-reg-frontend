@@ -1,14 +1,6 @@
 <div nz-row class="grid-container">
-  <div
-    [ngClass]="{
-      'topic-question-page': !noQuestion,
-      'topic-confirm-page': noQuestion
-    }"
-  >
-    <topic [mainText]="step.title" [subText]="step.description"></topic>
-  </div>
   <form [formGroup]="form">
-    <ng-container *ngIf="!noQuestion; else confirmText">
+    <!-- <ng-container *ngIf="!noQuestion; else confirmText"> -->
       <div nz-row *ngFor="let question of processedQuestions">
         <form-input
           class="grid-items"
@@ -26,11 +18,11 @@
           [form]="form"
         ></form-input>
       </div>
-    </ng-container>
-    <ng-template #confirmText>
+    <!-- </ng-container> -->
+    <!-- <ng-template #confirmText>
       <div class="confirm-text-container">
         ท่านต้องการยืนยันการลงทะเบียน “{{ eventName }}” หรือไม่
       </div>
-    </ng-template>
+    </ng-template> -->
   </form>
 </div>

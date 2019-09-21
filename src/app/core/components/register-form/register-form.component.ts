@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { BaseQuestion } from '../../model/questions.model';
 import { FormGroup } from '@angular/forms';
-import { Step } from 'src/app/modules/register/register.service';
+import { Step, RegisterService } from 'src/app/modules/register/register.service';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { map, takeUntil, tap } from 'rxjs/operators';
 
@@ -11,25 +11,24 @@ import { map, takeUntil, tap } from 'rxjs/operators';
   styleUrls: ['./register-form.component.scss']
 })
 export class RegisterFormComponent implements OnInit {
-  @Input() questions$: BehaviorSubject<BaseQuestion<any>[]>;
-  @Input('step') _step: Step;
+  // @Input() questions$: BehaviorSubject<BaseQuestion<any>[]>;
+  // @Input('step') _step: Step;
   @Input() form: FormGroup;
-  @Input() eventName: string;
-
+  
+  questions$: BehaviorSubject<BaseQuestion<any>[]>;
+  eventName: string;
   precessedQuestions$: Observable<BaseQuestion<any>[][]>;
   processedQuestions: BaseQuestion<any>[][];
   destroy$ = new Subject<any>();
 
-  constructor() {
+  constructor(private registerService: RegisterService) {
+    this.questions$ = this.registerService.questions$;
+    this.eventName = this.registerService.eventName;
   }
 
-  get step() {
-    return this._step ? this._step : { title: null, description: null, n: 1 };
-  }
-
-  get noQuestion() {
-    return this.processedQuestions.length === 0;
-  }
+  // get step() {
+  //   return this._step ? this._step : { title: null, description: null, n: 1 };
+  // }
 
   ngOnInit() {
     this.precessedQuestions$ = this.questions$.pipe(

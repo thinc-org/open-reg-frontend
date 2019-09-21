@@ -24,6 +24,7 @@ import { HttpClient } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxStronglyTypedFormsModule } from 'ngx-strongly-typed-forms';
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import { ConfirmContentComponent } from 'src/app/core/components/confirm-content/confirm-content.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
     RegisterNavigatorComponent,
     ContentContainerComponent,
     ArrowTextComponent,
-    TopicComponent
+    TopicComponent,
+    ConfirmContentComponent
   ],
   imports: [
     NgxStronglyTypedFormsModule,
