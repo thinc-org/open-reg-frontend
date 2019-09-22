@@ -14,7 +14,7 @@ export class TopicComponent implements OnInit {
   @Input() subTextColor = '#B3B3B3';
   @Input() subTextSize = '10px';
   @Input() subTextLs = 'normal';
-  @Input() textPos = null;
+  @Input() textPos = 'left';
   
 
   constructor() { }
