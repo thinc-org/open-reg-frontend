@@ -60,17 +60,22 @@ export class RegisterService {
           apiResult.questions,
           this.groups.length
         );
-        if(this.form) {
-          for (let i = 0; i < convertedQuestions[currentStep - 1].length; i++) {
-            const valueGroup = this.form.value[currentStep - 1];
-            const key = convertedQuestions[currentStep - 1][i].key;
-            if (valueGroup[key] !== undefined) {
-              convertedQuestions[currentStep - 1][i].value = valueGroup[key];
-            }
-          }
-        }
-        this.questions$.next(convertedQuestions[currentStep - 1]);
+        let filledQuestions = this.addValueToQuestions(
+          convertedQuestions[currentStep - 1],
+          this.form.value[currentStep - 1]
+        );
+        this.questions$.next(filledQuestions);
       });
+  }
+
+  private addValueToQuestions(
+    currentConvertedQuestions: BaseQuestion<any>[],
+    currentFormValue: FormGroup<any>
+  ): BaseQuestion<any>[] {
+    return currentConvertedQuestions.map(question => {
+      question.value = currentFormValue[question.key];
+      return question;
+    });
   }
 
   private convertQuestions(
