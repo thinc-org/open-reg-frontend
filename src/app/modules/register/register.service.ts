@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BaseQuestion } from '../../core/model/questions.model';
 import { ApiService } from '../../core/services/api.service';
-import { share, takeUntil } from 'rxjs/operators';
+import { share, takeUntil, skip, tap } from 'rxjs/operators';
 import { Subject, BehaviorSubject, combineLatest } from 'rxjs';
 import { FormGeneratorService } from 'src/app/core/services/form-generator.service';
 import { FormGroup } from 'ngx-strongly-typed-forms';
@@ -19,7 +19,7 @@ export class RegisterService {
     BaseQuestion<any>[]
   >([]);
   groups: Step[] = [];
-  form: FormGroup<any> = new FormGroup<any>({});
+  form: FormGroup<any> = null;
   currentStep$ = new BehaviorSubject<number>(1);
   eventName: string;
 
@@ -46,7 +46,7 @@ export class RegisterService {
         result.questions,
         this.groups.length
       );
-      this.formGenerator.toFormGroup(this.form, convertedQuestions);
+      this.form = this.formGenerator.toFormGroup(convertedQuestions);
     });
 
     // As a user, every time he/she change step,
@@ -60,11 +60,13 @@ export class RegisterService {
           apiResult.questions,
           this.groups.length
         );
-        for (let i = 0; i < convertedQuestions[currentStep - 1].length; i++) {
-          const valueGroup = this.form.value[currentStep - 1];
-          const key = convertedQuestions[currentStep - 1][i].key;
-          if (valueGroup[key] !== undefined) {
-            convertedQuestions[currentStep - 1][i].value = valueGroup[key];
+        if(this.form) {
+          for (let i = 0; i < convertedQuestions[currentStep - 1].length; i++) {
+            const valueGroup = this.form.value[currentStep - 1];
+            const key = convertedQuestions[currentStep - 1][i].key;
+            if (valueGroup[key] !== undefined) {
+              convertedQuestions[currentStep - 1][i].value = valueGroup[key];
+            }
           }
         }
         this.questions$.next(convertedQuestions[currentStep - 1]);

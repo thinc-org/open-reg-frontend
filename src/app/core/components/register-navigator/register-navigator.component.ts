@@ -41,7 +41,7 @@ export class RegisterNavigatorComponent implements OnInit {
   }
 
   get isAbleToProceed() {
-    return this.form.valid;
+    return  this.form && this.form.valid;
   }
 
   ngOnInit() {}

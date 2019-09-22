@@ -1,5 +1,5 @@
 <div nz-row class="grid-container">
-  <form [formGroup]="form">
+  <form *ngIf="form" [formGroup]="form">
     <div nz-row *ngFor="let question of processedQuestions">
       <form-input
         class="grid-items"

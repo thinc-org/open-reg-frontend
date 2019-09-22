@@ -49,9 +49,9 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   get currentFormObj() {
-    return this.form.controls[0]
+    return this.form
       ? this.form.controls[this.currentStep$.value - 1]
-      : this.form;
+      : null;
   }
 
   get totalSteps() {
