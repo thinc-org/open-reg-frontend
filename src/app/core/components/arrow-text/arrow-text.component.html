@@ -7,33 +7,22 @@
     class="invisible-button"
     [disabled]="disabled"
   >
-    <div class="arrow-container">
-      <ng-container *ngIf="isRight; else left">
-        <div class="text-container text-right">
-          <span class="subtext">{{ 'next step' | translate }}</span>
-          <span class="text">{{ mainText || '' }}</span>
-        </div>
-        <i
-          class="arrow arrow-right"
-          nz-icon
-          nzType="arrow-right"
-          nzTheme="outline"
-          nzColor="#FFFFFF"
-        ></i>
-      </ng-container>
-      <ng-template #left>
-        <i
-          class="arrow arrow-left"
-          nz-icon
-          nzType="arrow-left"
-          nzTheme="outline"
-          nzColor="#FFFFFF"
-        ></i>
-        <div class="text-container text-left">
-          <span class="subtext">{{ 'previous step' | translate }}</span>
-          <span class="text">{{ mainText || '' }}</span>
-        </div>
-      </ng-template>
+    <div class="arrow-container" Swap [isSwapped]="isRight">
+      <div
+        class="text-container"
+        [ngClass]="{ 'text-right': isRight, 'text-left': !isRight }"
+      >
+        <span class="subtext">{{ 'next step' | translate }}</span>
+        <span class="text">{{ mainText || '' }}</span>
+      </div>
+      <i
+        class="arrow"
+        [ngClass]="{ 'arrow-right': isRight, 'arrow-left': !isRight }"
+        nz-icon
+        [nzType]="isRight ? 'arrow-right' : 'arrow-left'"
+        nzTheme="outline"
+        nzColor="#FFFFFF"
+      ></i>
     </div>
   </button>
 </div>

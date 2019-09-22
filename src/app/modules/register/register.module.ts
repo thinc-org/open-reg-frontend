@@ -25,6 +25,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgxStronglyTypedFormsModule } from 'ngx-strongly-typed-forms';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { ConfirmContentComponent } from 'src/app/core/components/confirm-content/confirm-content.component';
+import { SwapDirective } from 'src/app/core/directives/swap.directive';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ConfirmContentComponent } from 'src/app/core/components/confirm-content
     ContentContainerComponent,
     ArrowTextComponent,
     TopicComponent,
-    ConfirmContentComponent
+    ConfirmContentComponent,
+    SwapDirective
   ],
   imports: [
     NgxStronglyTypedFormsModule,
