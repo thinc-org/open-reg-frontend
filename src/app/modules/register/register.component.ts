@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   ngOnInit() {}
 
   debug() {
-    console.log(this.registerService.questions$.value, this.steps, this.form, this.registerService.questions$, 'debug')
+    // console.log(this.registerService.questions$.value, this.steps, this.form, this.registerService.questions$, 'debug')
   }
 
   get form() {

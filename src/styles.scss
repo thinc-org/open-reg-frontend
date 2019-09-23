@@ -27,7 +27,7 @@
 @font-face {
   font-family: 'Inter';
   src: url('assets/fonts/Inter-Regular.woff2') format('woff2'),
-      url('assets/fonts/Inter-Regular.woff') format('woff');
+    url('assets/fonts/Inter-Regular.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -35,7 +35,7 @@
 @font-face {
   font-family: 'Inter';
   src: url('assets/fonts/Inter-Medium.woff2') format('woff2'),
-      url('assets/fonts/Inter-Medium.woff') format('woff');
+    url('assets/fonts/Inter-Medium.woff') format('woff');
   font-weight: 500;
   font-style: normal;
 }
@@ -43,7 +43,7 @@
 @font-face {
   font-family: 'Inter';
   src: url('assets/fonts/Inter-Bold.woff2') format('woff2'),
-      url('assets/fonts/Inter-Bold.woff') format('woff');
+    url('assets/fonts/Inter-Bold.woff') format('woff');
   font-weight: bold;
   font-style: normal;
 }
@@ -57,7 +57,7 @@ body {
   font-family: 'Noto Sans Thai UI', 'Inter';
 }
 
-.ant-select-selection  {
+.ant-select-selection {
   background-color: #f9f9f9;
   border-radius: 6px;
   box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.02);
@@ -66,4 +66,39 @@ body {
 
 .ant-select-selection:focus {
   box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.ant-radio-checked .ant-radio-inner {
+  border-color: #f4f4f4;
+}
+
+.ant-radio .ant-radio-inner {
+  border-color: #f4f4f4;
+}
+
+.ant-radio-input:focus + .ant-radio-inner {
+  border-color: #f4f4f4;
+}
+
+.ant-select-dropdown-menu-item {
+  font-weight: 600;
+  border-top: 1.5px solid #dfdede;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #f9f9f9;
+  border-radius: 0;
+  color: #4b4b4b;
+}
+
+.ant-select-dropdown-menu-item-active:not(.ant-select-dropdown-menu-item-disabled) {
+  background-color: #dce9f9;
+}
+
+.ant-select-dropdown-menu-item:first-child {
+  border-radius: 0;
+}
+
+.ant-select-dropdown {
+  border-radius: 0;
+  box-shadow: 0;
 }

@@ -17,6 +17,7 @@
     />
     <nz-select
       nzSize="large"
+      nzPlaceHolder="select"
       class="select"
       *ngSwitchCase="'dropdown'"
       [formControlName]="question.key"
@@ -35,6 +36,7 @@
       [id]="question.key"
     >
       <label
+        class="radio-label"
         *ngFor="let option of question.choices; index as i"
         nz-radio
         [nzValue]="'' + i"

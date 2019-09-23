@@ -13,7 +13,11 @@ export class FormGeneratorService {
     questions.forEach((questionSet, i) => {
       let group = {};
       questionSet.forEach(question => {
-        group[question.key] = [question.value || '', question.validators];
+        let value =
+          question.controlType !== 'dropdown'
+            ? question.value || ''
+            : question.value;
+        group[question.key] = [value, question.validators];
       });
       groups[i] = this.fb.group<Group>(group);
     });

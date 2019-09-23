@@ -27,7 +27,7 @@ export class MockApiService implements ApiInterface {
                   order: 30,
                   validators: [Validators.required], // not dynamic yet
                   title: 'QUESTION special',
-                  value: '0',
+                  // value: null,
                   group: 1,
                   choices: ['go', 'go2', 'go3']
                 }, 'dropdown');
