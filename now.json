@@ -1,15 +1,4 @@
 {
   "name": "open-reg-frontend",
-  "version": 2,
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@now/static-build",
-      "config": { "distDir": "dist/open-reg-frontend" }
-    }
-  ],
-  "routes": [
-    { "src": "(.*\\..*)", "dest": "$1" },
-    { "src": ".*", "dest": "/index.html" }
-  ]
+  "version": 2
 }
