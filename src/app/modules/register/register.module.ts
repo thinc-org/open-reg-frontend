@@ -42,9 +42,9 @@ import { CoreModule } from 'src/app/core/core.module';
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    })
-  ]
+        deps: [HttpClient],
+      },
+    }),
+  ],
 })
 export class RegisterModule {}

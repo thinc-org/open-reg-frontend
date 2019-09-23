@@ -1,7 +1,4 @@
-import {
-  ValidatorFn,
-  AbstractControlOptions
-} from '@angular/forms';
+import { ValidatorFn, AbstractControlOptions } from '@angular/forms';
 
 export class BaseQuestion<T> {
   order: number;
@@ -13,7 +10,7 @@ export class BaseQuestion<T> {
   choices: string[];
   key: string;
   controlType: string;
-  validators: (ValidatorFn | ValidatorFn[] |AbstractControlOptions);
+  validators: ValidatorFn | ValidatorFn[] | AbstractControlOptions;
 
   constructor(options: QuestionOptions<T> = {}) {
     this.value = options.value;
@@ -56,7 +53,7 @@ export enum QuestionTypes {
   COLOR = 'COLOR', // not implemented
   DATE = 'DATE', // not implemented
   TIME = 'TIME', // not implemented
-  DROPDOWN = 'DROPDOWN'
+  DROPDOWN = 'DROPDOWN',
 }
 
 export interface QuestionModel {
@@ -76,5 +73,5 @@ export interface QuestionOptions<T> {
   order?: number;
   title?: string;
   description?: string;
-  validators?: (ValidatorFn | ValidatorFn[] |AbstractControlOptions);
+  validators?: ValidatorFn | ValidatorFn[] | AbstractControlOptions;
 }

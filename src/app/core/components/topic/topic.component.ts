@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class TopicComponent implements OnInit {
   @Input() mainText = null;
   @Input() subText = null;
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {}
 }

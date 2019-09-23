@@ -10,7 +10,7 @@ export class RegisterNavigatorComponent implements OnInit {
   @Output() previousStep: EventEmitter<any> = new EventEmitter();
   @Input() currentStep = 0;
   @Input() totalSteps = 0;
-  constructor() { }
+  constructor() {}
 
   next() {
     this.nextStep.emit(undefined);
@@ -20,15 +20,13 @@ export class RegisterNavigatorComponent implements OnInit {
     this.previousStep.emit(undefined);
   }
 
-  get notFirstPage() { 
-    return this.currentStep > 0; 
+  get notFirstPage() {
+    return this.currentStep > 0;
   }
 
-  get notLastPage() { 
+  get notLastPage() {
     return this.currentStep < this.totalSteps - 1;
   }
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

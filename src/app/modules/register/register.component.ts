@@ -12,7 +12,7 @@ import { Validators } from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
   isSSOAuthenticated$ = this.chulaSSOService.isSSOAuthenticated$;
-  questions  = [0, 0, 0, 0, 0].map((e, i) => {
+  questions = [0, 0, 0, 0, 0].map((e, i) => {
     i += 1;
     return new TextboxQuestion({
       description: `something ${i}`,
@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
       order: i,
       validators: [Validators.required, Validators.email],
       title: `QUESTION ${i}`,
-      value: `prefilled value`
+      value: `prefilled value`,
     });
   });
   //Steps
