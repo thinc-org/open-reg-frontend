@@ -2,7 +2,7 @@
   <arrow-text
     class="arrow-text-l"
     (onClick)="previous()"
-    *ngIf="notFirstPage; else blank"
+    *ngIf="notFirstPage"
     [isRight]="false"
   ></arrow-text>
   <arrow-text
@@ -19,7 +19,7 @@
         nz-button
         nzType="primary"
       >
-        {{ 'Confirm' | translate}}
+        {{ 'Confirm' | translate }}
       </button>
     </div>
   </ng-template>

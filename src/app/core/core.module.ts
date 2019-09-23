@@ -15,6 +15,8 @@ import {
   NzLayoutModule,
   NzIconModule,
 } from 'ng-zorro-antd';
+import { ReactiveFormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import {
     TopicComponent,
   ],
   imports: [
+    ReactiveFormsModule,
+    TranslateModule,
     CommonModule,
     NzButtonModule,
     NzTypographyModule,
