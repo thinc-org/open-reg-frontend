@@ -30,7 +30,19 @@ export class MockApiService implements ApiInterface {
                   value: '0',
                   group: 1,
                   choices: ['go', 'go2', 'go3']
-                });
+                }, 'dropdown');
+              } else if (i === 5) {
+                return new DropdownQuestion({
+                  description: `something special`,
+                  key: `question dropdown 2`,
+                  label: `label dropdown`,
+                  order: 30,
+                  validators: [Validators.required], // not dynamic yet
+                  title: 'QUESTION special',
+                  value: '0',
+                  group: 1,
+                  choices: ['go', 'go2', 'go3']
+                }, 'radio');
               } else {
                 return new TextboxQuestion({
                   description: `something ${i}`,

@@ -15,6 +15,9 @@ export class FormInputComponent implements OnInit {
   get isValid() {
     return this.formControl.valid;
   }
+  get currentValue() {
+    return this.formControl.value;
+  }
   get formControl() {
     return this.form.controls[this.question.key];
   }

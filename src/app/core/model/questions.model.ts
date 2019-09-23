@@ -30,12 +30,13 @@ export class BaseQuestion<T> {
 }
 
 export class DropdownQuestion extends BaseQuestion<string> {
-  controlType = 'dropdown';
+  controlType: string = 'dropdown';
   choices: string[] = [];
 
-  constructor(options: QuestionOptions<string> = {}) {
+  constructor(options: QuestionOptions<string> = {}, subType?: string) {
     super(options);
     this.choices = options['choices'] || [];
+    this.controlType = subType;
   }
 }
 
@@ -50,7 +51,7 @@ export class TextboxQuestion extends BaseQuestion<string> {
 }
 
 export enum QuestionTypes {
-  RADIO = 'RADIO', // not implemented
+  RADIO = 'RADIO',
   CHECKBOX = 'CHECKBOX', // not implemented
   TEXT = 'TEXT',
   EMAIL = 'EMAIL',
