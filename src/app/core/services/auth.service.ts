@@ -14,7 +14,7 @@ export class AuthService {
 
   constructor() {}
 
-  login({ username, password, remember }: LoginInfo) {
+  login(_: LoginInfo) {
     this.currentUser$.next({
       name: 'Ham',
     });

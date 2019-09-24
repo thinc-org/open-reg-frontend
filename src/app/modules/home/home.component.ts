@@ -1,8 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ApiService } from 'src/app/core/services/api.service';
 import {
   Observable,
-  Subscription,
   combineLatest,
   interval,
   BehaviorSubject,
@@ -10,14 +8,7 @@ import {
   defer,
 } from 'rxjs';
 import { HomeServiceService } from './home-service.service';
-import {
-  pluck,
-  share,
-  takeUntil,
-  endWith,
-  switchMap,
-  take,
-} from 'rxjs/operators';
+import { takeUntil, endWith, switchMap, share } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -34,7 +25,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   timer$ = defer(() => interval(1000));
   display$ = this.refresh$.pipe(
-    switchMap(e => {
+    switchMap(_ => {
       return combineLatest([this.timer$, this.posts$]).pipe(
         takeUntil(this.destroy$),
         endWith('destroyed')
