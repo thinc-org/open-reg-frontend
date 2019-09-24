@@ -12,8 +12,8 @@
         class="text-container"
         [ngClass]="{ 'text-right': isRight, 'text-left': !isRight }"
       >
-        <span class="subtext">{{ 'next step' | translate }}</span>
-        <span class="text">{{ mainText || '' }}</span>
+        <span class="text-main">{{ 'next step' | translate }}</span>
+        <span class="text-sub">{{ mainText || '' }}</span>
       </div>
       <i
         class="arrow"
