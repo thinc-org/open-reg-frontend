@@ -7,7 +7,7 @@ import { FormGeneratorService } from 'src/app/core/services/form-generator.servi
 import { FormGroup } from 'ngx-strongly-typed-forms';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RegisterService {
   destroy$ = new Subject<any>();
@@ -38,7 +38,7 @@ export class RegisterService {
       (result.group as Step[]).push({
         description: 'CONFIRMATION',
         n: result.length + 1,
-        title: 'ยืนยันการลงทะเบียน'
+        title: 'ยืนยันการลงทะเบียน',
       });
       this.groups = result.group;
       this.eventName = result.title;

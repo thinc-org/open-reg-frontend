@@ -21,10 +21,7 @@ import { ConfirmContentComponent } from 'src/app/core/components/confirm-content
 import { CoreModule } from 'src/app/core/core.module';
 
 @NgModule({
-  declarations: [
-    RegisterComponent,
-    ConfirmContentComponent,
-  ],
+  declarations: [RegisterComponent, ConfirmContentComponent],
   imports: [
     NgxStronglyTypedFormsModule,
     ReactiveFormsModule,

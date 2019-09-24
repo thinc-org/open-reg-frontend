@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
       ท่านต้องการยืนยันการลงทะเบียน “{{ eventName || '' }}” หรือไม่
     </div>
   `,
-  styleUrls: ['./confirm-content.component.scss']
+  styleUrls: ['./confirm-content.component.scss'],
 })
 export class ConfirmContentComponent implements OnInit {
   @Input() eventName: string;

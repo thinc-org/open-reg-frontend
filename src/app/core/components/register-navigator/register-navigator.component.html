@@ -2,7 +2,7 @@
   <app-arrow-text
     class="arrow-text-l"
     (clickEvent)="previous()"
-    *ngIf="notFirstPage; else blank"
+    *ngIf="notFirstPage"
     [mainText]="previousStepObject.title"
     [isRight]="false"
   ></app-arrow-text>

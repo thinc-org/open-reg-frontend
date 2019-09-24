@@ -23,6 +23,10 @@ export class RegisterComponent implements OnInit, OnDestroy {
     // console.log(this.registerService.questions$.value, this.steps, this.form, this.registerService.questions$, 'debug')
   }
 
+  get eventName() {
+    return this.registerService.eventName;
+  }
+
   get form() {
     return this.registerService.form;
   }
@@ -49,9 +53,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   get currentFormObj() {
-    return this.form
-      ? this.form.controls[this.currentStep$.value - 1]
-      : null;
+    return this.form ? this.form.controls[this.currentStep$.value - 1] : null;
   }
 
   get totalSteps() {
