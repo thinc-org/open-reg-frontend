@@ -3,9 +3,9 @@ import { TextboxQuestion } from '../../model/questions.model';
 import { FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'form-input',
+  selector: 'app-form-input',
   templateUrl: './form-input.component.html',
-  styleUrls: ['./form-input.component.scss']
+  styleUrls: ['./form-input.component.scss'],
 })
 export class FormInputComponent implements OnInit {
   @Input() question: TextboxQuestion;
@@ -23,11 +23,11 @@ export class FormInputComponent implements OnInit {
   }
   get isMax() {
     const maxObj = this.formControl.errors.maxlength;
-    return maxObj ? maxObj.requiredLength < maxObj.actualLength: false;
+    return maxObj ? maxObj.requiredLength < maxObj.actualLength : false;
   }
   get isMin() {
-    const minObj = this.formControl.errors.minlength; 
-    return minObj ? minObj.requiredLength >= minObj.actualLength: false;
+    const minObj = this.formControl.errors.minlength;
+    return minObj ? minObj.requiredLength >= minObj.actualLength : false;
   }
   get dirty() {
     return this.formControl.dirty;
@@ -38,7 +38,5 @@ export class FormInputComponent implements OnInit {
   get email() {
     return this.formControl.errors.email;
   }
-  ngOnInit() {
-    console.log(this.form.controls[this.question.key]);
-  }
+  ngOnInit() {}
 }

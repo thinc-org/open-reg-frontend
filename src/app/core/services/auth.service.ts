@@ -4,7 +4,7 @@ import { notNull } from '../functions/predicates';
 import { map } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   currentUser$ = new BehaviorSubject<User>(
@@ -16,7 +16,7 @@ export class AuthService {
 
   login({ username, password, remember }: LoginInfo) {
     this.currentUser$.next({
-      name: 'Ham'
+      name: 'Ham',
     });
   }
 

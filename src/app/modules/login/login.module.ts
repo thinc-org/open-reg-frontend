@@ -10,7 +10,7 @@ import {
   NzTypographyModule,
   NzButtonModule,
   NzFormModule,
-  NzCheckboxModule
+  NzCheckboxModule,
 } from 'ng-zorro-antd';
 
 @NgModule({
@@ -24,7 +24,7 @@ import {
     NzTypographyModule,
     NzButtonModule,
     NzFormModule,
-    NzCheckboxModule
-  ]
+    NzCheckboxModule,
+  ],
 })
 export class LoginModule {}

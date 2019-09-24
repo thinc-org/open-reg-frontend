@@ -13,7 +13,7 @@ import { AttendSuccessComponent } from './attend-success/attend-success.componen
     AttendRoutingModule,
     NzListModule,
     NzResultModule,
-    NzButtonModule
-  ]
+    NzButtonModule,
+  ],
 })
 export class AttendModule {}

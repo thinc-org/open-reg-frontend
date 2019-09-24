@@ -7,7 +7,7 @@ import {
   interval,
   BehaviorSubject,
   Subject,
-  defer
+  defer,
 } from 'rxjs';
 import { HomeServiceService } from './home-service.service';
 import {
@@ -16,13 +16,13 @@ import {
   takeUntil,
   endWith,
   switchMap,
-  take
+  take,
 } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit, OnDestroy {
   posts$: Observable<any[]> = this.homeService.getPosts().pipe(share());
@@ -43,9 +43,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   );
 
   constructor(private homeService: HomeServiceService) {
-    this.click$.pipe(takeUntil(this.destroy$)).subscribe(e => {
-      console.log('hi');
-    });
+    this.click$.pipe(takeUntil(this.destroy$)).subscribe();
   }
 
   ngOnInit() {}

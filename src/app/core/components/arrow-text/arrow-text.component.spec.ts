@@ -8,9 +8,8 @@ describe('ArrowTextComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ArrowTextComponent ]
-    })
-    .compileComponents();
+      declarations: [ArrowTextComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

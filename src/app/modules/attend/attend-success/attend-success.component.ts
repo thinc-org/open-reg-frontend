@@ -5,7 +5,7 @@ import { map, take, filter, tap } from 'rxjs/operators';
 @Component({
   selector: 'app-attend-success',
   templateUrl: './attend-success.component.html',
-  styleUrls: ['./attend-success.component.scss']
+  styleUrls: ['./attend-success.component.scss'],
 })
 export class AttendSuccessComponent implements OnInit {
   department$ = this.activatedRoute.paramMap.pipe(
@@ -15,7 +15,6 @@ export class AttendSuccessComponent implements OnInit {
     this.activatedRoute.paramMap
       .pipe(
         take(1),
-        tap(console.log),
         filter(e => !window.history.state.department)
       )
       .subscribe(e => {

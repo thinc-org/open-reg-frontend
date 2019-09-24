@@ -7,7 +7,7 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import {
   NzButtonModule,
   NzTypographyModule,
-  NzStepsModule
+  NzStepsModule,
 } from 'ng-zorro-antd';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { RegisterFormComponent } from 'src/app/core/components/register-form/register-form.component';
@@ -22,20 +22,14 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { HttpClient } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CoreModule } from 'src/app/core/core.module';
 
 @NgModule({
-  declarations: [
-    RegisterComponent,
-    RegisterFormComponent,
-    FormInputComponent,
-    RegisterNavigatorComponent,
-    ContentContainerComponent,
-    ArrowTextComponent,
-    TopicComponent
-  ],
+  declarations: [RegisterComponent],
   imports: [
     ReactiveFormsModule,
     CommonModule,
+    CoreModule,
     RegisterRoutingModule,
     NzButtonModule,
     NzTypographyModule,
@@ -48,9 +42,9 @@ import { ReactiveFormsModule } from '@angular/forms';
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    })
-  ]
+        deps: [HttpClient],
+      },
+    }),
+  ],
 })
 export class RegisterModule {}

@@ -1,4 +1,7 @@
-<div (click)="onClick.emit($event)" [ngClass]="{'flex-right': isRight,'flex-left': !isRight}" class="arrow-container">
+<div
+  [ngClass]="{ 'flex-right': isRight, 'flex-left': !isRight }"
+  class="arrow-container"
+>
   <ng-container *ngIf="isRight; else left">
     <div class="text-container">
       <span class="subtext">อยูในหอพัก</span>
