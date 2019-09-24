@@ -28,15 +28,6 @@
   }
 }
 
-.flex {
-  &-right {
-    justify-content: flex-end;
-  }
-  &-left {
-    justify-content: flex-start;
-  }
-}
-
 .invisible-button {
   background: none;
   color: inherit;
@@ -52,10 +43,6 @@
   &:not([disabled]):hover {
     opacity: 0.7;
   }
-}
-
-.container {
-  display: flex;
 }
 
 .text {

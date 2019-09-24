@@ -11,11 +11,16 @@
     grid-column-start: 1;
     grid-column-end: 2;
     grid-row-end: 2;
+    justify-content: flex-start;
   }
   &-r {
     grid-column-start: 3;
     grid-column-end: 4;
     grid-row-end: 2;
+    justify-content: flex-end;
+  }
+  &-container {
+    display: flex;
   }
 }
 
@@ -23,7 +28,6 @@
   font-size: 12px;
   line-height: 16px;
   color: #205496;
-
   padding-left: 37px;
   padding-right: 37px;
   background: #ffffff;
@@ -37,4 +41,8 @@
     grid-column-end: 4;
     grid-row-end: 2;
   }
+}
+
+.disabled {
+  pointer-events: none;
 }

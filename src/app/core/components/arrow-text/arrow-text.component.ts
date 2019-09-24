@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-arrow-text',
@@ -9,7 +9,6 @@ export class ArrowTextComponent implements OnInit {
   @Input() isRight = true;
   @Input() disabled = false;
   @Input() mainText: string;
-  @Output() clickEvent = new EventEmitter<any>();
 
   constructor() {}
 
