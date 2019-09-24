@@ -1,0 +1,31 @@
+<div [formGroup]="form">
+  <label [attr.for]="question.key">
+    <p class="text">
+      {{ question.title }}
+    </p>
+  </label>
+  <div [ngSwitch]="question.controlType">
+    <input
+      *ngSwitchCase="'textbox'"
+      [value]="question.value"
+      [formControlName]="question.key"
+      [id]="question.key"
+      [type]="question.type"
+      nz-input
+      [placeholder]="question.description"
+      nzSize="large"
+    />
+  </div>
+  <div class="error-message" *ngIf="!isValid && (touched || dirty)">
+    <span *ngIf="isRequired" nz-text nzType="danger">{{
+      question.title + ' is Required' | translate
+    }}</span>
+    <span *ngIf="isMax" nz-text nzType="danger">{{
+      'max length is ' + formControl.errors.maxlength.requiredLength | translate
+    }}</span>
+    <span *ngIf="isMin" nz-text nzType="danger">{{
+      'min length is ' + formControl.errors.minlength.requiredLength | translate
+    }}</span>
+    <span *ngIf="email" nz-text nzType="danger">Email is invalid</span>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+.arrow {
+  font-size: 18px;
+  color: #ffffff;
+}
+
+.arrow:hover {
+  opacity: 0.7;
+}
+
+.arrow-right {
+  margin-left: 20px;
+}
+
+.arrow-left {
+  margin-right: 20px;
+}
+
+.text {
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.subtext {
+  font-size: 12px;
+  color: #abd0ff;
+}
+
+.text-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.arrow-container {
+  align-items: center;
+  display: flex;
+}
+
+.flex-right {
+  justify-content: flex-end;
+}
+
+.flex-left {
+  justify-content: flex-start;
+}

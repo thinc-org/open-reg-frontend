@@ -1,0 +1,26 @@
+<div class="registration-footer">
+  <app-arrow-text
+    class="arrow-text-l"
+    (click)="previous()"
+    *ngIf="notFirstPage"
+    [isRight]="false"
+  ></app-arrow-text>
+  <app-arrow-text
+    class="arrow-text-r"
+    (click)="next()"
+    *ngIf="notLastPage; else button"
+    [isRight]="true"
+  ></app-arrow-text>
+  <ng-template #button>
+    <div class="button-register-container">
+      <button
+        class="button-register"
+        (click)="next()"
+        nz-button
+        nzType="primary"
+      >
+        {{ 'Confirm' | translate }}
+      </button>
+    </div>
+  </ng-template>
+</div>

@@ -1,1 +1,62 @@
 /* You can add global styles to this file, and also import other style files */
+
+@font-face {
+  font-family: 'Noto Sans Thai UI Med';
+  src: url('assets/fonts/NotoSansThaiUI-Medium.woff2') format('woff2'),
+    url('assets/fonts/NotoSansThaiUI-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Noto Sans Thai UI';
+  src: url('assets/fonts/NotoSansThaiUI-Regular.woff2') format('woff2'),
+    url('assets/fonts/NotoSansThaiUI-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Noto Sans Thai';
+  src: url('assets/fonts/NotoSansThai-Bold.woff2') format('woff2'),
+    url('assets/fonts/NotoSansThai-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('assets/fonts/Inter-Regular.woff2') format('woff2'),
+    url('assets/fonts/Inter-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('assets/fonts/Inter-Medium.woff2') format('woff2'),
+    url('assets/fonts/Inter-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('assets/fonts/Inter-Bold.woff2') format('woff2'),
+    url('assets/fonts/Inter-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: 'Noto Sans Thai UI', 'Inter';
+}
+
+nz-layout {
+  min-height: 100vh !important;
+}
