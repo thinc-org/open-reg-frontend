@@ -9,7 +9,7 @@ export class FormGeneratorService {
   constructor() {}
 
   toFormGroup(questions: BaseQuestion<any>[]) {
-    let group: any = {};
+    const group: any = {};
     questions.forEach(question => {
       group[question.key] = new FormControl(
         question.value || '',

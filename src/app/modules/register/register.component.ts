@@ -24,7 +24,7 @@ export class RegisterComponent implements OnInit {
       value: `prefilled value`,
     });
   });
-  //Steps
+  // Steps
   steps: Step[] = [
     {
       title: 'First Step',

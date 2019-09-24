@@ -30,7 +30,7 @@ export class DropdownQuestion extends BaseQuestion<string> {
 
   constructor(options: QuestionOptions<string> = {}) {
     super(options);
-    this.choices = options['options'] || [];
+    this.choices = options.options || [];
   }
 }
 
@@ -40,7 +40,7 @@ export class TextboxQuestion extends BaseQuestion<string> {
 
   constructor(options: QuestionOptions<string> = {}) {
     super(options);
-    this.type = options['type'] || '';
+    this.type = options.type || '';
   }
 }
 
@@ -69,6 +69,8 @@ export interface QuestionOptions<T> {
   value?: T;
   key?: string;
   label?: string;
+  options?: string[];
+  type?: string;
   // required?: boolean;
   order?: number;
   title?: string;

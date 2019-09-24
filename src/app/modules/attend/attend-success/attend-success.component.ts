@@ -15,7 +15,6 @@ export class AttendSuccessComponent implements OnInit {
     this.activatedRoute.paramMap
       .pipe(
         take(1),
-        tap(console.log),
         filter(e => !window.history.state.department)
       )
       .subscribe(e => {

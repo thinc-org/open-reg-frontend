@@ -5,7 +5,7 @@ import { BaseQuestion } from '../../model/questions.model';
 import { FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'register-form',
+  selector: 'app-register-form',
   templateUrl: './register-form.component.html',
   styleUrls: ['./register-form.component.scss'],
 })

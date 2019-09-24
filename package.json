@@ -9,7 +9,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "format": "prettier --write \"src/**/*.ts\"",
-    "now-build": "ng build --prod"
+    "now-build": "ng build --prod",
+    "pre-commit": "yarn lint && yarn format"
   },
   "private": true,
   "dependencies": {
@@ -58,7 +59,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn format"
+      "pre-commit": "yarn pre-commit"
     }
   },
   "engines": {

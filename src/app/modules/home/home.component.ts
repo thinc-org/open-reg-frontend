@@ -43,9 +43,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   );
 
   constructor(private homeService: HomeServiceService) {
-    this.click$.pipe(takeUntil(this.destroy$)).subscribe(e => {
-      console.log('hi');
-    });
+    this.click$.pipe(takeUntil(this.destroy$)).subscribe();
   }
 
   ngOnInit() {}

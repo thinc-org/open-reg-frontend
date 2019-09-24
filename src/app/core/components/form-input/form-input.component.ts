@@ -3,7 +3,7 @@ import { TextboxQuestion } from '../../model/questions.model';
 import { FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'form-input',
+  selector: 'app-form-input',
   templateUrl: './form-input.component.html',
   styleUrls: ['./form-input.component.scss'],
 })

@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'register-navigator',
+  selector: 'app-register-navigator',
   templateUrl: './register-navigator.component.html',
   styleUrls: ['./register-navigator.component.scss'],
 })

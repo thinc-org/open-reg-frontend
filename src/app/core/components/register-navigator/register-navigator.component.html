@@ -1,16 +1,16 @@
 <div class="registration-footer">
-  <arrow-text
+  <app-arrow-text
     class="arrow-text-l"
-    (onClick)="previous()"
+    (click)="previous()"
     *ngIf="notFirstPage"
     [isRight]="false"
-  ></arrow-text>
-  <arrow-text
+  ></app-arrow-text>
+  <app-arrow-text
     class="arrow-text-r"
-    (onClick)="next()"
+    (click)="next()"
     *ngIf="notLastPage; else button"
     [isRight]="true"
-  ></arrow-text>
+  ></app-arrow-text>
   <ng-template #button>
     <div class="button-register-container">
       <button
