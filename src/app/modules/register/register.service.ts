@@ -56,11 +56,11 @@ export class RegisterService {
     combineLatest(this.currentStep$, this.apiResult$)
       .pipe(takeUntil(this.destroy$))
       .subscribe(([currentStep, apiResult]) => {
-        let convertedQuestions = this.convertQuestions(
+        const convertedQuestions = this.convertQuestions(
           apiResult.questions,
           this.groups.length
         );
-        let filledQuestions = this.addValueToQuestions(
+        const filledQuestions = this.addValueToQuestions(
           convertedQuestions[currentStep - 1],
           this.form.value[currentStep - 1]
         );
@@ -82,11 +82,11 @@ export class RegisterService {
     questions: BaseQuestion<any>[],
     groupNumber: number = 0
   ): BaseQuestion<any>[][] {
-    let result = [];
+    const result = [];
     for (let i = 1; i <= groupNumber; i++) {
       result.push([]);
-      for (let question of questions) {
-        if (question.group == i) {
+      for (const question of questions) {
+        if (question.group - 0 === i) {
           result[i - 1].push(question);
         }
       }

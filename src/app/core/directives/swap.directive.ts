@@ -1,10 +1,16 @@
-import { Directive, Input, ElementRef, Renderer2 } from '@angular/core';
+import {
+  Directive,
+  Input,
+  ElementRef,
+  Renderer2,
+  AfterViewInit,
+} from '@angular/core';
 
 @Directive({
-  selector: '[Swap]'
+  selector: '[appSwap]',
 })
-export class SwapDirective {
-  @Input() isSwapped: boolean = false;
+export class SwapDirective implements AfterViewInit {
+  @Input() isSwapped = false;
   constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
 
   ngAfterViewInit() {

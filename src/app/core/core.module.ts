@@ -16,11 +16,14 @@ import {
   NzLayoutModule,
   NzIconModule,
   NzModalModule,
+  NzSelectModule,
+  NzRadioModule,
 } from 'ng-zorro-antd';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { ApiService } from './services/api.service';
 import { MockApiService } from './services/mock-api.service';
+import { SwapDirective } from './directives/swap.directive';
 
 @NgModule({
   declarations: [
@@ -30,6 +33,7 @@ import { MockApiService } from './services/mock-api.service';
     RegisterFormComponent,
     RegisterNavigatorComponent,
     TopicComponent,
+    SwapDirective,
   ],
   imports: [
     ReactiveFormsModule,
@@ -43,6 +47,8 @@ import { MockApiService } from './services/mock-api.service';
     NzGridModule,
     NzLayoutModule,
     NzIconModule,
+    NzSelectModule,
+    NzRadioModule,
   ],
   entryComponents: [],
   providers: [{ provide: ApiService, useClass: MockApiService }],

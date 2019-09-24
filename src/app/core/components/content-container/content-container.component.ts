@@ -6,11 +6,8 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./content-container.component.scss'],
 })
 export class ContentContainerComponent implements OnInit {
-<<<<<<< HEAD
   @Input() title: string;
   @Input() subtitle: string;
-=======
->>>>>>> upstream/dev
   constructor() {}
 
   ngOnInit() {}

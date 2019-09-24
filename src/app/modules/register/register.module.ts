@@ -15,33 +15,16 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { HttpClient } from '@angular/common/http';
-<<<<<<< HEAD
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgxStronglyTypedFormsModule } from 'ngx-strongly-typed-forms';
-import { NzSelectModule } from 'ng-zorro-antd/select';
 import { ConfirmContentComponent } from 'src/app/core/components/confirm-content/confirm-content.component';
-import { SwapDirective } from 'src/app/core/directives/swap.directive';
-import { NzRadioModule } from 'ng-zorro-antd/radio';
+import { CoreModule } from 'src/app/core/core.module';
 
 @NgModule({
   declarations: [
     RegisterComponent,
-    RegisterFormComponent,
-    FormInputComponent,
-    RegisterNavigatorComponent,
-    ContentContainerComponent,
-    ArrowTextComponent,
-    TopicComponent,
     ConfirmContentComponent,
-    SwapDirective
   ],
-=======
-import { ReactiveFormsModule } from '@angular/forms';
-import { CoreModule } from 'src/app/core/core.module';
-
-@NgModule({
-  declarations: [RegisterComponent],
->>>>>>> upstream/dev
   imports: [
     NgxStronglyTypedFormsModule,
     ReactiveFormsModule,
@@ -55,8 +38,6 @@ import { CoreModule } from 'src/app/core/core.module';
     NzGridModule,
     NzLayoutModule,
     NzIconModule,
-    NzSelectModule,
-    NzRadioModule,
     FormsModule,
     TranslateModule.forRoot({
       loader: {

@@ -35,7 +35,7 @@ export class ApiService implements ApiInterface {
     url: string,
     params?: { [param: string]: string | string[] }
   ): Observable<T> {
-    console.log('real api')
+    console.log('real api');
     return this.http
       .get<T>(url, { params, observe: 'response' })
       .pipe(map(res => res.body));

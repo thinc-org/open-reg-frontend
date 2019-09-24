@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'confirm-content',
+  selector: 'app-confirm-content',
   template: `
     <div class="confirm-text-container">
       ท่านต้องการยืนยันการลงทะเบียน “{{ eventName || '' }}” หรือไม่

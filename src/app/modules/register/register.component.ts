@@ -9,39 +9,7 @@ import { RegisterService } from './register.service';
 })
 export class RegisterComponent implements OnInit, OnDestroy {
   isSSOAuthenticated$ = this.chulaSSOService.isSSOAuthenticated$;
-<<<<<<< HEAD
   currentStep$ = this.registerService.currentStep$;
-=======
-  questions = [0, 0, 0, 0, 0].map((_, i) => {
-    i += 1;
-    return new TextboxQuestion({
-      description: `something ${i}`,
-      key: `question ${i}`,
-      label: `label ${i}`,
-      order: i,
-      validators: [Validators.required, Validators.email],
-      title: `QUESTION ${i}`,
-      value: `prefilled value`,
-    });
-  });
-  // Steps
-  steps: Step[] = [
-    {
-      title: 'First Step',
-      subtitle: 'Basic Info',
-    },
-    {
-      title: 'Second Step',
-      subtitle: 'More Info',
-    },
-    {
-      title: 'Final Step',
-      subtitle: 'Lots of more info',
-    },
-  ];
-  currentStep$ = new BehaviorSubject<number>(0);
-  totalSteps = this.steps.length;
->>>>>>> upstream/dev
 
   constructor(
     private chulaSSOService: ChulaSsoService,

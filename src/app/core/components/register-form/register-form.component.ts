@@ -1,18 +1,18 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { BaseQuestion } from '../../model/questions.model';
 import { FormGroup } from '@angular/forms';
 import { RegisterService } from 'src/app/modules/register/register.service';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { map, takeUntil} from 'rxjs/operators';
+import { map, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-register-form',
   templateUrl: './register-form.component.html',
   styleUrls: ['./register-form.component.scss'],
 })
-export class RegisterFormComponent implements OnInit {
+export class RegisterFormComponent implements OnInit, OnDestroy {
   @Input() form: FormGroup;
-  
+
   questions$: BehaviorSubject<BaseQuestion<any>[]>;
   eventName: string;
   precessedQuestions$: Observable<BaseQuestion<any>[][]>;
@@ -27,7 +27,7 @@ export class RegisterFormComponent implements OnInit {
   ngOnInit() {
     this.precessedQuestions$ = this.questions$.pipe(
       takeUntil(this.destroy$),
-      map(e => e ? e.sort((a, b) => a.order - b.order) : []),
+      map(e => (e ? e.sort((a, b) => a.order - b.order) : [])),
       map(this.reduce)
     );
     this.precessedQuestions$.subscribe(result => {

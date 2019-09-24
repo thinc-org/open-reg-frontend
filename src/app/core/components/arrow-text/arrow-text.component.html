@@ -1,14 +1,13 @@
 <div
-<<<<<<< HEAD
   class="container"
   [ngClass]="{ 'flex-right': isRight, 'flex-left': !isRight }"
 >
   <button
-    (click)="onClick.emit($event)"
+    (click)="clickEvent.emit($event)"
     class="invisible-button"
     [disabled]="disabled"
   >
-    <div class="arrow-container" Swap [isSwapped]="isRight">
+    <div class="arrow-container" appSwap [isSwapped]="isRight">
       <div
         class="text-container"
         [ngClass]="{ 'text-right': isRight, 'text-left': !isRight }"
@@ -24,15 +23,6 @@
         nzTheme="outline"
         nzColor="#FFFFFF"
       ></i>
-=======
-  [ngClass]="{ 'flex-right': isRight, 'flex-left': !isRight }"
-  class="arrow-container"
->
-  <ng-container *ngIf="isRight; else left">
-    <div class="text-container">
-      <span class="subtext">อยูในหอพัก</span>
-      <span class="text">test1</span>
->>>>>>> upstream/dev
     </div>
   </button>
 </div>

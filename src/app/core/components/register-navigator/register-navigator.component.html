@@ -1,23 +1,15 @@
 <div class="registration-footer">
   <app-arrow-text
     class="arrow-text-l"
-<<<<<<< HEAD
-    (onClick)="previous()"
+    (clickEvent)="previous()"
     *ngIf="notFirstPage; else blank"
     [mainText]="previousStepObject.title"
     [isRight]="false"
-  ></arrow-text>
-  <arrow-text
-    [disabled]="!isAbleToProceed"
-=======
-    (click)="previous()"
-    *ngIf="notFirstPage"
-    [isRight]="false"
   ></app-arrow-text>
   <app-arrow-text
->>>>>>> upstream/dev
+    [disabled]="!isAbleToProceed"
     class="arrow-text-r"
-    (click)="next()"
+    (clickEvent)="next()"
     *ngIf="notLastPage; else button"
     [mainText]="nextStepObject.title"
     [isRight]="true"

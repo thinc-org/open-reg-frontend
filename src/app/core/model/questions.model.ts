@@ -11,7 +11,7 @@ export class BaseQuestion<T> {
   key: string;
   controlType: string;
   group: number;
-  validators: ValidatorFn | ValidatorFn[] |AbstractControlOptions;
+  validators: ValidatorFn | ValidatorFn[] | AbstractControlOptions;
 
   constructor(options: QuestionOptions<T> = {}) {
     this.value = options.value;
@@ -27,12 +27,12 @@ export class BaseQuestion<T> {
 }
 
 export class DropdownQuestion extends BaseQuestion<string> {
-  controlType: string = 'dropdown';
+  controlType = 'dropdown';
   choices: string[] = [];
 
   constructor(options: QuestionOptions<string> = {}, subType?: string) {
     super(options);
-    this.choices = options['choices'] || [];
+    this.choices = options.choices || [];
     this.controlType = subType;
   }
 }
@@ -78,7 +78,7 @@ export interface QuestionOptions<T> {
   order?: number;
   title?: string;
   description?: string;
-  validators?: ValidatorFn | ValidatorFn[] |AbstractControlOptions;
+  validators?: ValidatorFn | ValidatorFn[] | AbstractControlOptions;
   group?: number;
   choices?: string[];
   subType?: string;

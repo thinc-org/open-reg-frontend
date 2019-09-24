@@ -12,13 +12,9 @@ export class RegisterNavigatorComponent implements OnInit {
   @Output() previousStep: EventEmitter<any> = new EventEmitter();
   @Input() currentStep = 0;
   @Input() totalSteps = 0;
-<<<<<<< HEAD
   @Input() form: FormGroup;
   @Input() steps: Step[];
-  constructor() { }
-=======
   constructor() {}
->>>>>>> upstream/dev
 
   next() {
     this.nextStep.emit(undefined);
@@ -28,7 +24,6 @@ export class RegisterNavigatorComponent implements OnInit {
     this.previousStep.emit(undefined);
   }
 
-<<<<<<< HEAD
   get previousStepObject() {
     return this.steps[this.currentStep - 2];
   }
@@ -37,29 +32,17 @@ export class RegisterNavigatorComponent implements OnInit {
     return this.steps[this.currentStep];
   }
 
-  get notFirstPage() { 
-    return this.currentStep > 1; 
+  get notFirstPage() {
+    return this.currentStep > 1;
   }
 
-  get notLastPage() { 
+  get notLastPage() {
     return this.currentStep < this.totalSteps;
   }
 
   get isAbleToProceed() {
-    return  this.form && this.form.valid;
+    return this.form && this.form.valid;
   }
 
   ngOnInit() {}
-
-=======
-  get notFirstPage() {
-    return this.currentStep > 0;
-  }
-
-  get notLastPage() {
-    return this.currentStep < this.totalSteps - 1;
-  }
-
-  ngOnInit() {}
->>>>>>> upstream/dev
 }
