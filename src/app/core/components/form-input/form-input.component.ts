@@ -38,7 +38,5 @@ export class FormInputComponent implements OnInit {
   get email() {
     return this.formControl.errors.email;
   }
-  ngOnInit() {
-    console.log(this.form.controls[this.question.key]);
-  }
+  ngOnInit() {}
 }
