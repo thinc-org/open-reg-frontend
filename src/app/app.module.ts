@@ -25,6 +25,7 @@ import {
   en_US,
   NzButtonModule,
   NzTypographyModule,
+  NzModalModule,
 } from 'ng-zorro-antd';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -44,6 +45,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppRoutingModule,
     HttpClientModule,
     CoreModule,
+    NzModalModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
