@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { BaseQuestion } from '../model/questions.model';
 
 @Injectable({
@@ -19,11 +19,11 @@ export class FormGeneratorService {
     return new FormGroup(group);
   }
 
-  toQuestions(jsonArray: any): BaseQuestion<any>[] {
+  toQuestions(_: any): BaseQuestion<any>[] {
     // Not implemented
     // Maybe use Rxjs instead of this method
     return null;
   }
 
-  private toFormControl() {}
+  // private toFormControl() {}
 }

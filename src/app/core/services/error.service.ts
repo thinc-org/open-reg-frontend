@@ -20,7 +20,7 @@ export class ErrorService {
     return error.message;
   }
 
-  getServerStack(error: HttpErrorResponse): string {
+  getServerStack(_: HttpErrorResponse): string {
     // handle stack trace
     return 'stack';
   }

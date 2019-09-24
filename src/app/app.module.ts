@@ -19,17 +19,11 @@ import {
 } from '@angular/common/http';
 import { GlobalErrorHandler } from './core/global-error-handler.service';
 import { ServerErrorInterceptor } from './core/services/server-error.interceptor';
-import {
-  NgZorroAntdModule,
-  NZ_I18N,
-  en_US,
-  NzButtonModule,
-  NzTypographyModule,
-} from 'ng-zorro-antd';
+import { NgZorroAntdModule, NZ_I18N, en_US } from 'ng-zorro-antd';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import en from '@angular/common/locales/en';
 import { CoreModule } from './core/core.module';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 registerLocaleData(localeTh, 'th');
 
@@ -44,6 +38,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppRoutingModule,
     HttpClientModule,
     CoreModule,
+    OverlayModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
