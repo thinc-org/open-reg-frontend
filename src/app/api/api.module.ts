@@ -1,10 +1,7 @@
 /* tslint:disable */
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import {
-  ApiConfiguration,
-  ApiConfigurationInterface,
-} from './api-configuration';
+import { ApiConfiguration, ApiConfigurationInterface } from './api-configuration';
 
 import { ApiService } from './services/api.service';
 
@@ -12,10 +9,17 @@ import { ApiService } from './services/api.service';
  * Provider for all Api services, plus ApiConfiguration
  */
 @NgModule({
-  imports: [HttpClientModule],
-  exports: [HttpClientModule],
+  imports: [
+    HttpClientModule
+  ],
+  exports: [
+    HttpClientModule
+  ],
   declarations: [],
-  providers: [ApiConfiguration, ApiService],
+  providers: [
+    ApiConfiguration,
+    ApiService
+  ],
 })
 export class ApiModule {
   static forRoot(customParams: ApiConfigurationInterface): ModuleWithProviders {
@@ -24,9 +28,9 @@ export class ApiModule {
       providers: [
         {
           provide: ApiConfiguration,
-          useValue: { rootUrl: customParams.rootUrl },
-        },
-      ],
-    };
+          useValue: {rootUrl: customParams.rootUrl}
+        }
+      ]
+    }
   }
 }

@@ -7,19 +7,21 @@ import {
   TextboxQuestion,
   QuestionTypes,
 } from '../../core/model/questions.model';
-import { ApiService } from '../../core/services/api.service';
 import { share, takeUntil } from 'rxjs/operators';
-import { Subject, BehaviorSubject, combineLatest } from 'rxjs';
+import { Subject, BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { FormGeneratorService } from 'src/app/core/services/form-generator.service';
 import { FormGroup } from 'ngx-strongly-typed-forms';
 import { Validators } from '@angular/forms';
+import { ApiService } from 'src/app/api/services';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RegisterService {
   destroy$ = new Subject<any>();
-  apiResult$ = this.api.get<any>('form/5d8ae593ffa15b001b38af20').pipe(
+  apiResult$ = (this.api.getFormId('5d8ae593ffa15b001b38af20') as Observable<
+    any
+  >).pipe(
     share(),
     takeUntil(this.destroy$)
   );
