@@ -3,18 +3,22 @@ import { FormGroup } from '@angular/forms';
 import { Step } from 'src/app/modules/register/register.service';
 
 @Component({
-  selector: 'register-navigator',
+  selector: 'app-register-navigator',
   templateUrl: './register-navigator.component.html',
-  styleUrls: ['./register-navigator.component.scss']
+  styleUrls: ['./register-navigator.component.scss'],
 })
 export class RegisterNavigatorComponent implements OnInit {
   @Output() nextStep: EventEmitter<any> = new EventEmitter();
   @Output() previousStep: EventEmitter<any> = new EventEmitter();
   @Input() currentStep = 0;
   @Input() totalSteps = 0;
+<<<<<<< HEAD
   @Input() form: FormGroup;
   @Input() steps: Step[];
   constructor() { }
+=======
+  constructor() {}
+>>>>>>> upstream/dev
 
   next() {
     this.nextStep.emit(undefined);
@@ -24,6 +28,7 @@ export class RegisterNavigatorComponent implements OnInit {
     this.previousStep.emit(undefined);
   }
 
+<<<<<<< HEAD
   get previousStepObject() {
     return this.steps[this.currentStep - 2];
   }
@@ -46,4 +51,15 @@ export class RegisterNavigatorComponent implements OnInit {
 
   ngOnInit() {}
 
+=======
+  get notFirstPage() {
+    return this.currentStep > 0;
+  }
+
+  get notLastPage() {
+    return this.currentStep < this.totalSteps - 1;
+  }
+
+  ngOnInit() {}
+>>>>>>> upstream/dev
 }

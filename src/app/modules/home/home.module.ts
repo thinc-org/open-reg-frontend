@@ -7,6 +7,11 @@ import { NzButtonModule, NzTypographyModule } from 'ng-zorro-antd';
 
 @NgModule({
   declarations: [HomeComponent],
-  imports: [CommonModule, HomeRoutingModule, NzButtonModule, NzTypographyModule]
+  imports: [
+    CommonModule,
+    HomeRoutingModule,
+    NzButtonModule,
+    NzTypographyModule,
+  ],
 })
 export class HomeModule {}

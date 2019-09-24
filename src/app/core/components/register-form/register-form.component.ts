@@ -6,9 +6,9 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { map, takeUntil} from 'rxjs/operators';
 
 @Component({
-  selector: 'register-form',
+  selector: 'app-register-form',
   templateUrl: './register-form.component.html',
-  styleUrls: ['./register-form.component.scss']
+  styleUrls: ['./register-form.component.scss'],
 })
 export class RegisterFormComponent implements OnInit {
   @Input() form: FormGroup;

@@ -24,7 +24,7 @@ export interface ApiInterface {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ApiService implements ApiInterface {
   static BASE_URL = environment.apiUrl;

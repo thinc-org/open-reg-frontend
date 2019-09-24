@@ -1,6 +1,7 @@
 <div class="registration-footer">
-  <arrow-text
+  <app-arrow-text
     class="arrow-text-l"
+<<<<<<< HEAD
     (onClick)="previous()"
     *ngIf="notFirstPage; else blank"
     [mainText]="previousStepObject.title"
@@ -8,12 +9,19 @@
   ></arrow-text>
   <arrow-text
     [disabled]="!isAbleToProceed"
+=======
+    (click)="previous()"
+    *ngIf="notFirstPage"
+    [isRight]="false"
+  ></app-arrow-text>
+  <app-arrow-text
+>>>>>>> upstream/dev
     class="arrow-text-r"
-    (onClick)="next()"
+    (click)="next()"
     *ngIf="notLastPage; else button"
     [mainText]="nextStepObject.title"
     [isRight]="true"
-  ></arrow-text>
+  ></app-arrow-text>
   <ng-template #button>
     <div class="button-register-container">
       <button
@@ -23,7 +31,7 @@
         nz-button
         nzType="primary"
       >
-        {{ 'Confirm' | translate}}
+        {{ 'Confirm' | translate }}
       </button>
     </div>
   </ng-template>

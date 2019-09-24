@@ -57,6 +57,7 @@ body {
   font-family: 'Noto Sans Thai UI', 'Inter';
 }
 
+<<<<<<< HEAD
 .ant-select-selection {
   background-color: #f9f9f9;
   border-radius: 6px;
@@ -101,4 +102,8 @@ body {
 .ant-select-dropdown {
   border-radius: 0;
   box-shadow: 0;
+=======
+nz-layout {
+  min-height: 100vh !important;
+>>>>>>> upstream/dev
 }

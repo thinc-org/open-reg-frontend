@@ -11,7 +11,7 @@ import { NzButtonModule, NzTypographyModule } from 'ng-zorro-antd';
     CommonModule,
     AdminRoutingModule,
     NzButtonModule,
-    NzTypographyModule
-  ]
+    NzTypographyModule,
+  ],
 })
 export class AdminModule {}

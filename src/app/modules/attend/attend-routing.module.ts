@@ -6,16 +6,16 @@ import { AttendSuccessComponent } from './attend-success/attend-success.componen
 const routes: Routes = [
   {
     path: '',
-    component: AttendComponent
+    component: AttendComponent,
   },
   {
     path: 'success',
-    component: AttendSuccessComponent
-  }
+    component: AttendSuccessComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AttendRoutingModule {}

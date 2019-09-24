@@ -9,27 +9,21 @@ import localeTh from '@angular/common/locales/th';
 import {
   TranslateModule,
   TranslateLoader,
-  TranslateService
+  TranslateService,
 } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import {
   HttpClient,
   HttpClientModule,
-  HTTP_INTERCEPTORS
+  HTTP_INTERCEPTORS,
 } from '@angular/common/http';
 import { GlobalErrorHandler } from './core/global-error-handler.service';
 import { ServerErrorInterceptor } from './core/services/server-error.interceptor';
-import {
-  NgZorroAntdModule,
-  NZ_I18N,
-  en_US,
-  NzButtonModule,
-  NzTypographyModule
-} from 'ng-zorro-antd';
+import { NgZorroAntdModule, NZ_I18N, en_US } from 'ng-zorro-antd';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import en from '@angular/common/locales/en';
 import { CoreModule } from './core/core.module';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 registerLocaleData(localeTh, 'th');
 
@@ -44,17 +38,18 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppRoutingModule,
     HttpClientModule,
     CoreModule,
+    OverlayModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
+        deps: [HttpClient],
+      },
     }),
     NgZorroAntdModule,
     FormsModule,
     BrowserAnimationsModule,
-    NgxStronglyTypedFormsModule
+    NgxStronglyTypedFormsModule,
   ],
   exports: [TranslateModule],
   providers: [
@@ -63,10 +58,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ServerErrorInterceptor,
-      multi: true
+      multi: true,
     },
-    { provide: NZ_I18N, useValue: en_US }
+    { provide: NZ_I18N, useValue: en_US },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

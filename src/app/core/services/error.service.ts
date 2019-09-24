@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ErrorService {
   getClientMessage(error: Error): string {
@@ -20,7 +20,7 @@ export class ErrorService {
     return error.message;
   }
 
-  getServerStack(error: HttpErrorResponse): string {
+  getServerStack(_: HttpErrorResponse): string {
     // handle stack trace
     return 'stack';
   }

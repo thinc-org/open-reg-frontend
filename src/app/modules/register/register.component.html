@@ -18,6 +18,7 @@
   </nz-header>
   <nz-content>
     <ng-container *ngIf="isSSOAuthenticated$ | async; else notSSOAuthenticated">
+<<<<<<< HEAD
       <content-container
         [title]="currentStepObj.title"
         [subtitle]="currentStepObj.description"
@@ -43,6 +44,19 @@
           </div>
         </ng-container>
         <register-navigator
+=======
+      <!-- <h2 nz-title>
+        {{ steps[currentStep$.value].title }}
+      </h2> -->
+      <app-content-container>
+        <app-register-form
+          [step]="steps[currentStep$.value]"
+          nzOffset="6"
+          nzSpan="12"
+          [questions]="questions"
+        ></app-register-form>
+        <app-register-navigator
+>>>>>>> upstream/dev
           [currentStep]="currentStep$ | async"
           [totalSteps]="totalSteps"
           (previousStep)="previousStep()"
@@ -50,8 +64,8 @@
           [form]="currentFormObj"
           [steps]="steps"
         >
-        </register-navigator>
-      </content-container>
+        </app-register-navigator>
+      </app-content-container>
     </ng-container>
     <ng-template #notSSOAuthenticated>
       <h2 nz-title>You are not logged in with ChulaSSO</h2>
