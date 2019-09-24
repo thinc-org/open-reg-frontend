@@ -14,6 +14,8 @@ import {
   NzGridModule,
   NzLayoutModule,
   NzIconModule,
+  NzModalModule,
+  NzModalServiceModule,
 } from 'ng-zorro-antd';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
@@ -32,6 +34,7 @@ import { TranslateModule } from '@ngx-translate/core';
     TranslateModule,
     CommonModule,
     NzButtonModule,
+    NzModalModule,
     NzTypographyModule,
     NzStepsModule,
     NzInputModule,
