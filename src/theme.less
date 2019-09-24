@@ -1,4 +1,4 @@
-@import "../node_modules/ng-zorro-antd/ng-zorro-antd.less";
+@import '../node_modules/ng-zorro-antd/ng-zorro-antd.less';
 // The prefix to use on all css classes from ant.
 @ant-prefix : ant;
 
@@ -11,18 +11,26 @@
 @highlight-color : @red-6;
 @warning-color : @gold-6;
 @normal-color : #d9d9d9;
+@or-grey: #7b7b7b;
+@or-white: #f4f4f4;
 
 // Color used by default to control hover and active backgrounds and for
 // alert info backgrounds.
-@primary-1: color(~`colorPalette('@{primary-color}', 1) `); // replace tint(@primary-color, 90%)
-@primary-2: color(~`colorPalette('@{primary-color}', 2) `); // replace tint(@primary-color, 80%)
+@primary-1: color(
+  ~`colorPalette('@{primary-color}', 1) `
+); // replace tint(@primary-color, 90%)
+@primary-2: color(
+  ~`colorPalette('@{primary-color}', 2) `
+); // replace tint(@primary-color, 80%)
 @primary-3: color(~`colorPalette('@{primary-color}', 3) `); // unused
 @primary-4: color(~`colorPalette('@{primary-color}', 4) `); // unused
 @primary-5: color(
   ~`colorPalette('@{primary-color}', 5) `
 ); // color used to control the text color in many active and hover states, replace tint(@primary-color, 20%)
 @primary-6: @primary-color; // color used to control the text color of active buttons, don't use, use @primary-color
-@primary-7: color(~`colorPalette('@{primary-color}', 7) `); // replace shade(@primary-color, 5%)
+@primary-7: color(
+  ~`colorPalette('@{primary-color}', 7) `
+); // replace shade(@primary-color, 5%)
 @primary-8: color(~`colorPalette('@{primary-color}', 8) `); // unused
 @primary-9: color(~`colorPalette('@{primary-color}', 9) `); // unused
 @primary-10: color(~`colorPalette('@{primary-color}', 10) `); // unused
@@ -164,10 +172,10 @@
 
 // Radio
 @radio-size : 16px;
-@radio-dot-color : #7B7B7B;
+@radio-dot-color : @or-grey;
 
 // Radio buttons
-@radio-button-bg : #F4F4F4;
+@radio-button-bg : @or-white;
 @radio-button-color : @btn-default-color;
 @radio-button-hover-color : @primary-5;
 @radio-button-active-color : @primary-7;
@@ -539,4 +547,3 @@
 @list-item-meta-margin-bottom: @padding-md;
 @list-item-meta-avatar-margin-right: @padding-md;
 @list-item-meta-title-margin-bottom: @padding-sm;
-
