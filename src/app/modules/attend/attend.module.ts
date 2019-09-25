@@ -8,10 +8,7 @@ import { AttendSuccessComponent } from './attend-success/attend-success.componen
 import { CoreModule } from 'src/app/core/core.module';
 
 @NgModule({
-  declarations: [
-    AttendComponent,
-    AttendSuccessComponent,
-  ],
+  declarations: [AttendComponent, AttendSuccessComponent],
   imports: [
     CommonModule,
     CoreModule,

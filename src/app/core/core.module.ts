@@ -1,4 +1,3 @@
-
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ArrowTextComponent } from './components/arrow-text/arrow-text.component';
@@ -37,7 +36,7 @@ import { DimensionDirective } from './directives/dimension.directive';
     SvgComponent,
     SvgDefinitionsComponent,
     ResultComponent,
-    DimensionDirective
+    DimensionDirective,
   ],
   imports: [
     ReactiveFormsModule,
@@ -64,8 +63,7 @@ import { DimensionDirective } from './directives/dimension.directive';
     SvgComponent,
     SvgDefinitionsComponent,
     ResultComponent,
-    DimensionDirective
-
+    DimensionDirective,
   ],
 })
 export class CoreModule {}

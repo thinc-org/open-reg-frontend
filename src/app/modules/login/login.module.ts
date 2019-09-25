@@ -25,7 +25,7 @@ import { SvgDefinitionsComponent } from 'src/app/core/components/svg-definitions
     TopicComponent,
     SvgComponent,
     SvgDefinitionsComponent,
-    DimensionDirective
+    DimensionDirective,
   ],
   imports: [
     CommonModule,
