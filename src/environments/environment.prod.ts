@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://openreg.himkwtn.me',
+  apiUrl: 'https://openreg.himkwtn.me/',
 };
