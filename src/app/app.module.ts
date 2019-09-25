@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, ErrorHandler } from '@angular/core';
+import { NgModule, ErrorHandler, forwardRef } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { registerLocaleData } from '@angular/common';
@@ -24,6 +24,9 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { ApiModule } from './api/api.module';
+import { environment } from 'src/environments/environment';
+import { ApiInterceptor } from './core/services/api.interceptor';
 
 registerLocaleData(localeTh, 'th');
 
@@ -50,6 +53,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     FormsModule,
     BrowserAnimationsModule,
     NgxStronglyTypedFormsModule,
+    ApiModule.forRoot({ rootUrl: environment.apiUrl }),
   ],
   exports: [TranslateModule],
   providers: [
@@ -57,7 +61,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     { provide: ErrorHandler, useClass: GlobalErrorHandler },
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: ServerErrorInterceptor,
+      useClass: forwardRef(() => ApiInterceptor),
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: forwardRef(() => ServerErrorInterceptor),
       multi: true,
     },
     { provide: NZ_I18N, useValue: en_US },
