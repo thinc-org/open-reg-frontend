@@ -6,9 +6,9 @@ export interface Theme {
 }
 
 @Component({
-  selector: 'topic',
+  selector: 'app-topic',
   templateUrl: './topic.component.html',
-  styleUrls: ['./topic.component.scss']
+  styleUrls: ['./topic.component.scss'],
 })
 
 export class TopicComponent implements OnInit {
@@ -19,7 +19,7 @@ export class TopicComponent implements OnInit {
   @Input() subTextSize = '10px';
   @Input() subTextLs = 'normal';
   @Input() textPos = 'left';
-  @Input() theme: Theme = { mainTextColor: '#000000', subTextColor: '#B3B3B3' };
+  @Input() theme: Theme = { mainTextColor: '#4D4D4D', subTextColor: '#B3B3B3' };
 
   constructor() {}
 

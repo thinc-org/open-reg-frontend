@@ -8,9 +8,8 @@ describe('RegisterNavigatorComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RegisterNavigatorComponent ]
-    })
-    .compileComponents();
+      declarations: [RegisterNavigatorComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

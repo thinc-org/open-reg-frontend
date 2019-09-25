@@ -11,7 +11,7 @@ import {
   NzTypographyModule,
   NzButtonModule,
   NzFormModule,
-  NzCheckboxModule
+  NzCheckboxModule,
 } from 'ng-zorro-antd';
 import { NavbarComponent } from 'src/app/core/components/navbar/navbar.component';
 import { TopicComponent } from 'src/app/core/components/topic/topic.component';
@@ -36,7 +36,7 @@ import { SvgDefinitionsComponent } from 'src/app/core/components/svg-definitions
     NzTypographyModule,
     NzButtonModule,
     NzFormModule,
-    NzCheckboxModule
-  ]
+    NzCheckboxModule,
+  ],
 })
 export class LoginModule {}

@@ -1,7 +1,10 @@
-<div (click)="onClick.emit($event)" [ngClass]="{'flex-right': isRight,'flex-left': !isRight}" class="arrow-container">
+<div
+  [ngClass]="{ 'flex-right': isRight, 'flex-left': !isRight }"
+  class="arrow-container"
+>
   <ng-container *ngIf="isRight; else left">
     <div class="topic">
-        <topic  mainTextSize= 12px mainTextColor= #ABD0FF mainText="ขั้นตอนถัดไป" subTextSize= 14px subTextColor= #FFFFFF subText="ข้อมูลฝ่ายงาน"></topic>
+        <app-topic  mainTextSize= 12px mainTextColor= #ABD0FF mainText="ขั้นตอนถัดไป" subTextSize= 14px subTextColor= #FFFFFF subText="ข้อมูลฝ่ายงาน"></app-topic>
     </div>
     <i
       class="arrow arrow-right"
@@ -20,7 +23,7 @@
       nzColor="#FFFFFF"
     ></i>
     <div class="topic">
-      <topic  mainTextSize= 12px mainTextColor= #ABD0FF mainText="ขั้นตอนก่อนหน้า" subTextSize= 14px subTextColor= #FFFFFF subText="ข้อมูลฝ่ายงาน"></topic>
+      <app-topic  mainTextSize= 12px mainTextColor= #ABD0FF mainText="ขั้นตอนก่อนหน้า" subTextSize= 14px subTextColor= #FFFFFF subText="ข้อมูลฝ่ายงาน"></app-topic>
     </div>
   </ng-template>
 </div>

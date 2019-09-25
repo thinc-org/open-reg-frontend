@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'svg-definitions',
+  selector: 'app-svg-definitions',
   templateUrl: './svg-definitions.component.html',
   styleUrls: ['./svg-definitions.component.scss']
 })

@@ -4,7 +4,7 @@ import { notNull } from '../functions/predicates';
 import { map } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ChulaSsoService {
   currentUser$ = new BehaviorSubject<ChulaSSOUser>(undefined);
@@ -19,7 +19,7 @@ export class ChulaSsoService {
       gecos: 'idkwhatthismeans',
       email: 'veryLongEmail@email.com',
       roles: ['student'],
-      ouid: '6031763021'
+      ouid: '6031763021',
     });
   }
 

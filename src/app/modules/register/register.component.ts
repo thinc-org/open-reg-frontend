@@ -8,11 +8,11 @@ import { Validators } from '@angular/forms';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
   isSSOAuthenticated$ = this.chulaSSOService.isSSOAuthenticated$;
-  questions  = [0, 0, 0, 0, 0].map((e, i) => {
+  questions = [0, 0, 0, 0, 0].map((_, i) => {
     i += 1;
     return new TextboxQuestion({
       description: `something ${i}`,
@@ -21,23 +21,23 @@ export class RegisterComponent implements OnInit {
       order: i,
       validators: [Validators.required, Validators.email],
       title: `QUESTION ${i}`,
-      value: `prefilled value`
+      value: `prefilled value`,
     });
   });
-  //Steps
+  // Steps
   steps: Step[] = [
     {
       title: 'First Step',
-      subtitle: 'Basic Info'
+      subtitle: 'Basic Info',
     },
     {
       title: 'Second Step',
-      subtitle: 'More Info'
+      subtitle: 'More Info',
     },
     {
       title: 'Final Step',
-      subtitle: 'Lots of more info'
-    }
+      subtitle: 'Lots of more info',
+    },
   ];
   currentStep$ = new BehaviorSubject<number>(0);
   totalSteps = this.steps.length;
