@@ -21,8 +21,6 @@ import {
 } from 'ng-zorro-antd';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
-import { ApiService } from './services/api.service';
-import { MockApiService } from './services/mock-api.service';
 import { SwapDirective } from './directives/swap.directive';
 
 @NgModule({
@@ -51,7 +49,7 @@ import { SwapDirective } from './directives/swap.directive';
     NzRadioModule,
   ],
   entryComponents: [],
-  providers: [{ provide: ApiService, useClass: MockApiService }],
+  // providers: [{ provide: ApiService, useClass: MockApiService }],
   exports: [
     ArrowTextComponent,
     ContentContainerComponent,

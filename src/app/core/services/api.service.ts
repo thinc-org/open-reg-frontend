@@ -36,7 +36,7 @@ export class ApiService implements ApiInterface {
     params?: { [param: string]: string | string[] }
   ): Observable<T> {
     return this.http
-      .get<T>(url, { params, observe: 'response' })
+      .get<T>(ApiService.BASE_URL + url, { params, observe: 'response' })
       .pipe(map(res => res.body));
   }
 

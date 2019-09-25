@@ -1,17 +1,25 @@
 import { Injectable } from '@angular/core';
-import { BaseQuestion } from '../../core/model/questions.model';
+import {
+  BaseQuestion,
+  QuestionModel,
+  QuestionOptions,
+  DropdownQuestion,
+  TextboxQuestion,
+  QuestionTypes,
+} from '../../core/model/questions.model';
 import { ApiService } from '../../core/services/api.service';
 import { share, takeUntil } from 'rxjs/operators';
 import { Subject, BehaviorSubject, combineLatest } from 'rxjs';
 import { FormGeneratorService } from 'src/app/core/services/form-generator.service';
 import { FormGroup } from 'ngx-strongly-typed-forms';
+import { Validators } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RegisterService {
   destroy$ = new Subject<any>();
-  apiResult$ = this.api.get<any>('questions').pipe(
+  apiResult$ = this.api.get<any>('form/5d8ae593ffa15b001b38af20').pipe(
     share(),
     takeUntil(this.destroy$)
   );
@@ -35,12 +43,12 @@ export class RegisterService {
     this.questions$.pipe(takeUntil(this.destroy$)).subscribe();
 
     this.apiResult$.subscribe(result => {
-      (result.group as Step[]).push({
+      (result.groups as Step[]).push({
         description: 'CONFIRMATION',
-        n: result.length + 1,
+        order: result.length + 1,
         title: 'ยืนยันการลงทะเบียน',
       });
-      this.groups = result.group;
+      this.groups = result.groups;
       this.eventName = result.title;
       const convertedQuestions = this.convertQuestions(
         result.questions,
@@ -53,7 +61,7 @@ export class RegisterService {
     // the system need to save user's answered question form this.form into this.questions$ array
     // so that when user go back to the previous step,
     // the answered question will not disappear from the form
-    combineLatest(this.currentStep$, this.apiResult$)
+    combineLatest([this.currentStep$, this.apiResult$])
       .pipe(takeUntil(this.destroy$))
       .subscribe(([currentStep, apiResult]) => {
         const convertedQuestions = this.convertQuestions(
@@ -79,7 +87,7 @@ export class RegisterService {
   }
 
   private convertQuestions(
-    questions: BaseQuestion<any>[],
+    questions: QuestionModel[],
     groupNumber: number = 0
   ): BaseQuestion<any>[][] {
     const result = [];
@@ -87,16 +95,50 @@ export class RegisterService {
       result.push([]);
       for (const question of questions) {
         if (question.group - 0 === i) {
-          result[i - 1].push(question);
+          const options: QuestionOptions<any> = {
+            ...question,
+            label: '' + question._id,
+            key: '' + question._id,
+            required: question.required,
+          };
+          const convertedQuestion = this.generateQuestion(options);
+          result[i - 1].push(convertedQuestion);
         }
       }
     }
     return result;
   }
+  private generateQuestion(options: QuestionOptions<any>): BaseQuestion<any> {
+    const type = options.type;
+    const validators = this.generateValidators(
+      options.type as QuestionTypes,
+      options.required
+    );
+    switch (type) {
+      case 'RADIO':
+        return new DropdownQuestion(options, 'radio', validators);
+      case 'DROPDOWN':
+        return new DropdownQuestion(options, 'dropdown', validators);
+      default:
+        return new TextboxQuestion(options, validators);
+    }
+  }
+  private generateValidators(type: QuestionTypes, required: boolean) {
+    const validators = [];
+    if (required) {
+      validators.push(Validators.required);
+    }
+    switch (type) {
+      case 'EMAIL':
+        validators.push(Validators.required);
+        break;
+    }
+    return validators;
+  }
 }
 
 export interface Step {
-  n: number;
+  order: number;
   title: string;
   description: string;
 }

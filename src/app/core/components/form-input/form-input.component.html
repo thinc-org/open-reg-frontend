@@ -12,7 +12,7 @@
       [id]="question.key"
       [type]="question.type"
       nz-input
-      [placeholder]="question.description"
+      [placeholder]="question.description || ''"
       nzSize="large"
     />
     <nz-select
