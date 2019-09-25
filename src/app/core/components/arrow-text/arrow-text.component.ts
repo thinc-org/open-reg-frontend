@@ -7,6 +7,8 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ArrowTextComponent implements OnInit {
   @Input() isRight = true;
+  @Input() disabled = false;
+  @Input() mainText: string;
 
   constructor() {}
 

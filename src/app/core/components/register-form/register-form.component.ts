@@ -1,30 +1,33 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Step } from 'src/app/modules/register/register.component';
-import { FormGeneratorService } from '../../services/form-generator.service';
+import { Component, Input } from '@angular/core';
 import { BaseQuestion } from '../../model/questions.model';
 import { FormGroup } from '@angular/forms';
+import { RegisterService } from 'src/app/modules/register/register.service';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-register-form',
   templateUrl: './register-form.component.html',
   styleUrls: ['./register-form.component.scss'],
 })
-export class RegisterFormComponent implements OnInit {
-  @Input() questions: BaseQuestion<any>[];
-  @Input() step: Step = { title: null, subtitle: null };
-  precessedQuestions: BaseQuestion<any>[][];
-  form: FormGroup;
-  constructor(private formGenerator: FormGeneratorService) {}
+export class RegisterFormComponent {
+  @Input() form: FormGroup;
+  questions$: BehaviorSubject<BaseQuestion<any>[]> = this.registerService
+    .questions$;
+  eventName: string = this.registerService.eventName;
+  processedQuestions$: Observable<BaseQuestion<any>[][]> = this.questions$.pipe(
+    map(e => (e ? e.sort((a, b) => a.order - b.order) : [])),
+    map(this.reduce)
+  );
 
-  ngOnInit() {
-    this.form = this.formGenerator.toFormGroup(this.questions);
-    this.precessedQuestions = this.questions
-      .sort((a, b) => a.order - b.order)
-      .reduce((result, question, i) => {
-        i % 2 === 0
-          ? result.push([question])
-          : result[result.length - 1].push(question);
-        return result;
-      }, []);
+  constructor(private registerService: RegisterService) {}
+
+  private reduce(array: BaseQuestion<any>[]) {
+    return array.reduce((result, question, i) => {
+      i % 2 === 0
+        ? result.push([question])
+        : result[result.length - 1].push(question);
+      return result;
+    }, []);
   }
 }

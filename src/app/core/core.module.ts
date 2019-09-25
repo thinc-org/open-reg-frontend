@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { ArrowTextComponent } from './components/arrow-text/arrow-text.component';
 import { ContentContainerComponent } from './components/content-container/content-container.component';
 import { FormInputComponent } from './components/form-input/form-input.component';
@@ -15,9 +16,12 @@ import {
   NzLayoutModule,
   NzIconModule,
   NzModalModule,
+  NzSelectModule,
+  NzRadioModule,
 } from 'ng-zorro-antd';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
+import { SwapDirective } from './directives/swap.directive';
 
 @NgModule({
   declarations: [
@@ -27,6 +31,7 @@ import { TranslateModule } from '@ngx-translate/core';
     RegisterFormComponent,
     RegisterNavigatorComponent,
     TopicComponent,
+    SwapDirective,
   ],
   imports: [
     ReactiveFormsModule,
@@ -40,8 +45,11 @@ import { TranslateModule } from '@ngx-translate/core';
     NzGridModule,
     NzLayoutModule,
     NzIconModule,
+    NzSelectModule,
+    NzRadioModule,
   ],
   entryComponents: [],
+  // providers: [{ provide: ApiService, useClass: MockApiService }],
   exports: [
     ArrowTextComponent,
     ContentContainerComponent,

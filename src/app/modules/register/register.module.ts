@@ -15,12 +15,15 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { HttpClient } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { NgxStronglyTypedFormsModule } from 'ngx-strongly-typed-forms';
+import { ConfirmContentComponent } from 'src/app/core/components/confirm-content/confirm-content.component';
 import { CoreModule } from 'src/app/core/core.module';
 
 @NgModule({
-  declarations: [RegisterComponent],
+  declarations: [RegisterComponent, ConfirmContentComponent],
   imports: [
+    NgxStronglyTypedFormsModule,
     ReactiveFormsModule,
     CommonModule,
     CoreModule,
@@ -32,6 +35,7 @@ import { CoreModule } from 'src/app/core/core.module';
     NzGridModule,
     NzLayoutModule,
     NzIconModule,
+    FormsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

@@ -12,9 +12,37 @@
       [id]="question.key"
       [type]="question.type"
       nz-input
-      [placeholder]="question.description"
+      [placeholder]="question.description || ''"
       nzSize="large"
     />
+    <nz-select
+      nzSize="large"
+      nzPlaceHolder="select"
+      class="select"
+      *ngSwitchCase="'dropdown'"
+      [formControlName]="question.key"
+      [id]="question.key"
+    >
+      <nz-option
+        *ngFor="let option of question.choices; index as i"
+        [nzLabel]="option"
+        [nzValue]="'' + i"
+      ></nz-option>
+    </nz-select>
+    <nz-radio-group
+      *ngSwitchCase="'radio'"
+      [formControlName]="question.key"
+      [nzName]="question.key"
+      [id]="question.key"
+    >
+      <label
+        class="radio-label"
+        *ngFor="let option of question.choices; index as i"
+        nz-radio
+        [nzValue]="'' + i"
+        >{{ option }}</label
+      >
+    </nz-radio-group>
   </div>
   <div class="error-message" *ngIf="!isValid && (touched || dirty)">
     <span *ngIf="isRequired" nz-text nzType="danger">{{

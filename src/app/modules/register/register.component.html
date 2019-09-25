@@ -18,21 +18,37 @@
   </nz-header>
   <nz-content>
     <ng-container *ngIf="isSSOAuthenticated$ | async; else notSSOAuthenticated">
-      <!-- <h2 nz-title>
-        {{ steps[currentStep$.value].title }}
-      </h2> -->
-      <app-content-container>
-        <app-register-form
-          [step]="steps[currentStep$.value]"
-          nzOffset="6"
-          nzSpan="12"
-          [questions]="questions"
-        ></app-register-form>
+      <app-content-container
+        [title]="currentStepObj.title"
+        [subtitle]="currentStepObj.description"
+      >
+        <ng-container [ngSwitch]="currentStepType">
+          <app-register-form
+            *ngSwitchCase="'form'"
+            nzOffset="6"
+            nzSpan="12"
+            [form]="currentFormObj"
+          ></app-register-form>
+          <app-confirm-content
+            *ngSwitchCase="'confirm'"
+            [eventName]="eventName"
+          ></app-confirm-content>
+          <div *ngSwitchDefault class="loading-icon-container">
+            <i
+              style="font-size: 36px;"
+              nz-icon
+              nzType="loading"
+              nzTheme="outline"
+            ></i>
+          </div>
+        </ng-container>
         <app-register-navigator
           [currentStep]="currentStep$ | async"
           [totalSteps]="totalSteps"
           (previousStep)="previousStep()"
           (nextStep)="nextStep()"
+          [form]="currentFormObj"
+          [steps]="steps"
         >
         </app-register-navigator>
       </app-content-container>
@@ -46,3 +62,4 @@
   </nz-content>
   <nz-footer>Project Open Registration by Thinc.</nz-footer>
 </nz-layout>
+<!-- <button (click)="debug()"></button> -->

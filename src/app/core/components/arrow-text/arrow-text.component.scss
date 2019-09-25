@@ -1,44 +1,55 @@
 .arrow {
   font-size: 18px;
   color: #ffffff;
-}
-
-.arrow:hover {
-  opacity: 0.7;
-}
-
-.arrow-right {
-  margin-left: 20px;
-}
-
-.arrow-left {
-  margin-right: 20px;
+  &-right {
+    margin-left: 20px;
+  }
+  &-left {
+    margin-right: 20px;
+  }
+  &-container {
+    align-items: center;
+    display: flex;
+  }
 }
 
 .text {
-  color: #ffffff;
-  font-size: 14px;
+  &-container {
+    display: flex;
+    flex-direction: column;
+  }
+  &-main {
+    color: #ffffff;
+    font-size: 14px;
+  }
+  &-sub {
+    font-size: 12px;
+    color: #abd0ff;
+  }
 }
 
-.subtext {
-  font-size: 12px;
-  color: #abd0ff;
-}
-
-.text-container {
+.invisible-button {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
   display: flex;
-  flex-direction: column;
+  &:disabled {
+    opacity: 0.5;
+  }
+  &:not([disabled]):hover {
+    opacity: 0.7;
+  }
 }
 
-.arrow-container {
-  align-items: center;
-  display: flex;
-}
-
-.flex-right {
-  justify-content: flex-end;
-}
-
-.flex-left {
-  justify-content: flex-start;
+.text {
+  &-right {
+    text-align: right;
+  }
+  &-left {
+    text-align: left;
+  }
 }

@@ -10,17 +10,19 @@ export class BaseQuestion<T> {
   choices: string[];
   key: string;
   controlType: string;
-  validators: ValidatorFn | ValidatorFn[] | AbstractControlOptions;
+  group: number;
 
-  constructor(options: QuestionOptions<T> = {}) {
+  constructor(
+    options: QuestionOptions<T> = {},
+    public validators: ValidatorFn | ValidatorFn[] | AbstractControlOptions
+  ) {
     this.value = options.value;
     this.key = options.key || '';
     this.label = options.label || '';
     // this.required = !!options.required;
     this.order = options.order === undefined ? 1 : options.order;
-    this.description = options.description || '';
     this.title = options.title || '';
-    this.validators = options.validators || [];
+    this.group = options.group;
   }
 }
 
@@ -28,9 +30,14 @@ export class DropdownQuestion extends BaseQuestion<string> {
   controlType = 'dropdown';
   choices: string[] = [];
 
-  constructor(options: QuestionOptions<string> = {}) {
-    super(options);
-    this.choices = options.options || [];
+  constructor(
+    options: QuestionOptions<string> = {},
+    subType?: string,
+    validators: ValidatorFn | ValidatorFn[] | AbstractControlOptions = []
+  ) {
+    super(options, validators);
+    this.choices = options.choices || [];
+    this.controlType = subType;
   }
 }
 
@@ -38,14 +45,17 @@ export class TextboxQuestion extends BaseQuestion<string> {
   controlType = 'textbox';
   type: string;
 
-  constructor(options: QuestionOptions<string> = {}) {
-    super(options);
+  constructor(
+    options: QuestionOptions<string> = {},
+    validators: ValidatorFn | ValidatorFn[] | AbstractControlOptions = []
+  ) {
+    super(options, validators);
     this.type = options.type || '';
   }
 }
 
 export enum QuestionTypes {
-  RADIO = 'RADIO', // not implemented
+  RADIO = 'RADIO',
   CHECKBOX = 'CHECKBOX', // not implemented
   TEXT = 'TEXT',
   EMAIL = 'EMAIL',
@@ -59,10 +69,11 @@ export enum QuestionTypes {
 export interface QuestionModel {
   order: number;
   type: QuestionTypes;
+  _id: number;
   title: string;
   choices: string[];
   required: boolean;
-  description: string;
+  group: number;
 }
 
 export interface QuestionOptions<T> {
@@ -76,4 +87,8 @@ export interface QuestionOptions<T> {
   title?: string;
   description?: string;
   validators?: ValidatorFn | ValidatorFn[] | AbstractControlOptions;
+  group?: number;
+  choices?: string[];
+  subType?: string;
+  required?: boolean;
 }

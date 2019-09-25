@@ -1,10 +1,6 @@
 <div nz-row class="grid-container">
-  <div class="topic">
-    <app-topic [mainText]="step.title" [subText]="step.subtitle"></app-topic>
-  </div>
   <form [formGroup]="form">
-    <div nz-row *ngFor="let question of precessedQuestions">
-      <!-- <div nz-row> -->
+    <div nz-row *ngFor="let question of (processedQuestions$ | async)">
       <app-form-input
         class="grid-items"
         nz-col
@@ -20,7 +16,6 @@
         [question]="question[1]"
         [form]="form"
       ></app-form-input>
-      <!-- </div> -->
     </div>
   </form>
 </div>

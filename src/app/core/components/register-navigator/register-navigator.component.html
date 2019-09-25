@@ -1,19 +1,27 @@
 <div class="registration-footer">
-  <app-arrow-text
-    class="arrow-text-l"
-    (click)="previous()"
-    *ngIf="notFirstPage"
-    [isRight]="false"
-  ></app-arrow-text>
-  <app-arrow-text
-    class="arrow-text-r"
-    (click)="next()"
+  <div class="arrow-text-container arrow-text-l" *ngIf="notFirstPage">
+    <app-arrow-text
+      (click)="previous()"
+      [mainText]="previousStepObject.title"
+      [isRight]="false"
+    ></app-arrow-text>
+  </div>
+  <div
+    class="arrow-text-container arrow-text-r"
     *ngIf="notLastPage; else button"
-    [isRight]="true"
-  ></app-arrow-text>
+  >
+    <app-arrow-text
+      [class.disabled]="!isAbleToProceed"
+      [disabled]="!isAbleToProceed"
+      (click)="next()"
+      [mainText]="nextStepObject.title"
+      [isRight]="true"
+    ></app-arrow-text>
+  </div>
   <ng-template #button>
     <div class="button-register-container">
       <button
+        [disabled]="!isAbleToProceed"
         class="button-register"
         (click)="next()"
         nz-button
