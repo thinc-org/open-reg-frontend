@@ -35,7 +35,6 @@ export class RegisterService {
 
   complete() {
     this.destroy$.next(undefined);
-    this.destroy$.unsubscribe();
   }
 
   constructor(

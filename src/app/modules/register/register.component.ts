@@ -6,6 +6,7 @@ import { RegisterService } from './register.service';
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
+  providers: [RegisterService],
 })
 export class RegisterComponent implements OnInit, OnDestroy {
   isSSOAuthenticated$ = this.chulaSSOService.isSSOAuthenticated$;
