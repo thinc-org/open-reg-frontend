@@ -1,4 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  Output,
+  EventEmitter,
+  Input,
+} from '@angular/core';
 import { FormService } from './form.service';
 import { ChulaSsoService } from 'src/app/core/services/chula-sso.service';
 import { Router } from '@angular/router';
@@ -12,6 +19,9 @@ import { Router } from '@angular/router';
 export class FormComponent implements OnInit, OnDestroy {
   isSSOAuthenticated$ = this.chulaSSOService.isSSOAuthenticated$;
   currentStep$ = this.formService.currentStep$;
+
+  @Output() submitForm = new EventEmitter<any>();
+  @Input() formObj: any = {};
 
   constructor(
     private chulaSSOService: ChulaSsoService,
@@ -69,6 +79,7 @@ export class FormComponent implements OnInit, OnDestroy {
   }
 
   completeForm() {
+    /* Normalize form object from steps **/
     const value = Object.values(this.form.value).reduce(
       (a, c) => ({ ...a, ...c }),
       {}
