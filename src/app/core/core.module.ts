@@ -1,12 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { ArrowTextComponent } from './components/arrow-text/arrow-text.component';
 import { ContentContainerComponent } from './components/content-container/content-container.component';
-import { FormInputComponent } from './components/form-input/form-input.component';
-import { RegisterNavigatorComponent } from './components/register-navigator/register-navigator.component';
 import { TopicComponent } from './components/topic/topic.component';
-import { RegisterFormComponent } from './components/register-form/register-form.component';
 import {
   NzButtonModule,
   NzTypographyModule,
@@ -22,16 +18,15 @@ import {
 import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { SwapDirective } from './directives/swap.directive';
+import { ConfirmContentComponent } from './components/confirm-content/confirm-content.component';
 
 @NgModule({
   declarations: [
     ArrowTextComponent,
     ContentContainerComponent,
-    FormInputComponent,
-    RegisterFormComponent,
-    RegisterNavigatorComponent,
     TopicComponent,
     SwapDirective,
+    ConfirmContentComponent,
   ],
   imports: [
     ReactiveFormsModule,
@@ -53,10 +48,8 @@ import { SwapDirective } from './directives/swap.directive';
   exports: [
     ArrowTextComponent,
     ContentContainerComponent,
-    FormInputComponent,
-    RegisterFormComponent,
-    RegisterNavigatorComponent,
     TopicComponent,
+    ConfirmContentComponent,
   ],
 })
 export class CoreModule {}

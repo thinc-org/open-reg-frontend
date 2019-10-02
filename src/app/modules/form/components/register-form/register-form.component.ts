@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
-import { BaseQuestion } from '../../model/questions.model';
 import { FormGroup } from '@angular/forms';
-import { RegisterService } from 'src/app/modules/register/register.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { BaseQuestion } from 'src/app/core/model/questions.model';
+import { FormService } from '../../form.service';
 
 @Component({
   selector: 'app-register-form',
@@ -12,15 +12,15 @@ import { map } from 'rxjs/operators';
 })
 export class RegisterFormComponent {
   @Input() form: FormGroup;
-  questions$: BehaviorSubject<BaseQuestion<any>[]> = this.registerService
+  questions$: BehaviorSubject<BaseQuestion<any>[]> = this.formService
     .questions$;
-  eventName: string = this.registerService.eventName;
+  eventName: string = this.formService.eventName;
   processedQuestions$: Observable<BaseQuestion<any>[][]> = this.questions$.pipe(
     map(e => (e ? e.sort((a, b) => a.order - b.order) : [])),
     map(this.reduce)
   );
 
-  constructor(private registerService: RegisterService) {}
+  constructor(private formService: FormService) {}
 
   private reduce(array: BaseQuestion<any>[]) {
     return array.reduce((result, question, i) => {
