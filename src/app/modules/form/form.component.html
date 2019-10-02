@@ -1,0 +1,34 @@
+<app-content-container
+  [title]="currentStepObj.title"
+  [subtitle]="currentStepObj.description"
+>
+  <ng-container [ngSwitch]="currentStepType">
+    <app-register-form
+      *ngSwitchCase="'form'"
+      nzOffset="6"
+      nzSpan="12"
+      [form]="currentFormObj"
+    ></app-register-form>
+    <app-confirm-content
+      *ngSwitchCase="'confirm'"
+      [eventName]="eventName"
+    ></app-confirm-content>
+    <div *ngSwitchDefault class="loading-icon-container">
+      <i
+        style="font-size: 36px;"
+        nz-icon
+        nzType="loading"
+        nzTheme="outline"
+      ></i>
+    </div>
+  </ng-container>
+  <app-register-navigator
+    [currentStep]="currentStep$ | async"
+    [totalSteps]="totalSteps"
+    (previousStep)="previousStep()"
+    (nextStep)="nextStep()"
+    [form]="currentFormObj"
+    [steps]="steps"
+  >
+  </app-register-navigator>
+</app-content-container>

@@ -17,11 +17,11 @@ import { HttpLoaderFactory } from 'src/app/app.module';
 import { HttpClient } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgxStronglyTypedFormsModule } from 'ngx-strongly-typed-forms';
-import { ConfirmContentComponent } from 'src/app/core/components/confirm-content/confirm-content.component';
 import { CoreModule } from 'src/app/core/core.module';
+import { FormModule } from '../form/form.module';
 
 @NgModule({
-  declarations: [RegisterComponent, ConfirmContentComponent],
+  declarations: [RegisterComponent],
   imports: [
     NgxStronglyTypedFormsModule,
     ReactiveFormsModule,
@@ -36,6 +36,7 @@ import { CoreModule } from 'src/app/core/core.module';
     NzLayoutModule,
     NzIconModule,
     FormsModule,
+    FormModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

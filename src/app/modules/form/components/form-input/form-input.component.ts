@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { TextboxQuestion } from '../../model/questions.model';
 import { FormGroup } from '@angular/forms';
+import { TextboxQuestion } from 'src/app/core/model/questions.model';
 
 @Component({
   selector: 'app-form-input',
