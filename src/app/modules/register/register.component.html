@@ -1,6 +1,6 @@
 <nz-layout>
   <nz-header nz-row nzMode="horizontal">
-    <ng-container *ngIf="isSSOAuthenticated$ | async">
+    <ng-container *ngIf="isAuthenticated$ | async">
       <div nz-col nzSpan="6">
         <p style="color: white">You are logged in with ChulaSSO</p>
       </div>
@@ -17,7 +17,7 @@
     </ng-container>
   </nz-header>
   <nz-content>
-    <ng-container *ngIf="isSSOAuthenticated$ | async; else notSSOAuthenticated">
+    <ng-container *ngIf="isAuthenticated$ | async; else notSSOAuthenticated">
       <app-form> </app-form>
     </ng-container>
     <ng-template #notSSOAuthenticated>
