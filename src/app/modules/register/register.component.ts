@@ -8,17 +8,12 @@ import { RegisterService } from './register.service';
   providers: [RegisterService],
 })
 export class RegisterComponent implements OnInit, OnDestroy {
-  isSSOAuthenticated$ = this.chulaSSOService.isSSOAuthenticated$;
-
   constructor(private chulaSSOService: ChulaSsoService) {}
 
   ngOnInit() {}
 
   loginSSO() {
     this.chulaSSOService.login();
-  }
-  logoutSSO() {
-    this.chulaSSOService.logout();
   }
 
   ngOnDestroy() {}

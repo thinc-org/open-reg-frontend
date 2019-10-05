@@ -7,7 +7,6 @@ import {
   Input,
 } from '@angular/core';
 import { FormService } from './form.service';
-import { ChulaSsoService } from 'src/app/core/services/chula-sso.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -17,17 +16,12 @@ import { Router } from '@angular/router';
   providers: [FormService],
 })
 export class FormComponent implements OnInit, OnDestroy {
-  isSSOAuthenticated$ = this.chulaSSOService.isSSOAuthenticated$;
   currentStep$ = this.formService.currentStep$;
 
   @Output() submitForm = new EventEmitter<any>();
   @Input() formObj: any = {};
 
-  constructor(
-    private chulaSSOService: ChulaSsoService,
-    private router: Router,
-    private formService: FormService
-  ) {}
+  constructor(private router: Router, private formService: FormService) {}
 
   ngOnInit() {}
 
