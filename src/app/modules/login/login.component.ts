@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ChulaSsoService } from 'src/app/core/services/chula-sso.service';
 import { take, pluck, switchMap } from 'rxjs/operators';
 import { ApiService } from 'src/app/api/services';
-import { empty, EMPTY, Subject } from 'rxjs';
+import { EMPTY, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
           }
         })
       )
-      .subscribe(console.log, error => {
+      .subscribe(console.log, _ => {
         this.loginError$.next('Something went wrong, Please try again');
       });
   }
