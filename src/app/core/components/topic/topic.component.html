@@ -1,2 +1,24 @@
-<h2 class="main-text">{{ mainText || '' }}</h2>
-<h3 class="sub-text">{{ subText || '' }}</h3>
+<h2
+  class="main-text"
+  [ngStyle]="{
+    color: theme.mainTextColor,
+    marginBottom: textSpace,
+    fontSize: mainTextSize,
+    lineHeight: mainTextSize,
+    textAlign: textPos
+  }"
+>
+  {{ mainText || '' }}
+</h2>
+<h3
+  class="sub-text"
+  [ngStyle]="{
+    color: theme.subTextColor,
+    fontSize: subTextSize,
+    lineHeight: subTextSize,
+    letterSpacing: subTextLs,
+    textAlign: textPos
+  }"
+>
+  {{ subText || '' }}
+</h3>

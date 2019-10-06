@@ -1,0 +1,31 @@
+.big-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  left: 0;
+  background-color: #ffffff;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.navbar {
+  display: flex;
+  width: 100%;
+  max-width: 1080px;
+  padding: 20px;
+}
+
+.or-logo {
+  margin-right: 40px;
+  align-items: center;
+}
+.vl {
+  border-left: 1px solid #b3b3b3;
+  height: 30px;
+  margin-right: 40px;
+}
