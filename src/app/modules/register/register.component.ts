@@ -38,10 +38,11 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   logoutSSO() {
-    this.chulaSSOService.logout().subscribe(_ => {
-      this.authService.removeToken();
-      this.router.navigate(['/']);
-    });
+    this.authService.removeToken();
+    this.router.navigate(['/']);
+    // this.chulaSSOService.logout().subscribe(_ => {
+
+    // });
   }
   ngOnDestroy() {}
 }
