@@ -1,14 +1,5 @@
 <button class="invisible-button" [disabled]="disabled">
   <div class="arrow-container" appSwap [isSwapped]="isRight">
-    <!-- <div
-      class="text-container"
-      [ngClass]="{ 'text-right': isRight, 'text-left': !isRight }"
-    >
-      <span class="text-main" translate>{{
-        isRight ? 'Next Step' : 'Previous Step'
-      }}</span>
-      <span class="text-sub">{{ mainText || '' }}</span>
-    </div> -->
     <div class="topic">
       <app-topic
         mainTextSize="12px"

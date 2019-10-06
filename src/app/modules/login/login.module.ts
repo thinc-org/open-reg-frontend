@@ -15,9 +15,7 @@ import {
 import { CoreModule } from 'src/app/core/core.module';
 
 @NgModule({
-  declarations: [
-    LoginComponent,
-  ],
+  declarations: [LoginComponent],
   imports: [
     CommonModule,
     LoginRoutingModule,
@@ -28,7 +26,7 @@ import { CoreModule } from 'src/app/core/core.module';
     NzButtonModule,
     NzFormModule,
     NzCheckboxModule,
-    CoreModule
+    CoreModule,
   ],
 })
 export class LoginModule {}
