@@ -1,7 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ChulaSsoService } from 'src/app/core/services/chula-sso.service';
 import { RegisterService } from './register.service';
-import { of } from 'rxjs';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { ApiService } from 'src/app/api/services';
+import { Router } from '@angular/router';
+import { map, pluck } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -9,8 +13,23 @@ import { of } from 'rxjs';
   providers: [RegisterService],
 })
 export class RegisterComponent implements OnInit, OnDestroy {
-  isAuthenticated$ = of(true);
-  constructor(private chulaSSOService: ChulaSsoService) {}
+  isAuthenticated$ = this.authService.isAuthenticated$;
+  currentUser$ = this.authService.currentUser$;
+  formId$ = (this.apiService.getFormAll() as Observable<any[]>).pipe(
+    map((forms: any[]) =>
+      forms.find(form => {
+        return form.title === 'Loy-Krathong';
+      })
+    ),
+    pluck('_id')
+  );
+
+  constructor(
+    private chulaSSOService: ChulaSsoService,
+    private authService: AuthService,
+    private apiService: ApiService,
+    private router: Router
+  ) {}
 
   ngOnInit() {}
 
@@ -19,7 +38,10 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   logoutSSO() {
-    this.chulaSSOService.logout();
+    this.chulaSSOService.logout().subscribe(_ => {
+      this.authService.removeToken();
+      this.router.navigate(['/']);
+    });
   }
   ngOnDestroy() {}
 }

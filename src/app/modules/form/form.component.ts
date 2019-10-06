@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { FormService } from './form.service';
 import { Router } from '@angular/router';
+import { ApiService } from 'src/app/api/services';
 
 @Component({
   selector: 'app-form',
@@ -19,20 +20,16 @@ export class FormComponent implements OnInit, OnDestroy {
   currentStep$ = this.formService.currentStep$;
 
   @Output() submitForm = new EventEmitter<any>();
-  @Input() formObj: any = {};
+  @Input() formId = '';
 
-  constructor(private router: Router, private formService: FormService) {}
+  constructor(
+    private router: Router,
+    private formService: FormService,
+    private api: ApiService
+  ) {}
 
-  ngOnInit() {}
-
-  debug() {
-    // console.log(
-    //   this.registerService.questions$.value,
-    //   this.steps,
-    //   this.form,
-    //   this.registerService.questions$,
-    //   'debug'
-    // );
+  ngOnInit() {
+    this.formService.initializeForm(this.formId);
   }
 
   get eventName() {
@@ -74,12 +71,13 @@ export class FormComponent implements OnInit, OnDestroy {
 
   completeForm() {
     /* Normalize form object from steps **/
-    const value = Object.values(this.form.value).reduce(
+    const answers: any = Object.values(this.form.value).reduce(
       (a, c) => ({ ...a, ...c }),
       {}
     );
-    console.log(value);
-    this.router.navigate(['/']);
+    this.api
+      .postResponse({ form: this.formId, answers })
+      .subscribe(_ => this.router.navigate(['/']));
   }
   nextStep() {
     if (this.currentStep$.value === this.totalSteps) {

@@ -26,7 +26,7 @@ export class ChulaSsoService {
   }
 
   logout(): Observable<undefined> {
-    return this.apiService.post(ChulaSsoService.url + '/logout');
+    return this.apiService.get(ChulaSsoService.url + 'logout?service=.');
   }
 }
 

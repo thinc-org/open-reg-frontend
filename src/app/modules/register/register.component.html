@@ -1,8 +1,10 @@
 <nz-layout>
   <nz-header nz-row nzMode="horizontal">
-    <ng-container *ngIf="isAuthenticated$ | async">
+    <ng-container *ngIf="currentUser$ | async as user">
       <div nz-col nzSpan="6">
-        <p style="color: white">You are logged in with ChulaSSO</p>
+        <p style="color: white">
+          Hello {{ user.info.firstName }} {{ user.info.lastName }}
+        </p>
       </div>
       <button
         nz-col
@@ -17,15 +19,9 @@
     </ng-container>
   </nz-header>
   <nz-content>
-    <ng-container *ngIf="isAuthenticated$ | async; else notSSOAuthenticated">
-      <app-form> </app-form>
+    <ng-container *ngIf="formId$ | async as formId">
+      <app-form [formId]="formId"></app-form>
     </ng-container>
-    <ng-template #notSSOAuthenticated>
-      <h2 nz-title>You are not logged in with ChulaSSO</h2>
-      <button nz-button nzType="primary" (click)="loginSSO()">
-        Login with ChulaSSO
-      </button>
-    </ng-template>
   </nz-content>
   <nz-footer>Project Open Registration by Thinc.</nz-footer>
 </nz-layout>

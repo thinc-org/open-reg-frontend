@@ -1,11 +1,4 @@
 <div nz-row class="grid-container">
-  <div class="topic">
-    <app-topic
-      textPos="left"
-      [mainText]="step.title"
-      [subText]="step.description"
-    ></app-topic>
-  </div>
   <form [formGroup]="form">
     <div nz-row *ngFor="let question of processedQuestions$ | async">
       <app-form-input

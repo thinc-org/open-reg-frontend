@@ -48,6 +48,16 @@
     "no-output-native": true,
     "no-output-on-prefix": true,
     "no-output-rename": true,
+    "variable-name": {
+      "options": [
+        "check-format",
+        "allow-leading-underscore",
+        "allow-pascal-case",
+        "allow-snake-case",
+        "allow-trailing-underscore",
+        "ban-keywords"
+      ]
+    },
     "no-outputs-metadata-property": true,
     "template-banana-in-box": true,
     "template-no-negated-async": true,

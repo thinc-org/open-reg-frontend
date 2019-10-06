@@ -7,7 +7,7 @@ import {
   TextboxQuestion,
   QuestionTypes,
 } from '../../core/model/questions.model';
-import { share, takeUntil } from 'rxjs/operators';
+import { takeUntil, share } from 'rxjs/operators';
 import { Subject, BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { FormGeneratorService } from 'src/app/core/services/form-generator.service';
 import { FormGroup } from 'ngx-strongly-typed-forms';
@@ -19,12 +19,7 @@ import { ApiService } from 'src/app/api/services';
 })
 export class FormService {
   destroy$ = new Subject<any>();
-  apiResult$ = (this.api.getFormId('5d8ae593ffa15b001b38af20') as Observable<
-    any
-  >).pipe(
-    share(),
-    takeUntil(this.destroy$)
-  );
+
   questions$: BehaviorSubject<BaseQuestion<any>[]> = new BehaviorSubject<
     BaseQuestion<any>[]
   >([]);
@@ -32,6 +27,7 @@ export class FormService {
   form: FormGroup<any> = null;
   currentStep$ = new BehaviorSubject<number>(1);
   eventName: string;
+  apiResult$: Observable<any>;
 
   complete() {
     this.destroy$.next(undefined);
@@ -42,8 +38,19 @@ export class FormService {
     private formGenerator: FormGeneratorService
   ) {
     this.questions$.pipe(takeUntil(this.destroy$)).subscribe();
+  }
 
-    this.apiResult$.subscribe(result => {
+  initializeForm(formId: string) {
+    /**  As a user, every time he/she change step,
+     *  the system need to save user's answered question form this.form into this.questions$ array
+     * so that when user go back to the previous step,
+     * the answered question will not disappear from the form
+     */
+    this.apiResult$ = this.api.getFormId(formId).pipe(share()) as Observable<
+      any
+    >;
+
+    this.apiResult$.pipe(takeUntil(this.destroy$)).subscribe(result => {
       (result.groups as Step[]).push({
         description: 'CONFIRMATION',
         order: result.length + 1,
@@ -58,10 +65,6 @@ export class FormService {
       this.form = this.formGenerator.toFormGroup(convertedQuestions);
     });
 
-    // As a user, every time he/she change step,
-    // the system need to save user's answered question form this.form into this.questions$ array
-    // so that when user go back to the previous step,
-    // the answered question will not disappear from the form
     combineLatest([this.currentStep$, this.apiResult$])
       .pipe(takeUntil(this.destroy$))
       .subscribe(([currentStep, apiResult]) => {
@@ -98,8 +101,8 @@ export class FormService {
         if (question.group - 0 === i) {
           const options: QuestionOptions<any> = {
             ...question,
-            label: '' + question._id,
-            key: '' + question._id,
+            label: '' + question.label,
+            key: '' + question.key,
             required: question.required,
           };
           const convertedQuestion = this.generateQuestion(options);
