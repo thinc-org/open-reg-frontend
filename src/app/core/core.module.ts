@@ -59,6 +59,7 @@ import { DimensionDirective } from './directives/dimension.directive';
     ArrowTextComponent,
     ContentContainerComponent,
     TopicComponent,
+    SwapDirective,
     ConfirmContentComponent,
     NavbarComponent,
     SvgComponent,

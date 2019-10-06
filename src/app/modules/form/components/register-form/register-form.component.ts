@@ -22,6 +22,10 @@ export class RegisterFormComponent {
 
   constructor(private formService: FormService) {}
 
+  get step() {
+    return this.formService.groups[this.formService.currentStep$.value - 1];
+  }
+
   private reduce(array: BaseQuestion<any>[]) {
     return array.reduce((result, question, i) => {
       i % 2 === 0

@@ -1,4 +1,3 @@
-import { DimensionDirective } from './../../core/directives/dimension.directive';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -13,19 +12,11 @@ import {
   NzFormModule,
   NzCheckboxModule,
 } from 'ng-zorro-antd';
-import { NavbarComponent } from 'src/app/core/components/navbar/navbar.component';
-import { TopicComponent } from 'src/app/core/components/topic/topic.component';
-import { SvgComponent } from 'src/app/core/components/svg/svg.component';
-import { SvgDefinitionsComponent } from 'src/app/core/components/svg-definitions/svg-definitions.component';
+import { CoreModule } from 'src/app/core/core.module';
 
 @NgModule({
   declarations: [
     LoginComponent,
-    NavbarComponent,
-    TopicComponent,
-    SvgComponent,
-    SvgDefinitionsComponent,
-    DimensionDirective,
   ],
   imports: [
     CommonModule,
@@ -37,6 +28,7 @@ import { SvgDefinitionsComponent } from 'src/app/core/components/svg-definitions
     NzButtonModule,
     NzFormModule,
     NzCheckboxModule,
+    CoreModule
   ],
 })
 export class LoginModule {}
