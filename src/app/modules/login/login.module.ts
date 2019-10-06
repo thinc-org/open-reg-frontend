@@ -12,6 +12,7 @@ import {
   NzFormModule,
   NzCheckboxModule,
 } from 'ng-zorro-antd';
+import { CoreModule } from 'src/app/core/core.module';
 
 @NgModule({
   declarations: [LoginComponent],
@@ -25,6 +26,7 @@ import {
     NzButtonModule,
     NzFormModule,
     NzCheckboxModule,
+    CoreModule,
   ],
 })
 export class LoginModule {}
