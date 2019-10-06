@@ -19,6 +19,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { SwapDirective } from './directives/swap.directive';
 import { ConfirmContentComponent } from './components/confirm-content/confirm-content.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { SvgComponent } from './components/svg/svg.component';
+import { SvgDefinitionsComponent } from './components/svg-definitions/svg-definitions.component';
+import { ResultComponent } from './components/result/result.component';
+import { DimensionDirective } from './directives/dimension.directive';
 
 @NgModule({
   declarations: [
@@ -27,6 +32,11 @@ import { ConfirmContentComponent } from './components/confirm-content/confirm-co
     TopicComponent,
     SwapDirective,
     ConfirmContentComponent,
+    NavbarComponent,
+    SvgComponent,
+    SvgDefinitionsComponent,
+    ResultComponent,
+    DimensionDirective,
   ],
   imports: [
     ReactiveFormsModule,
@@ -50,6 +60,11 @@ import { ConfirmContentComponent } from './components/confirm-content/confirm-co
     ContentContainerComponent,
     TopicComponent,
     ConfirmContentComponent,
+    NavbarComponent,
+    SvgComponent,
+    SvgDefinitionsComponent,
+    ResultComponent,
+    DimensionDirective,
   ],
 })
 export class CoreModule {}
