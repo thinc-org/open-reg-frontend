@@ -9,6 +9,7 @@ import {
 import { FormService } from './form.service';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/api/services';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-form',
@@ -21,6 +22,7 @@ export class FormComponent implements OnInit, OnDestroy {
 
   @Output() submitForm = new EventEmitter<any>();
   @Input() formId = '';
+  @Input() formData: Observable<any>;
 
   constructor(
     private router: Router,
@@ -29,7 +31,11 @@ export class FormComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.formService.initializeForm(this.formId);
+    if (this.formData) {
+      this.formService.initializeForm(null, this.formData);
+    } else {
+      this.formService.initializeForm(this.formId, null);
+    }
   }
 
   get eventName() {
@@ -75,9 +81,12 @@ export class FormComponent implements OnInit, OnDestroy {
       (a, c) => ({ ...a, ...c }),
       {}
     );
-    this.api
-      .postResponse({ form: this.formId, answers })
-      .subscribe(_ => this.router.navigate(['/']));
+    if (this.formId) {
+      this.api
+        .postResponse({ form: this.formId, answers })
+        .subscribe(_ => this.router.navigate(['/']));
+    }
+    this.submitForm.emit(answers);
   }
   nextStep() {
     if (this.currentStep$.value === this.totalSteps) {

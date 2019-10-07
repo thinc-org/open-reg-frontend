@@ -40,15 +40,15 @@ export class FormService {
     this.questions$.pipe(takeUntil(this.destroy$)).subscribe();
   }
 
-  initializeForm(formId: string) {
+  initializeForm(formId: string, formData: Observable<any>) {
     /**  As a user, every time he/she change step,
      *  the system need to save user's answered question form this.form into this.questions$ array
      * so that when user go back to the previous step,
      * the answered question will not disappear from the form
      */
-    this.apiResult$ = this.api.getFormId(formId).pipe(share()) as Observable<
-      any
-    >;
+    this.apiResult$ = formData
+      ? formData.pipe(share())
+      : (this.api.getFormId(formId).pipe(share()) as Observable<any>);
 
     this.apiResult$.pipe(takeUntil(this.destroy$)).subscribe(result => {
       (result.groups as Step[]).push({
@@ -134,7 +134,7 @@ export class FormService {
     }
     switch (type) {
       case 'EMAIL':
-        validators.push(Validators.required);
+        validators.push(Validators.email);
         break;
     }
     return validators;

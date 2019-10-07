@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
       .subscribe(
         ({ token }: { token: string }) => {
           this.authService.setToken(token);
-          this.router.navigate(['/', 'register']);
+          this.router.navigate(['/', 'profile']);
         },
         _ => {
           this.loginError$.next('Something went wrong, Please try again');
