@@ -53,7 +53,7 @@ import { RouterModule } from '@angular/router';
     NzIconModule,
     NzSelectModule,
     NzRadioModule,
-    RouterModule
+    RouterModule,
   ],
   entryComponents: [],
   // providers: [{ provide: ApiService, useClass: MockApiService }],
