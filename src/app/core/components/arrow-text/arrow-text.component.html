@@ -3,10 +3,9 @@
     <div class="topic">
       <app-topic
         mainTextSize="12px"
-        mainTextColor="#ABD0FF"
         [mainText]="isRight ? 'Next Step' : 'Previous Step'"
         subTextSize="14px"
-        subTextColor="#FFFFFF"
+        [theme]="theme"
         [subText]="mainText"
       ></app-topic>
     </div>
