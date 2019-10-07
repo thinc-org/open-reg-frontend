@@ -26,6 +26,10 @@ const routes: Routes = [
     path: 'attend',
     loadChildren: './modules/attend/attend.module#AttendModule',
   },
+  {
+    path: 'success',
+    loadChildren: './modules/success/success.module#SuccessModule',
+  },
 ];
 
 @NgModule({
