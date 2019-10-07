@@ -19,6 +19,7 @@
   width: 100%;
   max-width: 1080px;
   padding: 20px;
+  justify-content: space-between;
 }
 
 .or-logo {
@@ -29,4 +30,11 @@
   border-left: 1px solid #b3b3b3;
   height: 30px;
   margin-right: 40px;
+}
+
+.userinfo {
+  &-container {
+    display: flex;
+    align-items: center;
+  }
 }

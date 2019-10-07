@@ -1,23 +1,6 @@
 <nz-header class="big-container">
   <div class="navbar">
     <div class="container">
-      <ng-container *ngIf="currentUser$ | async as user">
-        <!-- <div nz-col nzSpan="6">
-          <p style="color: white">
-            Hello {{ user.info.firstName }} {{ user.info.lastName }}
-          </p>
-        </div>
-        <button
-          nz-col
-          nz-offset="12"
-          nzSpan="6"
-          nz-button
-          nzType="primary"
-          (click)="logoutSSO()"
-        >
-          Logout from ChulaSSO
-        </button> -->
-      </ng-container>
       <a [routerLink]="['']">
         <div class="or-logo">
           <div>
@@ -46,5 +29,12 @@
         ></app-topic>
       </div>
     </div>
+    <ng-container *ngIf="isAuthenticated$ | async">
+      <div class="userinfo-container">
+        <button nz-button nzType="danger" (click)="logoutSSO()">
+          Logout from ChulaSSO
+        </button>
+      </div>
+    </ng-container>
   </div>
 </nz-header>

@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ChulaSsoService } from 'src/app/core/services/chula-sso.service';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { ApiService } from 'src/app/api/services';
 import { Router } from '@angular/router';
@@ -25,7 +24,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
   userForm$ = this.apiService.getUserForm();
 
   constructor(
-    private chulaSSOService: ChulaSsoService,
     private authService: AuthService,
     private apiService: ApiService,
     private router: Router
@@ -33,18 +31,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.apiService.getUserForm().subscribe();
-  }
-
-  loginSSO() {
-    this.chulaSSOService.login();
-  }
-
-  logoutSSO() {
-    this.authService.removeToken();
-    this.router.navigate(['/']);
-    // this.chulaSSOService.logout().subscribe(_ => {
-
-    // });
   }
 
   submitForm(data: any) {
