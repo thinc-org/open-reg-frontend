@@ -1,3 +1,6 @@
-<app-navbar></app-navbar>
-<router-outlet></router-outlet>
-<app-svg-definitions></app-svg-definitions>
+<nz-layout>
+  <app-navbar></app-navbar>
+  <router-outlet></router-outlet>
+  <nz-footer class="footer-container">Project <span class="open-reg">Open Registration</span> by Thinc.</nz-footer>
+  <app-svg-definitions [style.height]="0" appDimension height="0" width="0"></app-svg-definitions>
+</nz-layout>

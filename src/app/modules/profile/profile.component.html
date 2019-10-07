@@ -1,10 +1,4 @@
-<nz-layout>
-  <nz-content>
-    <app-form
-      [formData]="userForm$"
-      (submitForm)="submitForm($event)"
-    ></app-form>
-  </nz-content>
-  <nz-footer>Project Open Registration by Thinc.</nz-footer>
-</nz-layout>
+<nz-content class="form-content">
+  <app-form [formData]="userForm$" (submitForm)="submitForm($event)"></app-form>
+</nz-content>
 <!-- <button (click)="debug()"></button> -->
