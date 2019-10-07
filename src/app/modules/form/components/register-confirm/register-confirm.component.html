@@ -1,0 +1,11 @@
+<app-confirm-content [eventName]="eventName"></app-confirm-content>
+<div class="confirm-container">
+  <div class="topic-container" *ngFor="let data of result; index as i">
+    <span class="group-name">
+      {{ step[i].title }}
+    </span>
+    <div *ngFor="let item of data | keyvalue">
+      {{ item.key + ': ' + item.value }}
+    </div>
+  </div>
+</div>

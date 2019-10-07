@@ -1,6 +1,8 @@
-<h1 nz-title>Loykratong Staff Registration</h1>
-<button nz-button nzType="primary" (click)="login()">
-  Login With Chula SSO
-</button>
-
-<p>home works!</p>
+<h1 nz-title>Login</h1>
+<nz-alert
+  nzType="error"
+  [nzMessage]="error"
+  *ngIf="loginError$ | async as error"
+  >{{ error }}</nz-alert
+>
+<img src="assets/login_sso.png" alt="image" (click)="login()" />

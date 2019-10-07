@@ -19,7 +19,7 @@ export class ChulaSsoService {
       this.document.location.hostname
     }${
       this.document.location.port ? ':' + this.document.location.port : ''
-    }/login`;
+    }/`;
     this.document.location.href =
       ChulaSsoService.url +
       `html/login.html?service=${curUrl}&serviceName=${environment.serviceName}`;

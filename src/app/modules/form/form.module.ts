@@ -20,6 +20,7 @@ import {
   NzRadioModule,
 } from 'ng-zorro-antd';
 import { TranslateModule } from '@ngx-translate/core';
+import { RegisterConfirmComponent } from './components/register-confirm/register-confirm.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { TranslateModule } from '@ngx-translate/core';
     FormInputComponent,
     RegisterFormComponent,
     RegisterNavigatorComponent,
+    RegisterConfirmComponent,
   ],
   imports: [
     CommonModule,

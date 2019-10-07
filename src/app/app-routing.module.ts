@@ -17,7 +17,7 @@ const routes: Routes = [
     canActivateChild: [AuthGuardService],
     loadChildren: './modules/profile/profile.module#ProfileModule',
   },
-  { path: 'login', loadChildren: './modules/login/login.module#LoginModule' },
+  // { path: 'login', loadChildren: './modules/login/login.module#LoginModule' },
   {
     path: 'admin',
     loadChildren: './modules/admin/admin.module#AdminModule',

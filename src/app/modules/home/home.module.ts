@@ -1,17 +1,34 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { HomeRoutingModule } from './home-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NgxStronglyTypedFormsModule } from 'ngx-strongly-typed-forms';
+import {
+  NzInputModule,
+  NzTypographyModule,
+  NzButtonModule,
+  NzFormModule,
+  NzCheckboxModule,
+  NzAlertModule,
+} from 'ng-zorro-antd';
+import { CoreModule } from 'src/app/core/core.module';
 import { HomeComponent } from './home.component';
-import { NzButtonModule, NzTypographyModule } from 'ng-zorro-antd';
+import { HomeRoutingModule } from './home-routing.module';
 
 @NgModule({
   declarations: [HomeComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,
-    NzButtonModule,
+    ReactiveFormsModule,
+    NgxStronglyTypedFormsModule,
+    NzInputModule,
     NzTypographyModule,
+    NzButtonModule,
+    NzFormModule,
+    NzCheckboxModule,
+    NzAlertModule,
+    CoreModule,
   ],
 })
 export class HomeModule {}
