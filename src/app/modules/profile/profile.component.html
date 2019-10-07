@@ -19,9 +19,10 @@
     </ng-container>
   </nz-header>
   <nz-content>
-    <ng-container *ngIf="formId$ | async as formId">
-      <app-form [formId]="formId"></app-form>
-    </ng-container>
+    <app-form
+      [formData]="userForm$"
+      (submitForm)="submitForm($event)"
+    ></app-form>
   </nz-content>
   <nz-footer>Project Open Registration by Thinc.</nz-footer>
 </nz-layout>

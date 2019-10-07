@@ -1,30 +1,32 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { notNull } from '../functions/predicates';
-import { map } from 'rxjs/operators';
+import { Injectable, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { environment } from 'src/environments/environment';
+import { ApiService } from 'src/app/core/services/api.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ChulaSsoService {
-  currentUser$ = new BehaviorSubject<ChulaSSOUser>(undefined);
-  isSSOAuthenticated$ = this.currentUser$.pipe(map(notNull));
-
-  constructor() {}
+  static url = 'https://account.it.chula.ac.th/';
+  constructor(
+    @Inject(DOCUMENT) private document: Document,
+    private apiService: ApiService
+  ) {}
 
   login() {
-    this.currentUser$.next({
-      uid: '01',
-      username: 'hamtheinw',
-      gecos: 'idkwhatthismeans',
-      email: 'veryLongEmail@email.com',
-      roles: ['student'],
-      ouid: '6031763021',
-    });
+    const curUrl = `${this.document.location.protocol}//${
+      this.document.location.hostname
+    }${
+      this.document.location.port ? ':' + this.document.location.port : ''
+    }/login`;
+    this.document.location.href =
+      ChulaSsoService.url +
+      `html/login.html?service=${curUrl}&serviceName=${environment.serviceName}`;
   }
 
-  logout() {
-    this.currentUser$.next(undefined);
+  logout(): Observable<undefined> {
+    return this.apiService.get(ChulaSsoService.url + 'logout?service=.');
   }
 }
 

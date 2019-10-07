@@ -16,9 +16,10 @@ export class ApiInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
+    const token = localStorage.getItem('token') || undefined;
     req = req.clone({
       setHeaders: {
-        ApiToken: '234567890',
+        authorization: `Bearer ${token}`,
       },
     });
 

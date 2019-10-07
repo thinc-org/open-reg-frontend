@@ -70,7 +70,8 @@ export interface QuestionModel {
   order: number;
   type: QuestionTypes;
   _id: number;
-  title: string;
+  key: string;
+  label: string;
   choices: string[];
   required: boolean;
   group: number;

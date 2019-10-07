@@ -7,8 +7,9 @@ import {
   Input,
 } from '@angular/core';
 import { FormService } from './form.service';
-import { ChulaSsoService } from 'src/app/core/services/chula-sso.service';
 import { Router } from '@angular/router';
+import { ApiService } from 'src/app/api/services';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-form',
@@ -17,28 +18,24 @@ import { Router } from '@angular/router';
   providers: [FormService],
 })
 export class FormComponent implements OnInit, OnDestroy {
-  isSSOAuthenticated$ = this.chulaSSOService.isSSOAuthenticated$;
   currentStep$ = this.formService.currentStep$;
 
   @Output() submitForm = new EventEmitter<any>();
-  @Input() formObj: any = {};
+  @Input() formId = '';
+  @Input() formData: Observable<any>;
 
   constructor(
-    private chulaSSOService: ChulaSsoService,
     private router: Router,
-    private formService: FormService
+    private formService: FormService,
+    private api: ApiService
   ) {}
 
-  ngOnInit() {}
-
-  debug() {
-    // console.log(
-    //   this.registerService.questions$.value,
-    //   this.steps,
-    //   this.form,
-    //   this.registerService.questions$,
-    //   'debug'
-    // );
+  ngOnInit() {
+    if (this.formData) {
+      this.formService.initializeForm(null, this.formData);
+    } else {
+      this.formService.initializeForm(this.formId, null);
+    }
   }
 
   get eventName() {
@@ -80,12 +77,16 @@ export class FormComponent implements OnInit, OnDestroy {
 
   completeForm() {
     /* Normalize form object from steps **/
-    const value = Object.values(this.form.value).reduce(
+    const answers: any = Object.values(this.form.value).reduce(
       (a, c) => ({ ...a, ...c }),
       {}
     );
-    console.log(value);
-    this.router.navigate(['/']);
+    if (this.formId) {
+      this.api
+        .postResponse({ form: this.formId, answers })
+        .subscribe(_ => this.router.navigate(['/']));
+    }
+    this.submitForm.emit(answers);
   }
   nextStep() {
     if (this.currentStep$.value === this.totalSteps) {

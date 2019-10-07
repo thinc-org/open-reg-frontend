@@ -11,6 +11,7 @@ import {
   NzButtonModule,
   NzFormModule,
   NzCheckboxModule,
+  NzAlertModule,
 } from 'ng-zorro-antd';
 import { CoreModule } from 'src/app/core/core.module';
 
@@ -26,6 +27,7 @@ import { CoreModule } from 'src/app/core/core.module';
     NzButtonModule,
     NzFormModule,
     NzCheckboxModule,
+    NzAlertModule,
     CoreModule,
   ],
 })

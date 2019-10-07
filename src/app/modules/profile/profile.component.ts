@@ -1,18 +1,17 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ChulaSsoService } from 'src/app/core/services/chula-sso.service';
-import { RegisterService } from './register.service';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { ApiService } from 'src/app/api/services';
 import { Router } from '@angular/router';
 import { map, pluck } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss'],
-  providers: [RegisterService],
+  selector: 'app-profile',
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.scss'],
 })
-export class RegisterComponent implements OnInit, OnDestroy {
+export class ProfileComponent implements OnInit, OnDestroy {
   isAuthenticated$ = this.authService.isAuthenticated$;
   currentUser$ = this.authService.currentUser$;
   formId$ = (this.apiService.getFormAll() as Observable<any[]>).pipe(
@@ -23,6 +22,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     ),
     pluck('_id')
   );
+  userForm$ = this.apiService.getUserForm();
 
   constructor(
     private chulaSSOService: ChulaSsoService,
@@ -45,6 +45,12 @@ export class RegisterComponent implements OnInit, OnDestroy {
     // this.chulaSSOService.logout().subscribe(_ => {
 
     // });
+  }
+
+  submitForm(data: any) {
+    this.apiService
+      .postUserForm(data)
+      .subscribe(_ => this.router.navigate(['/', 'register']));
   }
   ngOnDestroy() {}
 }

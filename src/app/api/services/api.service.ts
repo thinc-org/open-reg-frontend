@@ -12,19 +12,20 @@ import { StrictHttpResponse as __StrictHttpResponse } from '../strict-http-respo
 import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
-import { CreateUserDTO } from '../models/create-user-dto';
+import { UserInfoDto } from '../models/user-info-dto';
 import { CreateEventDTO } from '../models/create-event-dto';
 import { EditEventDTO } from '../models/edit-event-dto';
-import { CreateResponseDTO } from '../models/create-response-dto';
+import { SubmitResponseDTO } from '../models/submit-response-dto';
+import { FormResponse } from '../models/form-response';
 import { CreateFormDTO } from '../models/create-form-dto';
 @Injectable({
   providedIn: 'root',
 })
 class ApiService extends __BaseService {
   static readonly getPingPath = '/ping';
-  static readonly postLoginPath = '/login';
-  static readonly postSignupPath = '/signup';
   static readonly getUserProfilePath = '/user/profile';
+  static readonly getUserFormPath = '/user/form';
+  static readonly postUserFormPath = '/user/form';
   static readonly postEventPath = '/event';
   static readonly getEventPath = '/event';
   static readonly patchEventIdPath = '/event/{id}';
@@ -35,6 +36,7 @@ class ApiService extends __BaseService {
   static readonly getFormAllPath = '/form/all';
   static readonly getFormIdPath = '/form/{id}';
   static readonly postFormPath = '/form';
+  static readonly getChulaSsoValidateTicketPath = '/chula-sso/validate-ticket';
 
   constructor(config: __Configuration, http: HttpClient) {
     super(config, http);
@@ -58,58 +60,6 @@ class ApiService extends __BaseService {
   }
   getPing(): __Observable<null> {
     return this.getPingResponse().pipe(__map(_r => _r.body as null));
-  }
-  postLoginResponse(): __Observable<__StrictHttpResponse<null>> {
-    let __params = this.newParams();
-    let __headers = new HttpHeaders();
-    let __body: any = null;
-    let req = new HttpRequest<any>('POST', this.rootUrl + `/login`, __body, {
-      headers: __headers,
-      params: __params,
-      responseType: 'json',
-    });
-
-    return this.http.request<any>(req).pipe(
-      __filter(_r => _r instanceof HttpResponse),
-      __map(_r => {
-        return _r as __StrictHttpResponse<null>;
-      })
-    );
-  }
-  postLogin(): __Observable<null> {
-    return this.postLoginResponse().pipe(__map(_r => _r.body as null));
-  }
-
-  /**
-   * @param CreateUserDTO undefined
-   */
-  postSignupResponse(
-    CreateUserDTO: CreateUserDTO
-  ): __Observable<__StrictHttpResponse<null>> {
-    let __params = this.newParams();
-    let __headers = new HttpHeaders();
-    let __body: any = null;
-    __body = CreateUserDTO;
-    let req = new HttpRequest<any>('POST', this.rootUrl + `/signup`, __body, {
-      headers: __headers,
-      params: __params,
-      responseType: 'json',
-    });
-
-    return this.http.request<any>(req).pipe(
-      __filter(_r => _r instanceof HttpResponse),
-      __map(_r => {
-        return _r as __StrictHttpResponse<null>;
-      })
-    );
-  }
-  /**
-   * @param CreateUserDTO undefined
-   */
-  postSignup(CreateUserDTO: CreateUserDTO): __Observable<null> {
-    return this.postSignupResponse(CreateUserDTO).pipe(
-      __map(_r => _r.body as null)
-    );
   }
   getUserProfileResponse(): __Observable<__StrictHttpResponse<null>> {
     let __params = this.newParams();
@@ -135,6 +85,63 @@ class ApiService extends __BaseService {
   }
   getUserProfile(): __Observable<null> {
     return this.getUserProfileResponse().pipe(__map(_r => _r.body as null));
+  }
+  getUserFormResponse(): __Observable<__StrictHttpResponse<null>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    let req = new HttpRequest<any>('GET', this.rootUrl + `/user/form`, __body, {
+      headers: __headers,
+      params: __params,
+      responseType: 'json',
+    });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map(_r => {
+        return _r as __StrictHttpResponse<null>;
+      })
+    );
+  }
+  getUserForm(): __Observable<null> {
+    return this.getUserFormResponse().pipe(__map(_r => _r.body as null));
+  }
+
+  /**
+   * @param UserInfoDto undefined
+   */
+  postUserFormResponse(
+    UserInfoDto: UserInfoDto
+  ): __Observable<__StrictHttpResponse<null>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = UserInfoDto;
+    let req = new HttpRequest<any>(
+      'POST',
+      this.rootUrl + `/user/form`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json',
+      }
+    );
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map(_r => {
+        return _r as __StrictHttpResponse<null>;
+      })
+    );
+  }
+  /**
+   * @param UserInfoDto undefined
+   */
+  postUserForm(UserInfoDto: UserInfoDto): __Observable<null> {
+    return this.postUserFormResponse(UserInfoDto).pipe(
+      __map(_r => _r.body as null)
+    );
   }
 
   /**
@@ -333,15 +340,15 @@ class ApiService extends __BaseService {
   }
 
   /**
-   * @param CreateResponseDTO undefined
+   * @param SubmitResponseDTO undefined
    */
   postResponseResponse(
-    CreateResponseDTO: CreateResponseDTO
+    SubmitResponseDTO: SubmitResponseDTO
   ): __Observable<__StrictHttpResponse<null>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    __body = CreateResponseDTO;
+    __body = SubmitResponseDTO;
     let req = new HttpRequest<any>('POST', this.rootUrl + `/response`, __body, {
       headers: __headers,
       params: __params,
@@ -356,10 +363,10 @@ class ApiService extends __BaseService {
     );
   }
   /**
-   * @param CreateResponseDTO undefined
+   * @param SubmitResponseDTO undefined
    */
-  postResponse(CreateResponseDTO: CreateResponseDTO): __Observable<null> {
-    return this.postResponseResponse(CreateResponseDTO).pipe(
+  postResponse(SubmitResponseDTO: SubmitResponseDTO): __Observable<null> {
+    return this.postResponseResponse(SubmitResponseDTO).pipe(
       __map(_r => _r.body as null)
     );
   }
@@ -387,7 +394,9 @@ class ApiService extends __BaseService {
   /**
    * @param id undefined
    */
-  getFormIdResponse(id: string): __Observable<__StrictHttpResponse<null>> {
+  getFormIdResponse(
+    id: string
+  ): __Observable<__StrictHttpResponse<FormResponse>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -406,15 +415,17 @@ class ApiService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map(_r => {
-        return _r as __StrictHttpResponse<null>;
+        return _r as __StrictHttpResponse<FormResponse>;
       })
     );
   }
   /**
    * @param id undefined
    */
-  getFormId(id: string): __Observable<null> {
-    return this.getFormIdResponse(id).pipe(__map(_r => _r.body as null));
+  getFormId(id: string): __Observable<FormResponse> {
+    return this.getFormIdResponse(id).pipe(
+      __map(_r => _r.body as FormResponse)
+    );
   }
 
   /**
@@ -445,6 +456,43 @@ class ApiService extends __BaseService {
    */
   postForm(CreateFormDTO: CreateFormDTO): __Observable<null> {
     return this.postFormResponse(CreateFormDTO).pipe(
+      __map(_r => _r.body as null)
+    );
+  }
+
+  /**
+   * @param ticket undefined
+   */
+  getChulaSsoValidateTicketResponse(
+    ticket: string
+  ): __Observable<__StrictHttpResponse<null>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    if (ticket != null) __params = __params.set('ticket', ticket.toString());
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/chula-sso/validate-ticket`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json',
+      }
+    );
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map(_r => {
+        return _r as __StrictHttpResponse<null>;
+      })
+    );
+  }
+  /**
+   * @param ticket undefined
+   */
+  getChulaSsoValidateTicket(ticket: string): __Observable<null> {
+    return this.getChulaSsoValidateTicketResponse(ticket).pipe(
       __map(_r => _r.body as null)
     );
   }

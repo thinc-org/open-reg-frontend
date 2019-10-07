@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from 'ngx-strongly-typed-forms';
-import { Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { AuthService, LoginInfo } from 'src/app/core/services/auth.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ChulaSsoService } from 'src/app/core/services/chula-sso.service';
+import { take, pluck, switchMap } from 'rxjs/operators';
+import { ApiService } from 'src/app/api/services';
+import { EMPTY, Subject } from 'rxjs';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -10,24 +12,43 @@ import { AuthService, LoginInfo } from 'src/app/core/services/auth.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  loginForm: FormGroup<LoginInfo>;
-
+  loginError$ = new Subject<string>();
   constructor(
-    private fb: FormBuilder,
+    private sso: ChulaSsoService,
+    private authService: AuthService,
+    private route: ActivatedRoute,
     private router: Router,
-    private auth: AuthService
+    private apiService: ApiService
   ) {}
 
   ngOnInit(): void {
-    this.loginForm = this.fb.group<LoginInfo>({
-      username: [null, [Validators.required]],
-      password: [null, [Validators.required]],
-      remember: [true],
-    });
+    this.route.queryParamMap
+      .pipe(
+        take(1),
+        pluck('params'),
+        pluck('ticket'),
+        switchMap((ticket: string) => {
+          if (ticket) {
+            return this.apiService.getChulaSsoValidateTicket(ticket);
+          } else {
+            return EMPTY;
+          }
+        })
+      )
+      .subscribe(
+        ({ token }: { token: string }) => {
+          this.authService.setToken(token);
+          this.router.navigate(['/', 'profile']);
+        },
+        _ => {
+          this.loginError$.next('Something went wrong, Please try again');
+          this.router.navigate(['/', 'login']);
+        }
+      );
   }
 
-  submitForm(): void {
-    this.auth.login(this.loginForm.value);
-    this.router.navigate(['/admin']);
+  login() {
+    this.loginError$.next();
+    this.sso.login();
   }
 }
