@@ -17,7 +17,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   formId$ = (this.apiService.getFormAll() as Observable<any[]>).pipe(
     map((forms: any[]) =>
       forms.find(form => {
-        return form.title === 'Loy-Krathong';
+        return form.title === 'ลอยกระทง';
       })
     ),
     pluck('_id')
