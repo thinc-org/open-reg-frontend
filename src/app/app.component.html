@@ -1,6 +1,9 @@
 <nz-layout>
   <app-navbar></app-navbar>
   <router-outlet></router-outlet>
-  <nz-footer class="footer-container">Project <span class="open-reg">Open Registration</span> by Thinc.</nz-footer>
-  <app-svg-definitions [style.height]="0" appDimension height="0" width="0"></app-svg-definitions>
+  <nz-footer *ngIf="isFooterVisible" class="footer-container"
+    >Project <span class="open-reg">Open Registration</span> by
+    Thinc.</nz-footer
+  >
+  <app-svg-definitions [style.display]="'none'"></app-svg-definitions>
 </nz-layout>

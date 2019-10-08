@@ -1,8 +1,36 @@
-<h1 nz-title>Login</h1>
-<nz-alert
-  nzType="error"
-  [nzMessage]="error"
-  *ngIf="loginError$ | async as error"
-  >{{ error }}</nz-alert
->
-<img src="assets/login_sso.png" alt="image" (click)="login()" />
+<div class="home">
+  <nz-alert
+    nzType="error"
+    [nzMessage]="error"
+    *ngIf="loginError$ | async as error"
+    >{{ error }}</nz-alert
+  >
+  <div class="container">
+    <div>
+      <div class="home-content">
+        <img src="assets/logo_loykratong.png" class="image" />
+        <span class="text text-main">Chula’s Loy Kratong 2019</span>
+        <span class="text text-secondary"
+          >Student Council of Chulalongkorn University (SCCU)</span
+        >
+      </div>
+      <div class="home-logo-container">
+        <app-svg-icon
+          appDimension
+          width="308"
+          height="23"
+          name="orlogo"
+          fill="#b3b3b3"
+        ></app-svg-icon>
+        <span class="text text-description"
+          >CENTRALIZED SERVICE FOR EVERY CU EVENTS</span
+        >
+      </div>
+    </div>
+    <div class="register-button-container">
+      <button nz-button nz-size="large" class="register-button" (click)="login()">
+        Register With Chula SSO
+      </button>
+    </div>
+  </div>
+</div>

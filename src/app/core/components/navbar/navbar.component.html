@@ -1,4 +1,4 @@
-<nz-header class="big-container">
+<nz-header class="big-container" *ngIf="isVisible">
   <div class="navbar">
     <div class="container">
       <a [routerLink]="['']">
@@ -9,6 +9,7 @@
               width="156"
               height="11"
               name="orlogo"
+              fill="#205496"
             ></app-svg-icon>
           </div>
         </div>

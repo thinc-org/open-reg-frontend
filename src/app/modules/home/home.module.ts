@@ -10,6 +10,7 @@ import {
   NzFormModule,
   NzCheckboxModule,
   NzAlertModule,
+  NzLayoutModule,
 } from 'ng-zorro-antd';
 import { CoreModule } from 'src/app/core/core.module';
 import { HomeComponent } from './home.component';
@@ -28,6 +29,7 @@ import { HomeRoutingModule } from './home-routing.module';
     NzFormModule,
     NzCheckboxModule,
     NzAlertModule,
+    NzLayoutModule,
     CoreModule,
   ],
 })

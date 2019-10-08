@@ -4,6 +4,8 @@ import { AuthService } from 'src/app/core/services/auth.service';
 import { ApiService } from 'src/app/api/services';
 import { map, pluck } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { NavbarService } from 'src/app/core/services/navbar.service';
+import { FooterService } from 'src/app/core/services/footer.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -24,8 +26,13 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   constructor(
     private authService: AuthService,
-    private apiService: ApiService
-  ) {}
+    private apiService: ApiService,
+    private navbarService: NavbarService,
+    private footerService: FooterService,
+  ) {
+    this.navbarService.show();
+    this.footerService.show();
+  }
 
   ngOnInit() {
     this.apiService.getUserForm().subscribe();

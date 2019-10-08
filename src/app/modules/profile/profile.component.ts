@@ -4,6 +4,8 @@ import { ApiService } from 'src/app/api/services';
 import { Router } from '@angular/router';
 import { map, pluck } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { FooterService } from 'src/app/core/services/footer.service';
+import { NavbarService } from 'src/app/core/services/navbar.service';
 
 @Component({
   selector: 'app-profile',
@@ -26,8 +28,13 @@ export class ProfileComponent implements OnInit, OnDestroy {
   constructor(
     private authService: AuthService,
     private apiService: ApiService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private navbarService: NavbarService,
+    private footerService: FooterService,
+  ) {
+    this.navbarService.show();
+    this.footerService.show();
+  }
 
   ngOnInit() {
     this.apiService.getUserForm().subscribe();
