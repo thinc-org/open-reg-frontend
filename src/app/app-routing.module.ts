@@ -29,6 +29,10 @@ const routes: Routes = [
     path: 'success',
     loadChildren: './modules/success/success.module#SuccessModule',
   },
+  {
+    path: '**',
+    redirectTo: '/',
+  },
 ];
 
 @NgModule({
