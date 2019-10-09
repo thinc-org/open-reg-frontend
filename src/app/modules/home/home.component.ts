@@ -55,12 +55,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   login() {
-    if (this.authService.isAuthenticated) {
-      this.router.navigate(['profile']);
-    } else {
       this.loginError$.next();
       this.sso.login();
-    }
   }
 
   ngOnDestroy() {
