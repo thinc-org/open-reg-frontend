@@ -55,8 +55,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   login() {
-      this.loginError$.next();
-      this.sso.login();
+    this.loginError$.next();
+    this.sso.login();
   }
 
   ngOnDestroy() {
