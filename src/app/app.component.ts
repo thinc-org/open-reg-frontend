@@ -10,7 +10,10 @@ import { FooterService } from './core/services/footer.service';
 export class AppComponent {
   title = 'open-reg-frontend';
 
-  constructor(translate: TranslateService, private footerService: FooterService) {
+  constructor(
+    translate: TranslateService,
+    private footerService: FooterService
+  ) {
     translate.setDefaultLang('en');
 
     translate.use('en');

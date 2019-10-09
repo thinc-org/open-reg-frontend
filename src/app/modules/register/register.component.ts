@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private apiService: ApiService,
     private navbarService: NavbarService,
-    private footerService: FooterService,
+    private footerService: FooterService
   ) {
     this.navbarService.show();
     this.footerService.show();

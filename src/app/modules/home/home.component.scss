@@ -86,3 +86,13 @@
   width: 136px;
   margin-bottom: 30px;
 }
+
+@media (max-width: 576px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .register-button {
+    padding: 30px 0;
+  }
+}

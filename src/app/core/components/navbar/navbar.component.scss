@@ -32,6 +32,21 @@
   margin-right: 40px;
 }
 
+@media (max-width: 576px) {
+  .or-logo {
+    margin-right: 10px;
+  }
+  .vl {
+    margin-right: 10px;
+  }
+  .ant-layout-header {
+    padding: 0;
+  }
+  .logout-btn {
+    display: none;
+  }
+}
+
 .userinfo {
   &-container {
     display: flex;

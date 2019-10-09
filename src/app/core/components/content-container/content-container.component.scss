@@ -5,6 +5,12 @@
   margin: auto;
 }
 
+@media (max-width: 576px) {
+  .content-container {
+    width: auto;
+  }
+}
+
 .topic-container {
   margin: 40px 40px 0 40px;
 }

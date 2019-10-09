@@ -30,7 +30,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     private apiService: ApiService,
     private router: Router,
     private navbarService: NavbarService,
-    private footerService: FooterService,
+    private footerService: FooterService
   ) {
     this.navbarService.show();
     this.footerService.show();

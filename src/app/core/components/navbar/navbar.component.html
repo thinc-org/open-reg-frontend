@@ -32,7 +32,7 @@
     </div>
     <ng-container *ngIf="isAuthenticated$ | async">
       <div class="userinfo-container">
-        <button nz-button nzType="danger" (click)="logoutSSO()">
+        <button class="logout-btn" nz-button nzType="danger" (click)="logoutSSO()">
           Logout from ChulaSSO
         </button>
       </div>

@@ -10,7 +10,7 @@ import { FooterService } from 'src/app/core/services/footer.service';
 export class SuccessComponent implements OnInit {
   constructor(
     private navbarService: NavbarService,
-    private footerService: FooterService,
+    private footerService: FooterService
   ) {
     this.navbarService.show();
     this.footerService.show();

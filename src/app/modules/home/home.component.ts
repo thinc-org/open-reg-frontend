@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     private router: Router,
     private apiService: ApiService,
     private navbarService: NavbarService,
-    private footerService: FooterService,
+    private footerService: FooterService
   ) {
     this.footerService.hide();
     this.navbarService.hide();
