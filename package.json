@@ -4,12 +4,13 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "codegen": "ng-swagger-gen",
     "e2e": "ng e2e",
     "format": "prettier --write \"src/**/*.ts\"",
+    "build:gzip": "gzip-all \"dist/**/*.{css,js,html}\"",
+    "build": "ng build --prod && yarn build:gzip",
     "now-build": "ng build --configuration=staging",
     "pre-commit": "yarn lint && yarn format"
   },
@@ -33,6 +34,7 @@
     "ngx-strongly-typed-forms": "^8.0.1",
     "rxjs": "^6.4.0",
     "tslib": "^1.10.0",
+    "gzip-all": "^1.0.0",
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
