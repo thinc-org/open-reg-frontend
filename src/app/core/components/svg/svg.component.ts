@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class SvgComponent {
   @Input() name: string;
-
+  @Input() fill: string;
   constructor() {}
 
   get absUrl() {

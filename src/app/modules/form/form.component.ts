@@ -84,7 +84,7 @@ export class FormComponent implements OnInit, OnDestroy {
     if (this.formId) {
       this.api
         .postResponse({ form: this.formId, answers })
-        .subscribe(_ => this.router.navigate(['/']));
+        .subscribe(_ => this.router.navigate(['success']));
     }
     this.submitForm.emit(answers);
   }

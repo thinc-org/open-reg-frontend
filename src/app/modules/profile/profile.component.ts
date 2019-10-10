@@ -1,10 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ChulaSsoService } from 'src/app/core/services/chula-sso.service';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { ApiService } from 'src/app/api/services';
 import { Router } from '@angular/router';
 import { map, pluck } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { FooterService } from 'src/app/core/services/footer.service';
+import { NavbarService } from 'src/app/core/services/navbar.service';
 
 @Component({
   selector: 'app-profile',
@@ -17,7 +18,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   formId$ = (this.apiService.getFormAll() as Observable<any[]>).pipe(
     map((forms: any[]) =>
       forms.find(form => {
-        return form.title === 'Loy-Krathong';
+        return form.title === 'ลอยกระทง';
       })
     ),
     pluck('_id')
@@ -25,26 +26,18 @@ export class ProfileComponent implements OnInit, OnDestroy {
   userForm$ = this.apiService.getUserForm();
 
   constructor(
-    private chulaSSOService: ChulaSsoService,
     private authService: AuthService,
     private apiService: ApiService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private navbarService: NavbarService,
+    private footerService: FooterService
+  ) {
+    this.navbarService.show();
+    this.footerService.show();
+  }
 
   ngOnInit() {
     this.apiService.getUserForm().subscribe();
-  }
-
-  loginSSO() {
-    this.chulaSSOService.login();
-  }
-
-  logoutSSO() {
-    this.authService.removeToken();
-    this.router.navigate(['/']);
-    // this.chulaSSOService.logout().subscribe(_ => {
-
-    // });
   }
 
   submitForm(data: any) {

@@ -1,29 +1,4 @@
-<nz-layout>
-  <nz-header nz-row nzMode="horizontal">
-    <ng-container *ngIf="currentUser$ | async as user">
-      <div nz-col nzSpan="6">
-        <p style="color: white">
-          Hello {{ user.info.firstName }} {{ user.info.lastName }}
-        </p>
-      </div>
-      <button
-        nz-col
-        nz-offset="12"
-        nzSpan="6"
-        nz-button
-        nzType="primary"
-        (click)="logoutSSO()"
-      >
-        Logout from ChulaSSO
-      </button>
-    </ng-container>
-  </nz-header>
-  <nz-content>
-    <app-form
-      [formData]="userForm$"
-      (submitForm)="submitForm($event)"
-    ></app-form>
-  </nz-content>
-  <nz-footer>Project Open Registration by Thinc.</nz-footer>
-</nz-layout>
+<nz-content class="form-content">
+  <app-form [formData]="userForm$" (submitForm)="submitForm($event)"></app-form>
+</nz-content>
 <!-- <button (click)="debug()"></button> -->

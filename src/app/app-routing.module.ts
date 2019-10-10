@@ -17,7 +17,6 @@ const routes: Routes = [
     canActivateChild: [AuthGuardService],
     loadChildren: './modules/profile/profile.module#ProfileModule',
   },
-  { path: 'login', loadChildren: './modules/login/login.module#LoginModule' },
   {
     path: 'admin',
     loadChildren: './modules/admin/admin.module#AdminModule',
@@ -25,6 +24,14 @@ const routes: Routes = [
   {
     path: 'attend',
     loadChildren: './modules/attend/attend.module#AttendModule',
+  },
+  {
+    path: 'success',
+    loadChildren: './modules/success/success.module#SuccessModule',
+  },
+  {
+    path: '**',
+    redirectTo: '/',
   },
 ];
 

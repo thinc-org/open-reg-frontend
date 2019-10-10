@@ -24,6 +24,7 @@ import { SvgComponent } from './components/svg/svg.component';
 import { SvgDefinitionsComponent } from './components/svg-definitions/svg-definitions.component';
 import { ResultComponent } from './components/result/result.component';
 import { DimensionDirective } from './directives/dimension.directive';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { DimensionDirective } from './directives/dimension.directive';
     NzIconModule,
     NzSelectModule,
     NzRadioModule,
+    RouterModule,
   ],
   entryComponents: [],
   // providers: [{ provide: ApiService, useClass: MockApiService }],

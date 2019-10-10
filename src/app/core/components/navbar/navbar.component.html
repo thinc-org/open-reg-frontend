@@ -1,16 +1,19 @@
-<div class="big-container">
+<nz-header class="big-container" *ngIf="isVisible">
   <div class="navbar">
     <div class="container">
-      <div class="or-logo">
-        <div>
-          <app-svg-icon
-            appDimension
-            width="156"
-            height="11"
-            name="orlogo"
-          ></app-svg-icon>
+      <a [routerLink]="['']">
+        <div class="or-logo">
+          <div>
+            <app-svg-icon
+              appDimension
+              width="156"
+              height="11"
+              name="orlogo"
+              fill="#205496"
+            ></app-svg-icon>
+          </div>
         </div>
-      </div>
+      </a>
       <div class="vl">
         <div></div>
       </div>
@@ -27,5 +30,12 @@
         ></app-topic>
       </div>
     </div>
+    <ng-container *ngIf="isAuthenticated$ | async">
+      <div class="userinfo-container">
+        <button class="logout-btn" nz-button nzType="danger" (click)="logoutSSO()">
+          Logout from ChulaSSO
+        </button>
+      </div>
+    </ng-container>
   </div>
-</div>
+</nz-header>

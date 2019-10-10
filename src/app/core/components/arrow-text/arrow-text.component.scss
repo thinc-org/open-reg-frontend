@@ -53,3 +53,11 @@
     text-align: left;
   }
 }
+
+@media (max-width: 576px) {
+  .invisible-button {
+    &:not([disabled]):hover {
+      opacity: 1;
+    }
+  }
+}

@@ -46,3 +46,9 @@
 .disabled {
   pointer-events: none;
 }
+
+@media (max-width: 576px) {
+  .registration-footer {
+    padding: 20px 20px;
+  }
+}

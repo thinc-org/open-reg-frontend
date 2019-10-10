@@ -31,7 +31,11 @@ export class AuthService implements OnDestroy {
 
   constructor(private apiService: ApiService) {
     this.token$.pipe(takeUntil(this._destroy$)).subscribe(token => {
-      localStorage.setItem('token', token);
+      if (token) {
+        localStorage.setItem('token', token);
+      } else {
+        localStorage.removeItem('token');
+      }
     });
   }
 
@@ -41,7 +45,6 @@ export class AuthService implements OnDestroy {
 
   removeToken() {
     this.token$.next(undefined);
-    localStorage.removeItem('token');
   }
 }
 
