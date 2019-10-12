@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { Step } from 'src/app/modules/register/register.service';
+import { Step } from '../../form.service';
 
 @Component({
   selector: 'app-register-navigator',

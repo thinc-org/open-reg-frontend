@@ -7,4 +7,5 @@ export interface CreateFormDTO {
   groups: Array<FormGroupDTO>;
   description: string;
   questions: Array<QuestionDTO>;
+  readPermissions?: Array<string>;
 }

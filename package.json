@@ -28,13 +28,14 @@
     "@ngx-translate/core": "^11.0.1",
     "@ngx-translate/http-loader": "^4.0.0",
     "@zeit/ng-deploy": "^0.3.0",
+    "file-saver": "^2.0.2",
+    "gzip-all": "^1.0.0",
     "hammerjs": "^2.0.8",
     "ng-swagger-gen": "^1.8.1",
     "ng-zorro-antd": "^8.1.2",
     "ngx-strongly-typed-forms": "^8.0.1",
     "rxjs": "^6.4.0",
     "tslib": "^1.10.0",
-    "gzip-all": "^1.0.0",
     "zone.js": "~0.9.1"
   },
   "devDependencies": {

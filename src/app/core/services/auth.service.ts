@@ -1,7 +1,7 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, Subject, Observable } from 'rxjs';
 import { notNull } from '../functions/predicates';
-import { map, takeUntil, switchMap, filter } from 'rxjs/operators';
+import { map, takeUntil, switchMap, filter, pluck } from 'rxjs/operators';
 import { ApiService } from 'src/app/api/services';
 
 @Injectable({
@@ -16,7 +16,7 @@ export class AuthService implements OnDestroy {
   currentUser$ = this.token$.pipe(
     filter(notNull),
     switchMap(_ => this.apiService.getUserProfile())
-  );
+  ) as Observable<any>;
   isAuthenticated$ = this.token$.pipe(map(notNull));
 
   private _destroy$ = new Subject();
@@ -41,6 +41,20 @@ export class AuthService implements OnDestroy {
 
   setToken(token: string) {
     this.token$.next(token);
+  }
+
+  // TODO: Fix this
+  checkExportable() {
+    return this.apiService.getFormAll().pipe(
+      map(forms =>
+        forms.find(form => {
+          return form.title === 'ลอยกระทง';
+        })
+      ),
+      pluck('_id'),
+      switchMap(id => this.apiService.getFormId(id)),
+      map(form => (form as any).readPermissions)
+    );
   }
 
   removeToken() {
