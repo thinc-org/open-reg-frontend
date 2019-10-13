@@ -11,6 +11,7 @@ import {
   NzCheckboxModule,
   NzAlertModule,
   NzLayoutModule,
+  NzIconModule,
 } from 'ng-zorro-antd';
 import { CoreModule } from 'src/app/core/core.module';
 import { HomeComponent } from './home.component';
@@ -31,6 +32,7 @@ import { HomeRoutingModule } from './home-routing.module';
     NzAlertModule,
     NzLayoutModule,
     CoreModule,
+    NzIconModule
   ],
 })
 export class HomeModule {}

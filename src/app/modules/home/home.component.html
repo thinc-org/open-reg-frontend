@@ -29,6 +29,7 @@
     </div>
     <div class="register-button-container">
       <button
+        *ngIf="!waitingForValidation; else loading"
         nz-button
         nz-size="large"
         class="register-button"
@@ -36,6 +37,14 @@
       >
         Register With Chula SSO
       </button>
+      <ng-template #loading>
+        <i
+          class="loading-icon"
+          nz-icon
+          nzType="loading"
+          nzTheme="outline"
+        ></i>
+      </ng-template>
     </div>
   </div>
 </div>
