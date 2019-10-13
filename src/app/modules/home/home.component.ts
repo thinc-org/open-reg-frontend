@@ -16,7 +16,7 @@ import { NavbarService } from 'src/app/core/services/navbar.service';
 export class HomeComponent implements OnInit, OnDestroy {
   loginError$ = new Subject<string>();
   validateSSO$: Observable<any>;
-  waitingForValidation = true;
+  waitingForValidation = false;
   constructor(
     private sso: ChulaSsoService,
     private authService: AuthService,
@@ -56,6 +56,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       },
       _ => {
         this.loginError$.next('Something went wrong, Please try again');
+        this.waitingForValidation = false;
         this.router.navigate(['/']);
       }
     );

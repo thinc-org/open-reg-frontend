@@ -32,7 +32,7 @@ import { HomeRoutingModule } from './home-routing.module';
     NzAlertModule,
     NzLayoutModule,
     CoreModule,
-    NzIconModule
+    NzIconModule,
   ],
 })
 export class HomeModule {}
