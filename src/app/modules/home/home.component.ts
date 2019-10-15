@@ -1,14 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import {
-  Observable,
-  combineLatest,
-  interval,
-  BehaviorSubject,
-  Subject,
-  defer,
-} from 'rxjs';
-import { HomeServiceService } from './home-service.service';
-import { takeUntil, endWith, switchMap, share } from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ChulaSsoService } from 'src/app/core/services/chula-sso.service';
+import { take, pluck, switchMap, startWith } from 'rxjs/operators';
+import { ApiService } from 'src/app/api/services';
+import { EMPTY, Subject, Observable } from 'rxjs';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { FooterService } from 'src/app/core/services/footer.service';
+import { NavbarService } from 'src/app/core/services/navbar.service';
 
 @Component({
   selector: 'app-home',
@@ -16,30 +14,61 @@ import { takeUntil, endWith, switchMap, share } from 'rxjs/operators';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  posts$: Observable<any[]> = this.homeService.getPosts().pipe(share());
-
-  destroy$ = new Subject();
-  refresh$ = new BehaviorSubject(undefined);
-
-  click$ = new Subject();
-
-  timer$ = defer(() => interval(1000));
-  display$ = this.refresh$.pipe(
-    switchMap(_ => {
-      return combineLatest([this.timer$, this.posts$]).pipe(
-        takeUntil(this.destroy$),
-        endWith('destroyed')
-      );
-    })
-  );
-
-  constructor(private homeService: HomeServiceService) {
-    this.click$.pipe(takeUntil(this.destroy$)).subscribe();
+  loginError$ = new Subject<string>();
+  validateSSO$: Observable<any>;
+  waitingForValidation = false;
+  constructor(
+    private sso: ChulaSsoService,
+    private authService: AuthService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private apiService: ApiService,
+    private navbarService: NavbarService,
+    private footerService: FooterService
+  ) {
+    this.footerService.hide();
+    this.navbarService.hide();
   }
 
-  ngOnInit() {}
+  ngOnInit(): void {
+    this.validateSSO$ = this.route.queryParamMap.pipe(
+      take(1),
+      pluck('params'),
+      pluck('ticket'),
+      switchMap((ticket: string) => {
+        if (ticket) {
+          return this.apiService
+            .getChulaSsoValidateTicket(ticket)
+            .pipe(startWith({}));
+        } else {
+          return EMPTY;
+        }
+      })
+    );
+    this.validateSSO$.subscribe(
+      ({ token }: { token: string }) => {
+        if (token) {
+          this.authService.setToken(token);
+          this.router.navigate(['/', 'profile']);
+        } else {
+          this.waitingForValidation = true;
+        }
+      },
+      _ => {
+        this.loginError$.next('Something went wrong, Please try again');
+        this.waitingForValidation = false;
+        this.router.navigate(['/']);
+      }
+    );
+  }
+
+  login() {
+    this.loginError$.next();
+    this.sso.login();
+  }
 
   ngOnDestroy() {
-    this.destroy$.next(undefined);
+    this.navbarService.show();
+    this.footerService.show();
   }
 }

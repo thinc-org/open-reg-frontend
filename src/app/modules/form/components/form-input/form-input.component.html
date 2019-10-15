@@ -1,0 +1,59 @@
+<div [formGroup]="form">
+  <label [attr.for]="question.key">
+    <p class="text">
+      {{ question.label }}
+    </p>
+  </label>
+  <div [ngSwitch]="question.controlType">
+    <input
+      *ngSwitchCase="'textbox'"
+      [value]="question.value"
+      [formControlName]="question.key"
+      [id]="question.key"
+      [type]="question.type"
+      nz-input
+      [placeholder]="question.description || ''"
+      nzSize="large"
+    />
+    <nz-select
+      nzSize="large"
+      nzPlaceHolder="select"
+      class="select"
+      *ngSwitchCase="'dropdown'"
+      [formControlName]="question.key"
+      [id]="question.key"
+    >
+      <nz-option
+        *ngFor="let option of question.choices; index as i"
+        [nzLabel]="option"
+        [nzValue]="'' + i"
+      ></nz-option>
+    </nz-select>
+    <nz-radio-group
+      *ngSwitchCase="'radio'"
+      [formControlName]="question.key"
+      [nzName]="question.key"
+      [id]="question.key"
+    >
+      <label
+        class="radio-label"
+        *ngFor="let option of question.choices; index as i"
+        nz-radio
+        [nzValue]="'' + i"
+        >{{ option }}</label
+      >
+    </nz-radio-group>
+  </div>
+  <div class="error-message" *ngIf="!isValid && (touched || dirty)">
+    <span *ngIf="isRequired" nz-text nzType="danger">{{
+      question.label + ' is Required' | translate
+    }}</span>
+    <span *ngIf="isMax" nz-text nzType="danger">{{
+      'max length is ' + formControl.errors.maxlength.requiredLength | translate
+    }}</span>
+    <span *ngIf="isMin" nz-text nzType="danger">{{
+      'min length is ' + formControl.errors.minlength.requiredLength | translate
+    }}</span>
+    <span *ngIf="email" nz-text nzType="danger">Email is invalid</span>
+  </div>
+</div>

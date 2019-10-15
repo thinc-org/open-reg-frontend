@@ -1,29 +1,34 @@
 import { Injectable } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl } from 'ngx-strongly-typed-forms';
 import { BaseQuestion } from '../model/questions.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FormGeneratorService {
-  constructor() {}
+  constructor(private fb: FormBuilder) {}
 
-  toFormGroup(questions: BaseQuestion<any>[]) {
-    const group: any = {};
-    questions.forEach(question => {
-      group[question.key] = new FormControl(
-        question.value || '',
-        question.validators
-      );
+  toFormGroup(questions: BaseQuestion<any>[][]): FormGroup<StepsGroup> {
+    const groups = {};
+    questions.forEach((questionSet, i) => {
+      const group = {};
+      questionSet.forEach(question => {
+        const value =
+          question.controlType !== 'dropdown'
+            ? question.value || ''
+            : question.value;
+        group[question.key] = [value, question.validators];
+      });
+      groups[i] = this.fb.group<Group>(group);
     });
-    return new FormGroup(group);
+    return this.fb.group<StepsGroup>(groups);
   }
+}
 
-  toQuestions(_: any): BaseQuestion<any>[] {
-    // Not implemented
-    // Maybe use Rxjs instead of this method
-    return null;
-  }
+interface StepsGroup {
+  [key: number]: FormGroup<Group>;
+}
 
-  // private toFormControl() {}
+interface Group {
+  [key: string]: FormControl<string>;
 }

@@ -1,27 +1,50 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Injectable, OnDestroy } from '@angular/core';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { notNull } from '../functions/predicates';
-import { map } from 'rxjs/operators';
+import { map, takeUntil, switchMap, filter } from 'rxjs/operators';
+import { ApiService } from 'src/app/api/services';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService {
-  currentUser$ = new BehaviorSubject<User>(
-    JSON.parse(localStorage.getItem('user')) || null
+export class AuthService implements OnDestroy {
+  token$ = new BehaviorSubject<string>(
+    localStorage.getItem('token') === 'undefined'
+      ? undefined
+      : localStorage.getItem('token')
   );
-  isAuthenticated$ = this.currentUser$.pipe(map(notNull));
+  currentUser$ = this.token$.pipe(
+    filter(notNull),
+    switchMap(_ => this.apiService.getUserProfile())
+  );
+  isAuthenticated$ = this.token$.pipe(map(notNull));
 
-  constructor() {}
+  private _destroy$ = new Subject();
 
-  login(_: LoginInfo) {
-    this.currentUser$.next({
-      name: 'Ham',
+  ngOnDestroy() {
+    this._destroy$.next();
+  }
+
+  get isAuthenticated() {
+    return !!this.token$.value;
+  }
+
+  constructor(private apiService: ApiService) {
+    this.token$.pipe(takeUntil(this._destroy$)).subscribe(token => {
+      if (token) {
+        localStorage.setItem('token', token);
+      } else {
+        localStorage.removeItem('token');
+      }
     });
   }
 
-  logout() {
-    this.currentUser$.next(undefined);
+  setToken(token: string) {
+    this.token$.next(token);
+  }
+
+  removeToken() {
+    this.token$.next(undefined);
   }
 }
 

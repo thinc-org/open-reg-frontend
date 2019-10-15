@@ -1,31 +1,21 @@
-<div
-  [ngClass]="{ 'flex-right': isRight, 'flex-left': !isRight }"
-  class="arrow-container"
->
-  <ng-container *ngIf="isRight; else left">
-    <div class="text-container">
-      <span class="subtext">อยูในหอพัก</span>
-      <span class="text">test1</span>
+<button class="invisible-button" [disabled]="disabled">
+  <div class="arrow-container" appSwap [isSwapped]="isRight">
+    <div class="topic">
+      <app-topic
+        mainTextSize="12px"
+        [mainText]="isRight ? 'Next Step' : 'Previous Step'"
+        subTextSize="14px"
+        [theme]="theme"
+        [subText]="mainText"
+      ></app-topic>
     </div>
     <i
-      class="arrow arrow-right"
+      class="arrow"
+      [ngClass]="{ 'arrow-right': isRight, 'arrow-left': !isRight }"
       nz-icon
-      nzType="arrow-right"
+      [nzType]="isRight ? 'arrow-right' : 'arrow-left'"
       nzTheme="outline"
       nzColor="#FFFFFF"
     ></i>
-  </ng-container>
-  <ng-template #left>
-    <i
-      class="arrow arrow-left"
-      nz-icon
-      nzType="arrow-left"
-      nzTheme="outline"
-      nzColor="#FFFFFF"
-    ></i>
-    <div class="text-container">
-      <span class="subtext">อยูในหอพัก</span>
-      <span class="text">test1</span>
-    </div>
-  </ng-template>
-</div>
+  </div>
+</button>

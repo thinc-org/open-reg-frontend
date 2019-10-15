@@ -1,48 +1,6 @@
-<nz-layout>
-  <nz-header nz-row nzMode="horizontal">
-    <ng-container *ngIf="isSSOAuthenticated$ | async">
-      <div nz-col nzSpan="6">
-        <p style="color: white">You are logged in with ChulaSSO</p>
-      </div>
-      <button
-        nz-col
-        nz-offset="12"
-        nzSpan="6"
-        nz-button
-        nzType="primary"
-        (click)="logoutSSO()"
-      >
-        Logout from ChulaSSO
-      </button>
-    </ng-container>
-  </nz-header>
-  <nz-content>
-    <ng-container *ngIf="isSSOAuthenticated$ | async; else notSSOAuthenticated">
-      <!-- <h2 nz-title>
-        {{ steps[currentStep$.value].title }}
-      </h2> -->
-      <app-content-container>
-        <app-register-form
-          [step]="steps[currentStep$.value]"
-          nzOffset="6"
-          nzSpan="12"
-          [questions]="questions"
-        ></app-register-form>
-        <app-register-navigator
-          [currentStep]="currentStep$ | async"
-          [totalSteps]="totalSteps"
-          (previousStep)="previousStep()"
-          (nextStep)="nextStep()"
-        >
-        </app-register-navigator>
-      </app-content-container>
-    </ng-container>
-    <ng-template #notSSOAuthenticated>
-      <h2 nz-title>You are not logged in with ChulaSSO</h2>
-      <button nz-button nzType="primary" (click)="loginSSO()">
-        Login with ChulaSSO
-      </button>
-    </ng-template>
-  </nz-content>
-  <nz-footer>Project Open Registration by Thinc.</nz-footer>
-</nz-layout>
+<nz-content class="form-content">
+  <ng-container *ngIf="formId$ | async as formId">
+    <app-form [formId]="formId"></app-form>
+  </ng-container>
+</nz-content>
+<!-- <button (click)="debug()"></button> -->

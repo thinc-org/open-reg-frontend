@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://jsonplaceholder.typicode.com/',
+  apiUrl: 'https://openreg.himkwtn.me',
+  serviceName: 'OpenReg Dev',
 };
 
 /*
