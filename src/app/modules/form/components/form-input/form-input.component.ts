@@ -38,8 +38,11 @@ export class FormInputComponent implements OnInit {
   get touched() {
     return this.formControl.touched;
   }
-  get email() {
-    return this.formControl.errors.email;
+  get otherInvalid() {
+    return !(this.isMax || this.isMin || this.isRequired) && this.formControl.errors;
+  }
+  get label() {
+    return this.question.label;
   }
   ngOnInit() {}
 }

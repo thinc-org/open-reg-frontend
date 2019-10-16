@@ -136,6 +136,9 @@ export class FormService {
       case 'EMAIL':
         validators.push(Validators.email);
         break;
+      case 'PHONE':
+        validators.push(Validators.pattern('^0[0-9]{9}$'));
+        break;
     }
     return validators;
   }
