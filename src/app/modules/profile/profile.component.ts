@@ -3,7 +3,6 @@ import { AuthService } from 'src/app/core/services/auth.service';
 import { ApiService } from 'src/app/api/services';
 import { Router } from '@angular/router';
 import { map, pluck } from 'rxjs/operators';
-import { Observable } from 'rxjs';
 import { FooterService } from 'src/app/core/services/footer.service';
 import { NavbarService } from 'src/app/core/services/navbar.service';
 
@@ -15,8 +14,8 @@ import { NavbarService } from 'src/app/core/services/navbar.service';
 export class ProfileComponent implements OnInit, OnDestroy {
   isAuthenticated$ = this.authService.isAuthenticated$;
   currentUser$ = this.authService.currentUser$;
-  formId$ = (this.apiService.getFormAll() as Observable<any[]>).pipe(
-    map((forms: any[]) =>
+  formId$ = this.apiService.getFormAll().pipe(
+    map(forms =>
       forms.find(form => {
         return form.title === 'ลอยกระทง';
       })
