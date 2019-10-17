@@ -9,10 +9,13 @@ import { FormService } from '../../form.service';
 export class RegisterConfirmComponent implements OnInit {
   eventName = this.formService.eventName;
   step = this.formService.groups;
-  questions = [...this.formService.questions$.value];
+  questions$ = this.formService.questions$;
   constructor(private formService: FormService) {}
 
+  get length(): number {
+    return this.questions$.value.length;
+  }
+
   ngOnInit() {
-    this.questions.pop();
   }
 }
