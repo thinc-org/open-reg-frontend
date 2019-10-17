@@ -1,1 +1,16 @@
 <app-confirm-content [eventName]="eventName"></app-confirm-content>
+<div class="confirm-container">	
+  <div class="topic-container" *ngFor="let questionsGroup of questions; index as i">	
+    <span class="group-name">	
+      {{ step[i].title }}	
+    </span>	
+    <div *ngFor="let question of questionsGroup">
+        <ng-container *ngIf="question.controlType==='dropdown'; else normal">
+            {{ question.label + ': ' + question.choices[question.value]  }}
+        </ng-container>
+        <ng-template #normal>
+            {{ question.label + ': ' + question.value }}	
+        </ng-template>	
+    </div>	
+  </div>	
+</div>

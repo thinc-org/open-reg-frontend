@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 import { BaseQuestion } from 'src/app/core/model/questions.model';
 import { FormService } from '../../form.service';
 
@@ -12,10 +12,11 @@ import { FormService } from '../../form.service';
 })
 export class RegisterFormComponent {
   @Input() form: FormGroup;
-  questions$: BehaviorSubject<BaseQuestion<any>[]> = this.formService
-    .questions$;
+  currentStep$ = this.formService.currentStep$;
+  questions$: BehaviorSubject<BaseQuestion<any>[][]> = this.formService.questions$;
   eventName: string = this.formService.eventName;
   processedQuestions$: Observable<BaseQuestion<any>[][]> = this.questions$.pipe(
+    switchMap(questions => of(questions[this.currentStep$.value - 1])),
     map(e => (e ? e.sort((a, b) => a.order - b.order) : [])),
     map(this.reduce)
   );

@@ -39,7 +39,9 @@ export class FormInputComponent implements OnInit {
     return this.formControl.touched;
   }
   get otherInvalid() {
-    return !(this.isMax || this.isMin || this.isRequired) && this.formControl.errors;
+    return (
+      !(this.isMax || this.isMin || this.isRequired) && this.formControl.errors
+    );
   }
   get label() {
     return this.question.label;

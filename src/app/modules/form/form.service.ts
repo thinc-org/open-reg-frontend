@@ -7,8 +7,8 @@ import {
   TextboxQuestion,
   QuestionTypes,
 } from '../../core/model/questions.model';
-import { takeUntil, share } from 'rxjs/operators';
-import { Subject, BehaviorSubject, combineLatest, Observable } from 'rxjs';
+import { takeUntil, share, switchMap } from 'rxjs/operators';
+import { Subject, BehaviorSubject, Observable } from 'rxjs';
 import { FormGeneratorService } from 'src/app/core/services/form-generator.service';
 import { FormGroup } from 'ngx-strongly-typed-forms';
 import { Validators } from '@angular/forms';
@@ -20,8 +20,8 @@ import { ApiService } from 'src/app/api/services';
 export class FormService {
   destroy$ = new Subject<any>();
 
-  questions$: BehaviorSubject<BaseQuestion<any>[]> = new BehaviorSubject<
-    BaseQuestion<any>[]
+  questions$: BehaviorSubject<BaseQuestion<any>[][]> = new BehaviorSubject<
+    BaseQuestion<any>[][]
   >([]);
   groups: Step[] = [];
   form: FormGroup<any> = null;
@@ -65,29 +65,33 @@ export class FormService {
       this.form = this.formGenerator.toFormGroup(convertedQuestions);
     });
 
-    combineLatest([this.currentStep$, this.apiResult$])
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(([currentStep, apiResult]) => {
+    this.currentStep$
+      .pipe(
+        takeUntil(this.destroy$),
+        switchMap(() => this.apiResult$)
+      )
+      .subscribe(apiResult => {
         const convertedQuestions = this.convertQuestions(
           apiResult.questions,
           this.groups.length
         );
-        const filledQuestions = this.addValueToQuestions(
-          convertedQuestions[currentStep - 1],
-          this.form.value[currentStep - 1]
-        );
-        this.questions$.next(filledQuestions);
+        this.addValueToQuestions(convertedQuestions, this.form.value);
+        this.questions$.next(convertedQuestions);
       });
   }
 
   private addValueToQuestions(
-    currentConvertedQuestions: BaseQuestion<any>[],
-    currentFormValue: FormGroup<any>
-  ): BaseQuestion<any>[] {
-    return currentConvertedQuestions.map(question => {
-      question.value = currentFormValue[question.key];
-      return question;
-    });
+    currentConvertedQuestions: BaseQuestion<any>[][],
+    currentFormValue: FormGroup<any>[]
+  ): void {
+    currentConvertedQuestions = currentConvertedQuestions.map(
+      (questions, i) => {
+        return questions.map(question => {
+          question.value = currentFormValue[i][question.key];
+          return question;
+        });
+      }
+    );
   }
 
   private convertQuestions(

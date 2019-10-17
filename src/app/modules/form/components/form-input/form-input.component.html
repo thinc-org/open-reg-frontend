@@ -44,7 +44,7 @@
       >
     </nz-radio-group>
   </div>
-  <div class="error-message" *ngIf="!isValid && (touched || dirty)">
+  <div class="error-message" *ngIf="formControl && !isValid && (touched || dirty)">
     <span *ngIf="isRequired" nz-text nzType="danger">{{
       question.label + ' is Required' | translate
     }}</span>
