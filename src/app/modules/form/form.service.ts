@@ -94,7 +94,6 @@ export class FormService {
       question.value = currentFormValue[question.key];
       return question;
     });
-    console.log(currentConvertedQuestions, 'currentConvertedQuestions');
   }
 
   private convertQuestions(
