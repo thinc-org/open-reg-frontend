@@ -7,8 +7,8 @@ import {
   TextboxQuestion,
   QuestionTypes,
 } from '../../core/model/questions.model';
-import { takeUntil, share, switchMap } from 'rxjs/operators';
-import { Subject, BehaviorSubject, Observable } from 'rxjs';
+import { takeUntil, share, pairwise, startWith } from 'rxjs/operators';
+import { Subject, BehaviorSubject, Observable, combineLatest } from 'rxjs';
 import { FormGeneratorService } from 'src/app/core/services/form-generator.service';
 import { FormGroup } from 'ngx-strongly-typed-forms';
 import { Validators } from '@angular/forms';
@@ -65,33 +65,36 @@ export class FormService {
       this.form = this.formGenerator.toFormGroup(convertedQuestions);
     });
 
-    this.currentStep$
-      .pipe(
-        takeUntil(this.destroy$),
-        switchMap(() => this.apiResult$)
-      )
-      .subscribe(apiResult => {
-        const convertedQuestions = this.convertQuestions(
-          apiResult.questions,
-          this.groups.length
+    combineLatest([
+      this.currentStep$.pipe(
+        startWith(1),
+        pairwise()
+      ),
+      this.apiResult$,
+    ])
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(([[previousStep, _], apiResult]) => {
+        const convertedQuestions =
+          this.questions$.value.length > 0
+            ? [...this.questions$.value]
+            : this.convertQuestions(apiResult.questions, this.groups.length);
+        this.addValueToQuestions(
+          convertedQuestions[previousStep - 1],
+          this.form.value[previousStep - 1]
         );
-        this.addValueToQuestions(convertedQuestions, this.form.value);
         this.questions$.next(convertedQuestions);
       });
   }
 
   private addValueToQuestions(
-    currentConvertedQuestions: BaseQuestion<any>[][],
-    currentFormValue: FormGroup<any>[]
+    currentConvertedQuestions: BaseQuestion<any>[],
+    currentFormValue: FormGroup<any>
   ): void {
-    currentConvertedQuestions = currentConvertedQuestions.map(
-      (questions, i) => {
-        return questions.map(question => {
-          question.value = currentFormValue[i][question.key];
-          return question;
-        });
-      }
-    );
+    currentConvertedQuestions = currentConvertedQuestions.map(question => {
+      question.value = currentFormValue[question.key];
+      return question;
+    });
+    console.log(currentConvertedQuestions, 'currentConvertedQuestions');
   }
 
   private convertQuestions(

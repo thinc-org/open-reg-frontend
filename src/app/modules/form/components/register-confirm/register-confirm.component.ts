@@ -16,6 +16,5 @@ export class RegisterConfirmComponent implements OnInit {
     return this.questions$.value.length;
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 }
