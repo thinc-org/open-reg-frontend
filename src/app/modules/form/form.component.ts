@@ -58,7 +58,6 @@ export class FormComponent implements OnInit, OnDestroy {
     } else if (this.formService.questions$.value[0]) {
       return 'form';
     }
-    // console.log(this.formService, 'formService')
     return 'loading';
   }
 

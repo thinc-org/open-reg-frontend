@@ -13,7 +13,8 @@ import { FormService } from '../../form.service';
 export class RegisterFormComponent {
   @Input() form: FormGroup;
   currentStep$ = this.formService.currentStep$;
-  questions$: BehaviorSubject<BaseQuestion<any>[][]> = this.formService.questions$;
+  questions$: BehaviorSubject<BaseQuestion<any>[][]> = this.formService
+    .questions$;
   eventName: string = this.formService.eventName;
   processedQuestions$: Observable<BaseQuestion<any>[][]> = this.questions$.pipe(
     switchMap(questions => of(questions[this.currentStep$.value - 1])),
