@@ -54,6 +54,8 @@
     <span *ngIf="isMin" nz-text nzType="danger">{{
       'min length is ' + formControl.errors.minlength.requiredLength | translate
     }}</span>
-    <span *ngIf="email" nz-text nzType="danger">Email is invalid</span>
+    <span *ngIf="otherInvalid" nz-text nzType="danger"
+      >{{ label }}ไม่ถูกต้อง</span
+    >
   </div>
 </div>
