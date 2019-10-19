@@ -7,7 +7,14 @@ import {
   TextboxQuestion,
   QuestionTypes,
 } from '../../core/model/questions.model';
-import { takeUntil, pairwise, startWith, map, switchMap } from 'rxjs/operators';
+import {
+  takeUntil,
+  pairwise,
+  startWith,
+  map,
+  switchMap,
+  shareReplay,
+} from 'rxjs/operators';
 import { Subject, BehaviorSubject, Observable } from 'rxjs';
 import { FormGeneratorService } from 'src/app/core/services/form-generator.service';
 import { FormGroup } from 'ngx-strongly-typed-forms';
@@ -47,8 +54,8 @@ export class FormService {
      * the answered question will not disappear from the form
      */
     this.apiResult$ = formData
-      ? formData.pipe(share())
-      : (this.api.getFormId(formId).pipe(share()) as Observable<any>);
+      ? formData
+      : (this.api.getFormId(formId).pipe(shareReplay(1)) as Observable<any>);
 
     this.apiResult$.pipe(takeUntil(this.destroy$)).subscribe(result => {
       (result.groups as Step[]).push({
