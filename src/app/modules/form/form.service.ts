@@ -7,8 +7,8 @@ import {
   TextboxQuestion,
   QuestionTypes,
 } from '../../core/model/questions.model';
-import { takeUntil, share, pairwise, startWith } from 'rxjs/operators';
-import { Subject, BehaviorSubject, Observable, combineLatest } from 'rxjs';
+import { takeUntil, pairwise, startWith, map, switchMap } from 'rxjs/operators';
+import { Subject, BehaviorSubject, Observable } from 'rxjs';
 import { FormGeneratorService } from 'src/app/core/services/form-generator.service';
 import { FormGroup } from 'ngx-strongly-typed-forms';
 import { Validators } from '@angular/forms';
@@ -65,15 +65,16 @@ export class FormService {
       this.form = this.formGenerator.toFormGroup(convertedQuestions);
     });
 
-    combineLatest([
-      this.currentStep$.pipe(
+    this.currentStep$
+      .pipe(
+        takeUntil(this.destroy$),
         startWith(1),
-        pairwise()
-      ),
-      this.apiResult$,
-    ])
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(([[previousStep, _], apiResult]) => {
+        pairwise(),
+        switchMap(([previousStep, _]) => {
+          return this.apiResult$.pipe(map(result => [previousStep, result]));
+        })
+      )
+      .subscribe(([previousStep, apiResult]) => {
         const convertedQuestions =
           this.questions$.value.length > 0
             ? [...this.questions$.value]

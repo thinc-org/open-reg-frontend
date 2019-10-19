@@ -1,8 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { ApiService } from 'src/app/api/services';
 import { Router } from '@angular/router';
-import { map, pluck } from 'rxjs/operators';
+import { map, pluck, shareReplay } from 'rxjs/operators';
 import { FooterService } from 'src/app/core/services/footer.service';
 import { NavbarService } from 'src/app/core/services/navbar.service';
 
@@ -11,7 +11,7 @@ import { NavbarService } from 'src/app/core/services/navbar.service';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
 })
-export class ProfileComponent implements OnInit, OnDestroy {
+export class ProfileComponent implements OnDestroy {
   isAuthenticated$ = this.authService.isAuthenticated$;
   currentUser$ = this.authService.currentUser$;
   formId$ = this.apiService.getFormAll().pipe(
@@ -22,7 +22,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     ),
     pluck('_id')
   );
-  userForm$ = this.apiService.getUserForm();
+  userForm$ = this.apiService.getUserForm().pipe(shareReplay(1));
 
   constructor(
     private authService: AuthService,
@@ -33,10 +33,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
   ) {
     this.navbarService.show();
     this.footerService.show();
-  }
-
-  ngOnInit() {
-    this.apiService.getUserForm().subscribe();
   }
 
   submitForm(data: any) {
