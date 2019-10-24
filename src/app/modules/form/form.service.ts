@@ -7,8 +7,15 @@ import {
   TextboxQuestion,
   QuestionTypes,
 } from '../../core/model/questions.model';
-import { takeUntil, share } from 'rxjs/operators';
-import { Subject, BehaviorSubject, combineLatest, Observable } from 'rxjs';
+import {
+  takeUntil,
+  pairwise,
+  startWith,
+  map,
+  switchMap,
+  shareReplay,
+} from 'rxjs/operators';
+import { Subject, BehaviorSubject, Observable } from 'rxjs';
 import { FormGeneratorService } from 'src/app/core/services/form-generator.service';
 import { FormGroup } from 'ngx-strongly-typed-forms';
 import { Validators } from '@angular/forms';
@@ -20,8 +27,8 @@ import { ApiService } from 'src/app/api/services';
 export class FormService {
   destroy$ = new Subject<any>();
 
-  questions$: BehaviorSubject<BaseQuestion<any>[]> = new BehaviorSubject<
-    BaseQuestion<any>[]
+  questions$: BehaviorSubject<BaseQuestion<any>[][]> = new BehaviorSubject<
+    BaseQuestion<any>[][]
   >([]);
   groups: Step[] = [];
   form: FormGroup<any> = null;
@@ -47,8 +54,8 @@ export class FormService {
      * the answered question will not disappear from the form
      */
     this.apiResult$ = formData
-      ? formData.pipe(share())
-      : (this.api.getFormId(formId).pipe(share()) as Observable<any>);
+      ? formData
+      : (this.api.getFormId(formId).pipe(shareReplay(1)) as Observable<any>);
 
     this.apiResult$.pipe(takeUntil(this.destroy$)).subscribe(result => {
       (result.groups as Step[]).push({
@@ -65,26 +72,33 @@ export class FormService {
       this.form = this.formGenerator.toFormGroup(convertedQuestions);
     });
 
-    combineLatest([this.currentStep$, this.apiResult$])
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(([currentStep, apiResult]) => {
-        const convertedQuestions = this.convertQuestions(
-          apiResult.questions,
-          this.groups.length
+    this.currentStep$
+      .pipe(
+        takeUntil(this.destroy$),
+        startWith(1),
+        pairwise(),
+        switchMap(([previousStep, _]) => {
+          return this.apiResult$.pipe(map(result => [previousStep, result]));
+        })
+      )
+      .subscribe(([previousStep, apiResult]) => {
+        const convertedQuestions =
+          this.questions$.value.length > 0
+            ? [...this.questions$.value]
+            : this.convertQuestions(apiResult.questions, this.groups.length);
+        this.addValueToQuestions(
+          convertedQuestions[previousStep - 1],
+          this.form.value[previousStep - 1]
         );
-        const filledQuestions = this.addValueToQuestions(
-          convertedQuestions[currentStep - 1],
-          this.form.value[currentStep - 1]
-        );
-        this.questions$.next(filledQuestions);
+        this.questions$.next(convertedQuestions);
       });
   }
 
   private addValueToQuestions(
     currentConvertedQuestions: BaseQuestion<any>[],
     currentFormValue: FormGroup<any>
-  ): BaseQuestion<any>[] {
-    return currentConvertedQuestions.map(question => {
+  ): void {
+    currentConvertedQuestions = currentConvertedQuestions.map(question => {
       question.value = currentFormValue[question.key];
       return question;
     });

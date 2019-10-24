@@ -12,11 +12,15 @@ import { FormService } from '../../form.service';
 })
 export class RegisterFormComponent {
   @Input() form: FormGroup;
-  questions$: BehaviorSubject<BaseQuestion<any>[]> = this.formService
+  currentStep$ = this.formService.currentStep$;
+  questions$: BehaviorSubject<BaseQuestion<any>[][]> = this.formService
     .questions$;
   eventName: string = this.formService.eventName;
   processedQuestions$: Observable<BaseQuestion<any>[][]> = this.questions$.pipe(
-    map(e => (e ? e.sort((a, b) => a.order - b.order) : [])),
+    map(multiQuestions => {
+      const e = multiQuestions[this.currentStep$.value - 1];
+      return e ? e.sort((a, b) => a.order - b.order) : [];
+    }),
     map(this.reduce)
   );
 
