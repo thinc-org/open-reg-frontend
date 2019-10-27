@@ -29,7 +29,11 @@ export class AdminComponent implements OnInit {
         )
       )
       .subscribe(res => {
-        saveFile(res);
+        const header = res.headers.get('content-disposition');
+        const filename = header.match(
+          /filename\*=(?:UTF-\d['"]*)?([^;\r\n"']*)['"]?;?/
+        );
+        saveFile(res.body, filename[1]);
       });
   }
 }

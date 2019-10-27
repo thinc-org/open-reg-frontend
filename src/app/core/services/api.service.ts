@@ -45,13 +45,11 @@ export class ApiService implements ApiInterface {
   }
 
   getFile(url: string, params?: { [param: string]: string | string[] }) {
-    return this.http
-      .get(ApiService.BASE_URL + url, {
-        params,
-        responseType: 'blob',
-        observe: 'response',
-      })
-      .pipe(map(res => res.body));
+    return this.http.get(ApiService.BASE_URL + url, {
+      params,
+      responseType: 'blob',
+      observe: 'response',
+    });
   }
 
   post<T>(

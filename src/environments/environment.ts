@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://openreg.himkwtn.me',
+  apiUrl: 'http://localhost:3000',
   serviceName: 'OpenReg Dev',
 };
 
