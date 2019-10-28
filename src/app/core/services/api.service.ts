@@ -44,14 +44,28 @@ export class ApiService implements ApiInterface {
       .pipe(map(res => res.body));
   }
 
-  getFile(url: string, params?: { [param: string]: string | string[] }) {
+  getFile(
+    url: string,
+    params?: { [param: string]: string | string[] }
+  ): Observable<{ filename: string; blob: Blob }> {
     return this.http
       .get(ApiService.BASE_URL + url, {
         params,
         responseType: 'blob',
         observe: 'response',
       })
-      .pipe(map(res => res.body));
+      .pipe(
+        map(res => {
+          const header = res.headers.get('content-disposition');
+          const filename = header.match(
+            /filename\*=(?:UTF-\d['"]*)?(([^;\r\n"']*))['"]?;?/
+          )[1];
+          return {
+            filename: decodeURIComponent(filename),
+            blob: res.body,
+          };
+        })
+      );
   }
 
   post<T>(
