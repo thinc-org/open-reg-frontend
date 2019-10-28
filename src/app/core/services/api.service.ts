@@ -56,12 +56,12 @@ export class ApiService implements ApiInterface {
       })
       .pipe(
         map(res => {
-          const header = res.headers['content-disposition'];
+          const header = res.headers.get('content-disposition');
           const filename = header.match(
-            /filename\*=(?:UTF-\d['"]*)?([^;\r\n"']*)['"]?;?/
-          );
+            /filename\*=(?:UTF-\d['"]*)?(([^;\r\n"']*))['"]?;?/
+          )[1];
           return {
-            filename,
+            filename: decodeURIComponent(filename),
             blob: res.body,
           };
         })
