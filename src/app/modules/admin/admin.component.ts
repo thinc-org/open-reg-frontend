@@ -29,7 +29,7 @@ export class AdminComponent implements OnInit {
         )
       )
       .subscribe(res => {
-        saveFile(res);
+        saveFile(res.blob, res.filename);
       });
   }
 }

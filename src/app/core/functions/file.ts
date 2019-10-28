@@ -5,6 +5,6 @@ import * as FileSaver from 'file-saver';
  * @param data - Array Buffer data
  * @param type - type of the document.
  */
-export const saveFile = (blob: Blob) => {
-  FileSaver.saveAs(blob, `export-${new Date().toDateString()}`);
+export const saveFile = (blob: Blob, filename?: string) => {
+  FileSaver.saveAs(blob, filename || `export-${new Date().toDateString()}`);
 };
