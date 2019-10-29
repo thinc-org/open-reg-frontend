@@ -41,6 +41,21 @@ export class DropdownQuestion extends BaseQuestion<string> {
   }
 }
 
+export class MultipleChoiceQuestion extends BaseQuestion<string> {
+  controlType = 'multiple-choice';
+  choices: string[] = [];
+
+  constructor(
+    options: QuestionOptions<string> = {},
+    subType?: string,
+    validators: ValidatorFn | ValidatorFn[] | AbstractControlOptions = []
+  ) {
+    super(options, validators);
+    this.choices = options.choices || [];
+    this.controlType = subType;
+  }
+}
+
 export class TextboxQuestion extends BaseQuestion<string> {
   controlType = 'textbox';
   type: string;

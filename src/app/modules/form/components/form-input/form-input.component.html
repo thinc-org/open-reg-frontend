@@ -41,6 +41,33 @@
         >{{ option }}</label
       >
     </nz-radio-group>
+    <nz-checkbox-wrapper
+      *ngSwitchCase="'multiple-chocie'"
+      [formControlName]="question.key"
+      [id]="question.key"
+    >
+      <label
+        nz-checkbox
+        *ngFor="let choice of question.choices"
+        [nzValue]="choice"
+        [formControlName]="question.key"
+        >{{ choice }}</label
+      >
+    </nz-checkbox-wrapper>
+    <nz-radio-group
+      *ngSwitchCase="'radio'"
+      [formControlName]="question.key"
+      [nzName]="question.key"
+      [id]="question.key"
+    >
+      <label
+        class="radio-label"
+        *ngFor="let option of question.choices; index as i"
+        nz-radio
+        [nzValue]="'' + i"
+        >{{ option }}</label
+      >
+    </nz-radio-group>
   </div>
   <div
     class="error-message"

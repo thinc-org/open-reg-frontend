@@ -18,6 +18,7 @@ import {
   NzIconModule,
   NzSelectModule,
   NzRadioModule,
+  NzCheckboxModule,
 } from 'ng-zorro-antd';
 import { TranslateModule } from '@ngx-translate/core';
 import { RegisterConfirmComponent } from './components/register-confirm/register-confirm.component';
@@ -40,6 +41,7 @@ import { RegisterConfirmComponent } from './components/register-confirm/register
     NzModalModule,
     NzTypographyModule,
     NzStepsModule,
+    NzCheckboxModule,
     NzInputModule,
     NzGridModule,
     NzLayoutModule,
