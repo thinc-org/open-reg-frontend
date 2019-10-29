@@ -1,8 +1,6 @@
 <div [formGroup]="form">
   <label [attr.for]="question.key">
-    <p class="text">
-      {{ question.label }}
-    </p>
+    <p class="text">{{ question.label }}{{ question.required ? ' *' : '' }}</p>
   </label>
   <div [ngSwitch]="question.controlType">
     <input
@@ -44,7 +42,10 @@
       >
     </nz-radio-group>
   </div>
-  <div class="error-message" *ngIf="formControl && !isValid && (touched || dirty)">
+  <div
+    class="error-message"
+    *ngIf="formControl && !isValid && (touched || dirty)"
+  >
     <span *ngIf="isRequired" nz-text nzType="danger">{{
       question.label + ' is Required' | translate
     }}</span>

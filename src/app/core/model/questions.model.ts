@@ -6,7 +6,7 @@ export class BaseQuestion<T> {
   label: string;
   title: string;
   description: string;
-  // required: boolean;
+  required: boolean;
   choices: string[];
   key: string;
   controlType: string;
@@ -19,7 +19,7 @@ export class BaseQuestion<T> {
     this.value = options.value;
     this.key = options.key || '';
     this.label = options.label || '';
-    // this.required = !!options.required;
+    this.required = !!options.required;
     this.order = options.order === undefined ? 1 : options.order;
     this.title = options.title || '';
     this.group = options.group;
@@ -83,7 +83,6 @@ export interface QuestionOptions<T> {
   label?: string;
   options?: string[];
   type?: string;
-  // required?: boolean;
   order?: number;
   title?: string;
   description?: string;
