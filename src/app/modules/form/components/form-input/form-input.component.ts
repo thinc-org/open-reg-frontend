@@ -10,7 +10,16 @@ import { TextboxQuestion } from 'src/app/core/model/questions.model';
 export class FormInputComponent implements OnInit {
   @Input() question: TextboxQuestion;
   @Input() form: FormGroup;
+  image: string | ArrayBuffer = '';
   constructor() {}
+
+  showImage(files: FileList) {
+    const reader = new FileReader();
+    reader.onload = (event: any) => {
+      this.image = event.target.result;
+    };
+    reader.readAsDataURL(files[0]);
+  }
 
   get isValid() {
     return this.formControl.valid;

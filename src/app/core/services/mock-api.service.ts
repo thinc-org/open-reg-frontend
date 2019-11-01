@@ -10,7 +10,7 @@ import { ApiConfiguration as __Configuration } from '../../api/api-configuration
 export class MockApiService extends ApiService {
   getUserForm(): Observable<any> {
     const response = new Subject<any>();
-    response.subscribe((e) => console.log(e, 'e'));
+    response.subscribe(e => console.log(e, 'e'));
     response.next({});
     timer(1000).subscribe(() => {
       response.next({
