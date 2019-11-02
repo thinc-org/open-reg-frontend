@@ -154,7 +154,7 @@ export class FormService {
       case 'PHONE':
         validators.push(Validators.pattern('^0[0-9]{9}$'));
         break;
-      // case 'FILE':
+      // case 'IMAGE':
       //   validators.push(CustomValidators.requiredFileType('png'));
       //   break;
     }

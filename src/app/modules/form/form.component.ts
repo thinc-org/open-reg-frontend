@@ -10,6 +10,7 @@ import { FormService } from './form.service';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/api/services';
 import { Observable } from 'rxjs';
+import { StoreImageService } from 'src/app/core/services/store-image.service';
 
 @Component({
   selector: 'app-form',
@@ -27,10 +28,12 @@ export class FormComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private formService: FormService,
-    private api: ApiService
+    private api: ApiService,
+    private imageService: StoreImageService
   ) {}
 
   ngOnInit() {
+    this.imageService.clear();
     if (this.formData) {
       this.formService.initializeForm(null, this.formData);
     } else {
@@ -102,5 +105,6 @@ export class FormComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.formService.complete();
+    this.imageService.clear();
   }
 }

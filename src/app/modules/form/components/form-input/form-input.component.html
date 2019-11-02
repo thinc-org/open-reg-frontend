@@ -1,4 +1,4 @@
-<div [formGroup]="form">
+<div [formGroup]="question.type === 'IMAGE' ? form : null">
   <label [attr.for]="question.key">
     <p class="text">
       {{ question.label }}
@@ -6,13 +6,12 @@
   </label>
   <div [ngSwitch]="question.controlType">
     <ng-container *ngSwitchCase="'textbox'">
-      <img [src]="image"/>
+      <img *ngIf="image" [src]="imageData" />
       <input
-        *ngIf="question.type === 'FILE'; else text"
+        *ngIf="question.type === 'IMAGE'; else text"
         type="file"
         accept="image/*"
-        (change)="showImage($event.target.files)"
-        [formControlName]="question.key"
+        (change)="saveImage($event.target.files)"
         [id]="question.key"
         nz-input
         [placeholder]="question.description || ''"
@@ -64,7 +63,7 @@
     *ngIf="formControl && !isValid && (touched || dirty)"
   >
     <span *ngIf="isRequired" nz-text nzType="danger">{{
-      question.label + ' is Required' | translate
+      'กรุณาใส่ข้อมูล' + question.label
     }}</span>
     <span *ngIf="isMax" nz-text nzType="danger">{{
       'max length is ' + formControl.errors.maxlength.requiredLength | translate

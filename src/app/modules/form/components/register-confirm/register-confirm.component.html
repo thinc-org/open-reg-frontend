@@ -11,12 +11,18 @@
       {{ step[i].title }}
     </span>
     <div *ngFor="let question of questionsGroup">
-      <ng-container *ngIf="question.controlType === 'dropdown'; else normal">
-        {{ question.label + ': ' + question.choices[question.value] }}
+      <ng-container [ngSwitch]="question.type">
+        <ng-container *ngSwitchCase="'DROPDOWN'">
+          {{ question.label + ': ' + question.choices[question.value] }}
+        </ng-container>
+        <ng-container *ngSwitchCase="'IMAGE'">
+          {{ question.label + ': ' }}
+          <img [src]="getImage(question.key)" />
+        </ng-container>
+        <ng-container *ngSwitchDefault>
+          {{ question.label + ': ' + question.value }}
+        </ng-container>
       </ng-container>
-      <ng-template #normal>
-        {{ question.label + ': ' + question.value }}
-      </ng-template>
     </div>
   </div>
 </div>

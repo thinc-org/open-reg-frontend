@@ -34,7 +34,7 @@ export class MockApiService extends ApiService {
             value: '',
             order: 1,
             group: 1,
-            type: 'FILE',
+            type: 'IMAGE',
             label: 'รูปภาพ',
             required: true,
           },
