@@ -55,7 +55,7 @@ import { StorageServiceModule } from 'angular-webstorage-service';
     NzSelectModule,
     NzRadioModule,
     RouterModule,
-    StorageServiceModule
+    StorageServiceModule,
   ],
   entryComponents: [],
   // providers: [{ provide: ApiService, useClass: MockApiService }],

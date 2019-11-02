@@ -7,7 +7,6 @@ import {
 import { FormGroup } from '@angular/forms';
 import { TextboxQuestion } from 'src/app/core/model/questions.model';
 import { StoreImageService } from 'src/app/core/services/store-image.service';
-import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-form-input',
@@ -25,10 +24,15 @@ export class FormInputComponent implements AfterViewInit {
 
   saveImage(fileList: FileList) {
     const name = fileList[0].name;
-    const validationResult = this.validateImageInput(name);
+    const validationResult = this.imageService.validateImageName(name);
     this.formControl.setErrors(validationResult);
     this.imageService.saveImage(fileList[0], this.question.key);
-    console.log(validationResult, 'validate', this.formControl);
+  }
+
+  ngAfterViewInit() {
+    const validationResult = this.imageService.validateImageName(this.imageName);
+    this.formControl.setErrors(validationResult);
+    this.cdr.detectChanges();
   }
 
   private get image() {
@@ -79,40 +83,5 @@ export class FormInputComponent implements AfterViewInit {
   }
   get label() {
     return this.question.label;
-  }
-  ngAfterViewInit() {
-    this.formControl.statusChanges.pipe(first()).subscribe(() => {
-      console.log('init');
-      // this.formControl.setErrors(null);
-    });
-    const validationResult = this.validateImageInput(this.imageName);
-    console.log(validationResult, 'result', this.formControl, 1);
-    // setTimeout(() => {
-
-    this.formControl.setErrors(null);
-    // }, 500)
-    this.cdr.detectChanges();
-    console.log(validationResult, 'result', this.formControl, 2);
-    // setTimeout(() => console.log(this.formControl), 2000);
-  }
-
-  validateImageInput(name: string) {
-    console.log(name, 'name');
-    const type = ['png', 'jpg', 'jpeg'];
-    let validationResult = null;
-    if (name) {
-      const extension = name.split('.')[1].toLowerCase();
-      const extensionValid = type.reduce((previousStatus, _type) => {
-        return previousStatus || _type.toLowerCase() === extension;
-      }, false);
-      if (!extensionValid) {
-        validationResult = {
-          requiredFileType: true,
-        };
-      }
-    } else {
-      validationResult = { required: true };
-    }
-    return validationResult;
   }
 }

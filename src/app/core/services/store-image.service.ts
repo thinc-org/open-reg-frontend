@@ -28,6 +28,25 @@ export class StoreImageService {
     }
   }
 
+  validateImageName(name: string) {
+    const type = ['png', 'jpg', 'jpeg'];
+    let validationResult = null;
+    if (name) {
+      const extension = name.split('.')[1].toLowerCase();
+      const extensionValid = type.reduce((previousStatus, _type) => {
+        return previousStatus || _type.toLowerCase() === extension;
+      }, false);
+      if (!extensionValid) {
+        validationResult = {
+          requiredFileType: true,
+        };
+      }
+    } else {
+      validationResult = { required: true };
+    }
+    return validationResult;
+  }
+
   private saveToStorage(_key: string, data: string, name: string) {
     let images = this.getImages();
     if (!images) {
