@@ -79,7 +79,7 @@ export class FormComponent implements OnInit, OnDestroy {
     return this.steps.length;
   }
 
-  completeForm() {
+  async completeForm() {
     /* Normalize form object from steps **/
     const unNestedAnswers: any = Object.values(this.form.value).reduce(
       (a, c) => ({ ...a, ...c }),
@@ -90,12 +90,18 @@ export class FormComponent implements OnInit, OnDestroy {
       answer: unNestedAnswers,
     };
     const images = this.imageService.getImages();
-    (images ? images : []).forEach(image => {
-      const data = image.data.split(',')[1];
-      answers[image.key] = atob(data);
+    for (const image of images) {
+      if (image.data) {
+        await fetch(image.data)
+          .then(res => res.blob())
+          .then(blob => {
+            answers[image.key] = new File([blob], image.name);
+          });
+      } else {
+        answers[image.key] = image.url;
+      }
       delete answers.answer[image.key];
-    });
-    console.log(answers, 'answers', flatten(answers));
+    }
 
     /* Flatten answers and convert to formData */
     const flattenAnswers = flatten(answers);

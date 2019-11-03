@@ -35,7 +35,9 @@ export class FormInputComponent implements AfterViewInit {
       const validationResult = this.imageService.validateImageName(
         this.imageName
       );
-      this.formControl.setErrors(validationResult);
+      this.image.url
+        ? this.formControl.setErrors(null)
+        : this.formControl.setErrors(validationResult);
       this.cdr.detectChanges();
     }
   }
@@ -46,14 +48,19 @@ export class FormInputComponent implements AfterViewInit {
 
   get imageData() {
     if (
-      !this.image &&
       this.question.type === 'IMAGE' &&
       this.question.value &&
       this.question.value.length > 0
     ) {
-      return this.question.value;
+      if (!this.image) {
+        this.imageService.saveImage(
+          null,
+          this.question.key,
+          this.question.value
+        );
+      }
+      return this.image.data ? this.image.data : this.image.url;
     }
-    return this.image ? this.image.data : null;
   }
 
   get imageName() {

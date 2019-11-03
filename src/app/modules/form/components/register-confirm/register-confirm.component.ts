@@ -18,7 +18,7 @@ export class RegisterConfirmComponent implements OnInit {
 
   getImage(_key: string) {
     const image = this.imageService.getImage(_key);
-    return image ? image.data : null;
+    return image.data ? image.data : image.url;
   }
 
   get length(): number {

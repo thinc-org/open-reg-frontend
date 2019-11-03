@@ -18,8 +18,9 @@ export class StoreImageService {
   saveImage(file: Blob, _key: string, url?: string) {
     if (url) {
       const name = url.split(',')[1];
-      this.saveToStorage(_key, url, name);
+      this.saveToStorage(_key, null, name, url);
     } else {
+      console.log(file, 'file');
       const reader = new FileReader();
       reader.onload = (event: any) => {
         this.saveToStorage(_key, event.target.result, (file as any).name);
@@ -32,9 +33,10 @@ export class StoreImageService {
     const type = ['png', 'jpg', 'jpeg'];
     let validationResult = null;
     if (name) {
-      const extension = name.split('.')[1].toLowerCase();
+      const extension = name.split('.')[1];
+      const extensionLowercase = extension ? extension.toLowerCase() : '';
       const extensionValid = type.reduce((previousStatus, _type) => {
-        return previousStatus || _type.toLowerCase() === extension;
+        return previousStatus || _type.toLowerCase() === extensionLowercase;
       }, false);
       if (!extensionValid) {
         validationResult = {
@@ -47,18 +49,21 @@ export class StoreImageService {
     return validationResult;
   }
 
-  private saveToStorage(_key: string, data: string, name: string) {
+  private saveToStorage(_key: string, data: string, name: string, url?: string) {
     let images = this.getImages();
     if (!images) {
       images = [];
     }
     const index = images.findIndex(({ key }) => key === _key);
-    const imageData: Image = { key: _key, data, name };
+    const imageData: Image = url
+      ? { key: _key, url, name }
+      : { key: _key, data, name };
     if (index >= 0) {
       images[index] = imageData;
     } else {
       images.push(imageData);
     }
+    console.log(images, 'images');
     this.storage.set(STORAGE_KEY, images);
   }
 
