@@ -38,9 +38,27 @@
       <nz-option
         *ngFor="let option of question.choices; index as i"
         [nzLabel]="option.label"
-        [nzValue]="'' + i"
+        [nzValue]="option.value"
       ></nz-option>
     </nz-select>
+    <ng-container *ngSwitchCase="'subchoice'">
+      <nz-select
+        nzSize="large"
+        nzPlaceHolder="select"
+        class="select"
+        *ngIf="subChoices$ | async as choices"
+        [formControlName]="question.key"
+        [id]="question.key"
+        [nzDisabled]="!(choices?.length > 0)"
+      >
+        <nz-option
+          *ngFor="let option of choices; index as i"
+          [nzLabel]="option.label"
+          [nzValue]="option.value"
+        ></nz-option>
+      </nz-select>
+    </ng-container>
+
     <nz-radio-group
       *ngSwitchCase="'radio'"
       [formControlName]="question.key"
@@ -51,11 +69,11 @@
         class="radio-label"
         *ngFor="let option of question.choices; index as i"
         nz-radio
-        [nzValue]="'' + i"
+        [nzValue]="option.value"
         >{{ option.label }}</label
       >
     </nz-radio-group>
-    <nz-checkbox-wrapper
+    <!-- <nz-checkbox-wrapper
       *ngSwitchCase="'multiple-chocie'"
       [formControlName]="question.key"
       [id]="question.key"
@@ -67,21 +85,7 @@
         [formControlName]="question.key"
         >{{ choice }}</label
       >
-    </nz-checkbox-wrapper>
-    <nz-radio-group
-      *ngSwitchCase="'radio'"
-      [formControlName]="question.key"
-      [nzName]="question.key"
-      [id]="question.key"
-    >
-      <label
-        class="radio-label"
-        *ngFor="let option of question.choices; index as i"
-        nz-radio
-        [nzValue]="'' + i"
-        >{{ option }}</label
-      >
-    </nz-radio-group>
+    </nz-checkbox-wrapper> -->
   </div>
   <div
     class="error-message"
