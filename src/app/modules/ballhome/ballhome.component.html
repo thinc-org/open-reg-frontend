@@ -1,0 +1,50 @@
+<nz-alert
+  class="alert-error"
+  nzType="error"
+  [nzMessage]="error"
+  nzShowIcon
+  nzBanner
+  nzCloseable
+  *ngIf="loginError$ | async as error"
+  >{{ error }}</nz-alert
+>
+<div class="home">
+    <div class="container">
+      <div>
+        <div class="home-content">
+          <img src="assets/ball_logo.png" class="image" />
+          <span class="text text-main">CU-TU BALL 74</span>
+          <span class="text text-secondary"
+            >Student Government of Chulalongkorn University (SGCU)</span
+          >
+        </div>
+        <div class="home-logo-container">
+          <app-svg-icon
+            appDimension
+            width="308"
+            height="23"
+            name="orlogo"
+            fill="#b3b3b3"
+          ></app-svg-icon>
+          <span class="text text-description"
+            >CENTRALIZED SERVICE FOR EVERY CU EVENTS</span
+          >
+        </div>
+      </div>
+      <div class="register-button-container">
+        <button
+          *ngIf="!waitingForValidation; else loading"
+          nz-button
+          nz-size="large"
+          class="register-button"
+          (click)="login()"
+        >
+          Register With Chula SSO
+        </button>
+        <ng-template #loading>
+          <i class="loading-icon" nz-icon nzType="loading" nzTheme="outline"></i>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+  

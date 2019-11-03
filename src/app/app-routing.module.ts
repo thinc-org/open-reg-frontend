@@ -9,6 +9,11 @@ const routes: Routes = [
     loadChildren: './modules/home/home.module#HomeModule',
   },
   {
+    path: 'ballhome',
+    canActivateChild: [AuthGuard],
+    loadChildren: './modules/ballhome/ballhome.module#BallHomeModule',
+  },
+  {
     path: 'register',
     canActivateChild: [AuthGuard],
     loadChildren: './modules/register/register.module#RegisterModule',
