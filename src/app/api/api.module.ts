@@ -15,10 +15,7 @@ import { ApiService } from './services/api.service';
   imports: [HttpClientModule],
   exports: [HttpClientModule],
   declarations: [],
-  providers: [
-    ApiConfiguration,
-    ApiService,
-  ],
+  providers: [ApiConfiguration, ApiService],
 })
 export class ApiModule {
   static forRoot(customParams: ApiConfigurationInterface): ModuleWithProviders {

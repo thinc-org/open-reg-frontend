@@ -46,6 +46,7 @@ export class FormInputComponent implements AfterViewInit {
 
   get imageData() {
     if (
+      !this.image &&
       this.question.type === 'IMAGE' &&
       this.question.value &&
       this.question.value.length > 0

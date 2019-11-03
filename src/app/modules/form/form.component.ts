@@ -95,11 +95,13 @@ export class FormComponent implements OnInit, OnDestroy {
       answers[image.key] = atob(data);
       delete answers.answer[image.key];
     });
+    console.log(answers, 'answers', flatten(answers));
 
     /* Flatten answers and convert to formData */
+    const flattenAnswers = flatten(answers);
     const formData = new FormData();
-    Object.keys(flatten(answers)).forEach(key => {
-      formData.append(key, answers[key]);
+    Object.keys(flattenAnswers).forEach(key => {
+      formData.append(key, flattenAnswers[key]);
     });
 
     /* Submit form */
