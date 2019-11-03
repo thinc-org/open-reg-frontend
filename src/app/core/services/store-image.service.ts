@@ -20,7 +20,6 @@ export class StoreImageService {
       const name = url.split(',')[1];
       this.saveToStorage(_key, null, name, url);
     } else {
-      console.log(file, 'file');
       const reader = new FileReader();
       reader.onload = (event: any) => {
         this.saveToStorage(_key, event.target.result, (file as any).name);
@@ -49,7 +48,12 @@ export class StoreImageService {
     return validationResult;
   }
 
-  private saveToStorage(_key: string, data: string, name: string, url?: string) {
+  private saveToStorage(
+    _key: string,
+    data: string,
+    name: string,
+    url?: string
+  ) {
     let images = this.getImages();
     if (!images) {
       images = [];
@@ -63,7 +67,6 @@ export class StoreImageService {
     } else {
       images.push(imageData);
     }
-    console.log(images, 'images');
     this.storage.set(STORAGE_KEY, images);
   }
 

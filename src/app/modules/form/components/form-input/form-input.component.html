@@ -6,7 +6,7 @@
   </label>
   <div [ngSwitch]="question.controlType">
     <ng-container *ngSwitchCase="'textbox'">
-      <img *ngIf="imageData" [src]="imageData" />
+      <img class="image-upload" *ngIf="imageData" [src]="imageData" />
       <input
         *ngIf="question.type === 'IMAGE'; else text"
         type="file"
