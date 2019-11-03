@@ -1,16 +1,71 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {
+  Component,
+  Input,
+  AfterViewInit,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { TextboxQuestion } from 'src/app/core/model/questions.model';
+import { StoreImageService } from 'src/app/core/services/store-image.service';
 
 @Component({
   selector: 'app-form-input',
   templateUrl: './form-input.component.html',
   styleUrls: ['./form-input.component.scss'],
 })
-export class FormInputComponent implements OnInit {
+export class FormInputComponent implements AfterViewInit {
   @Input() question: TextboxQuestion;
   @Input() form: FormGroup;
-  constructor() {}
+
+  constructor(
+    private imageService: StoreImageService,
+    private cdr: ChangeDetectorRef
+  ) {}
+
+  saveImage(fileList: FileList) {
+    const name = fileList[0].name;
+    const validationResult = this.imageService.validateImageName(name);
+    this.formControl.setErrors(validationResult);
+    this.formControl.markAsTouched();
+    this.imageService.saveImage(fileList[0], this.question.key);
+  }
+
+  ngAfterViewInit() {
+    if (this.question.type === 'IMAGE') {
+      const validationResult = this.imageService.validateImageName(
+        this.imageName
+      );
+      this.image.url
+        ? this.formControl.setErrors(null)
+        : this.formControl.setErrors(validationResult);
+      this.cdr.detectChanges();
+    }
+  }
+
+  private get image() {
+    return this.imageService.getImage(this.question.key);
+  }
+
+  get imageData() {
+    if (
+      this.question.type === 'IMAGE' &&
+      this.question.value &&
+      this.question.value.length > 0
+    ) {
+      if (!this.image) {
+        this.imageService.saveImage(
+          null,
+          this.question.key,
+          this.question.value
+        );
+      }
+      return this.image.data ? this.image.data : this.image.url;
+    }
+  }
+
+  get imageName() {
+    return this.image ? this.image.name : null;
+  }
 
   get isValid() {
     return this.formControl.valid;
@@ -19,7 +74,7 @@ export class FormInputComponent implements OnInit {
     return this.formControl.value;
   }
   get formControl() {
-    return this.form.controls[this.question.key];
+    return this.form.get(this.question.key);
   }
   get isRequired() {
     return this.formControl.errors.required;
@@ -46,5 +101,4 @@ export class FormInputComponent implements OnInit {
   get label() {
     return this.question.label;
   }
-  ngOnInit() {}
 }
