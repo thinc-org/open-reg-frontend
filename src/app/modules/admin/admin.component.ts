@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/api/services';
-import { ApiService as RawApiService } from 'src/app/core/services/api.service';
+import { ManualApiService as RawApiService } from 'src/app/core/services/manual-api.service';
 import { map, pluck, switchMap } from 'rxjs/operators';
 import { saveFile } from 'src/app/core/functions/file';
 

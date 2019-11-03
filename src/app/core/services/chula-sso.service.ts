@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { environment } from 'src/environments/environment';
-import { ApiService } from 'src/app/core/services/api.service';
+import { ManualApiService } from 'src/app/core/services/manual-api.service';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -11,7 +11,7 @@ export class ChulaSsoService {
   static url = 'https://account.it.chula.ac.th/';
   constructor(
     @Inject(DOCUMENT) private document: Document,
-    private apiService: ApiService
+    private apiService: ManualApiService
   ) {}
 
   login() {

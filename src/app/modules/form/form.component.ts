@@ -10,6 +10,8 @@ import { FormService } from './form.service';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/api/services';
 import { Observable } from 'rxjs';
+import { StoreImageService } from 'src/app/core/services/store-image.service';
+import { flatten } from 'src/app/core/functions/flatten';
 
 @Component({
   selector: 'app-form',
@@ -27,10 +29,12 @@ export class FormComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private formService: FormService,
-    private api: ApiService
+    private api: ApiService,
+    private imageService: StoreImageService
   ) {}
 
   ngOnInit() {
+    this.imageService.clear();
     if (this.formData) {
       this.formService.initializeForm(null, this.formData);
     } else {
@@ -75,19 +79,47 @@ export class FormComponent implements OnInit, OnDestroy {
     return this.steps.length;
   }
 
-  completeForm() {
+  async completeForm() {
     /* Normalize form object from steps **/
-    const answers: any = Object.values(this.form.value).reduce(
+    const unNestedAnswers: any = Object.values(this.form.value).reduce(
       (a, c) => ({ ...a, ...c }),
       {}
     );
+    /* get image from local storage, converting to binary and adding into answers */
+    const answers = {
+      answer: unNestedAnswers,
+    };
+    const images = this.imageService.getImages();
+    for (const image of images) {
+      if (image.data) {
+        await fetch(image.data)
+          .then(res => res.blob())
+          .then(blob => {
+            answers[image.key] = new File([blob], image.name);
+          });
+      } else {
+        answers[image.key] = image.url;
+      }
+      delete answers.answer[image.key];
+    }
+
+    /* Flatten answers and convert to formData */
+    const flattenAnswers = flatten(answers);
+    const formData = new FormData();
+    Object.keys(flattenAnswers).forEach(key => {
+      formData.append(key, flattenAnswers[key]);
+    });
+
+    /* Submit form */
     if (this.formId) {
+      formData.append('form', this.formId);
       this.api
-        .postResponse({ form: this.formId, answers })
+        .postResponse(formData as any)
         .subscribe(_ => this.router.navigate(['success']));
     }
-    this.submitForm.emit(answers);
+    this.submitForm.emit(formData);
   }
+
   nextStep() {
     if (this.currentStep$.value === this.totalSteps) {
       this.completeForm();
@@ -102,5 +134,6 @@ export class FormComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.formService.complete();
+    this.imageService.clear();
   }
 }

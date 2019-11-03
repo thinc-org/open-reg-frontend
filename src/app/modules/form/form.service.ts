@@ -20,6 +20,7 @@ import { FormGeneratorService } from 'src/app/core/services/form-generator.servi
 import { FormGroup } from 'ngx-strongly-typed-forms';
 import { Validators } from '@angular/forms';
 import { ApiService } from 'src/app/api/services';
+// import { CustomValidators } from 'src/app/core/model/validators.model';
 
 @Injectable({
   providedIn: 'root',
@@ -153,6 +154,9 @@ export class FormService {
       case 'PHONE':
         validators.push(Validators.pattern('^0[0-9]{9}$'));
         break;
+      // case 'IMAGE':
+      //   validators.push(CustomValidators.requiredFileType('png'));
+      //   break;
     }
     return validators;
   }

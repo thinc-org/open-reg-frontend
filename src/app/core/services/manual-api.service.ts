@@ -26,7 +26,7 @@ export interface ApiInterface {
 @Injectable({
   providedIn: 'root',
 })
-export class ApiService implements ApiInterface {
+export class ManualApiService implements ApiInterface {
   static BASE_URL = '';
   static API_BASE_URL = environment.apiUrl;
 
@@ -37,7 +37,7 @@ export class ApiService implements ApiInterface {
     params?: { [param: string]: string | string[] }
   ): Observable<T> {
     return this.http
-      .get<T>(ApiService.BASE_URL + url, {
+      .get<T>(ManualApiService.BASE_URL + url, {
         params,
         observe: 'response',
       })
@@ -49,7 +49,7 @@ export class ApiService implements ApiInterface {
     params?: { [param: string]: string | string[] }
   ): Observable<{ filename: string; blob: Blob }> {
     return this.http
-      .get(ApiService.BASE_URL + url, {
+      .get(ManualApiService.BASE_URL + url, {
         params,
         responseType: 'blob',
         observe: 'response',

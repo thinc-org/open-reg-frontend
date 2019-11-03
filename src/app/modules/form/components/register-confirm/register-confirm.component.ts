@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormService } from '../../form.service';
+import { StoreImageService } from 'src/app/core/services/store-image.service';
 
 @Component({
   selector: 'app-register-confirm',
@@ -10,7 +11,15 @@ export class RegisterConfirmComponent implements OnInit {
   eventName = this.formService.eventName;
   step = this.formService.groups;
   questions$ = this.formService.questions$;
-  constructor(private formService: FormService) {}
+  constructor(
+    private formService: FormService,
+    private imageService: StoreImageService
+  ) {}
+
+  getImage(_key: string) {
+    const image = this.imageService.getImage(_key);
+    return image.data ? image.data : image.url;
+  }
 
   get length(): number {
     return this.questions$.value.length;
