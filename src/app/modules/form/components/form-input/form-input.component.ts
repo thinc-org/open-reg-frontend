@@ -26,13 +26,18 @@ export class FormInputComponent implements AfterViewInit {
     const name = fileList[0].name;
     const validationResult = this.imageService.validateImageName(name);
     this.formControl.setErrors(validationResult);
+    this.formControl.markAsTouched();
     this.imageService.saveImage(fileList[0], this.question.key);
   }
 
   ngAfterViewInit() {
-    const validationResult = this.imageService.validateImageName(this.imageName);
-    this.formControl.setErrors(validationResult);
-    this.cdr.detectChanges();
+    if (this.question.type === 'IMAGE') {
+      const validationResult = this.imageService.validateImageName(
+        this.imageName
+      );
+      this.formControl.setErrors(validationResult);
+      this.cdr.detectChanges();
+    }
   }
 
   private get image() {
@@ -40,7 +45,11 @@ export class FormInputComponent implements AfterViewInit {
   }
 
   get imageData() {
-    if (this.question.value && this.question.value.length > 0) {
+    if (
+      this.question.type === 'IMAGE' &&
+      this.question.value &&
+      this.question.value.length > 0
+    ) {
       return this.question.value;
     }
     return this.image ? this.image.data : null;

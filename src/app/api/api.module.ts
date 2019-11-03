@@ -7,7 +7,6 @@ import {
 } from './api-configuration';
 
 import { ApiService } from './services/api.service';
-import { MockApiService } from '../core/services/mock-api.service';
 
 /**
  * Provider for all Api services, plus ApiConfiguration
@@ -18,7 +17,7 @@ import { MockApiService } from '../core/services/mock-api.service';
   declarations: [],
   providers: [
     ApiConfiguration,
-    { provide: ApiService, useClass: MockApiService },
+    ApiService,
   ],
 })
 export class ApiModule {

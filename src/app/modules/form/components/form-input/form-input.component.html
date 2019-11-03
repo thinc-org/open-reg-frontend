@@ -1,4 +1,4 @@
-<div [formGroup]="question.type === 'IMAGE' ? form : null">
+<div [formGroup]="form">
   <label [attr.for]="question.key">
     <p class="text">
       {{ question.label }}
@@ -6,7 +6,7 @@
   </label>
   <div [ngSwitch]="question.controlType">
     <ng-container *ngSwitchCase="'textbox'">
-      <img *ngIf="image" [src]="imageData" />
+      <img *ngIf="imageData" [src]="imageData" />
       <input
         *ngIf="question.type === 'IMAGE'; else text"
         type="file"
@@ -39,7 +39,7 @@
     >
       <nz-option
         *ngFor="let option of question.choices; index as i"
-        [nzLabel]="option"
+        [nzLabel]="option.label"
         [nzValue]="'' + i"
       ></nz-option>
     </nz-select>
@@ -54,7 +54,7 @@
         *ngFor="let option of question.choices; index as i"
         nz-radio
         [nzValue]="'' + i"
-        >{{ option }}</label
+        >{{ option.label }}</label
       >
     </nz-radio-group>
   </div>
