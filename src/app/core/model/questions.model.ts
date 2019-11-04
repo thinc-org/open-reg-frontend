@@ -39,7 +39,6 @@ export class DropdownQuestion extends BaseQuestion<string> {
     validators: ValidatorFn | ValidatorFn[] | AbstractControlOptions = []
   ) {
     super(options, validators);
-    console.log(options);
     this.choices = options.choices || [];
     this.value = options.choices
       ? options.choices.findIndex(obj => {
