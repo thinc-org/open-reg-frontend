@@ -82,7 +82,7 @@ export interface QuestionModel {
   _id: number;
   key: string;
   label: string;
-  choices: string[];
+  choices: Choices[];
   required: boolean;
   group: number;
   image?: string;
