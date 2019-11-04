@@ -2,6 +2,7 @@
   <label [attr.for]="question.key">
     <p class="text">
       {{ question.label }}
+    <span *ngIf="question.required" class="question-required">*</span>
     </p>
   </label>
   <div [ngSwitch]="question.controlType">
