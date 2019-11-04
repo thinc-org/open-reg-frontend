@@ -7,7 +7,7 @@ export class BaseQuestion<T> {
   title: string;
   description: string;
   required: boolean;
-  choices: string[];
+  choices: Choices[];
   key: string;
   controlType: string;
   group: number;
@@ -31,7 +31,7 @@ export class BaseQuestion<T> {
 
 export class DropdownQuestion extends BaseQuestion<string> {
   controlType = 'dropdown';
-  choices: string[] = [];
+  choices: Choices[] = [];
 
   constructor(
     options: QuestionOptions<string> = {},
@@ -39,7 +39,13 @@ export class DropdownQuestion extends BaseQuestion<string> {
     validators: ValidatorFn | ValidatorFn[] | AbstractControlOptions = []
   ) {
     super(options, validators);
+    console.log(options);
     this.choices = options.choices || [];
+    this.value = options.choices
+      ? options.choices.findIndex(obj => {
+          return obj.value === options.value;
+        }) + ''
+      : null;
     this.controlType = subType;
   }
 }
@@ -89,14 +95,18 @@ export interface QuestionOptions<T> {
   label?: string;
   options?: string[];
   type?: string;
-  // required?: boolean;
   order?: number;
   title?: string;
   description?: string;
   validators?: ValidatorFn | ValidatorFn[] | AbstractControlOptions;
   group?: number;
-  choices?: string[];
+  choices?: Choices[];
   subType?: string;
   required?: boolean;
   image?: string;
+}
+
+interface Choices {
+  key: string;
+  value: string;
 }
