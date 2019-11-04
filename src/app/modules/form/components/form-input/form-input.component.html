@@ -5,16 +5,30 @@
     </p>
   </label>
   <div [ngSwitch]="question.controlType">
-    <input
-      *ngSwitchCase="'textbox'"
-      [value]="question.value"
-      [formControlName]="question.key"
-      [id]="question.key"
-      [type]="question.type"
-      nz-input
-      [placeholder]="question.description || ''"
-      nzSize="large"
-    />
+    <ng-container *ngSwitchCase="'textbox'">
+      <img class="image-upload" *ngIf="imageData" [src]="imageData" />
+      <input
+        *ngIf="question.type === 'IMAGE'; else text"
+        type="file"
+        accept="image/*"
+        (change)="saveImage($event.target.files)"
+        [id]="question.key"
+        nz-input
+        [placeholder]="question.description || ''"
+        nzSize="large"
+      />
+      <ng-template #text>
+        <input
+          [value]="question.value"
+          [formControlName]="question.key"
+          [id]="question.key"
+          [type]="question.type"
+          nz-input
+          [placeholder]="question.description || ''"
+          nzSize="large"
+        />
+      </ng-template>
+    </ng-container>
     <nz-select
       nzSize="large"
       nzPlaceHolder="select"
@@ -25,7 +39,7 @@
     >
       <nz-option
         *ngFor="let option of question.choices; index as i"
-        [nzLabel]="option"
+        [nzLabel]="option.label"
         [nzValue]="'' + i"
       ></nz-option>
     </nz-select>
@@ -40,13 +54,16 @@
         *ngFor="let option of question.choices; index as i"
         nz-radio
         [nzValue]="'' + i"
-        >{{ option }}</label
+        >{{ option.label }}</label
       >
     </nz-radio-group>
   </div>
-  <div class="error-message" *ngIf="formControl && !isValid && (touched || dirty)">
+  <div
+    class="error-message"
+    *ngIf="formControl && !isValid && (touched || dirty)"
+  >
     <span *ngIf="isRequired" nz-text nzType="danger">{{
-      question.label + ' is Required' | translate
+      'กรุณาใส่ข้อมูล' + question.label
     }}</span>
     <span *ngIf="isMax" nz-text nzType="danger">{{
       'max length is ' + formControl.errors.maxlength.requiredLength | translate

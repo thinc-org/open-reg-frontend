@@ -1,11 +1,18 @@
 .group-name {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .confirm-container {
-    padding: 0 40px 20px 40px;
+  padding: 0 40px 20px 40px;
 }
 
 .topic-container {
-    padding: 10px 0;   
+  padding: 10px 0;
+}
+
+.image {
+  &-upload {
+    max-width: 100%;
+    max-height: 500px;
+  }
 }

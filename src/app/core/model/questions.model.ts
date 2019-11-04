@@ -64,6 +64,7 @@ export enum QuestionTypes {
   DATE = 'DATE', // not implemented
   TIME = 'TIME', // not implemented
   DROPDOWN = 'DROPDOWN',
+  IMAGE = 'IMAGE',
 }
 
 export interface QuestionModel {
