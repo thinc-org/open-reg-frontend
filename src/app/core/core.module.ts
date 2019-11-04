@@ -26,6 +26,8 @@ import { ResultComponent } from './components/result/result.component';
 import { DimensionDirective } from './directives/dimension.directive';
 import { RouterModule } from '@angular/router';
 import { StorageServiceModule } from 'angular-webstorage-service';
+import { ApiService } from '../api/services';
+import { MockApiService } from './services/mock-api.service';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,7 @@ import { StorageServiceModule } from 'angular-webstorage-service';
     StorageServiceModule,
   ],
   entryComponents: [],
-  // providers: [{ provide: ApiService, useClass: MockApiService }],
+  providers: [{ provide: ApiService, useClass: MockApiService }],
   exports: [
     ArrowTextComponent,
     ContentContainerComponent,

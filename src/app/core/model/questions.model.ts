@@ -11,6 +11,7 @@ export class BaseQuestion<T> {
   key: string;
   controlType: string;
   group: number;
+  image?: string;
 
   constructor(
     options: QuestionOptions<T> = {},
@@ -23,6 +24,8 @@ export class BaseQuestion<T> {
     this.order = options.order === undefined ? 1 : options.order;
     this.title = options.title || '';
     this.group = options.group;
+    this.image = options.image;
+    this.description = options.description;
   }
 }
 
@@ -76,6 +79,8 @@ export interface QuestionModel {
   choices: string[];
   required: boolean;
   group: number;
+  image?: string;
+  description?: string;
 }
 
 export interface QuestionOptions<T> {
@@ -93,4 +98,5 @@ export interface QuestionOptions<T> {
   choices?: string[];
   subType?: string;
   required?: boolean;
+  image?: string;
 }

@@ -40,6 +40,7 @@ export class FormInputComponent implements AfterViewInit {
         : this.formControl.setErrors(validationResult);
       this.cdr.detectChanges();
     }
+    console.log(this.question, 'question');
   }
 
   private get image() {
