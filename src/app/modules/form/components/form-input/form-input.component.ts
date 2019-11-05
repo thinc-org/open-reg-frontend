@@ -40,7 +40,8 @@ export class FormInputComponent implements AfterViewInit, OnInit, OnDestroy {
   constructor(
     private imageService: StoreImageService,
     private cdr: ChangeDetectorRef
-  ) {}
+  ) {
+  }
 
   ngOnDestroy() {
     this.destroy$.next();
