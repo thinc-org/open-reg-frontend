@@ -12,9 +12,6 @@
     </span>
     <div *ngFor="let question of questionsGroup">
       <ng-container [ngSwitch]="question.type">
-        <ng-container *ngSwitchCase="'DROPDOWN'">
-          {{ question.label + ': ' + question.choices[question.value] }}
-        </ng-container>
         <ng-container *ngSwitchCase="'IMAGE'">
           {{ question.label + ': ' }}
           <img class="image-upload" [src]="getImage(question.key)" />

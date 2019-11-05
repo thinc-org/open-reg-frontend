@@ -1,6 +1,10 @@
 <div nz-row class="grid-container">
   <form [formGroup]="form">
-    <div class="form-row" nz-row *ngFor="let question of processedQuestions$ | async">
+    <div
+      class="form-row"
+      nz-row
+      *ngFor="let question of processedQuestions$ | async"
+    >
       <app-form-input
         class="grid-items"
         nz-col

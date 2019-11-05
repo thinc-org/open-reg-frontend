@@ -6,11 +6,6 @@ import { AdminGuard } from './core/guards/admin-guard.service';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: './modules/home/home.module#HomeModule',
-  },
-  {
-    path: 'ballhome',
-    canActivateChild: [AuthGuard],
     loadChildren: './modules/ballhome/ballhome.module#BallHomeModule',
   },
   {

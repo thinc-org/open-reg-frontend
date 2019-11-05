@@ -71,7 +71,7 @@ export class StoreImageService {
   }
 
   getImages(): Image[] {
-    return this.storage.get(STORAGE_KEY);
+    return this.storage.get(STORAGE_KEY) || [];
   }
 
   getImage(_key: string): Image {

@@ -87,7 +87,7 @@ export class FormComponent implements OnInit, OnDestroy {
     );
     /* get image from local storage, converting to binary and adding into answers */
     const answers = {
-      answer: unNestedAnswers,
+      answers: unNestedAnswers,
     };
     const images = this.imageService.getImages();
     for (const image of images) {
@@ -100,7 +100,7 @@ export class FormComponent implements OnInit, OnDestroy {
       } else {
         answers[image.key] = image.url;
       }
-      delete answers.answer[image.key];
+      delete answers.answers[image.key];
     }
 
     /* Flatten answers and convert to formData */

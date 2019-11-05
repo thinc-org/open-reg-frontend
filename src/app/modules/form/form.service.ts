@@ -134,10 +134,12 @@ export class FormService {
       options.required
     );
     switch (type) {
-      case 'RADIO':
+      case QuestionTypes.RADIO:
         return new DropdownQuestion(options, 'radio', validators);
-      case 'DROPDOWN':
+      case QuestionTypes.DROPDOWN:
         return new DropdownQuestion(options, 'dropdown', validators);
+      case QuestionTypes.SUBCHOICES:
+        return new DropdownQuestion(options, 'subchoice', validators);
       default:
         return new TextboxQuestion(options, validators);
     }
