@@ -10,6 +10,7 @@ import { FormGroup, Validators } from '@angular/forms';
 import {
   BaseQuestion,
   QuestionTypes,
+  Choices,
 } from 'src/app/core/model/questions.model';
 import { StoreImageService } from 'src/app/core/services/store-image.service';
 import {
@@ -35,7 +36,7 @@ export class FormInputComponent implements AfterViewInit, OnInit, OnDestroy {
 
   required: boolean;
 
-  subChoices$: Observable<{ label: string; value: string }[]>;
+  subChoices$: Observable<Choices[]>;
   changed$: Observable<boolean>;
   destroy$ = new Subject();
 

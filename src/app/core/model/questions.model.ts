@@ -127,7 +127,7 @@ export interface QuestionOptions<T> {
   image?: string;
 }
 
-interface Choices {
-  key: string;
+export interface Choices {
+  label: string;
   value: string;
 }
