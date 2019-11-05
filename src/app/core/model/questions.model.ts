@@ -6,11 +6,12 @@ export class BaseQuestion<T> {
   label: string;
   title: string;
   description: string;
-  // required: boolean;
-  choices: string[];
+  required: boolean;
+  choices: Choices[];
   key: string;
   controlType: string;
   group: number;
+  image?: string;
 
   constructor(
     options: QuestionOptions<T> = {},
@@ -19,16 +20,18 @@ export class BaseQuestion<T> {
     this.value = options.value;
     this.key = options.key || '';
     this.label = options.label || '';
-    // this.required = !!options.required;
+    this.required = !!options.required;
     this.order = options.order === undefined ? 1 : options.order;
     this.title = options.title || '';
     this.group = options.group;
+    this.image = options.image;
+    this.description = options.description;
   }
 }
 
 export class DropdownQuestion extends BaseQuestion<string> {
   controlType = 'dropdown';
-  choices: string[] = [];
+  choices: Choices[] = [];
 
   constructor(
     options: QuestionOptions<string> = {},
@@ -37,6 +40,11 @@ export class DropdownQuestion extends BaseQuestion<string> {
   ) {
     super(options, validators);
     this.choices = options.choices || [];
+    this.value = options.choices
+      ? options.choices.findIndex(obj => {
+          return obj.value === options.value;
+        }) + ''
+      : null;
     this.controlType = subType;
   }
 }
@@ -73,9 +81,11 @@ export interface QuestionModel {
   _id: number;
   key: string;
   label: string;
-  choices: string[];
+  choices: Choices[];
   required: boolean;
   group: number;
+  image?: string;
+  description?: string;
 }
 
 export interface QuestionOptions<T> {
@@ -84,13 +94,18 @@ export interface QuestionOptions<T> {
   label?: string;
   options?: string[];
   type?: string;
-  // required?: boolean;
   order?: number;
   title?: string;
   description?: string;
   validators?: ValidatorFn | ValidatorFn[] | AbstractControlOptions;
   group?: number;
-  choices?: string[];
+  choices?: Choices[];
   subType?: string;
   required?: boolean;
+  image?: string;
+}
+
+interface Choices {
+  key: string;
+  value: string;
 }

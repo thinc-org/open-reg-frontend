@@ -42,3 +42,12 @@ p {
     max-height: 500px;
   }
 }
+
+.question{
+  &-required {
+    color: red;
+  }
+  &-image {
+    width: 100%;
+  }
+}
