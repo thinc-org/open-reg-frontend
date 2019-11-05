@@ -19,9 +19,6 @@ import {
   startWith,
   share,
   distinctUntilChanged,
-  scan,
-  pluck,
-  takeUntil,
 } from 'rxjs/operators';
 import { Observable, Subject } from 'rxjs';
 
@@ -67,7 +64,7 @@ export class FormInputComponent implements AfterViewInit, OnInit, OnDestroy {
           distinctUntilChanged(),
           map(parent => this.question.subChoices[parent] || []),
           tap(choices => {
-            if (!(choices && choices.length < 1)) {
+            if (choices && choices.length < 1) {
               this.required = false;
               this.formControl.clearValidators();
             } else {
@@ -77,27 +74,11 @@ export class FormInputComponent implements AfterViewInit, OnInit, OnDestroy {
           }),
           share()
         );
-      this.changed$ = this.form.get(this.question.dependsOn).valueChanges.pipe(
-        distinctUntilChanged(),
-        takeUntil(this.destroy$),
-        scan(
-          (acc, cur) => {
-            return { prev: cur, changed: cur.value !== acc.prev };
-          },
-          { prev: '', changed: false }
-        ),
-        pluck('changed')
-      );
-      this.changed$.subscribe(changed => {
-        if (changed) {
-          this.formControl.reset();
-        }
-      });
     }
   }
 
   ngAfterViewInit() {
-    if (this.question.type === 'IMAGE') {
+    if (this.question.type === QuestionTypes.IMAGE) {
       const validationResult = this.imageService.validateImageName(
         this.imageName
       );
@@ -105,6 +86,10 @@ export class FormInputComponent implements AfterViewInit, OnInit, OnDestroy {
         ? this.formControl.setErrors(null)
         : this.formControl.setErrors(validationResult);
       this.cdr.detectChanges();
+    } else if (this.question.type === QuestionTypes.SUBCHOICES) {
+      this.subChoices$.pipe().subscribe(_ => {
+        this.formControl.reset();
+      });
     }
   }
 

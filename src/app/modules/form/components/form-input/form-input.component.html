@@ -2,7 +2,7 @@
   <label [attr.for]="question.key">
     <p class="text">
       {{ question.label }}
-    <span *ngIf="question.required" class="question-required">*</span>
+    <span *ngIf="required" class="question-required">*</span>
     </p>
     <img class="question-image" *ngIf="question.image" [src]="question.image"/>
     <markdown *ngIf="question.description" class="question-markdown" [data]="question.description"></markdown>
@@ -47,6 +47,7 @@
       ></nz-option>
     </nz-select>
     <ng-container *ngSwitchCase="'subchoice'">
+      test
       <nz-select
         nzSize="large"
         nzPlaceHolder="select"
