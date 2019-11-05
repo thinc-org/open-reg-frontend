@@ -9,11 +9,12 @@ export class BaseQuestion<T> {
   description: string;
   required: boolean;
   dependsOn?: string;
-  choices: { label: string; value: string }[];
-  subChoices?: { [key: string]: { label: string; value: string }[] };
+  subChoices?: { [key: string]: Choices[] };
+  choices: Choices[];
   key: string;
   controlType: string;
   group: number;
+  image?: string;
 
   constructor(
     options: QuestionOptions<T> = {},
@@ -28,6 +29,8 @@ export class BaseQuestion<T> {
     this.title = options.title || '';
     this.group = options.group;
     this.dependsOn = options.dependsOn;
+    this.image = options.image;
+    this.description = options.description;
   }
 }
 
@@ -41,6 +44,11 @@ export class DropdownQuestion extends BaseQuestion<string> {
   ) {
     super(options, validators);
     this.choices = options.choices || [];
+    this.value = options.choices
+      ? options.choices.findIndex(obj => {
+          return obj.value === options.value;
+        }) + ''
+      : null;
     this.controlType = subType;
     this.subChoices = options.subChoices;
   }
@@ -93,9 +101,11 @@ export interface QuestionModel {
   _id: number;
   key: string;
   label: string;
-  choices: { label: string; value: string }[];
+  choices: Choices[];
   required: boolean;
   group: number;
+  image?: string;
+  description?: string;
 }
 
 export interface QuestionOptions<T> {
@@ -111,7 +121,13 @@ export interface QuestionOptions<T> {
   description?: string;
   validators?: ValidatorFn | ValidatorFn[] | AbstractControlOptions;
   group?: number;
-  choices?: { label: string; value: string }[];
+  choices?: Choices[];
   subType?: string;
   required?: boolean;
+  image?: string;
+}
+
+interface Choices {
+  key: string;
+  value: string;
 }

@@ -6,7 +6,7 @@ import { AdminGuard } from './core/guards/admin-guard.service';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: './modules/home/home.module#HomeModule',
+    loadChildren: './modules/ballhome/ballhome.module#BallHomeModule',
   },
   {
     path: 'register',
