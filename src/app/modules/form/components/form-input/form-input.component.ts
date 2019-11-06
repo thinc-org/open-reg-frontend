@@ -75,7 +75,7 @@ export class FormInputComponent implements AfterViewInit, OnInit, OnDestroy {
           share()
         );
     } else if (this.question.type === QuestionTypes.IMAGE) {
-      if (!this.image) {
+      if (!this.image && this.question.value) {
         this.imageService.saveImage(
           null,
           this.question.key,
