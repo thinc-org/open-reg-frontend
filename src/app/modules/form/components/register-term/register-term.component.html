@@ -3,7 +3,7 @@
     <div
       class="form-row"
       nz-row
-      *ngFor="let question of processedQuestions$ | async; i as index"
+      *ngFor="let question of processedQuestions$ | async; index as i"
     >
       <input
         nz-input
