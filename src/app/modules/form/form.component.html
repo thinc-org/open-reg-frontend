@@ -3,7 +3,7 @@
   [subtitle]="currentStepObj.description"
 >
   <ng-container [ngSwitch]="currentStepType">
-    <app-register-term *ngSwitchCase="'term'"> </app-register-term>
+    <app-register-term *ngSwitchCase="'terms'" [form]="currentFormObj"></app-register-term>
     <app-register-form
       *ngSwitchCase="'form'"
       nzOffset="6"
