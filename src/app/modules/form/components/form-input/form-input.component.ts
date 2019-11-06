@@ -106,7 +106,9 @@ export class FormInputComponent implements AfterViewInit, OnInit, OnDestroy {
   }
 
   get imageData() {
+    if (this.image) {
       return this.image.data ? this.image.data : this.image.url;
+    }
   }
 
   get imageName() {
