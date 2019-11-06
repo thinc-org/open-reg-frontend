@@ -8,7 +8,7 @@
       <input
         nz-input
         type="checkbox"
-        [id]="checkbox - +'i'"
+        [id]="'checkbox-' + i"
         [value]="question.description"
         (change)="
           $event.target.checked
@@ -17,7 +17,7 @@
         "
         [formControlName]="question.key"
       />
-      <label class='term-label' [for]="checkbox - +'i'"> {{ question.label }}</label>
+      <label class='term-label' [for]="'checkbox-' + i"> {{ question.label }}</label>
     </div>
   </form>
 </div>
