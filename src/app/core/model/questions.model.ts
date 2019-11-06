@@ -44,6 +44,7 @@ export class DropdownQuestion extends BaseQuestion<string> {
   ) {
     super(options, validators);
     this.choices = options.choices || [];
+    this.value = options.value;
     this.controlType = subType;
     this.subChoices = options.subChoices;
   }
