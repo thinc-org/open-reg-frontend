@@ -23,12 +23,13 @@ import {
 import { TranslateModule } from '@ngx-translate/core';
 import { RegisterConfirmComponent } from './components/register-confirm/register-confirm.component';
 
-import { MarkdownModule } from 'ngx-markdown';
+import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
 
 import 'prismjs';
 import 'prismjs/components/prism-typescript.min.js';
 import 'prismjs/plugins/line-numbers/prism-line-numbers.js';
 import 'prismjs/plugins/line-highlight/prism-line-highlight.js';
+import { markedOptionsFactory } from './markdown.options';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,12 @@ import 'prismjs/plugins/line-highlight/prism-line-highlight.js';
     NzIconModule,
     NzSelectModule,
     NzRadioModule,
-    MarkdownModule.forRoot(),
+    MarkdownModule.forRoot({
+      markedOptions: {
+        provide: MarkedOptions,
+        useFactory: markedOptionsFactory,
+      },
+    }),
   ],
   exports: [
     FormComponent,
