@@ -36,7 +36,6 @@ export class FormService {
   currentStep$ = new BehaviorSubject<number>(1);
   eventName: string;
   apiResult$: Observable<any>;
-  conditions: string;
 
   complete() {
     this.destroy$.next(undefined);
@@ -88,7 +87,6 @@ export class FormService {
           label:
             '1. Term&Condition : ข้อมูลบางส่วนและรูปภาพที่ท่านได้กรอกมา จะนำไปใช้ในการทำบัตรสตาฟ CU-TU Traditional Football',
           required: true,
-          description: 'asd',
         } as QuestionModel);
       }
       this.groups = result.groups;
