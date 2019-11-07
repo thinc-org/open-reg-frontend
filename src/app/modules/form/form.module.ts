@@ -30,6 +30,7 @@ import 'prismjs/components/prism-typescript.min.js';
 import 'prismjs/plugins/line-numbers/prism-line-numbers.js';
 import 'prismjs/plugins/line-highlight/prism-line-highlight.js';
 import { markedOptionsFactory } from './markdown.options';
+import { RegisterTermComponent } from './components/register-term/register-term.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { markedOptionsFactory } from './markdown.options';
     RegisterFormComponent,
     RegisterNavigatorComponent,
     RegisterConfirmComponent,
+    RegisterTermComponent,
   ],
   imports: [
     CommonModule,

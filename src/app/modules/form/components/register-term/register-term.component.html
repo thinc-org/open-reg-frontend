@@ -1,0 +1,23 @@
+<div class="term-container">
+  <form [formGroup]="form">
+    <div
+      class="form-row"
+      nz-row
+      *ngFor="let question of processedQuestions$ | async; index as i"
+    >
+      <input
+        nz-input
+        type="checkbox"
+        [id]="'checkbox-' + i"
+        [value]="question.description"
+        (change)="
+          $event.target.checked
+            ? getFormControl(question.key).patchValue(true)
+            : getFormControl(question.key).patchValue('')
+        "
+        [formControlName]="question.key"
+      />
+      <label class='term-label' [for]="'checkbox-' + i"> {{ question.label }}</label>
+    </div>
+  </form>
+</div>
