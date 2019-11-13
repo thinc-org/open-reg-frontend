@@ -3,10 +3,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ChulaSsoService } from 'src/app/core/services/chula-sso.service';
 import { take, pluck, switchMap, startWith } from 'rxjs/operators';
 import { ApiService } from 'src/app/api/services';
-import { EMPTY, Subject, Observable } from 'rxjs';
+import { EMPTY, Observable } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { FooterService } from 'src/app/core/services/footer.service';
 import { NavbarService } from 'src/app/core/services/navbar.service';
+import { NotificationService } from 'src/app/core/services/notification.service';
 
 @Component({
   selector: 'app-ballhome',
@@ -14,7 +15,6 @@ import { NavbarService } from 'src/app/core/services/navbar.service';
   styleUrls: ['./ballhome.component.scss'],
 })
 export class BallHomeComponent implements OnInit, OnDestroy {
-  loginError$ = new Subject<string>();
   validateSSO$: Observable<any>;
   waitingForValidation = false;
   constructor(
@@ -24,7 +24,8 @@ export class BallHomeComponent implements OnInit, OnDestroy {
     private router: Router,
     private apiService: ApiService,
     private navbarService: NavbarService,
-    private footerService: FooterService
+    private footerService: FooterService,
+    private notification: NotificationService,
   ) {
     this.footerService.hide();
     this.navbarService.hide();
@@ -55,7 +56,7 @@ export class BallHomeComponent implements OnInit, OnDestroy {
         }
       },
       _ => {
-        this.loginError$.next('Something went wrong, Please try again');
+        this.notification.showError('Something went wrong, Please try again');
         this.waitingForValidation = false;
         this.router.navigate(['/']);
       }
@@ -63,7 +64,6 @@ export class BallHomeComponent implements OnInit, OnDestroy {
   }
 
   login() {
-    this.loginError$.next();
     this.sso.login();
   }
 

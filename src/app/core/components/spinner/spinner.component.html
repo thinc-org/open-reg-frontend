@@ -1,0 +1,13 @@
+<div
+  class="loading-icon"
+  [ngClass]="{
+    'loading-icon-grey': isGrey,
+    'loading-icon-white': !isGrey
+  }"
+>
+  <mat-progress-spinner
+    [diameter]="diameter"
+    class="loading-icon-item"
+    mode="indeterminate"
+  ></mat-progress-spinner>
+</div>

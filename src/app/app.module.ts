@@ -27,6 +27,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { ApiModule } from './api/api.module';
 import { environment } from 'src/environments/environment';
 import { ApiInterceptor } from './core/services/api.interceptor';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 registerLocaleData(localeTh, 'th');
 
@@ -54,6 +55,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     BrowserAnimationsModule,
     NgxStronglyTypedFormsModule,
     ApiModule.forRoot({ rootUrl: environment.apiUrl }),
+    MatSnackBarModule,
   ],
   exports: [TranslateModule],
   providers: [

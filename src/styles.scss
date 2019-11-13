@@ -2,6 +2,7 @@
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @import '~@angular/material/theming';
+@import './app/core/styles/colors.scss';
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -18,8 +19,11 @@ $open-reg-frontend-accent: mat-palette($mat-pink, A200, A100, A400);
 // The warn palette is optional (defaults to red).
 $open-reg-frontend-warn: mat-palette($mat-red);
 
+// white
+$open-reg-frontend-white: mat-palette($openreg-test);
+
 // Create the theme object (a Sass map containing all of the palettes).
-$open-reg-frontend-theme: mat-light-theme($open-reg-frontend-primary, $open-reg-frontend-accent, $open-reg-frontend-warn);
+$open-reg-frontend-theme: mat-light-theme($open-reg-frontend-primary, $open-reg-frontend-accent, $open-reg-frontend-white);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -133,6 +137,10 @@ body {
 
 nz-layout {
   min-height: 100vh !important;
+}
+
+.mat-button-base {
+  font-family: 'Noto Sans Thai UI', 'Inter', 'Sans-Serif';
 }
 
 html, body { height: 100%; }

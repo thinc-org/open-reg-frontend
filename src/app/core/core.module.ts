@@ -16,6 +16,8 @@ import { RouterModule } from '@angular/router';
 import { StorageServiceModule } from 'angular-webstorage-service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import { MatButtonModule } from '@angular/material/button';
     SvgDefinitionsComponent,
     ResultComponent,
     DimensionDirective,
+    SpinnerComponent,
   ],
   imports: [
     ReactiveFormsModule,
@@ -38,6 +41,7 @@ import { MatButtonModule } from '@angular/material/button';
     StorageServiceModule,
     MatIconModule,
     MatButtonModule,
+    MatProgressSpinnerModule,
   ],
   entryComponents: [],
   // providers: [{ provide: ApiService, useClass: MockApiService }],
@@ -52,6 +56,7 @@ import { MatButtonModule } from '@angular/material/button';
     SvgDefinitionsComponent,
     ResultComponent,
     DimensionDirective,
+    SpinnerComponent,
   ],
 })
 export class CoreModule {}

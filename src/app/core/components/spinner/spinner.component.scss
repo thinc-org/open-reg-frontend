@@ -1,0 +1,17 @@
+.loading-icon {
+  &-item {
+    margin-top: 30px;
+  }
+  &-white {
+    &::ng-deep .mat-progress-spinner circle,
+    .mat-spinner circle {
+      stroke: rgba(255, 255, 255, 0.90);;
+    }
+  }
+  &-grey {
+    &::ng-deep .mat-progress-spinner circle,
+    .mat-spinner circle {
+      stroke: rgba(0, 0, 0, 0.65);
+    }
+  }
+}
