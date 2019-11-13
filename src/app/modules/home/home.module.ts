@@ -16,6 +16,7 @@ import {
 import { CoreModule } from 'src/app/core/core.module';
 import { HomeComponent } from './home.component';
 import { HomeRoutingModule } from './home-routing.module';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [HomeComponent],
@@ -33,6 +34,7 @@ import { HomeRoutingModule } from './home-routing.module';
     NzLayoutModule,
     CoreModule,
     NzIconModule,
+    MatButtonModule,
   ],
 })
 export class HomeModule {}

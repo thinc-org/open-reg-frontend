@@ -25,7 +25,7 @@ export class BallHomeComponent implements OnInit, OnDestroy {
     private apiService: ApiService,
     private navbarService: NavbarService,
     private footerService: FooterService,
-    private notification: NotificationService,
+    private notification: NotificationService
   ) {
     this.footerService.hide();
     this.navbarService.hide();
