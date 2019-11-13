@@ -34,7 +34,6 @@
     "gzip-all": "^1.0.0",
     "hammerjs": "^2.0.8",
     "ng-swagger-gen": "^1.8.1",
-    "ng-zorro-antd": "^8.1.2",
     "ngx-markdown": "^8.2.1",
     "ngx-strongly-typed-forms": "^8.0.1",
     "rxjs": "^6.4.0",

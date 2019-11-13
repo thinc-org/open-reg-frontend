@@ -7,19 +7,6 @@ import { RegisterNavigatorComponent } from './components/register-navigator/regi
 import { CoreModule } from 'src/app/core/core.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxStronglyTypedFormsModule } from 'ngx-strongly-typed-forms';
-import {
-  NzButtonModule,
-  NzModalModule,
-  NzTypographyModule,
-  NzStepsModule,
-  NzInputModule,
-  NzGridModule,
-  NzLayoutModule,
-  NzIconModule,
-  NzSelectModule,
-  NzRadioModule,
-  NzCheckboxModule,
-} from 'ng-zorro-antd';
 import { TranslateModule } from '@ngx-translate/core';
 import { RegisterConfirmComponent } from './components/register-confirm/register-confirm.component';
 
@@ -57,17 +44,6 @@ import { ErrorMessageComponent } from './components/form-input/error-message/err
     NgxStronglyTypedFormsModule,
     FormsModule,
     ReactiveFormsModule,
-    NzButtonModule,
-    NzModalModule,
-    NzTypographyModule,
-    NzStepsModule,
-    NzCheckboxModule,
-    NzInputModule,
-    NzGridModule,
-    NzLayoutModule,
-    NzIconModule,
-    NzSelectModule,
-    NzRadioModule,
     MarkdownModule.forRoot({
       markedOptions: {
         provide: MarkedOptions,

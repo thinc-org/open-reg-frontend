@@ -13,7 +13,7 @@
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
 $open-reg-frontend-primary: mat-palette($mat-indigo);
-$open-reg-frontend-accent: mat-palette($mat-pink, A200, A100, A400);
+$open-reg-frontend-accent: mat-palette($openreg-test);
 
 // The warn palette is optional (defaults to red).
 $open-reg-frontend-warn: mat-palette($mat-red);
@@ -25,11 +25,11 @@ $open-reg-frontend-white: mat-palette($openreg-test);
 $open-reg-frontend-theme: mat-light-theme(
   $open-reg-frontend-primary,
   $open-reg-frontend-accent,
-  $open-reg-frontend-white
+  $open-reg-frontend-warn
 );
 
 $custom-typography: mat-typography-config(
-  $font-family: 'Noto Sans Thai UI, Inter, Sans-Serif'
+  $font-family: 'Noto Sans Thai UI, Inter, Sans-Serif',
 );
 
 @include angular-material-typography($custom-typography);
@@ -107,61 +107,26 @@ body {
   background-color: #fbfbfb;
 }
 
-.ant-radio {
-  .ant-radio-inner {
-    border-color: #f4f4f4;
-  }
-  &-checked {
-    .ant-radio-inner {
-      border-color: #f4f4f4;
-    }
-  }
-  &-input {
-    &:focus + .ant-radio-inner {
-      border-color: #f4f4f4;
-    }
-  }
-}
-
-.ant-select {
-  &-selection {
-    background-color: #f9f9f9;
-    border-radius: 6px;
-    box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.02);
-    border: 0;
-    &:focus {
-      box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.02);
-    }
-  }
-  &-dropdown {
-    border-radius: 0;
-    box-shadow: 0;
-    &-menu-item {
-      font-weight: 600;
-      border-top: 1.5px solid #dfdede;
-      padding-top: 10px;
-      padding-bottom: 10px;
-      background-color: #f9f9f9;
-      border-radius: 0;
-      color: #4b4b4b;
-      &-active:not(.ant-select-dropdown-menu-item-disabled) {
-        background-color: #dce9f9;
-      }
-      &:first-child {
-        border-radius: 0;
-      }
-    }
-  }
-}
-
-nz-layout {
-  min-height: 100vh !important;
-}
-
 html,
 body {
   height: 100%;
+  background-color: #f0f2f5;
 }
 body {
   margin: 0;
+  color: rgba(0, 0, 0, 0.65);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 500;
 }

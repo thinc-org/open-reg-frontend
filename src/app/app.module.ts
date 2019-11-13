@@ -19,7 +19,6 @@ import {
 } from '@angular/common/http';
 import { GlobalErrorHandler } from './core/global-error-handler.service';
 import { ServerErrorInterceptor } from './core/services/server-error.interceptor';
-import { NgZorroAntdModule, NZ_I18N, en_US } from 'ng-zorro-antd';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
 import { OverlayModule } from '@angular/cdk/overlay';
@@ -49,7 +48,6 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient],
       },
     }),
-    NgZorroAntdModule,
     BrowserAnimationsModule,
     NgxStronglyTypedFormsModule,
     ApiModule.forRoot({ rootUrl: environment.apiUrl }),
@@ -69,7 +67,6 @@ export function HttpLoaderFactory(http: HttpClient) {
       useClass: forwardRef(() => ServerErrorInterceptor),
       multi: true,
     },
-    { provide: NZ_I18N, useValue: en_US },
   ],
   bootstrap: [AppComponent],
 })

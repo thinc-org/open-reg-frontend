@@ -28,9 +28,11 @@
             accept="image/*"
             (change)="saveImage($event.target.files)"
             [id]="question.key"
-            [placeholder]="question.description || ''"
           />
-          <app-error-message [label]="label" [control]="formControl"></app-error-message>
+          <app-error-message
+            [label]="label"
+            [control]="formControl"
+          ></app-error-message>
         </ng-container>
         <ng-template ngSwitchDefault>
           <mat-form-field>
@@ -40,9 +42,11 @@
               [id]="question.key"
               [type]="question.type"
               matInput
-              [placeholder]="question.description || ''"
             />
-            <app-error-message [label]="label" [control]="formControl"></app-error-message>
+            <app-error-message
+              [label]="label"
+              [control]="formControl"
+            ></app-error-message>
           </mat-form-field>
         </ng-template>
       </div>
@@ -59,7 +63,10 @@
           >{{ option.label }}</mat-option
         >
       </mat-select>
-      <app-error-message [label]="label" [control]="formControl"></app-error-message>
+      <app-error-message
+        [label]="label"
+        [control]="formControl"
+      ></app-error-message>
     </mat-form-field>
     <ng-container *ngSwitchCase="'subchoice'">
       <mat-form-field *ngIf="subChoices$ | async as choices">
@@ -68,13 +75,14 @@
           [formControlName]="question.key"
           [id]="question.key"
         >
-          <mat-option
-            *ngFor="let option of choices"
-            [value]="option.value"
-            >{{ option.label }}</mat-option
-          >
+          <mat-option *ngFor="let option of choices" [value]="option.value">{{
+            option.label
+          }}</mat-option>
         </mat-select>
-        <app-error-message [label]="label" [control]="formControl"></app-error-message>
+        <app-error-message
+          [label]="label"
+          [control]="formControl"
+        ></app-error-message>
       </mat-form-field>
     </ng-container>
     <mat-radio-group
@@ -82,11 +90,10 @@
       [formControlName]="question.key"
       [id]="question.key"
     >
-    {{ question | json}}
-    {{ formControl.value}}
       <mat-radio-button
         *ngFor="let option of question.choices"
         [value]="option.value"
+        class="form-radio-button"
         >{{ option.label }}</mat-radio-button
       >
     </mat-radio-group>

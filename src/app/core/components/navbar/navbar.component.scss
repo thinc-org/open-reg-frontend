@@ -4,11 +4,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  position: sticky;
-  top: 0;
-  left: 0;
   background-color: #ffffff;
-  z-index: 50;
 }
 
 .container {
@@ -20,7 +16,7 @@
   display: flex;
   width: 100%;
   max-width: 1080px;
-  padding: 20px;
+  padding: 15px 20px;
   justify-content: space-between;
   @include for-phone-only {
     padding: 10px 20px;

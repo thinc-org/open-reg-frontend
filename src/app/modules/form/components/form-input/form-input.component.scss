@@ -19,10 +19,6 @@ p {
   margin-top: 5px;
 }
 
-[nz-radio] {
-  display: block;
-}
-
 .question{
   &-required {
     color: red;
@@ -30,11 +26,20 @@ p {
   &-image {
     width: 100%;
   }
+  &-markdown {
+    font-size: 12px;
+  }
 }
 
 .image {
   &-upload {
     max-width: 100%;
     max-height: 500px;
+  }
+}
+
+.form-radio {
+  &-button {
+    margin: 5px;
   }
 }
