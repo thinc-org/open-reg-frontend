@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { NotificationService } from './core/services/notification.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { ThemeService } from './core/services/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +19,8 @@ export class AppComponent implements OnInit, OnDestroy {
     translate: TranslateService,
     private footerService: FooterService,
     private snackBar: MatSnackBar,
-    private notification: NotificationService
+    private notification: NotificationService,
+    private theme: ThemeService
   ) {
     translate.setDefaultLang('en');
 
@@ -26,12 +28,15 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.notification.getObservable().pipe(takeUntil(this.destroy$)).subscribe(notification => {
-      const { message, timeout, action } = notification;
-      this.snackBar.open(message, action, {
-        duration: timeout,
+    this.notification
+      .getObservable()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(notification => {
+        const { message, timeout, action } = notification;
+        this.snackBar.open(message, action, {
+          duration: timeout,
+        });
       });
-    });
   }
 
   ngOnDestroy() {
@@ -40,5 +45,9 @@ export class AppComponent implements OnInit, OnDestroy {
 
   get isFooterVisible() {
     return this.footerService.visible;
+  }
+
+  get theme$() {
+    return this.theme.currentTheme$;
   }
 }

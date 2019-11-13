@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ThemeService {
-  $currentTheme = new BehaviorSubject<string>('default-theme');
+  currentTheme$ = new BehaviorSubject<string>('default-theme');
   constructor() {}
 
   changeTheme(theme: string) {
-    this.$currentTheme.next(theme);
+    this.currentTheme$.next(theme);
   }
 }

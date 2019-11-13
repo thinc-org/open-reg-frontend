@@ -1,4 +1,4 @@
-<div class="app-layout">
+<div [class]="theme$ | async">
   <app-navbar></app-navbar>
   <router-outlet></router-outlet>
   <div *ngIf="isFooterVisible" class="app-footer"
