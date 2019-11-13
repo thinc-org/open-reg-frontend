@@ -55,14 +55,18 @@ export class FormComponent implements OnInit, OnDestroy {
   }
 
   get currentStepType() {
-    const isLastStep =
-      this.formService.currentStep$.value === this.steps.length;
-    if (isLastStep) {
-      return 'confirm';
-    } else if (this.formService.questions$.value[0]) {
-      return 'form';
+    const description = this.currentStepObj.description;
+    if (description !== null) {
+      switch (description) {
+        case 'CONFIRMATION':
+          return 'confirm';
+        case 'TERMS AND CONDITIONS':
+          return 'terms';
+        default:
+          return 'form';
+      }
     }
-    return 'loading';
+    return null;
   }
 
   get currentStepObj() {
