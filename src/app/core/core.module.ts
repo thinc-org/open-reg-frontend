@@ -27,6 +27,7 @@ import { DimensionDirective } from './directives/dimension.directive';
 import { RouterModule } from '@angular/router';
 import { StorageServiceModule } from 'angular-webstorage-service';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { MatIconModule } from '@angular/material/icon';
     RouterModule,
     StorageServiceModule,
     MatIconModule,
+    MatButtonModule,
   ],
   entryComponents: [],
   // providers: [{ provide: ApiService, useClass: MockApiService }],

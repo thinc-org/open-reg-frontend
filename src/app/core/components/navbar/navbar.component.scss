@@ -1,3 +1,5 @@
+@import '../../styles/mixins.scss';
+
 .big-container {
   width: 100%;
   display: flex;
@@ -20,29 +22,29 @@
   max-width: 1080px;
   padding: 20px;
   justify-content: space-between;
+  @include for-phone-only {
+    padding: 10px 20px;
+  }
 }
 
 .or-logo {
   margin-right: 40px;
   align-items: center;
+  @include for-phone-only {
+    margin-right: 10px;
+  }
 }
 .vl {
   border-left: 1px solid #b3b3b3;
   height: 30px;
   margin-right: 40px;
+  @include for-phone-only {
+    margin-right: 10px;
+  }
 }
 
-@media (max-width: 576px) {
-  .or-logo {
-    margin-right: 10px;
-  }
-  .vl {
-    margin-right: 10px;
-  }
-  .ant-layout-header {
-    padding: 0;
-  }
-  .logout-btn {
+.logout-btn {
+  @include for-phone-only {
     display: none;
   }
 }
