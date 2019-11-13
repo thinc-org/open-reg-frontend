@@ -9,13 +9,12 @@
         [subText]="mainText"
       ></app-topic>
     </div>
-    <i
+    <mat-icon
       class="arrow"
       [ngClass]="{ 'arrow-right': isRight, 'arrow-left': !isRight }"
-      nz-icon
-      [nzType]="isRight ? 'arrow-right' : 'arrow-left'"
-      nzTheme="outline"
-      nzColor="#FFFFFF"
-    ></i>
+      aria-hidden="false"
+      aria-label="Arrow"
+      >{{ isRight ? 'arrow_forward' : 'arrow_back' }}</mat-icon
+    >
   </div>
 </button>

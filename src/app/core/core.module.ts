@@ -26,6 +26,7 @@ import { ResultComponent } from './components/result/result.component';
 import { DimensionDirective } from './directives/dimension.directive';
 import { RouterModule } from '@angular/router';
 import { StorageServiceModule } from 'angular-webstorage-service';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { StorageServiceModule } from 'angular-webstorage-service';
     NzRadioModule,
     RouterModule,
     StorageServiceModule,
+    MatIconModule
   ],
   entryComponents: [],
   // providers: [{ provide: ApiService, useClass: MockApiService }],
