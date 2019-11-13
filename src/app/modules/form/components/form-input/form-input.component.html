@@ -54,8 +54,8 @@
         [id]="question.key"
       >
         <mat-option
-          *ngFor="let option of question.choices; index as i"
-          [value]="'' + i"
+          *ngFor="let option of question.choices"
+          [value]="option.value"
           >{{ option.label }}</mat-option
         >
       </mat-select>
@@ -69,8 +69,8 @@
           [id]="question.key"
         >
           <mat-option
-            *ngFor="let option of choices; index as i"
-            [value]="'' + i"
+            *ngFor="let option of choices"
+            [value]="option.value"
             >{{ option.label }}</mat-option
           >
         </mat-select>
@@ -82,10 +82,11 @@
       [formControlName]="question.key"
       [id]="question.key"
     >
+    {{ question | json}}
+    {{ formControl.value}}
       <mat-radio-button
-        class="radio-label"
-        *ngFor="let option of question.choices; index as i"
-        [value]="'' + i"
+        *ngFor="let option of question.choices"
+        [value]="option.value"
         >{{ option.label }}</mat-radio-button
       >
     </mat-radio-group>
