@@ -115,37 +115,14 @@ export class FormInputComponent implements AfterViewInit, OnInit, OnDestroy {
     return this.image ? this.image.name : null;
   }
 
-  get isValid() {
-    return this.formControl.valid;
-  }
   get currentValue() {
     return this.formControl.value;
   }
+
   get formControl() {
     return this.form.get(this.question.key);
   }
-  get isRequired() {
-    return this.formControl.errors.required;
-  }
-  get isMax() {
-    const maxObj = this.formControl.errors.maxlength;
-    return maxObj ? maxObj.requiredLength < maxObj.actualLength : false;
-  }
-  get isMin() {
-    const minObj = this.formControl.errors.minlength;
-    return minObj ? minObj.requiredLength >= minObj.actualLength : false;
-  }
-  get dirty() {
-    return this.formControl.dirty;
-  }
-  get touched() {
-    return this.formControl.touched;
-  }
-  get otherInvalid() {
-    return (
-      !(this.isMax || this.isMin || this.isRequired) && this.formControl.errors
-    );
-  }
+
   get label() {
     return this.question.label;
   }

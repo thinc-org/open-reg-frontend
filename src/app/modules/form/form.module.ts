@@ -31,6 +31,14 @@ import 'prismjs/plugins/line-numbers/prism-line-numbers.js';
 import 'prismjs/plugins/line-highlight/prism-line-highlight.js';
 import { markedOptionsFactory } from './markdown.options';
 import { RegisterTermComponent } from './components/register-term/register-term.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+import { FormsModule } from '@angular/forms';
+import { ErrorMessageComponent } from './components/form-input/error-message/error-message.component';
 
 @NgModule({
   declarations: [
@@ -40,12 +48,14 @@ import { RegisterTermComponent } from './components/register-term/register-term.
     RegisterNavigatorComponent,
     RegisterConfirmComponent,
     RegisterTermComponent,
+    ErrorMessageComponent,
   ],
   imports: [
     CommonModule,
     CoreModule,
     TranslateModule,
     NgxStronglyTypedFormsModule,
+    FormsModule,
     ReactiveFormsModule,
     NzButtonModule,
     NzModalModule,
@@ -64,6 +74,12 @@ import { RegisterTermComponent } from './components/register-term/register-term.
         useFactory: markedOptionsFactory,
       },
     }),
+    MatInputModule,
+    MatCheckboxModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatRadioModule,
   ],
   exports: [
     FormComponent,
