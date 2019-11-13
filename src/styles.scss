@@ -28,6 +28,12 @@ $open-reg-frontend-theme: mat-light-theme(
   $open-reg-frontend-warn
 );
 
+$example-theme-1: mat-light-theme(
+  $open-reg-frontend-white,
+  $open-reg-frontend-white,
+  $open-reg-frontend-white
+);
+
 $custom-typography: mat-typography-config(
   $font-family: 'Noto Sans Thai UI, Inter, Sans-Serif',
 );
@@ -37,7 +43,13 @@ $custom-typography: mat-typography-config(
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include angular-material-theme($open-reg-frontend-theme);
+.default-theme {
+  @include angular-material-theme($open-reg-frontend-theme);
+}
+
+.theme-1 {
+  @include angular-material-theme($example-theme-1);
+}
 
 /* You can add global styles to this file, and also import other style files */
 
