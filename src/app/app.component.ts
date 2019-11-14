@@ -6,6 +6,7 @@ import { NotificationService } from './core/services/notification.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ThemeService } from './core/services/theme.service';
+import { OverlayContainer } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'app-root',
@@ -15,12 +16,14 @@ import { ThemeService } from './core/services/theme.service';
 export class AppComponent implements OnInit, OnDestroy {
   title = 'open-reg-frontend';
   destroy$ = new Subject<any>();
+  themeClass: string;
   constructor(
     translate: TranslateService,
     private footerService: FooterService,
     private snackBar: MatSnackBar,
     private notification: NotificationService,
-    private theme: ThemeService
+    private theme: ThemeService,
+    private overlayContainer: OverlayContainer
   ) {
     translate.setDefaultLang('en');
 
@@ -37,6 +40,21 @@ export class AppComponent implements OnInit, OnDestroy {
           duration: timeout,
         });
       });
+    this.theme.currentTheme$.pipe(takeUntil(this.destroy$)).subscribe(theme => {
+      this.themeClass = theme;
+
+      // remove old theme class and add new theme class
+      // we're removing any css class that contains '-theme' string but your theme classes can follow any pattern
+      const overlayContainerClasses = this.overlayContainer.getContainerElement()
+        .classList;
+      const themeClassesToRemove = Array.from(overlayContainerClasses).filter(
+        (item: string) => item.includes('-theme')
+      );
+      if (themeClassesToRemove.length) {
+        overlayContainerClasses.remove(...themeClassesToRemove);
+      }
+      overlayContainerClasses.add(theme);
+    });
   }
 
   ngOnDestroy() {
@@ -47,7 +65,4 @@ export class AppComponent implements OnInit, OnDestroy {
     return this.footerService.visible;
   }
 
-  get theme$() {
-    return this.theme.currentTheme$;
-  }
 }
