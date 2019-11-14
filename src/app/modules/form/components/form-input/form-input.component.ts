@@ -44,6 +44,7 @@ export class FormInputComponent implements AfterViewInit, OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.destroy$.next();
+    this.destroy$.complete();
   }
 
   saveImage(fileList: FileList) {
