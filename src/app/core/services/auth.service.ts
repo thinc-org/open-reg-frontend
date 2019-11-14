@@ -48,7 +48,7 @@ export class AuthService implements OnDestroy {
     return this.apiService.getFormAll().pipe(
       map(forms =>
         forms.find(form => {
-          return form.title === 'ลอยกระทง';
+          return form.title === 'CU-TU Football Contact List';
         })
       ),
       pluck('_id'),

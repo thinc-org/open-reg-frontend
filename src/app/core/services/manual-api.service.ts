@@ -58,7 +58,7 @@ export class ManualApiService implements ApiInterface {
         map(res => {
           const header = res.headers.get('content-disposition');
           const filename = header.match(
-            /filename\*=(?:UTF-\d['"]*)?(([^;\r\n"']*))['"]?;?/
+            /filename\*?="?(?:UTF-\d['"]*)?([^;\r\n"']*)['"]?"?;?/
           )[1];
           return {
             filename: decodeURIComponent(filename),
