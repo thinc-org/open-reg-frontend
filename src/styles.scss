@@ -63,6 +63,10 @@ $custom-typography: mat-typography-config(
   margin-top: 4px !important;
 }
 
+.mat-form-field {
+  width: 100%;
+}
+
 @font-face {
   font-family: 'Noto Sans Thai UI Med';
   src: url('assets/fonts/NotoSansThaiUI-Medium.woff2') format('woff2'),

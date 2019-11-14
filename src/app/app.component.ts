@@ -64,5 +64,4 @@ export class AppComponent implements OnInit, OnDestroy {
   get isFooterVisible() {
     return this.footerService.visible;
   }
-
 }
