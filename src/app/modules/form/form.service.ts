@@ -60,10 +60,35 @@ export class FormService {
 
     this.apiResult$.pipe(takeUntil(this.destroy$)).subscribe(result => {
       (result.groups as Step[]).push({
-        description: 'CONFIRMATION',
-        order: result.length + 1,
         title: 'ยืนยันการลงทะเบียน',
+        description: 'CONFIRMATION',
+        order: result.groups.length + 1,
       });
+      if (result.eventId.length === 0) {
+        result.groups = result.groups.map(step => {
+          step.order++;
+          return step;
+        });
+        result.questions = result.questions.map(question => {
+          question.group++;
+          return question;
+        });
+        (result.groups as Step[]).unshift({
+          title: 'ข้อกำหนดและเงื่อนไขการใช้งาน',
+          description: 'TERMS AND CONDITIONS',
+          order: 1,
+        });
+        result.questions.unshift({
+          key: 'term-1',
+          value: '',
+          order: 1,
+          group: 1,
+          type: QuestionTypes.TEXT,
+          label:
+            '1. Term&Condition : ข้อมูลบางส่วนและรูปภาพที่ท่านได้กรอกมา จะนำไปใช้ในการทำบัตรสตาฟ CU-TU Traditional Football',
+          required: true,
+        } as QuestionModel);
+      }
       this.groups = result.groups;
       this.eventName = result.title;
       const convertedQuestions = this.convertQuestions(

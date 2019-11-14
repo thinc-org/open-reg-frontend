@@ -94,10 +94,9 @@ export enum QuestionTypes {
 export interface QuestionModel {
   order: number;
   type: QuestionTypes;
-  _id: number;
   key: string;
   label: string;
-  choices: Choices[];
+  choices?: Choices[];
   required: boolean;
   group: number;
   image?: string;
