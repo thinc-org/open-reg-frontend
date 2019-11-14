@@ -8,7 +8,15 @@ export class ThemeService {
   currentTheme$ = new BehaviorSubject<string>('default-theme');
   constructor() {}
 
-  changeTheme(theme: string) {
+  private changeTheme(theme: string) {
     this.currentTheme$.next(theme);
+  }
+
+  setDefaultTheme() {
+    this.changeTheme('default-theme');
+  }
+
+  setThemeOne() {
+    this.changeTheme('theme-1');
   }
 }
