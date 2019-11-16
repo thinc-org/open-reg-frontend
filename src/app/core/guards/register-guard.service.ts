@@ -16,11 +16,12 @@ export class RegisterGuard implements CanActivateChild {
   canActivateChild() {
     return this.auth.currentUser$.pipe(
       map(user => {
-        // not ready yet since backend not provide solution to seperated registered user from unregistered one
+        /* not ready yet since backend not provide solution to seperated registered user from unregistered one.
+        this service will have no effect */
         if (!user || !user.info) {
           const currentURL = this.location.path();
           this.router.navigate(['/'], {
-            queryParams: { return: currentURL },
+            queryParams: { redirectto: currentURL },
           });
           return false;
         }

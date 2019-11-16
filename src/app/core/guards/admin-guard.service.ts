@@ -20,7 +20,7 @@ export class AdminGuard implements CanActivateChild {
         if (!ids.includes(user.info.chulaId)) {
           const currentURL = this.location.path();
           this.router.navigate(['/'], {
-            queryParams: { return: currentURL },
+            queryParams: { redirectto: currentURL },
           });
           return false;
         }

@@ -57,7 +57,7 @@ export class BallHomeComponent implements OnInit, OnDestroy {
           this.route.queryParamMap.pipe(
             take(1),
             pluck('params'),
-            pluck('return')
+            pluck('redirectto')
           )
         )
       )
