@@ -11,7 +11,6 @@ import {
   NzGridModule,
   NzLayoutModule,
   NzIconModule,
-  NzModalModule,
   NzSelectModule,
   NzRadioModule,
 } from 'ng-zorro-antd';
@@ -45,7 +44,6 @@ import { StorageServiceModule } from 'angular-webstorage-service';
     TranslateModule,
     CommonModule,
     NzButtonModule,
-    NzModalModule,
     NzTypographyModule,
     NzStepsModule,
     NzInputModule,
