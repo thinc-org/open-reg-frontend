@@ -23,7 +23,6 @@ import { NgZorroAntdModule, NZ_I18N, en_US } from 'ng-zorro-antd';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
-import { OverlayModule } from '@angular/cdk/overlay';
 import { ApiModule } from './api/api.module';
 import { environment } from 'src/environments/environment';
 import { ApiInterceptor } from './core/services/api.interceptor';
@@ -41,7 +40,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppRoutingModule,
     HttpClientModule,
     CoreModule,
-    OverlayModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
