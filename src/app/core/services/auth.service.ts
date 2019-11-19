@@ -18,7 +18,6 @@ export class AuthService implements OnDestroy {
     switchMap(_ => this.apiService.getUserProfile())
   ) as Observable<any>;
   isAuthenticated$ = this.token$.pipe(map(notNull));
-
   private _destroy$ = new Subject();
 
   ngOnDestroy() {

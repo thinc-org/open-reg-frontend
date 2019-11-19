@@ -1,7 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ChulaSsoService } from 'src/app/core/services/chula-sso.service';
-import { take, pluck, switchMap, startWith } from 'rxjs/operators';
+import {
+  take,
+  pluck,
+  switchMap,
+  startWith,
+  withLatestFrom,
+} from 'rxjs/operators';
 import { ApiService } from 'src/app/api/services';
 import { EMPTY, Subject, Observable } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth.service';
@@ -45,21 +51,31 @@ export class BallHomeComponent implements OnInit, OnDestroy {
         }
       })
     );
-    this.validateSSO$.subscribe(
-      ({ token }: { token: string }) => {
-        if (token) {
-          this.authService.setToken(token);
-          this.router.navigate(['/', 'profile']);
-        } else {
-          this.waitingForValidation = true;
+    this.validateSSO$
+      .pipe(
+        withLatestFrom(
+          this.route.queryParamMap.pipe(
+            take(1),
+            pluck('params'),
+            pluck('redirectto')
+          )
+        )
+      )
+      .subscribe(
+        ([{ token }, returnURL]: [{ token: string }, string]) => {
+          if (token) {
+            this.authService.setToken(token);
+            this.router.navigate([returnURL ? returnURL : '/profile']);
+          } else {
+            this.waitingForValidation = true;
+          }
+        },
+        _ => {
+          this.loginError$.next('Something went wrong, Please try again');
+          this.waitingForValidation = false;
+          this.router.navigate(['/']);
         }
-      },
-      _ => {
-        this.loginError$.next('Something went wrong, Please try again');
-        this.waitingForValidation = false;
-        this.router.navigate(['/']);
-      }
-    );
+      );
   }
 
   login() {

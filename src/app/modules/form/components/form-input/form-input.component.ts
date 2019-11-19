@@ -74,6 +74,14 @@ export class FormInputComponent implements AfterViewInit, OnInit, OnDestroy {
           }),
           share()
         );
+    } else if (this.question.type === QuestionTypes.IMAGE) {
+      if (!this.image && this.question.value) {
+        this.imageService.saveImage(
+          null,
+          this.question.key,
+          this.question.value
+        );
+      }
     }
   }
 
@@ -98,18 +106,7 @@ export class FormInputComponent implements AfterViewInit, OnInit, OnDestroy {
   }
 
   get imageData() {
-    if (
-      this.question.type === 'IMAGE' &&
-      this.question.value &&
-      this.question.value.length > 0
-    ) {
-      if (!this.image) {
-        this.imageService.saveImage(
-          null,
-          this.question.key,
-          this.question.value
-        );
-      }
+    if (this.image) {
       return this.image.data ? this.image.data : this.image.url;
     }
   }

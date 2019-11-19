@@ -36,18 +36,18 @@ p {
   display: block;
 }
 
-.image {
-  &-upload {
-    max-width: 100%;
-    max-height: 500px;
-  }
-}
-
 .question{
   &-required {
     color: red;
   }
   &-image {
     width: 100%;
+  }
+}
+
+.image {
+  &-upload {
+    max-width: 100%;
+    max-height: 500px;
   }
 }

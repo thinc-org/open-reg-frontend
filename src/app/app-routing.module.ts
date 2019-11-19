@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './core/guards/auth-guard.service';
 import { AdminGuard } from './core/guards/admin-guard.service';
+import { RegisterGuard } from './core/guards/register-guard.service';
 
 const routes: Routes = [
   {
@@ -10,7 +11,7 @@ const routes: Routes = [
   },
   {
     path: 'register',
-    canActivateChild: [AuthGuard],
+    canActivateChild: [AuthGuard, RegisterGuard],
     loadChildren: './modules/register/register.module#RegisterModule',
   },
   {
