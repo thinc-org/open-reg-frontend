@@ -11,6 +11,7 @@ import {
   NzGridModule,
   NzLayoutModule,
   NzIconModule,
+  NzModalModule,
   NzSelectModule,
   NzRadioModule,
 } from 'ng-zorro-antd';
@@ -25,6 +26,7 @@ import { ResultComponent } from './components/result/result.component';
 import { DimensionDirective } from './directives/dimension.directive';
 import { RouterModule } from '@angular/router';
 import { StorageServiceModule } from 'angular-webstorage-service';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,7 @@ import { StorageServiceModule } from 'angular-webstorage-service';
     TranslateModule,
     CommonModule,
     NzButtonModule,
+    NzModalModule,
     NzTypographyModule,
     NzStepsModule,
     NzInputModule,
@@ -54,6 +57,7 @@ import { StorageServiceModule } from 'angular-webstorage-service';
     NzRadioModule,
     RouterModule,
     StorageServiceModule,
+    OverlayModule
   ],
   entryComponents: [],
   // providers: [{ provide: ApiService, useClass: MockApiService }],
