@@ -26,7 +26,7 @@ import { ResultComponent } from './components/result/result.component';
 import { DimensionDirective } from './directives/dimension.directive';
 import { RouterModule } from '@angular/router';
 import { StorageServiceModule } from 'angular-webstorage-service';
-import { OverlayModule, Overlay } from '@angular/cdk/overlay';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 @NgModule({
   declarations: [
