@@ -26,6 +26,7 @@ import { ResultComponent } from './components/result/result.component';
 import { DimensionDirective } from './directives/dimension.directive';
 import { RouterModule } from '@angular/router';
 import { StorageServiceModule } from 'angular-webstorage-service';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { StorageServiceModule } from 'angular-webstorage-service';
     ReactiveFormsModule,
     TranslateModule,
     CommonModule,
+    OverlayModule,
     NzButtonModule,
     NzModalModule,
     NzTypographyModule,
