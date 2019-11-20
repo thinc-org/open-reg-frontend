@@ -26,7 +26,7 @@ import { ResultComponent } from './components/result/result.component';
 import { DimensionDirective } from './directives/dimension.directive';
 import { RouterModule } from '@angular/router';
 import { StorageServiceModule } from 'angular-webstorage-service';
-import { OverlayModule } from '@angular/cdk/overlay';
+import { OverlayModule, Overlay } from '@angular/cdk/overlay';
 
 @NgModule({
   declarations: [
@@ -45,6 +45,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
     ReactiveFormsModule,
     TranslateModule,
     CommonModule,
+    OverlayModule,
     NzButtonModule,
     NzModalModule,
     NzTypographyModule,
@@ -57,7 +58,6 @@ import { OverlayModule } from '@angular/cdk/overlay';
     NzRadioModule,
     RouterModule,
     StorageServiceModule,
-    OverlayModule,
   ],
   entryComponents: [],
   // providers: [{ provide: ApiService, useClass: MockApiService }],
