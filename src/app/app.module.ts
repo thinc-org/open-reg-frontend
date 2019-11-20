@@ -26,6 +26,7 @@ import { CoreModule } from './core/core.module';
 import { ApiModule } from './api/api.module';
 import { environment } from 'src/environments/environment';
 import { ApiInterceptor } from './core/services/api.interceptor';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 registerLocaleData(localeTh, 'th');
 
@@ -38,7 +39,6 @@ export function HttpLoaderFactory(http: HttpClient) {
   imports: [
     BrowserModule,
     AppRoutingModule,
-    CoreModule,
     HttpClientModule,
     TranslateModule.forRoot({
       loader: {
@@ -47,7 +47,9 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient],
       },
     }),
+    OverlayModule,
     NgZorroAntdModule,
+    CoreModule,
     FormsModule,
     BrowserAnimationsModule,
     NgxStronglyTypedFormsModule,
