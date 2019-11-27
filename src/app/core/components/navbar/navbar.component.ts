@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { ChulaSsoService } from '../../services/chula-sso.service';
-import { NavbarService } from '../../services/navbar.service';
 
 @Component({
   selector: 'app-navbar',
@@ -15,14 +14,9 @@ export class NavbarComponent implements OnInit {
     private authService: AuthService,
     private chulaSSOService: ChulaSsoService,
     private router: Router,
-    private navbarService: NavbarService
   ) {}
 
   ngOnInit() {}
-
-  get isVisible() {
-    return this.navbarService.visible;
-  }
 
   loginSSO() {
     this.chulaSSOService.login();
