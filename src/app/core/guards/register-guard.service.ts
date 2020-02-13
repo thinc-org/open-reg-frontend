@@ -1,23 +1,24 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivateChild } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { withLatestFrom, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Location } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AdminGuard implements CanActivateChild {
+export class RegisterGuard implements CanActivateChild {
   constructor(
     public auth: AuthService,
     public router: Router,
     private location: Location
   ) {}
   canActivateChild() {
-    return this.auth.checkExportable().pipe(
-      withLatestFrom(this.auth.currentUser$),
-      map(([ids, user]) => {
-        if (!ids.includes(user.info.chulaId)) {
+    return this.auth.currentUser$.pipe(
+      map(user => {
+        /* not ready yet since backend not provide solution to seperated registered user from unregistered one.
+        this service will have no effect */
+        if (!user || !user.info) {
           const currentURL = this.location.path();
           this.router.navigate(['/'], {
             queryParams: { redirectto: currentURL },

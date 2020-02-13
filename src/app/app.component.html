@@ -1,9 +1,8 @@
 <div [class]="themeClass">
-  <app-navbar></app-navbar>
+  <app-navbar *ngIf="isNavbarVisible"></app-navbar>
   <router-outlet></router-outlet>
-  <div *ngIf="isFooterVisible" class="app-footer"
-    >Project <span class="open-reg">Open Registration</span> by
-    Thinc.</div
-  >
+  <div *ngIf="isFooterVisible" class="app-footer">
+    Project <span class="open-reg">Open Registration</span> by Thinc.
+  </div>
   <app-svg-definitions [style.display]="'none'"></app-svg-definitions>
 </div>

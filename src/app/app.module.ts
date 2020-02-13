@@ -21,7 +21,6 @@ import { GlobalErrorHandler } from './core/global-error-handler.service';
 import { ServerErrorInterceptor } from './core/services/server-error.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
-import { OverlayModule } from '@angular/cdk/overlay';
 import { ApiModule } from './api/api.module';
 import { environment } from 'src/environments/environment';
 import { ApiInterceptor } from './core/services/api.interceptor';
@@ -39,8 +38,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    CoreModule,
-    OverlayModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -48,6 +45,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient],
       },
     }),
+    CoreModule,
     BrowserAnimationsModule,
     NgxStronglyTypedFormsModule,
     ApiModule.forRoot({ rootUrl: environment.apiUrl }),
