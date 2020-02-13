@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ChulaSsoService } from 'src/app/core/services/chula-sso.service';
 import {
@@ -11,15 +11,13 @@ import {
 import { ApiService } from 'src/app/api/services';
 import { EMPTY, Subject, Observable } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth.service';
-import { FooterService } from 'src/app/core/services/footer.service';
-import { NavbarService } from 'src/app/core/services/navbar.service';
 
 @Component({
   selector: 'app-ballhome',
   templateUrl: './ballhome.component.html',
   styleUrls: ['./ballhome.component.scss'],
 })
-export class BallHomeComponent implements OnInit, OnDestroy {
+export class BallHomeComponent implements OnInit {
   loginError$ = new Subject<string>();
   validateSSO$: Observable<any>;
   waitingForValidation = false;
@@ -28,13 +26,8 @@ export class BallHomeComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private route: ActivatedRoute,
     private router: Router,
-    private apiService: ApiService,
-    private navbarService: NavbarService,
-    private footerService: FooterService
-  ) {
-    this.footerService.hide();
-    this.navbarService.hide();
-  }
+    private apiService: ApiService
+  ) {}
 
   ngOnInit(): void {
     this.validateSSO$ = this.route.queryParamMap.pipe(
@@ -81,10 +74,5 @@ export class BallHomeComponent implements OnInit, OnDestroy {
   login() {
     this.loginError$.next();
     this.sso.login();
-  }
-
-  ngOnDestroy() {
-    this.navbarService.show();
-    this.footerService.show();
   }
 }
