@@ -145,17 +145,10 @@
   dependencies:
     tslib "^1.9.0"
 
-<<<<<<< HEAD
-"@angular/cdk@^8.1.4":
-  version "8.2.0"
-  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-8.2.0.tgz#fe183aaf9907421086e413a80af6ec0995983a9d"
-  integrity sha512-vsjKiUirICP9fTxnBT3jjqW14ipZLJPkyT3dKZQETKcml1fTY1L9QVXclvLTeUliuPSl490anuBvpQpfMeJDhQ==
-=======
-"@angular/cdk@^8.0.0", "@angular/cdk@~8.2.3":
+"@angular/cdk@~8.2.3":
   version "8.2.3"
   resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-8.2.3.tgz#16b96ffa935cbf5a646757ecaf2b19c434678f72"
   integrity sha512-ZwO5Sn720RA2YvBqud0JAHkZXjmjxM0yNzCO8RVtRE9i8Gl26Wk0j0nQeJkVm4zwv2QO8MwbKUKGTMt8evsokA==
->>>>>>> dev
   dependencies:
     tslib "^1.7.1"
   optionalDependencies:
@@ -5617,19 +5610,6 @@ ng-swagger-gen@^1.8.1:
     mustache "^2.3.2"
     npm-conf "^1.1.3"
 
-<<<<<<< HEAD
-=======
-ng-zorro-antd@^8.1.2:
-  version "8.5.1"
-  resolved "https://registry.yarnpkg.com/ng-zorro-antd/-/ng-zorro-antd-8.5.1.tgz#4d4001ddf1342155a4dda7310c3bdddbcf851a67"
-  integrity sha512-4AbdRUs0NjkMlBzHNtEYGsZpjTSGxkm2WMIJpcFDw38XcXJMoWJbO6K45WD7oZ2mQ6DXx9vgQmNFx27bN9JTBQ==
-  dependencies:
-    "@angular/cdk" "^8.0.0"
-    "@ant-design/icons-angular" "^8.0.2"
-    date-fns "^1.30.1"
-    tslib "^1.9.0"
-
->>>>>>> dev
 ngx-markdown@^8.2.1:
   version "8.2.1"
   resolved "https://registry.yarnpkg.com/ngx-markdown/-/ngx-markdown-8.2.1.tgz#53bafde382aa69ae6787abf0d72bf63bc028105a"
