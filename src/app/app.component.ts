@@ -3,6 +3,13 @@ import { TranslateService } from '@ngx-translate/core';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { filter, map, flatMap } from 'rxjs/operators';
 import { PageRouteProps } from './app-routing.module';
+import { isEmptyObject } from './core/functions/commons';
+import { Title } from '@angular/platform-browser';
+
+const defaultValue: PageRouteProps = {
+  navbar: false,
+  footer: false,
+};
 
 @Component({
   selector: 'app-root',
@@ -17,7 +24,8 @@ export class AppComponent implements OnInit {
   constructor(
     translate: TranslateService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private titleService: Title
   ) {
     translate.setDefaultLang('en');
     translate.use('en');
@@ -34,11 +42,15 @@ export class AppComponent implements OnInit {
           return findFirstChild(route);
         }),
         filter((route: ActivatedRoute) => route.outlet === 'primary'),
-        flatMap((route: ActivatedRoute) => route.data)
+        flatMap((route: ActivatedRoute) => route.data),
+        map(data => (isEmptyObject(data) ? defaultValue : data))
       )
       .subscribe((props: PageRouteProps) => {
         this.isFooterVisible = props.footer;
         this.isNavbarVisible = props.navbar;
+        if (props.title) {
+          this.titleService.setTitle(props.title);
+        }
       });
   }
 }

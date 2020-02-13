@@ -14,30 +14,30 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: './modules/ballhome/ballhome.module#BallHomeModule',
-    data: {navbar: false, footer: false } as PageRouteProps
+    data: { navbar: false, footer: false } as PageRouteProps,
   },
   {
     path: 'register',
     canActivateChild: [AuthGuard, RegisterGuard],
     loadChildren: './modules/register/register.module#RegisterModule',
-    data: {navbar: true, footer: true } as PageRouteProps
+    data: { navbar: true, footer: true } as PageRouteProps,
   },
   {
     path: 'profile',
     canActivateChild: [AuthGuard],
     loadChildren: './modules/profile/profile.module#ProfileModule',
-    data: {navbar: true, footer: true } as PageRouteProps
+    data: { navbar: true, footer: true } as PageRouteProps,
   },
   {
     path: 'admin',
     canActivateChild: [AuthGuard, AdminGuard],
     loadChildren: './modules/admin/admin.module#AdminModule',
-    data: {navbar: true, footer: true } as PageRouteProps
+    data: { navbar: true, footer: true } as PageRouteProps,
   },
   {
     path: 'success',
     loadChildren: './modules/success/success.module#SuccessModule',
-    data: {navbar: true, footer: true } as PageRouteProps,
+    data: { navbar: true, footer: true } as PageRouteProps,
   },
   {
     path: '**',

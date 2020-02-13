@@ -25,9 +25,8 @@ export class ProfileComponent {
   constructor(
     private authService: AuthService,
     private apiService: ApiService,
-    private router: Router,
-  ) {
-  }
+    private router: Router
+  ) {}
 
   submitForm(data: any) {
     this.apiService

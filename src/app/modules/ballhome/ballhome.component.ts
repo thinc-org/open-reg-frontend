@@ -26,9 +26,8 @@ export class BallHomeComponent implements OnInit {
     private authService: AuthService,
     private route: ActivatedRoute,
     private router: Router,
-    private apiService: ApiService,
-  ) {
-  }
+    private apiService: ApiService
+  ) {}
 
   ngOnInit(): void {
     this.validateSSO$ = this.route.queryParamMap.pipe(
