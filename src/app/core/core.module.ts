@@ -13,7 +13,7 @@ import { SvgDefinitionsComponent } from './components/svg-definitions/svg-defini
 import { ResultComponent } from './components/result/result.component';
 import { DimensionDirective } from './directives/dimension.directive';
 import { RouterModule } from '@angular/router';
-import { StorageServiceModule } from 'angular-webstorage-service';
+import { StorageServiceModule } from 'ngx-webstorage-service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { SpinnerComponent } from './components/spinner/spinner.component';

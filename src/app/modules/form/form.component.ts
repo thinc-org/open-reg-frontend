@@ -86,7 +86,7 @@ export class FormComponent implements OnInit, OnDestroy {
   async completeForm() {
     /* Normalize form object from steps **/
     const unNestedAnswers: any = Object.values(this.form.value).reduce(
-      (a, c) => ({ ...a, ...c }),
+      (a: any, c: any) => ({ ...a, ...c }),
       {}
     );
     /* get image from local storage, converting to binary and adding into answers */

@@ -13,30 +13,35 @@ export interface PageRouteProps {
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./modules/ballhome/ballhome.module').then(m => m.BallHomeModule),
+    loadChildren: () =>
+      import('./modules/ballhome/ballhome.module').then(m => m.BallHomeModule),
     data: { navbar: false, footer: false } as PageRouteProps,
   },
   {
     path: 'register',
     canActivateChild: [AuthGuard, RegisterGuard],
-    loadChildren: () => import('./modules/register/register.module').then(m => m.RegisterModule),
+    loadChildren: () =>
+      import('./modules/register/register.module').then(m => m.RegisterModule),
     data: { navbar: true, footer: true } as PageRouteProps,
   },
   {
     path: 'profile',
     canActivateChild: [AuthGuard],
-    loadChildren: () => import('./modules/profile/profile.module').then(m => m.ProfileModule),
+    loadChildren: () =>
+      import('./modules/profile/profile.module').then(m => m.ProfileModule),
     data: { navbar: true, footer: true } as PageRouteProps,
   },
   {
     path: 'admin',
     canActivateChild: [AuthGuard, AdminGuard],
-    loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule),
+    loadChildren: () =>
+      import('./modules/admin/admin.module').then(m => m.AdminModule),
     data: { navbar: true, footer: true } as PageRouteProps,
   },
   {
     path: 'success',
-    loadChildren: () => import('./modules/success/success.module').then(m => m.SuccessModule),
+    loadChildren: () =>
+      import('./modules/success/success.module').then(m => m.SuccessModule),
     data: { navbar: true, footer: true } as PageRouteProps,
   },
   {

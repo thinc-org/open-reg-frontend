@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-import { SESSION_STORAGE, StorageService } from 'angular-webstorage-service';
+import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
 
 interface Image {
   name: string;

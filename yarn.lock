@@ -1505,11 +1505,6 @@ alphanum-sort@^1.0.0:
   resolved "https://registry.yarnpkg.com/alphanum-sort/-/alphanum-sort-1.0.2.tgz#97a1119649b211ad33691d9f9f486a8ec9fbe0a3"
   integrity sha1-l6ERlkmyEa0zaR2fn0hqjsn74KM=
 
-angular-webstorage-service@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/angular-webstorage-service/-/angular-webstorage-service-1.0.2.tgz#caa21ae8deba822666dc0aaa49124b94a72664ed"
-  integrity sha512-LPTAW+P3DlACdCfOd2Cpg4jqciIIfsIZjQafVl5IrjrcoplpUiOImrKo+R0jfVIZ/V04OJWKDDGqLm9YraDIcw==
-
 ansi-colors@4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/ansi-colors/-/ansi-colors-4.1.1.tgz#cbb9ae256bf750af1eab344f229aa27fe94ba348"
@@ -6067,6 +6062,13 @@ ngx-strongly-typed-forms@^8.0.1:
   version "8.0.1"
   resolved "https://registry.yarnpkg.com/ngx-strongly-typed-forms/-/ngx-strongly-typed-forms-8.0.1.tgz#93e12b04adaa8351517cf48a9e2c61416e1fde0b"
   integrity sha512-0p32ILEy366xEHdYVBHZnhh+nKRHxsZs+8jL0FCaC+SwV/ogb7wybOe+scGlp+M09hNB6/3ZHCfmUWhTrBeDEQ==
+
+ngx-webstorage-service@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/ngx-webstorage-service/-/ngx-webstorage-service-4.1.0.tgz#c3511ea8ad1c256a672f703ec472e05a57e7c056"
+  integrity sha512-t0aO4X8rqesLqypU8ZK2W7xGVbpi/z7u/Xg7qhnLoKVauI29NFzdKxV2oaYZmpkxIpgdbLSsIfklkjgxIM0IFA==
+  dependencies:
+    tslib "^1.9.0"
 
 nice-try@^1.0.4:
   version "1.0.5"

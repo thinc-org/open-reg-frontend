@@ -29,12 +29,12 @@
     "@ngx-translate/core": "^11.0.1",
     "@ngx-translate/http-loader": "^4.0.0",
     "@zeit/ng-deploy": "^0.3.0",
-    "angular-webstorage-service": "^1.0.2",
     "file-saver": "^2.0.2",
     "gzip-all": "^1.0.0",
     "ng-swagger-gen": "^1.8.1",
     "ngx-markdown": "^8.2.1",
     "ngx-strongly-typed-forms": "^8.0.1",
+    "ngx-webstorage-service": "^4.1.0",
     "rxjs": "^6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
