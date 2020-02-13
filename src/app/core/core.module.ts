@@ -3,18 +3,6 @@ import { CommonModule } from '@angular/common';
 import { ArrowTextComponent } from './components/arrow-text/arrow-text.component';
 import { ContentContainerComponent } from './components/content-container/content-container.component';
 import { TopicComponent } from './components/topic/topic.component';
-import {
-  NzButtonModule,
-  NzTypographyModule,
-  NzStepsModule,
-  NzInputModule,
-  NzGridModule,
-  NzLayoutModule,
-  NzIconModule,
-  NzModalModule,
-  NzSelectModule,
-  NzRadioModule,
-} from 'ng-zorro-antd';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { SwapDirective } from './directives/swap.directive';
@@ -26,7 +14,10 @@ import { ResultComponent } from './components/result/result.component';
 import { DimensionDirective } from './directives/dimension.directive';
 import { RouterModule } from '@angular/router';
 import { StorageServiceModule } from 'angular-webstorage-service';
-import { OverlayModule } from '@angular/cdk/overlay';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -40,24 +31,17 @@ import { OverlayModule } from '@angular/cdk/overlay';
     SvgDefinitionsComponent,
     ResultComponent,
     DimensionDirective,
+    SpinnerComponent,
   ],
   imports: [
     ReactiveFormsModule,
     TranslateModule,
     CommonModule,
-    OverlayModule,
-    NzButtonModule,
-    NzModalModule,
-    NzTypographyModule,
-    NzStepsModule,
-    NzInputModule,
-    NzGridModule,
-    NzLayoutModule,
-    NzIconModule,
-    NzSelectModule,
-    NzRadioModule,
     RouterModule,
     StorageServiceModule,
+    MatIconModule,
+    MatButtonModule,
+    MatProgressSpinnerModule,
   ],
   entryComponents: [],
   // providers: [{ provide: ApiService, useClass: MockApiService }],
@@ -72,6 +56,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
     SvgDefinitionsComponent,
     ResultComponent,
     DimensionDirective,
+    SpinnerComponent,
   ],
 })
 export class CoreModule {}

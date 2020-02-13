@@ -145,10 +145,17 @@
   dependencies:
     tslib "^1.9.0"
 
+<<<<<<< HEAD
+"@angular/cdk@^8.1.4":
+  version "8.2.0"
+  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-8.2.0.tgz#fe183aaf9907421086e413a80af6ec0995983a9d"
+  integrity sha512-vsjKiUirICP9fTxnBT3jjqW14ipZLJPkyT3dKZQETKcml1fTY1L9QVXclvLTeUliuPSl490anuBvpQpfMeJDhQ==
+=======
 "@angular/cdk@^8.0.0", "@angular/cdk@~8.2.3":
   version "8.2.3"
   resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-8.2.3.tgz#16b96ffa935cbf5a646757ecaf2b19c434678f72"
   integrity sha512-ZwO5Sn720RA2YvBqud0JAHkZXjmjxM0yNzCO8RVtRE9i8Gl26Wk0j0nQeJkVm4zwv2QO8MwbKUKGTMt8evsokA==
+>>>>>>> dev
   dependencies:
     tslib "^1.7.1"
   optionalDependencies:
@@ -229,6 +236,13 @@
   resolved "https://registry.yarnpkg.com/@angular/language-service/-/language-service-8.2.14.tgz#e18b27a6841577ce489ad31540150da5a444ca37"
   integrity sha512-7EhN9JJbAJcH2xCa+rIOmekjiEuB0qwPdHuD5qn/wwMfRzMZo+Db4hHbR9KHrLH6H82PTwYKye/LLpDaZqoHOA==
 
+"@angular/material@8.2.0":
+  version "8.2.0"
+  resolved "https://registry.yarnpkg.com/@angular/material/-/material-8.2.0.tgz#a99bbe5347ef0197bc4ad29228798608a62308aa"
+  integrity sha512-4EY3QilEXS09+10WYwkunEltReuPDByb2ulWw2FLG3wpmMpCp4p6AKY9v9xS3sGvb708S0b9vlfLG4FbepmBbA==
+  dependencies:
+    tslib "^1.7.1"
+
 "@angular/platform-browser-dynamic@~8.2.4":
   version "8.2.14"
   resolved "https://registry.yarnpkg.com/@angular/platform-browser-dynamic/-/platform-browser-dynamic-8.2.14.tgz#4439a79fe10ec45170e6940a28835e9ff0918950"
@@ -248,21 +262,6 @@
   resolved "https://registry.yarnpkg.com/@angular/router/-/router-8.2.14.tgz#5f9f9707710983c2143aead79dcd2da520ae3eb8"
   integrity sha512-DHA2BhODqV7F0g6ZKgFaZgbsqzHHWRcfWchCOrOVKu2rYiKUTwwHVLBgZAhrpNeinq2pWanVYSIhMr7wy+LfEA==
   dependencies:
-    tslib "^1.9.0"
-
-"@ant-design/colors@^3.1.0":
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/@ant-design/colors/-/colors-3.2.2.tgz#5ad43d619e911f3488ebac303d606e66a8423903"
-  integrity sha512-YKgNbG2dlzqMhA9NtI3/pbY16m3Yl/EeWBRa+lB1X1YaYxHrxNexiQYCLTWO/uDvAjLFMEDU+zR901waBtMtjQ==
-  dependencies:
-    tinycolor2 "^1.4.1"
-
-"@ant-design/icons-angular@^8.0.2":
-  version "8.1.1"
-  resolved "https://registry.yarnpkg.com/@ant-design/icons-angular/-/icons-angular-8.1.1.tgz#06889764a9fefed0f6a7f23c33a0ab64916b479f"
-  integrity sha512-JMfavPHwahJcGWT13bTCt4IHzrsNgbJzzB+VWYtzjwWszMCVkkOOn+aJbslupHOl72KWDvklN/LjCQPBgu7xLQ==
-  dependencies:
-    "@ant-design/colors" "^3.1.0"
     tslib "^1.9.0"
 
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.5.5":
@@ -2756,11 +2755,6 @@ dashdash@^1.12.0:
   integrity sha1-hTz6D3y+L+1d4gMmuN1YEDX24vA=
   dependencies:
     assert-plus "^1.0.0"
-
-date-fns@^1.30.1:
-  version "1.30.1"
-  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-1.30.1.tgz#2e71bf0b119153dbb4cc4e88d9ea5acfb50dc05c"
-  integrity sha512-hBSVCvSmWC+QypYObzwGOd9wqdDpOt+0wl0KbU+R+uuZBS1jN8VsD1ss3irQDknRj5NvxiTF6oj/nDRnN/UQNw==
 
 date-format@^2.0.0:
   version "2.1.0"
@@ -5623,6 +5617,8 @@ ng-swagger-gen@^1.8.1:
     mustache "^2.3.2"
     npm-conf "^1.1.3"
 
+<<<<<<< HEAD
+=======
 ng-zorro-antd@^8.1.2:
   version "8.5.1"
   resolved "https://registry.yarnpkg.com/ng-zorro-antd/-/ng-zorro-antd-8.5.1.tgz#4d4001ddf1342155a4dda7310c3bdddbcf851a67"
@@ -5633,6 +5629,7 @@ ng-zorro-antd@^8.1.2:
     date-fns "^1.30.1"
     tslib "^1.9.0"
 
+>>>>>>> dev
 ngx-markdown@^8.2.1:
   version "8.2.1"
   resolved "https://registry.yarnpkg.com/ngx-markdown/-/ngx-markdown-8.2.1.tgz#53bafde382aa69ae6787abf0d72bf63bc028105a"
@@ -8016,11 +8013,6 @@ tiny-emitter@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/tiny-emitter/-/tiny-emitter-2.1.0.tgz#1d1a56edfc51c43e863cbb5382a72330e3555423"
   integrity sha512-NB6Dk1A9xgQPMoGqC5CVXn123gWyte215ONT5Pp5a0yt4nlEoO1ZWeCwpncaekPHXO60i47ihFnZPiRPjRMq4Q==
-
-tinycolor2@^1.4.1:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/tinycolor2/-/tinycolor2-1.4.1.tgz#f4fad333447bc0b07d4dc8e9209d8f39a8ac77e8"
-  integrity sha1-9PrTM0R7wLB9TcjpIJ2POaisd+g=
 
 tmp@0.0.30:
   version "0.0.30"

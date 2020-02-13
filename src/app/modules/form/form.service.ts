@@ -38,7 +38,8 @@ export class FormService {
   apiResult$: Observable<any>;
 
   complete() {
-    this.destroy$.next(undefined);
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   constructor(

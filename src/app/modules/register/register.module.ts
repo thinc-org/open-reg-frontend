@@ -3,15 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { RegisterRoutingModule } from './register-routing.module';
 import { RegisterComponent } from './register.component';
-import { NzInputModule } from 'ng-zorro-antd/input';
-import {
-  NzButtonModule,
-  NzTypographyModule,
-  NzStepsModule,
-} from 'ng-zorro-antd';
-import { NzGridModule } from 'ng-zorro-antd/grid';
-import { NzLayoutModule } from 'ng-zorro-antd/layout';
-import { NzIconModule } from 'ng-zorro-antd/icon';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { HttpClient } from '@angular/common/http';
@@ -28,13 +19,6 @@ import { FormModule } from '../form/form.module';
     CommonModule,
     CoreModule,
     RegisterRoutingModule,
-    NzButtonModule,
-    NzTypographyModule,
-    NzStepsModule,
-    NzInputModule,
-    NzGridModule,
-    NzLayoutModule,
-    NzIconModule,
     FormsModule,
     FormModule,
     TranslateModule.forRoot({

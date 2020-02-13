@@ -3,8 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ChulaSsoService } from 'src/app/core/services/chula-sso.service';
 import { take, pluck, switchMap } from 'rxjs/operators';
 import { ApiService } from 'src/app/api/services';
-import { EMPTY, Subject } from 'rxjs';
+import { EMPTY } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { NotificationService } from 'src/app/core/services/notification.service';
 
 @Component({
   selector: 'app-login',
@@ -12,13 +13,13 @@ import { AuthService } from 'src/app/core/services/auth.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  loginError$ = new Subject<string>();
   constructor(
     private sso: ChulaSsoService,
     private authService: AuthService,
     private route: ActivatedRoute,
     private router: Router,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private notification: NotificationService
   ) {}
 
   ngOnInit(): void {
@@ -41,14 +42,13 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/', 'profile']);
         },
         _ => {
-          this.loginError$.next('Something went wrong, Please try again');
+          this.notification.showError('Something went wrong, Please try again');
           this.router.navigate(['/', 'login']);
         }
       );
   }
 
   login() {
-    this.loginError$.next();
     this.sso.login();
   }
 }

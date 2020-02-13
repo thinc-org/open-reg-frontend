@@ -1,4 +1,4 @@
-<nz-header class="big-container">
+<div class="big-container">
   <div class="navbar">
     <div class="container">
       <a [routerLink]="['']">
@@ -34,13 +34,13 @@
       <div class="userinfo-container">
         <button
           class="logout-btn"
-          nz-button
-          nzType="danger"
           (click)="logoutSSO()"
+          mat-stroked-button
+          color="warn"
         >
           Logout from ChulaSSO
         </button>
       </div>
     </ng-container>
   </div>
-</nz-header>
+</div>

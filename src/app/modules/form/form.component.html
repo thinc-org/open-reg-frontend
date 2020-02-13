@@ -6,18 +6,11 @@
     <app-register-term *ngSwitchCase="'terms'" [form]="currentFormObj"></app-register-term>
     <app-register-form
       *ngSwitchCase="'form'"
-      nzOffset="6"
-      nzSpan="12"
       [form]="currentFormObj"
     ></app-register-form>
     <app-register-confirm *ngSwitchCase="'confirm'"></app-register-confirm>
     <div *ngSwitchDefault class="loading-icon-container">
-      <i
-        style="font-size: 36px;"
-        nz-icon
-        nzType="loading"
-        nzTheme="outline"
-      ></i>
+      <app-spinner [isGrey]="true" [diameter]="36"></app-spinner>
     </div>
   </ng-container>
   <app-register-navigator

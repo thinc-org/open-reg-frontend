@@ -1,13 +1,3 @@
-<nz-alert
-  class="alert-error"
-  nzType="error"
-  [nzMessage]="error"
-  nzShowIcon
-  nzBanner
-  nzCloseable
-  *ngIf="loginError$ | async as error"
-  >{{ error }}</nz-alert
->
 <div class="home">
   <div class="container">
     <div>
@@ -33,16 +23,15 @@
     </div>
     <div class="register-button-container">
       <button
+        mat-flat-button
         *ngIf="!waitingForValidation; else loading"
-        nz-button
-        nz-size="large"
         class="register-button"
         (click)="login()"
       >
         Register With Chula SSO
       </button>
       <ng-template #loading>
-        <i class="loading-icon" nz-icon nzType="loading" nzTheme="outline"></i>
+        <app-spinner [diameter]="60"></app-spinner>
       </ng-template>
     </div>
   </div>
