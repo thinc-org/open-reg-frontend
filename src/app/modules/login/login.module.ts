@@ -5,14 +5,6 @@ import { LoginRoutingModule } from './login-routing.module';
 import { LoginComponent } from './login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxStronglyTypedFormsModule } from 'ngx-strongly-typed-forms';
-import {
-  NzInputModule,
-  NzTypographyModule,
-  NzButtonModule,
-  NzFormModule,
-  NzCheckboxModule,
-  NzAlertModule,
-} from 'ng-zorro-antd';
 import { CoreModule } from 'src/app/core/core.module';
 
 @NgModule({
@@ -22,12 +14,6 @@ import { CoreModule } from 'src/app/core/core.module';
     LoginRoutingModule,
     ReactiveFormsModule,
     NgxStronglyTypedFormsModule,
-    NzInputModule,
-    NzTypographyModule,
-    NzButtonModule,
-    NzFormModule,
-    NzCheckboxModule,
-    NzAlertModule,
     CoreModule,
   ],
 })

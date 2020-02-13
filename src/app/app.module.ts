@@ -19,14 +19,12 @@ import {
 } from '@angular/common/http';
 import { GlobalErrorHandler } from './core/global-error-handler.service';
 import { ServerErrorInterceptor } from './core/services/server-error.interceptor';
-import { NgZorroAntdModule, NZ_I18N, en_US } from 'ng-zorro-antd';
-import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
 import { ApiModule } from './api/api.module';
 import { environment } from 'src/environments/environment';
 import { ApiInterceptor } from './core/services/api.interceptor';
-import { OverlayModule } from '@angular/cdk/overlay';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 registerLocaleData(localeTh, 'th');
 
@@ -47,13 +45,11 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient],
       },
     }),
-    OverlayModule,
-    NgZorroAntdModule,
     CoreModule,
-    FormsModule,
     BrowserAnimationsModule,
     NgxStronglyTypedFormsModule,
     ApiModule.forRoot({ rootUrl: environment.apiUrl }),
+    MatSnackBarModule,
   ],
   exports: [TranslateModule],
   providers: [
@@ -69,7 +65,6 @@ export function HttpLoaderFactory(http: HttpClient) {
       useClass: forwardRef(() => ServerErrorInterceptor),
       multi: true,
     },
-    { provide: NZ_I18N, useValue: en_US },
   ],
   bootstrap: [AppComponent],
 })

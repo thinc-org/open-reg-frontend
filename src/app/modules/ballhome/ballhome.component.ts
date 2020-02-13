@@ -9,8 +9,9 @@ import {
   withLatestFrom,
 } from 'rxjs/operators';
 import { ApiService } from 'src/app/api/services';
-import { EMPTY, Subject, Observable } from 'rxjs';
+import { EMPTY, Observable } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { NotificationService } from 'src/app/core/services/notification.service';
 
 @Component({
   selector: 'app-ballhome',
@@ -18,7 +19,6 @@ import { AuthService } from 'src/app/core/services/auth.service';
   styleUrls: ['./ballhome.component.scss'],
 })
 export class BallHomeComponent implements OnInit {
-  loginError$ = new Subject<string>();
   validateSSO$: Observable<any>;
   waitingForValidation = false;
   constructor(
@@ -26,7 +26,8 @@ export class BallHomeComponent implements OnInit {
     private authService: AuthService,
     private route: ActivatedRoute,
     private router: Router,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private notification: NotificationService
   ) {}
 
   ngOnInit(): void {
@@ -64,7 +65,7 @@ export class BallHomeComponent implements OnInit {
           }
         },
         _ => {
-          this.loginError$.next('Something went wrong, Please try again');
+          this.notification.showError('Something went wrong, Please try again');
           this.waitingForValidation = false;
           this.router.navigate(['/']);
         }
@@ -72,7 +73,6 @@ export class BallHomeComponent implements OnInit {
   }
 
   login() {
-    this.loginError$.next();
     this.sso.login();
   }
 }

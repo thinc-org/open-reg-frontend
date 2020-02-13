@@ -7,19 +7,6 @@ import { RegisterNavigatorComponent } from './components/register-navigator/regi
 import { CoreModule } from 'src/app/core/core.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxStronglyTypedFormsModule } from 'ngx-strongly-typed-forms';
-import {
-  NzButtonModule,
-  NzModalModule,
-  NzTypographyModule,
-  NzStepsModule,
-  NzInputModule,
-  NzGridModule,
-  NzLayoutModule,
-  NzIconModule,
-  NzSelectModule,
-  NzRadioModule,
-  NzCheckboxModule,
-} from 'ng-zorro-antd';
 import { TranslateModule } from '@ngx-translate/core';
 import { RegisterConfirmComponent } from './components/register-confirm/register-confirm.component';
 
@@ -31,6 +18,14 @@ import 'prismjs/plugins/line-numbers/prism-line-numbers.js';
 import 'prismjs/plugins/line-highlight/prism-line-highlight.js';
 import { markedOptionsFactory } from './markdown.options';
 import { RegisterTermComponent } from './components/register-term/register-term.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+import { FormsModule } from '@angular/forms';
+import { ErrorMessageComponent } from './components/form-input/error-message/error-message.component';
 
 @NgModule({
   declarations: [
@@ -40,30 +35,27 @@ import { RegisterTermComponent } from './components/register-term/register-term.
     RegisterNavigatorComponent,
     RegisterConfirmComponent,
     RegisterTermComponent,
+    ErrorMessageComponent,
   ],
   imports: [
     CommonModule,
     CoreModule,
     TranslateModule,
     NgxStronglyTypedFormsModule,
+    FormsModule,
     ReactiveFormsModule,
-    NzButtonModule,
-    NzModalModule,
-    NzTypographyModule,
-    NzStepsModule,
-    NzCheckboxModule,
-    NzInputModule,
-    NzGridModule,
-    NzLayoutModule,
-    NzIconModule,
-    NzSelectModule,
-    NzRadioModule,
     MarkdownModule.forRoot({
       markedOptions: {
         provide: MarkedOptions,
         useFactory: markedOptionsFactory,
       },
     }),
+    MatInputModule,
+    MatCheckboxModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatRadioModule,
   ],
   exports: [
     FormComponent,

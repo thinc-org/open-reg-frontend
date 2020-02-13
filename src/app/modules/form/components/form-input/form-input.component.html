@@ -1,83 +1,102 @@
 <div [formGroup]="form">
-  <label [attr.for]="question.key">
-    <p class="text">
-      {{ question.label }}
+  <p class="text">
+    {{ question.label }}
     <span *ngIf="required" class="question-required">*</span>
-    </p>
-    <img class="question-image" *ngIf="question.image" [src]="question.image"/>
-    <markdown *ngIf="question.description" class="question-markdown" [data]="question.description"></markdown>
-  </label>
+  </p>
+  <img class="question-image" *ngIf="question.image" [src]="question.image" />
+  <markdown
+    *ngIf="question.description"
+    class="question-markdown"
+    [data]="question.description"
+  ></markdown>
   <div [ngSwitch]="question.controlType">
     <ng-container *ngSwitchCase="'textbox'">
-      <img class="image-upload" *ngIf="imageData" [src]="imageData" />
-      <input
-        *ngIf="question.type === 'IMAGE'; else text"
-        type="file"
-        accept="image/*"
-        (change)="saveImage($event.target.files)"
-        [id]="question.key"
-        nz-input
-        [placeholder]="question.description || ''"
-        nzSize="large"
-      />
-      <ng-template #text>
-        <input
-          [value]="question.value"
-          [formControlName]="question.key"
-          [id]="question.key"
-          [type]="question.type"
-          nz-input
-          [placeholder]="question.description || ''"
-          nzSize="large"
-        />
-      </ng-template>
+      <div [ngSwitch]="question.type">
+        <ng-container *ngSwitchCase="'IMAGE'">
+          <img class="image-upload" *ngIf="imageData" [src]="imageData" />
+          <button
+            type="button"
+            mat-raised-button
+            (click)="imgFileInput.click()"
+          >
+            Choose File
+          </button>
+          <input
+            hidden
+            #imgFileInput
+            type="file"
+            accept="image/*"
+            (change)="saveImage($event.target.files)"
+            [id]="question.key"
+          />
+          <app-error-message
+            [label]="label"
+            [control]="formControl"
+          ></app-error-message>
+        </ng-container>
+        <ng-template ngSwitchDefault>
+          <mat-form-field>
+            <input
+              [value]="question.value"
+              [formControlName]="question.key"
+              [id]="question.key"
+              [type]="question.type"
+              matInput
+            />
+            <app-error-message
+              [label]="label"
+              [control]="formControl"
+            ></app-error-message>
+          </mat-form-field>
+        </ng-template>
+      </div>
     </ng-container>
-    <nz-select
-      nzSize="large"
-      nzPlaceHolder="select"
-      class="select"
-      *ngSwitchCase="'dropdown'"
-      [formControlName]="question.key"
-      [id]="question.key"
-    >
-      <nz-option
-        *ngFor="let option of question.choices; index as i"
-        [nzLabel]="option.label"
-        [nzValue]="option.value"
-      ></nz-option>
-    </nz-select>
-    <ng-container *ngSwitchCase="'subchoice'">
-      <nz-select
-        nzSize="large"
-        nzPlaceHolder="select"
+    <mat-form-field *ngSwitchCase="'dropdown'">
+      <mat-select
         class="select"
-        *ngIf="subChoices$ | async as choices"
         [formControlName]="question.key"
         [id]="question.key"
-        [nzDisabled]="!(choices?.length > 0)"
       >
-        <nz-option
-          *ngFor="let option of choices; index as i"
-          [nzLabel]="option.label"
-          [nzValue]="option.value";
-        ></nz-option>
-      </nz-select>
+        <mat-option
+          *ngFor="let option of question.choices"
+          [value]="option.value"
+          >{{ option.label }}</mat-option
+        >
+      </mat-select>
+      <app-error-message
+        [label]="label"
+        [control]="formControl"
+      ></app-error-message>
+    </mat-form-field>
+    <ng-container *ngSwitchCase="'subchoice'">
+      <mat-form-field *ngIf="subChoices$ | async as choices">
+        <mat-select
+          class="select"
+          [formControlName]="question.key"
+          [id]="question.key"
+        >
+          <mat-option *ngFor="let option of choices" [value]="option.value">{{
+            option.label
+          }}</mat-option>
+        </mat-select>
+        <app-error-message
+          [label]="label"
+          [control]="formControl"
+        ></app-error-message>
+      </mat-form-field>
     </ng-container>
-
-    <nz-radio-group
+    <mat-radio-group
       *ngSwitchCase="'radio'"
       [formControlName]="question.key"
-      [nzName]="question.key"
       [id]="question.key"
     >
-      <label
-        class="radio-label"
-        *ngFor="let option of question.choices; index as i"
-        nz-radio
-        [nzValue]="option.value"
-        >{{ option.label }}</label
+      <mat-radio-button
+        *ngFor="let option of question.choices"
+        [value]="option.value"
+        class="form-radio-button"
+        >{{ option.label }}</mat-radio-button
       >
-    </nz-radio-group>
+    </mat-radio-group>
     <!-- <nz-checkbox-wrapper
       *ngSwitchCase="'multiple-chocie'"
       [formControlName]="question.key"
@@ -91,22 +110,5 @@
         >{{ choice }}</label
       >
     </nz-checkbox-wrapper> -->
-  </div>
-  <div
-    class="error-message"
-    *ngIf="formControl && !isValid && (touched || dirty)"
-  >
-    <span *ngIf="isRequired" nz-text nzType="danger">{{
-      'กรุณาใส่ข้อมูล' + question.label
-    }}</span>
-    <span *ngIf="isMax" nz-text nzType="danger">{{
-      'max length is ' + formControl.errors.maxlength.requiredLength | translate
-    }}</span>
-    <span *ngIf="isMin" nz-text nzType="danger">{{
-      'min length is ' + formControl.errors.minlength.requiredLength | translate
-    }}</span>
-    <span *ngIf="otherInvalid" nz-text nzType="danger"
-      >{{ label }}ไม่ถูกต้อง</span
-    >
   </div>
 </div>

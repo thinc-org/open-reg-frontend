@@ -1,4 +1,71 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+@import './app/core/styles/colors.scss';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$open-reg-frontend-primary: mat-palette($mat-indigo);
+$open-reg-frontend-accent: mat-palette($openreg-test);
+
+// The warn palette is optional (defaults to red).
+$open-reg-frontend-warn: mat-palette($mat-red);
+
+// white
+$open-reg-frontend-white: mat-palette($openreg-test);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$open-reg-frontend-theme: mat-light-theme(
+  $open-reg-frontend-primary,
+  $open-reg-frontend-accent,
+  $open-reg-frontend-warn
+);
+
+$example-theme-1: mat-light-theme(
+  $open-reg-frontend-white,
+  $open-reg-frontend-white,
+  $open-reg-frontend-white
+);
+
+$custom-typography: mat-typography-config(
+  $font-family: 'Noto Sans Thai UI, Inter, Sans-Serif',
+);
+
+@include angular-material-typography($custom-typography);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+.default-theme {
+  @include angular-material-theme($open-reg-frontend-theme);
+}
+
+.theme-1 {
+  @include angular-material-theme($example-theme-1);
+}
+
 /* You can add global styles to this file, and also import other style files */
+
+// adds breaks to the mat-checkboxes with long labels
+.mat-checkbox-layout {
+  white-space: normal !important;
+}
+
+// rather than center the checkbox, put the checkbox in the first line
+.mat-checkbox-inner-container {
+  margin-top: 4px !important;
+}
+
+.mat-form-field {
+  width: 100%;
+}
 
 @font-face {
   font-family: 'Noto Sans Thai UI Med';
@@ -53,56 +120,54 @@ body {
   height: 100%;
   margin: 0;
   font-family: 'Noto Sans Thai UI', 'Inter', 'Sans-Serif';
-  background-color: #FBFBFB;
+  background-color: #fbfbfb;
 }
 
-.ant-radio {
-  .ant-radio-inner {
-    border-color: #f4f4f4;
-  }
-  &-checked {
-    .ant-radio-inner {
-      border-color: #f4f4f4;
-    }
-  }
-  &-input {
-    &:focus + .ant-radio-inner {
-      border-color: #f4f4f4;
-    }
-  }
+html,
+body {
+  height: 100%;
+  background-color: #f0f2f5;
+}
+body {
+  margin: 0;
+  color: rgba(0, 0, 0, 0.65);
+    font-size: 14px;
+    line-height: 1.5;
 }
 
-.ant-select {
-  &-selection {
-    background-color: #f9f9f9;
-    border-radius: 6px;
-    box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.02);
-    border: 0;
-    &:focus {
-      box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.02);
-    }
-  }
-  &-dropdown {
-    border-radius: 0;
-    box-shadow: 0;
-    &-menu-item {
-      font-weight: 600;
-      border-top: 1.5px solid #dfdede;
-      padding-top: 10px;
-      padding-bottom: 10px;
-      background-color: #f9f9f9;
-      border-radius: 0;
-      color: #4b4b4b;
-      &-active:not(.ant-select-dropdown-menu-item-disabled) {
-        background-color: #dce9f9;
-      }
-      &:first-child {
-        border-radius: 0;
-      }
-    }
-  }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 500;
 }
 
-nz-layout {
-  min-height: 100vh !important;
+/* fallback */
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(./assets/fonts/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2) format('woff2');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  font-feature-settings: 'liga';
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
 }

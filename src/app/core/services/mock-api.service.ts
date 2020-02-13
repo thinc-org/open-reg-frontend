@@ -102,7 +102,7 @@ export class MockApiService extends ApiService {
             value: '0',
             order: 5,
             group: 1,
-            type: 'DROPDOWN',
+            type: 'RADIO',
             label: 'คำนำหน้า (ภาษาอังกฤษ)',
             choices: [
               {

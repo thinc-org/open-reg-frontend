@@ -6,15 +6,6 @@ import { ProfileComponent } from './profile.component';
 import { NgxStronglyTypedFormsModule } from 'ngx-strongly-typed-forms';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CoreModule } from 'src/app/core/core.module';
-import {
-  NzButtonModule,
-  NzTypographyModule,
-  NzStepsModule,
-  NzInputModule,
-  NzGridModule,
-  NzLayoutModule,
-  NzIconModule,
-} from 'ng-zorro-antd';
 import { FormModule } from '../form/form.module';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -27,13 +18,6 @@ import { TranslateModule } from '@ngx-translate/core';
     ReactiveFormsModule,
     CommonModule,
     CoreModule,
-    NzButtonModule,
-    NzTypographyModule,
-    NzStepsModule,
-    NzInputModule,
-    NzGridModule,
-    NzLayoutModule,
-    NzIconModule,
     FormsModule,
     FormModule,
     TranslateModule,

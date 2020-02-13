@@ -28,5 +28,10 @@ export class RegisterTermComponent implements OnInit {
     return this.form.get(key);
   }
 
+  modifyCheckboxValue($event, key) {
+    const formControl = this.getFormControl(key);
+    $event.checked ? formControl.patchValue(true) : formControl.patchValue('');
+  }
+
   ngOnInit() {}
 }
