@@ -1,16 +1,16 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { filter, map, flatMap } from 'rxjs/operators';
+import { PageRouteProps } from './app-routing.module';
+import { isEmptyObject } from './core/functions/commons';
+import { Title } from '@angular/platform-browser';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NotificationService } from './core/services/notification.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ThemeService } from './core/services/theme.service';
 import { OverlayContainer } from '@angular/cdk/overlay';
-import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
-import { filter, map, flatMap } from 'rxjs/operators';
-import { PageRouteProps } from './app-routing.module';
-import { isEmptyObject } from './core/functions/commons';
-import { Title } from '@angular/platform-browser';
 
 const defaultValue: PageRouteProps = {
   navbar: false,
@@ -28,6 +28,7 @@ export class AppComponent implements OnInit, OnDestroy {
   isNavbarVisible = false;
   destroy$ = new Subject<any>();
   themeClass: string;
+
   constructor(
     translate: TranslateService,
     private snackBar: MatSnackBar,
@@ -43,31 +44,6 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.notification
-      .getObservable()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(notification => {
-        const { message, timeout, action } = notification;
-        this.snackBar.open(message, action, {
-          duration: timeout,
-        });
-      });
-    this.theme.currentTheme$.pipe(takeUntil(this.destroy$)).subscribe(theme => {
-      this.themeClass = theme;
-
-      // remove old theme class and add new theme class
-      // we're removing any css class that contains '-theme' string but your theme classes can follow any pattern
-      const overlayContainerClasses = this.overlayContainer.getContainerElement()
-        .classList;
-      const themeClassesToRemove = Array.from(
-        overlayContainerClasses
-      ).filter((item: string) => item.includes('-theme'));
-      if (themeClassesToRemove.length) {
-        overlayContainerClasses.remove(...themeClassesToRemove);
-      }
-      overlayContainerClasses.add(theme);
-    });
-
     this.router.events
       .pipe(
         filter(event => event instanceof NavigationEnd),
@@ -88,6 +64,31 @@ export class AppComponent implements OnInit, OnDestroy {
           this.titleService.setTitle(props.title);
         }
       });
+
+    this.notification
+      .getObservable()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(notification => {
+        const { message, timeout, action } = notification;
+        this.snackBar.open(message, action, {
+          duration: timeout,
+        });
+      });
+
+    this.theme.currentTheme$.pipe(takeUntil(this.destroy$)).subscribe(theme => {
+      this.themeClass = theme;
+      /* remove old theme class and add new theme class
+      we're removing any css class that contains '-theme' string but your theme classes can follow any pattern */
+      const overlayContainerClasses = this.overlayContainer.getContainerElement()
+        .classList;
+      const themeClassesToRemove = Array.from(
+        overlayContainerClasses
+      ).filter((item: string) => item.includes('-theme'));
+      if (themeClassesToRemove.length) {
+        overlayContainerClasses.remove(...themeClassesToRemove);
+      }
+      overlayContainerClasses.add(theme);
+    });
   }
 
   ngOnDestroy() {
