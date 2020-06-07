@@ -1,16 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { TestComponent } from './test/test.component';
+import { FormComponent } from './form.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: TestComponent,
+    component: FormComponent,
   },
 ];
 
 @NgModule({
-  declarations: [TestComponent],
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })

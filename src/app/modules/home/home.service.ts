@@ -12,7 +12,8 @@ export class HomeService {
 
   emitNewMessage() {
     const characters = this.message$.value.split('');
-    characters.push(characters.shift());
+    const shiftedCharacter = characters.shift();
+    characters.push(shiftedCharacter ? shiftedCharacter : '');
     this.message$.next(characters.join(''));
   }
 }

@@ -13,7 +13,8 @@ export class HomeComponent implements OnInit {
 
   changeMessage() {
     const characters = this.service.message.split('');
-    characters.push(characters.shift());
+    const char = characters.shift();
+    characters.push(char ? char : '');
     this.service.message = characters.join('');
   }
 
