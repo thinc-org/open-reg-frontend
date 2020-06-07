@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [NavbarComponent],
   imports: [],
   providers: [],
   bootstrap: [],

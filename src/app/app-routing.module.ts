@@ -7,6 +7,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./modules/home/home.module').then((m) => m.HomeModule),
   },
+  {
+    path: 'form',
+    loadChildren: () =>
+      import('./modules/form/form.module').then((m) => m.FormModule),
+  },
 ];
 
 @NgModule({
