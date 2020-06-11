@@ -1,0 +1,9 @@
+<h1>This is home la!</h1>
+<h2>Message from service : {{ service.message }}</h2>
+<button (click)="changeMessage()">Click to change</button>
+
+<h2>Message from service (observable) : {{ service.message$ | async }}</h2>
+<button (click)="changeRxMessage()">
+  Click to change message in observable
+</button>
+<app-logo></app-logo>
