@@ -1,33 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { HomeService } from './home.service';
-import { ThemeService } from 'src/app/core/services/theme.service';
-import { Theme } from 'src/types';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit {
-  constructor(
-    public service: HomeService,
-    private themeService: ThemeService
-  ) {}
-
-  darkTheme() {
-    this.themeService.changeTheme(Theme.DARK);
-  }
-
-  lightTheme() {
-    this.themeService.changeTheme(Theme.LIGHT);
-  }
-
-  ngOnInit() {}
+export class HomeComponent {
+  constructor(public service: HomeService) {}
 
   changeMessage() {
     const characters = this.service.message.split('');
     const char = characters.shift();
-    characters.push(char ? char : '');
+    characters.push(char || '');
     this.service.message = characters.join('');
   }
 
