@@ -11,8 +11,11 @@ import { HomeService } from './home.service';
 export class HomeComponent {
   event$: Observable<any>;
 
+  org$: Observable<any>;
+
   constructor(public service: HomeService, private apiService: ApiService) {
     this.event$ = this.apiService.eventControllerFindAll();
+    this.org$ = this.apiService.organizationControllerGetMembers('ad'); // should throw error
   }
 
   changeMessage() {
