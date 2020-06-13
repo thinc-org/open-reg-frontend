@@ -6,4 +6,12 @@
 <button (click)="changeRxMessage()">
   Click to change message in observable
 </button>
+<div class="event">
+  <h3>
+    Event List get by API
+  </h3>
+  <div>
+    {{ event$ | async | json }}
+  </div>
+</div>
 <app-logo></app-logo>

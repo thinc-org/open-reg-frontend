@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { DefaultService as ApiService } from 'src/backend-client';
 import { HomeService } from './home.service';
 
 @Component({
@@ -7,7 +9,11 @@ import { HomeService } from './home.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
-  constructor(public service: HomeService) {}
+  event$: Observable<any>;
+
+  constructor(public service: HomeService, private apiService: ApiService) {
+    this.event$ = this.apiService.eventControllerFindAll();
+  }
 
   changeMessage() {
     const characters = this.service.message.split('');
