@@ -1,4 +1,4 @@
 {
-  "src/**/*.ts": ["ng-lint-staged lint --fix --"],
-  "src/**/*.{scss,html,ts}": ["pretty-quick --staged "]
+  "src/**/*.ts": ["ng-lint-staged lint --fix --", "git add"],
+  "src/**/*.{scss,html,ts}": ["pretty-quick --staged ", "git add"]
 }
