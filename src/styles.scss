@@ -1,3 +1,4 @@
+@import './styles-variables.scss';
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @import '~@angular/material/theming';
@@ -21,7 +22,7 @@
   @include angular-material-theme($openreg-default-theme-dark);
 }
 
-@import './reset-styles.scss';
+@import './styles-reset.scss';
 
 /* You can add global styles to this file, and also import other style files */
 
