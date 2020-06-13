@@ -1,4 +1,4 @@
 {
   "src/**/*.ts": ["ng-lint-staged lint --fix --"],
-  "src/**/*": ["pretty-quick --staged "]
+  "src/**/*.{scss,html,ts}": ["pretty-quick --staged "]
 }
