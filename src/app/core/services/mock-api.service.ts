@@ -13,18 +13,22 @@ import { HttpErrorResponse } from '@angular/common/http';
   providedIn: 'root',
 })
 export class MockApiService {
+  public forceBadRequest = false;
+
   private createMockApiResponse(
     data: Record<string, any> | Record<string, any>[],
-    badRequest?: boolean
+    forceBadRequest: boolean
   ) {
     return timer(1000).pipe(
-      switchMap(() => (badRequest ? throwError(new HttpErrorResponse({ status: 400 })) : of(data)))
+      switchMap(() =>
+        forceBadRequest ? throwError(new HttpErrorResponse({ status: 400 })) : of(data)
+      )
     );
   }
 
   constructor() {}
 
-  eventControllerCreateEvent(body: CreateEventDTO, badRequest?: boolean) {
+  eventControllerCreateEvent(body: CreateEventDTO) {
     return this.createMockApiResponse(
       {
         _id: '5ee4d592387493001b961a18',
@@ -33,11 +37,11 @@ export class MockApiService {
         organizationID: body.organizationID,
         __v: 0,
       },
-      badRequest
+      this.forceBadRequest
     );
   }
 
-  eventControllerFindAll(badRequest?: boolean) {
+  eventControllerFindAll() {
     return this.createMockApiResponse(
       [
         {
@@ -62,11 +66,11 @@ export class MockApiService {
           __v: 0,
         },
       ],
-      badRequest
+      this.forceBadRequest
     );
   }
 
-  eventControllerFindById(id: string, badRequest?: boolean) {
+  eventControllerFindById(id: string) {
     return this.createMockApiResponse(
       {
         _id: id,
@@ -75,15 +79,18 @@ export class MockApiService {
         organizationID: '5ee475b4a811fe001b208b50',
         __v: 0,
       },
-      badRequest
+      this.forceBadRequest
     );
   }
 
-  organizationControllerAddMember(body: AddMemberDTO, badRequest?: boolean) {
-    return this.createMockApiResponse([{ userID: body.memberid, permissions: [] }], badRequest);
+  organizationControllerAddMember(body: AddMemberDTO) {
+    return this.createMockApiResponse(
+      [{ userID: body.memberid, permissions: [] }],
+      this.forceBadRequest
+    );
   }
 
-  organizationControllerCreateOrganization(body: CreateOrganizationDTO, badRequest?: boolean) {
+  organizationControllerCreateOrganization(body: CreateOrganizationDTO) {
     return this.createMockApiResponse(
       {
         events: [],
@@ -92,11 +99,11 @@ export class MockApiService {
         name: body.name,
         __v: 0,
       },
-      badRequest
+      this.forceBadRequest
     );
   }
 
-  organizationControllerFindAll(badRequest?: boolean) {
+  organizationControllerFindAll() {
     return this.createMockApiResponse(
       [
         {
@@ -120,27 +127,27 @@ export class MockApiService {
         { events: [], members: [], _id: '5ee4da51387493001b961a45', name: 'new company', __v: 0 },
         { events: [], members: [], _id: '5ee4da51387493001b961a46', name: 'new company', __v: 0 },
       ],
-      badRequest
+      this.forceBadRequest
     );
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  organizationControllerGetMembers(orgid: string, badRequest?: boolean) {
+  organizationControllerGetMembers(orgid: string) {
     return this.createMockApiResponse(
       [{ userID: '5ee4da95387493001b961a47', permissions: [] }],
-      badRequest
+      this.forceBadRequest
     );
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  organizationControllerRemoveMember(orgid: string, badRequest?: boolean) {
+  organizationControllerRemoveMember(orgid: string) {
     return this.createMockApiResponse(
       [{ userID: '5ee4da95387493001b961a47', permissions: [] }],
-      badRequest
+      this.forceBadRequest
     );
   }
 
-  userControllerCreate(body: CreateUserDTO, badRequest?: boolean) {
+  userControllerCreate(body: CreateUserDTO) {
     return this.createMockApiResponse(
       {
         organizations: [],
@@ -154,11 +161,11 @@ export class MockApiService {
         password: '$2a$10$phBx91fXC5t37UdF1x3Hyuv3KT/XmDmiF.kSKdtXICqfUAwfSynO.',
         __v: 0,
       },
-      badRequest
+      this.forceBadRequest
     );
   }
 
-  userControllerFindAll(badRequest?: boolean) {
+  userControllerFindAll() {
     return this.createMockApiResponse(
       [
         {
@@ -186,11 +193,11 @@ export class MockApiService {
           __v: 0,
         },
       ],
-      badRequest
+      this.forceBadRequest
     );
   }
 
-  userControllerFindById(id: string, badRequest?: boolean) {
+  userControllerFindById(id: string) {
     return this.createMockApiResponse(
       {
         organizations: [],
@@ -204,7 +211,7 @@ export class MockApiService {
         password: '$2a$10$CESfxmv4C0/N/xXobO.O5OAYD3eUQfSeRx.NGSWM3LvwUhqY8p3N6',
         __v: 0,
       },
-      badRequest
+      this.forceBadRequest
     );
   }
 }
