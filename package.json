@@ -46,6 +46,7 @@
     "lint-staged": "^10.2.10",
     "ng-lint-staged": "^0.1.6",
     "prettier": "^2.0.5",
+    "pretty-quick": "^2.0.1",
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
