@@ -6,14 +6,13 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class HomeService {
   message = 'Hello';
-  message$ = new BehaviorSubject<string>('RxMessage');
 
-  constructor() {}
+  message$ = new BehaviorSubject<string>('RxMessage');
 
   emitNewMessage() {
     const characters = this.message$.value.split('');
-    const shiftedCharacter = characters.shift();
-    characters.push(shiftedCharacter ? shiftedCharacter : '');
+    const shiftedCharacter = characters.shift() || '';
+    characters.push(shiftedCharacter);
     this.message$.next(characters.join(''));
   }
 }
