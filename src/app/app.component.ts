@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { ThemeService } from './core/services/theme.service';
+import { Theme } from '../types';
+import { ThemeTypes } from '../types/constants';
 
 @Component({
   selector: 'app-root',
@@ -8,8 +10,9 @@ import { ThemeService } from './core/services/theme.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  title = 'open-reg-frontend';
+  title = ThemeTypes[Theme.LIGHT];
   theme = 'openreg-light-theme';
+  containerElement: any;
 
   constructor(
     private overlayContainer: OverlayContainer,
@@ -17,15 +20,10 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.overlayContainer.getContainerElement().classList.add(this.theme);
     this.themeService.currentThemeEmitter$.subscribe(this.onThemeChange);
-    console.log(
-      this.overlayContainer.getContainerElement().classList,
-      'classList'
-    );
   }
 
-  onThemeChange(themeClass: string) {
+  onThemeChange = (themeClass: string) => {
     this.theme = themeClass;
     const overlayContainerClasses = this.overlayContainer.getContainerElement()
       .classList;
@@ -36,5 +34,13 @@ export class AppComponent implements OnInit {
       overlayContainerClasses.remove(...themeClassesToRemove);
     }
     overlayContainerClasses.add(themeClass);
+  };
+
+  changeToDarkTheme() {
+    this.themeService.changeTheme(Theme.DARK);
+  }
+
+  changeToLightTheme() {
+    this.themeService.changeTheme(Theme.LIGHT);
   }
 }

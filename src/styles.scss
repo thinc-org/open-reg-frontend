@@ -18,7 +18,7 @@
 }
 
 .openreg-dark-theme {
-  @include angular-material-theme($openreg-default-theme);
+  @include angular-material-theme($openreg-default-theme-dark);
 }
 
 /* You can add global styles to this file, and also import other style files */

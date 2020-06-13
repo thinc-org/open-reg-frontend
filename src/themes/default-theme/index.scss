@@ -9,3 +9,9 @@ $openreg-default-theme: mat-light-theme(
   $openreg-default-accent,
   $openreg-default-warn
 );
+
+$openreg-default-theme-dark: mat-dark-theme(
+  $openreg-default-primary,
+  $openreg-default-accent,
+  $openreg-default-warn
+);
