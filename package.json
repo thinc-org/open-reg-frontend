@@ -8,8 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "format": "prettier --write .",
-    "pre-commit": "yarn lint --fix && yarn format"
+    "format": "prettier --write ."
   },
   "private": true,
   "dependencies": {
@@ -44,6 +43,8 @@
     "karma-coverage-istanbul-reporter": "~2.0.1",
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
+    "lint-staged": "^10.2.10",
+    "ng-lint-staged": "^0.1.6",
     "prettier": "^2.0.5",
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
@@ -52,7 +53,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn pre-commit"
+      "pre-commit": "yarn lint-staged"
     }
   }
 }

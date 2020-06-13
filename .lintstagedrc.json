@@ -1,0 +1,3 @@
+{
+  "src/**/*.ts": ["ng-lint-staged lint --fix --", "git add"]
+}
