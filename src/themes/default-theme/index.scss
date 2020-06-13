@@ -1,0 +1,11 @@
+@import 'variables';
+
+$openreg-default-primary: mat-palette($mat-openreg-indigo);
+$openreg-default-accent: mat-palette($mat-openreg-mint);
+$openreg-default-warn: mat-palette($mat-openreg-carrot);
+
+$openreg-default-theme: mat-light-theme(
+  $openreg-default-primary,
+  $openreg-default-accent,
+  $openreg-default-warn
+);
