@@ -21,6 +21,8 @@
   @include angular-material-theme($openreg-default-theme-dark);
 }
 
+@import './reset-styles.scss';
+
 /* You can add global styles to this file, and also import other style files */
 
 html,
