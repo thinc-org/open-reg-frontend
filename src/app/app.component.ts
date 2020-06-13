@@ -14,10 +14,7 @@ export class AppComponent implements OnInit {
   theme = 'openreg-light-theme';
   containerElement: any;
 
-  constructor(
-    private overlayContainer: OverlayContainer,
-    private themeService: ThemeService
-  ) {}
+  constructor(private overlayContainer: OverlayContainer, private themeService: ThemeService) {}
 
   ngOnInit(): void {
     this.themeService.currentThemeEmitter$.subscribe(this.onThemeChange);
@@ -25,11 +22,10 @@ export class AppComponent implements OnInit {
 
   onThemeChange = (themeClass: string) => {
     this.theme = themeClass;
-    const overlayContainerClasses = this.overlayContainer.getContainerElement()
-      .classList;
-    const themeClassesToRemove = Array.from(
-      overlayContainerClasses
-    ).filter((item: string) => item.includes('-theme'));
+    const overlayContainerClasses = this.overlayContainer.getContainerElement().classList;
+    const themeClassesToRemove = Array.from(overlayContainerClasses).filter((item: string) =>
+      item.includes('-theme')
+    );
     if (themeClassesToRemove.length) {
       overlayContainerClasses.remove(...themeClassesToRemove);
     }
