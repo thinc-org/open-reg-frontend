@@ -44,4 +44,4 @@ jobs:
         id: vercel-action-production
         if: github.event_name == 'push'
         run: |
-          yarn vercel ./dist -A ./vercel.json --token ${{ secrets.VERCEL_TOKEN }} --prod --confirm
+          yarn vercel ./dist/open-reg-frontend -A ./vercel.json --token ${{ secrets.VERCEL_TOKEN }} --prod --confirm
