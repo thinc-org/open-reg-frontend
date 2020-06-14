@@ -3,5 +3,7 @@
   "public": false,
   "github": {
     "enabled": false
-  }
+  },
+  "scope": "thinc",
+  "alias": ["frontend.open-reg.now.sh"]
 }

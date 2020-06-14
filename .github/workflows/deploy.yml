@@ -36,9 +36,7 @@ jobs:
           yarn
           yarn test:ci
       - name: Push Build to Releases
-        uses: amondnet/vercel-action@v19.0.1
-        with:
-          artifacts: 'dist/angular-githubaction/*'
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORGID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECTID }}
+        uses: actions/setup-node@v1
+        run: |
+          yarn global add vercel
+          vercel --token ${{ secrets.VERCEL_TOKEN }} --confirm
