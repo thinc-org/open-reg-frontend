@@ -8,7 +8,7 @@ import { ThemeService } from './core/services/theme.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'openreg';
+  title = 'open-reg';
 
   constructor(private themeService: ThemeService) {}
 

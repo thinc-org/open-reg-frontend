@@ -31,6 +31,7 @@ module.exports = {
       env: { jasmine: true },
       rules: {
         '@typescript-eslint/no-unused-vars': 'off',
+        'jasmine/new-line-before-expect': 'off',
       },
     },
     {

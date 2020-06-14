@@ -10,7 +10,6 @@ import { ThemeService } from '../../services/theme.service';
 })
 export class ThemeControllerComponent implements OnInit {
   theme = ThemeTypes[Theme.LIGHT];
-  containerElement: any;
 
   constructor(private overlayContainer: OverlayContainer, private themeService: ThemeService) {}
 
