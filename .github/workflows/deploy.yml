@@ -36,7 +36,7 @@ jobs:
           yarn
           yarn test:ci
       - name: Push Build to Releases
-        uses: amondnet/vercel-action@v19.0.1+1
+        uses: amondnet/vercel-action@v19.0.1
         with:
           artifacts: 'dist/angular-githubaction/*'
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
