@@ -1,13 +1,9 @@
-# This is a basic workflow to help you get started with Actions
-
-name: CI
+name: Deploy to Vercel
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
 on:
   push:
-    branches: [dev]
-  pull_request:
     branches: [dev]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -35,7 +31,7 @@ jobs:
       - name: yarn
         run: |
           yarn
-      - name: yarn test
+      - name: Test
         run: |
           yarn
           yarn test:ci
@@ -46,4 +42,3 @@ jobs:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORGID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECTID }}
-          vercel-args: --prod
