@@ -1,0 +1,19 @@
+@import '~@angular/material/theming';
+
+@mixin example-component-theme($theme) {
+  // retrieve variables from theme
+  // (all possible variables, use only what you really need)
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+
+  .example {
+    // retrieve particular color from variable, rg: text, base, divider, ...
+    color: mat-color($foreground, text);
+    background-color: mat-color($background, card);
+    // or use "default" subvariable by default, oh the puns :)
+    border: 1px solid mat-color($warn);
+  }
+}

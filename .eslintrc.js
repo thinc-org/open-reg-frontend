@@ -31,6 +31,7 @@ module.exports = {
       env: { jasmine: true },
       rules: {
         '@typescript-eslint/no-unused-vars': 'off',
+        'jasmine/new-line-before-expect': 'off',
       },
     },
     {
@@ -49,6 +50,7 @@ module.exports = {
         'class-methods-use-this': 'off',
         'import/prefer-default-export': 'off',
         'lines-between-class-members': 'off',
+        '@typescript-eslint/lines-between-class-members': 0,
         'no-useless-constructor': 'off',
         'no-empty-function': 'off',
         '@typescript-eslint/no-useless-constructor': 0,
