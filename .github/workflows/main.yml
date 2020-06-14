@@ -25,6 +25,7 @@ jobs:
         with:
           path: |
             ${{ steps.yarn-cache-dir-path.outputs.dir }}
+            node_modules
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
@@ -40,7 +41,7 @@ jobs:
           yarn test:ci
       - name: Build
         run: |
-          yarn build --prod --aot=true
+          yarn build --prod
       - name: Push Build to Development
         id: vercel-action-staging
         if: github.event_name == 'pull_request'
