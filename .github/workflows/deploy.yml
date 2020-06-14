@@ -38,5 +38,4 @@ jobs:
       - name: Push Build to Releases
         uses: actions/setup-node@v1
         run: |
-          yarn global add vercel
-          vercel --token ${{ secrets.VERCEL_TOKEN }} --confirm
+          yarn vercel --token ${{ secrets.VERCEL_TOKEN }} --confirm
