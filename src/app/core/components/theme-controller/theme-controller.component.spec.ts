@@ -3,19 +3,16 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Subject } from 'rxjs';
 import { ThemeTypes } from 'src/types/constants';
-import { configureTestSuite } from 'ng-bullet';
 import { Theme } from 'src/types';
-import { cacheTestingModule } from 'ng-cache-testing-module';
 import { ThemeService } from '../../services/theme.service';
 import { ThemeControllerComponent } from './theme-controller.component';
 
 describe('ThemeControllerComponent', () => {
-  cacheTestingModule();
   let component: ThemeControllerComponent;
   let fixture: ComponentFixture<ThemeControllerComponent>;
   let subscribeSpy: jasmine.Spy<any>;
 
-  configureTestSuite(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       declarations: [ThemeControllerComponent],
       providers: [
