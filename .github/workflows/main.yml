@@ -39,7 +39,7 @@ jobs:
         id: vercel-action-staging
         if: github.event_name == 'pull_request'
         run: |
-          yarn vercel ./dist -A ./vercel.json --token ${{ secrets.VERCEL_TOKEN }} --confirm
+          yarn vercel ./dist/open-reg-frontend -A ./vercel.json --token ${{ secrets.VERCEL_TOKEN }} --confirm
       - name: Push Build to Staging
         id: vercel-action-production
         if: github.event_name == 'push'
