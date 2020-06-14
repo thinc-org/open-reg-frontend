@@ -39,3 +39,10 @@ jobs:
       - name: Build
         run: |
           yarn build --prod
+      - name: Push Build to Releases
+        uses: amondnet/vercel-action@v19.0.1+1
+        with:
+          artifacts: 'dist/angular-githubaction/*'
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORGID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECTID }}
