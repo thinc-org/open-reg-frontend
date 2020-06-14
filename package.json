@@ -6,7 +6,7 @@
     "dev": "ng serve",
     "build": "ng build",
     "test": "ng test",
-    "test-ci": "ng test --watch=false --no-progress --browsers=ChromeHeadlessCustom",
+    "test:ci": "ng test --watch=false --no-progress --browsers=ChromeHeadlessCustom",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "format": "prettier --write ."
