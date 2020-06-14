@@ -6,6 +6,7 @@
     "dev": "ng serve",
     "build": "ng build",
     "test": "ng test",
+    "test:ci": "ng test --watch=false --no-progress --browsers=ChromeHeadlessCustom",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "format": "prettier --write ."
@@ -57,13 +58,15 @@
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
     "lint-staged": "^10.2.10",
+    "ng-bullet": "^1.0.3",
     "ng-lint-staged": "^0.1.6",
     "prettier": "^2.0.5",
     "pretty-quick": "^2.0.1",
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
-    "typescript": "~3.8.3"
+    "typescript": "~3.8.3",
+    "vercel": "^19.1.0"
   },
   "husky": {
     "hooks": {
