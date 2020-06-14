@@ -31,10 +31,10 @@ jobs:
           yarn
       - name: Test
         run: |
-          yarn nghm -- test --watch=false --no-progress --browsers=ChromeHeadlessCustom --aot=true
+          yarn nghm -- test --watch=false --no-progress --browsers=ChromeHeadlessCustom
       - name: Build
         run: |
-          yarn nghm -- build --prod
+          yarn nghm -- build --prod --aot=true
       - name: Push Build to Development
         id: vercel-action-staging
         if: github.event_name == 'pull_request'
