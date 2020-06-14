@@ -58,6 +58,7 @@
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
     "lint-staged": "^10.2.10",
+    "ng-bullet": "^1.0.3",
     "ng-lint-staged": "^0.1.6",
     "prettier": "^2.0.5",
     "pretty-quick": "^2.0.1",
