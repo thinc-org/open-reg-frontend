@@ -3,7 +3,7 @@ WORKDIR /app
 COPY package.json .
 RUN yarn
 COPY . .
-RUN yarn run build
+RUN yarn run build --prod
 
 FROM nginx
 EXPOSE 4200

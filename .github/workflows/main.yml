@@ -37,19 +37,12 @@ jobs:
         run: |
           yarn build --prod
       - name: Push Build to Development
-        uses: amondnet/vercel-action@v19.0.1+1
         id: vercel-action-staging
         if: github.event_name == 'pull_request'
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORGID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECTID }}
+        run: |
+          yarn vercel ./dist -A ./vercel.json --token ${{ secrets.VERCEL_TOKEN }} --confirm
       - name: Push Build to Staging
-        uses: amondnet/vercel-action@v19.0.1+1
         id: vercel-action-production
         if: github.event_name == 'push'
-        with:
-          vercel-args: '--prod'
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORGID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECTID }}
+        run: |
+          yarn vercel ./dist -A ./vercel.json --token ${{ secrets.VERCEL_TOKEN }} --prod --confirm
