@@ -3,9 +3,11 @@ import { ThemeTypes } from 'src/types/constants';
 import { TestBed } from '@angular/core/testing';
 import { Theme } from 'src/types';
 import { configureTestSuite } from 'ng-bullet';
+import { cacheTestingModule } from 'ng-cache-testing-module';
 import { ThemeService } from './theme.service';
 
 describe('ThemeService', () => {
+  cacheTestingModule();
   let service: ThemeService;
 
   configureTestSuite(() => {

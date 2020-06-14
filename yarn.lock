@@ -6723,6 +6723,11 @@ ng-bullet@^1.0.3:
   dependencies:
     tslib "^1.9.0"
 
+ng-cache-testing-module@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/ng-cache-testing-module/-/ng-cache-testing-module-1.0.2.tgz#91840a85eca9b58e05260895fcc50e2947ec9217"
+  integrity sha512-Jqc6DnSKhbWXObi2NnDhXafK8qcDCMBxrFON4VkF+kSc6hSSLAQWgIZwZmKpRg+Jd6bjbPDlgrebplYHs7Y2aw==
+
 ng-lint-staged@^0.1.6:
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/ng-lint-staged/-/ng-lint-staged-0.1.6.tgz#6a7e2c32108e62bfb4d4183ae29dbe7b367a8e4f"
