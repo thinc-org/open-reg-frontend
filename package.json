@@ -9,8 +9,7 @@
     "test-ci": "ng test --watch=false --no-progress --browsers=ChromeHeadlessCustom",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "format": "prettier --write .",
-    "nghm": "node --max_old_space_size=8096 ./node_modules/@angular/cli/bin/ng"
+    "format": "prettier --write ."
   },
   "private": true,
   "dependencies": {
