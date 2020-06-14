@@ -7,6 +7,8 @@ name: Build and Test
 on:
   pull_request:
     branches: [dev]
+  push:
+    branches: [dev]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -37,12 +39,23 @@ jobs:
         run: |
           yarn test:ci
       - name: Build
+        if: github.event_name == 'pull_request'
         run: |
           yarn build --prod
-      - name: Push Build to Releases
+      - name: Push Build to Development
         uses: amondnet/vercel-action@v19.0.1+1
+        id: vercel-action-staging
+        if: github.event_name == 'pull_request'
         with:
-          artifacts: 'dist/angular-githubaction/*'
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORGID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECTID }}
+      - name: Push Build to Staging
+        uses: amondnet/vercel-action@v19.0.1+1
+        id: vercel-action-production
+        if: github.event_name == 'push'
+        with:
+          vercel-args: '--prod'
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORGID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECTID }}
