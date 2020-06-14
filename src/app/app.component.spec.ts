@@ -1,11 +1,14 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
 import { AppComponent } from './app.component';
+import { CoreModules } from './core/core.module';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
+      imports: [RouterTestingModule, MatMenuModule, MatButtonModule, CoreModules],
       declarations: [AppComponent],
     }).compileComponents();
   }));
@@ -15,22 +18,5 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
 
     expect(app).toBeTruthy();
-  });
-
-  it(`should have as title 'open-reg-frontend'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-
-    expect(app.title).toEqual('open-reg-frontend');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-
-    expect(compiled.querySelector('.content span').textContent).toContain(
-      'open-reg-frontend app is running!'
-    );
   });
 });

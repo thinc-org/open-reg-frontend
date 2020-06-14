@@ -1,0 +1,7 @@
+.example {
+  display: flex;
+  padding: 10px;
+  &-items {
+    padding: 5px 10px;
+  }
+}

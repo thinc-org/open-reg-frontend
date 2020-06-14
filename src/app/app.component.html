@@ -1,1 +1,16 @@
-<router-outlet></router-outlet>
+<app-theme-controller>
+  <div>
+    <a routerLink="/">
+      Home Page
+    </a>
+    <a routerLink="/form">
+      Form Page
+    </a>
+    <button mat-button [matMenuTriggerFor]="menu">Change Theme</button>
+    <mat-menu #menu="matMenu">
+      <button (click)="changeToLightTheme()" mat-menu-item>Light</button>
+      <button (click)="changeToDarkTheme()" mat-menu-item>Dark</button>
+    </mat-menu>
+  </div>
+  <router-outlet></router-outlet>
+</app-theme-controller>
