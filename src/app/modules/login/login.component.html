@@ -1,8 +1,0 @@
-<h1 nz-title>Login</h1>
-<nz-alert
-  nzType="error"
-  [nzMessage]="error"
-  *ngIf="loginError$ | async as error"
-  >{{ error }}</nz-alert
->
-<img src="assets/login_sso.png" alt="image" (click)="login()" />

@@ -1,108 +1,45 @@
+@import './styles-variables.scss';
+@import './styles-variables-themes.scss';
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+@import './themes/default-theme/index.scss';
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+
+@import './app/core/components/example/example.component-theme.scss';
+
+@mixin custom-components-theme($theme) {
+  @include example-component-theme($theme);
+}
+
+.openreg-light-theme {
+  @include angular-material-theme($openreg-default-theme);
+  @include custom-components-theme($openreg-default-theme);
+}
+
+.openreg-dark-theme {
+  @include angular-material-theme($openreg-default-theme-dark);
+  @include custom-components-theme($openreg-default-theme-dark);
+}
+
+@import './styles-reset.scss';
+
 /* You can add global styles to this file, and also import other style files */
-
-@font-face {
-  font-family: 'Noto Sans Thai UI Med';
-  src: url('assets/fonts/NotoSansThaiUI-Medium.woff2') format('woff2'),
-    url('assets/fonts/NotoSansThaiUI-Medium.woff') format('woff');
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Noto Sans Thai UI';
-  src: url('assets/fonts/NotoSansThaiUI-Regular.woff2') format('woff2'),
-    url('assets/fonts/NotoSansThaiUI-Regular.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Noto Sans Thai';
-  src: url('assets/fonts/NotoSansThai-Bold.woff2') format('woff2'),
-    url('assets/fonts/NotoSansThai-Bold.woff') format('woff');
-  font-weight: bold;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Inter';
-  src: url('assets/fonts/Inter-Regular.woff2') format('woff2'),
-    url('assets/fonts/Inter-Regular.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Inter';
-  src: url('assets/fonts/Inter-Medium.woff2') format('woff2'),
-    url('assets/fonts/Inter-Medium.woff') format('woff');
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Inter';
-  src: url('assets/fonts/Inter-Bold.woff2') format('woff2'),
-    url('assets/fonts/Inter-Bold.woff') format('woff');
-  font-weight: bold;
-  font-style: normal;
-}
 
 html,
 body {
   height: 100%;
+}
+body {
   margin: 0;
-  font-family: 'Noto Sans Thai UI', 'Inter', 'Sans-Serif';
-  background-color: #FBFBFB;
-}
-
-.ant-radio {
-  .ant-radio-inner {
-    border-color: #f4f4f4;
-  }
-  &-checked {
-    .ant-radio-inner {
-      border-color: #f4f4f4;
-    }
-  }
-  &-input {
-    &:focus + .ant-radio-inner {
-      border-color: #f4f4f4;
-    }
-  }
-}
-
-.ant-select {
-  &-selection {
-    background-color: #f9f9f9;
-    border-radius: 6px;
-    box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.02);
-    border: 0;
-    &:focus {
-      box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.02);
-    }
-  }
-  &-dropdown {
-    border-radius: 0;
-    box-shadow: 0;
-    &-menu-item {
-      font-weight: 600;
-      border-top: 1.5px solid #dfdede;
-      padding-top: 10px;
-      padding-bottom: 10px;
-      background-color: #f9f9f9;
-      border-radius: 0;
-      color: #4b4b4b;
-      &-active:not(.ant-select-dropdown-menu-item-disabled) {
-        background-color: #dce9f9;
-      }
-      &:first-child {
-        border-radius: 0;
-      }
-    }
-  }
-}
-
-nz-layout {
-  min-height: 100vh !important;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
 }

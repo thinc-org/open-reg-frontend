@@ -1,38 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
 
-import { ReactiveFormsModule } from '@angular/forms';
-import { NgxStronglyTypedFormsModule } from 'ngx-strongly-typed-forms';
-import {
-  NzInputModule,
-  NzTypographyModule,
-  NzButtonModule,
-  NzFormModule,
-  NzCheckboxModule,
-  NzAlertModule,
-  NzLayoutModule,
-  NzIconModule,
-} from 'ng-zorro-antd';
-import { CoreModule } from 'src/app/core/core.module';
-import { HomeComponent } from './home.component';
+import { CoreModules } from 'src/app/core/core.module';
 import { HomeRoutingModule } from './home-routing.module';
+import { HomeComponent } from './home.component';
+import { LogoComponent } from './logo/logo.component';
 
 @NgModule({
-  declarations: [HomeComponent],
-  imports: [
-    CommonModule,
-    HomeRoutingModule,
-    ReactiveFormsModule,
-    NgxStronglyTypedFormsModule,
-    NzInputModule,
-    NzTypographyModule,
-    NzButtonModule,
-    NzFormModule,
-    NzCheckboxModule,
-    NzAlertModule,
-    NzLayoutModule,
-    CoreModule,
-    NzIconModule,
-  ],
+  declarations: [HomeComponent, LogoComponent],
+  imports: [CommonModule, HomeRoutingModule, CoreModules, MatCardModule],
 })
 export class HomeModule {}

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { FooterService } from './core/services/footer.service';
+import { Theme } from 'src/types';
+import { ThemeService } from './core/services/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -8,18 +8,15 @@ import { FooterService } from './core/services/footer.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'open-reg-frontend';
+  title = 'open-reg';
 
-  constructor(
-    translate: TranslateService,
-    private footerService: FooterService
-  ) {
-    translate.setDefaultLang('en');
+  constructor(private themeService: ThemeService) {}
 
-    translate.use('en');
+  changeToDarkTheme() {
+    this.themeService.changeTheme(Theme.DARK);
   }
 
-  get isFooterVisible() {
-    return this.footerService.visible;
+  changeToLightTheme() {
+    this.themeService.changeTheme(Theme.LIGHT);
   }
 }
