@@ -17,6 +17,9 @@
 
 @import './app/core/components/example/example.component-theme.scss';
 
+// import font from google cdn
+@import url(https://fonts.googleapis.com/css?family=Maitree);
+
 @mixin custom-components-theme($theme) {
   @include example-component-theme($theme);
 }
