@@ -1,0 +1,33 @@
+name: 'Production Deployment'
+on:
+  pull_request:
+    branches:
+      - dev
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: 'Publish to GitHub Packages'
+        uses: elgohr/Publish-Docker-Github-Action@master
+        with:
+          name: thinc-org/open-reg-backend/open-reg-frontend-production
+          registry: docker.pkg.github.com
+          username: thinc-openreg
+          password: ${{ secrets.GITHUB_TOKEN }}
+          dockerfile: Dockerfile
+          tags: latest
+      - name: 'Deploy to VM'
+        uses: appleboy/ssh-action@master
+        env:
+          GITHUB_USERNAME: ${{ secrets.GITHUB_USERNAME }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_ENV: 'staging'
+        with:
+          host: ${{ secrets.VM_HOST }}
+          username: ${{ secrets.VM_USER }}
+          password: ${{ secrets.VM_PASS }}
+          port: ${{ secrets.VM_PORT }}
+          envs: GITHUB_USERNAME, GITHUB_TOKEN, NODE_ENV
+          script: |
+            sh ./deploy.sh -e production -s api -u $GITHUB_USERNAME -t $GITHUB_TOKEN
