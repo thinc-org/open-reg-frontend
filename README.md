@@ -1,4 +1,4 @@
-![Production Deployment](https://github.com/thinc-org/open-reg-frontend/workflows/Production%20Deployment/badge.svg?branch=dev)
+![Staging/Development](https://github.com/thinc-org/open-reg-frontend/workflows/Build%20and%20Test/badge.svg?branch=dev)
 
 # OpenRegFrontend
 
