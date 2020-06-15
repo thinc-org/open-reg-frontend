@@ -42,13 +42,6 @@ jobs:
       - name: Build
         run: |
           yarn build --prod
-      - name: Push Build to Development
-        id: vercel-action-staging
-        if: github.event_name == 'pull_request'
+      - name: Push Build to Staging/Development
         run: |
-          yarn vercel ./dist/open-reg-frontend -A ./vercel.json --token ${{ secrets.VERCEL_TOKEN }} --confirm
-      - name: Push Build to Staging
-        id: vercel-action-production
-        if: github.event_name == 'push'
-        run: |
-          yarn vercel ./dist/open-reg-frontend -A ./vercel.json --token ${{ secrets.VERCEL_TOKEN }} --prod --confirm
+          yarn vercel:prod --token ${{ secrets.VERCEL_TOKEN }}
