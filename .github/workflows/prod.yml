@@ -59,4 +59,4 @@ jobs:
           port: ${{ secrets.VM_PORT }}
           envs: GITHUB_USERNAME, GITHUB_TOKEN, NODE_ENV
           script: |
-            sh ./deploy.sh -e production -s api -u $GITHUB_USERNAME -t $GITHUB_TOKEN
+            sh ./deploy.sh -e production -s frontend -u $GITHUB_USERNAME -t $GITHUB_TOKEN
