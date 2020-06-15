@@ -34,7 +34,7 @@ jobs:
           yarn test:ci
       - name: Build
         run: |
-          yarn build --prod --aot=true
+          yarn build --prod
       - name: Push Build to Development
         id: vercel-action-staging
         if: github.event_name == 'pull_request'
