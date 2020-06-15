@@ -11,7 +11,7 @@ jobs:
       - name: 'Publish to GitHub Packages'
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
-          name: thinc-org/open-reg-backend/open-reg-frontend-production
+          name: thinc-org/open-reg-frontend/open-reg-frontend-production
           registry: docker.pkg.github.com
           username: thinc-openreg
           password: ${{ secrets.GITHUB_TOKEN }}
