@@ -1,11 +1,8 @@
 FROM node:alpine as builder
 WORKDIR /app
-COPY package.json .
-RUN yarn
-COPY . .
-RUN yarn run build --prod
+COPY /dist /dist
 
 FROM nginx
-EXPOSE 4200
+EXPOSE 5000
 COPY /nginx/default.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder /app/dist/open-reg-frontend /usr/share/nginx/html
