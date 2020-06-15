@@ -1,4 +1,4 @@
-name: Build and Test
+name: Staging
 on:
   pull_request:
     branches: [dev]
