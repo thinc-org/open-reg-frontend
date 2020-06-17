@@ -36,6 +36,6 @@ we fix this issue by define core.autocrlf in .git/config as false
 
 ## Deploy to Vercel
 
-เราใช้ทริคนิดหน่อยในการ deploy 2 domain ลง vercel โดยปกติแล้วตัว Vercel จะรองรับการ deploy หลาย domai ก็ต่อเมื่อใช้ github integration โดยตรงเท่านั้น
+เราใช้ทริคนิดหน่อยในการ deploy 2 domain ลง vercel โดยปกติแล้วตัว Vercel จะรองรับการ deploy หลาย domain ก็ต่อเมื่อใช้ github integration โดยตรงเท่านั้น
 เนื่องจากเราต้องการทำ Unit Testing โดยใข้ github actions เราด้วยเลยไม่ใช้วิธีนั้น เราเลือกที่จะใช้ vercel config 2 ไฟล์ คือ vercel.json กับ vercel-staging.json แทนแล้วตั้ง alias ไว้ว่าแต่ล่ะ config ให้ deploy ไปยัง domai ที่เราต้องการ แต่วิธีนี้ติดปัญหาอยู่ว่าเราเคย Assign domain ให้ openreg ใน vercel ไปแล้วซึ่งทำให้ตัว Vercel ไม่สนใจ alias domain ใน config ของเรา
 เราพบว่าพอเพิ่ม deploy branch ให้แต่ล่ะ domain ที่ Vercel console config ของเราสามารถ overwrite domain name เหล่านั้นได้
