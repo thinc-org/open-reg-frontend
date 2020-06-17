@@ -1,0 +1,21 @@
+@import 'src/styles-variables-palette.scss';
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .logo {
+    width: 36px;
+    height: 36px;
+    background-color: grey;
+    margin-right: 1em;
+  }
+  .app-name {
+    font-size: 20px;
+    color: $mono-0;
+  }
+  .powered {
+    font-size: 14px;
+    color: $mono-0;
+  }
+}

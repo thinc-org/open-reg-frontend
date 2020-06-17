@@ -1,4 +1,3 @@
-@import 'src/styles-variables-text.scss';
 @import 'src/styles-variables-palette.scss';
 
 .background-transparent {
@@ -7,7 +6,7 @@
 }
 
 .verticle-divider {
-  border-left: 3px solid $mono-1;
+  border-left: 3px solid $mono-0;
   height: 24px;
 }
 
@@ -18,7 +17,7 @@
     align-items: center;
     & > * {
       margin: 0 1em;
-      color: initial;
+      color: $mono-0;
       text-decoration: none;
     }
   }
@@ -33,9 +32,8 @@
       align-items: center;
       justify-content: center;
       & > * {
-        @include text-style-h6;
         margin: 0 0.2em;
-        color: initial;
+        color: $mono-0;
         text-decoration: none;
       }
     }

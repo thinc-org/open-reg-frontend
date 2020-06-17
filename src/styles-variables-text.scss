@@ -56,7 +56,7 @@
 }
 
 @mixin text-style-button {
-  font: 18px normal chulalongkornbold, sans-serif;
+  font: 18px normal chulalongkornbold;
   letter-spacing: 0.75px;
   line-height: 16px;
 }
@@ -68,7 +68,7 @@
 }
 
 @mixin text-style-overline {
-  font: 10px normal chulalongkornbold, sans-serif;
+  font: 10px normal chulalongkornbold;
   letter-spacing: 1.5px;
   line-height: 16px;
 }
