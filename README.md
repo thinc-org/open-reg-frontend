@@ -1,3 +1,6 @@
+![Development](https://github.com/thinc-org/open-reg-frontend/workflows/Build%20and%20Test/badge.svg?branch=dev)
+![Production](https://github.com/thinc-org/open-reg-frontend/workflows/Build%20and%20Test/badge.svg?branch=master)
+
 # OpenRegFrontend
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.26.
