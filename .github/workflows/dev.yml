@@ -42,6 +42,13 @@ jobs:
       - name: Build
         run: |
           yarn build --prod
-      - name: Push Build to Staging/Development
+      - name: Deploy Build to Development
+        id: vercel-action-development
+        if: github.event_name == 'pull_request'
         run: |
-          yarn vercel:prod --token ${{ secrets.VERCEL_TOKEN }}
+          yarn vercel:dev --token ${{ secrets.VERCEL_TOKEN }}
+      - name: Deploy Build to Staging
+        id: vercel-action-staging
+        if: github.event_name == 'push'
+        run: |
+          yarn vercel:staging --token ${{ secrets.VERCEL_TOKEN }}
