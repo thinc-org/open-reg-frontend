@@ -1,0 +1,43 @@
+@import 'src/styles-variables-text.scss';
+@import 'src/styles-variables-palette.scss';
+
+.background-transparent {
+  background: transparent;
+  background-color: transparent;
+}
+
+.verticle-divider {
+  border-left: 3px solid $mono-1;
+  height: 24px;
+}
+
+.row {
+  .left,
+  .right {
+    display: flex;
+    align-items: center;
+    & > * {
+      margin: 0 1em;
+      color: initial;
+      text-decoration: none;
+    }
+  }
+  .left {
+    padding-left: 150px;
+  }
+  .right {
+    margin-left: auto;
+    padding-right: 150px;
+    .group {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      & > * {
+        @include text-style-h6;
+        margin: 0 0.2em;
+        color: initial;
+        text-decoration: none;
+      }
+    }
+  }
+}
