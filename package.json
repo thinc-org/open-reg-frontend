@@ -10,7 +10,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "format": "prettier --write .",
-    "vercel:prod": "yarn vercel ./dist/open-reg-frontend -A ./vercel.json --prod --confirm"
+    "vercel:dev": "yarn vercel ./dist/open-reg-frontend -A ./vercel.json --prod --confirm",
+    "vercel:staging": "yarn vercel ./dist/open-reg-frontend -A ./vercel-staging.json --prod --confirm"
   },
   "private": true,
   "dependencies": {
