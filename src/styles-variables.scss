@@ -4,77 +4,84 @@
 }
 
 @mixin text-style-h2 {
-  font: 60px normal chulalongkornbold, Roboto, Arial;
+  font: 60px chulalongkornbold, Roboto, Arial;
   letter-spacing: -0.5px;
 }
 
 @mixin text-style-h3 {
-  font: 48px normal chulalongkornregular, Roboto, Arial;
+  font: 48px chulalongkornregular, Roboto, Arial;
 }
 
 @mixin text-style-h4 {
-  font: 34px normal chulalongkornbold, Roboto, Arial;
+  font: 34px chulalongkornbold, Roboto, Arial;
   letter-spacing: 0.25px;
 }
 
 @mixin text-style-h5 {
-  font: 24px normal chulalongkornregular, Roboto, Arial;
+  font: 24px chulalongkornregular, Roboto, Arial;
 }
 
 @mixin text-style-h6 {
-  font: 20px normal chulalongkornbold, Roboto, Arial;
+  font: 20px chulalongkornbold, Roboto, Arial;
   letter-spacing: 0.15px;
 }
 
 @mixin text-style-body1 {
-  font: 18px normal Maitree, Roboto, Arial;
+  font: 18px Maitree, Roboto, Arial;
+  font-weight: 400;
   letter-spacing: 0.5px;
   line-height: 28px;
 }
 
 @mixin text-style-body2 {
-  font: 14px normal Maitree, Roboto, Arial;
+  font: 14px Maitree, Roboto, Arial;
+  font-weight: 400;
   letter-spacing: 0.25px;
   line-height: 20px;
 }
 
 @mixin text-style-subtitle1 {
-  font: 16px normal Maitree, Roboto, Arial;
+  font: 16px Maitree, Roboto, Arial;
+  font-weight: 400;
   letter-spacing: 0.15px;
   line-height: 24px;
 }
 
 @mixin text-style-subtitle2 {
-  font: 24px bold Maitree, Roboto, Arial;
+  font: 24px Maitree, Roboto, Arial;
+  font-weight: 500;
   line-height: 24px;
 }
 
 @mixin text-style-button {
-  font: 18px normal chulalongkornbold, Roboto, Arial;
+  font: 18px chulalongkornbold, Roboto, Arial;
   letter-spacing: 0.75px;
   line-height: 16px;
 }
 
 @mixin text-style-caption {
-  font: 12px normal Maitree, Roboto, Arial;
+  font: 12px Maitree, Roboto, Arial;
+  font-weight: 400;
   letter-spacing: 0.4px;
   line-height: 16px;
 }
 
 @mixin text-style-overline {
-  font: 10px normal chulalongkornbold, Roboto, Arial;
+  font: 10px chulalongkornbold, Roboto, Arial;
   letter-spacing: 1.5px;
   line-height: 16px;
 }
 
 @mixin text-style-label {
-  font: 18px bold Maitree, Roboto, Arial;
+  font: 18px Maitree, Roboto, Arial;
+  font-weight: 600;
   letter-spacing: 1.5px;
   line-height: 16px;
 }
 
 @mixin text-style-error {
-  font: 14px bold Maitree, Roboto, Arial;
+  font: 14px Maitree, Roboto, Arial;
+  font-weight: 500;
   letter-spacing: 0.4px;
   line-height: 16px;
 }
