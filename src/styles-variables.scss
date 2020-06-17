@@ -1,0 +1,82 @@
+@import './styles-variables-palette.scss';
+
+@mixin text-style-h1 {
+  font: 96px normal chulalongkornbold, Roboto, Arial;
+  letter-spacing: -1.5px;
+}
+
+@mixin text-style-h2 {
+  font: 60px normal chulalongkornbold, Roboto, Arial;
+  letter-spacing: -0.5px;
+}
+
+@mixin text-style-h3 {
+  font: 48px normal chulalongkornregular, Roboto, Arial;
+}
+
+@mixin text-style-h4 {
+  font: 34px normal chulalongkornbold, Roboto, Arial;
+  letter-spacing: 0.25px;
+}
+
+@mixin text-style-h5 {
+  font: 24px normal chulalongkornregular, Roboto, Arial;
+}
+
+@mixin text-style-h6 {
+  font: 20px normal chulalongkornbold, Roboto, Arial;
+  letter-spacing: 0.15px;
+}
+
+@mixin text-style-body1 {
+  font: 18px normal Maitree, Roboto, Arial;
+  letter-spacing: 0.5px;
+  line-height: 28px;
+}
+
+@mixin text-style-body2 {
+  font: 14px normal Maitree, Roboto, Arial;
+  letter-spacing: 0.25px;
+  line-height: 20px;
+}
+
+@mixin text-style-subtitle1 {
+  font: 16px normal Maitree, Roboto, Arial;
+  letter-spacing: 0.15px;
+  line-height: 24px;
+}
+
+@mixin text-style-subtitle2 {
+  font: 24px bold Maitree, Roboto, Arial;
+  line-height: 24px;
+}
+
+@mixin text-style-button {
+  font: 18px normal chulalongkornbold, Roboto, Arial;
+  letter-spacing: 0.75px;
+  line-height: 16px;
+}
+
+@mixin text-style-caption {
+  font: 12px normal Maitree, Roboto, Arial;
+  letter-spacing: 0.4px;
+  line-height: 16px;
+}
+
+@mixin text-style-overline {
+  font: 10px normal chulalongkornbold, Roboto, Arial;
+  letter-spacing: 1.5px;
+  line-height: 16px;
+}
+
+@mixin text-style-label {
+  font: 18px bold Maitree, Roboto, Arial;
+  letter-spacing: 1.5px;
+  line-height: 16px;
+}
+
+@mixin text-style-error {
+  font: 14px bold Maitree, Roboto, Arial;
+  letter-spacing: 0.4px;
+  line-height: 16px;
+}
