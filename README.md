@@ -40,6 +40,7 @@ we fix this issue by define core.autocrlf in .git/config as false
 
 เนื่องจากเราต้องการทำ Unit Testing โดยใข้ github actions เราด้วยเลยไม่ใช้วิธีนั้น เราเลือกที่จะใช้ vercel config 2 ไฟล์ คือ vercel.json กับ vercel-staging.json แทนแล้วตั้ง alias ไว้ว่าแต่ล่ะ config ให้ deploy ไปยัง domai ที่เราต้องการ แต่วิธีนี้ติดปัญหาอยู่ว่าเราเคย Assign domain ให้ openreg ใน vercel ไปแล้วซึ่งทำให้ตัว Vercel ไม่สนใจ alias domain ใน config ของเรา
 
-เราพบว่าพอเพิ่ม deploy branch ให้แต่ล่ะ domain ที่ Vercel console config ของเราสามารถ overwrite domain name เหล่านั้นได้
+เราพบว่าพอเพิ่ม deploy branch ให้แต่ล่ะ domain ที่ Vercel console แล้ว
+config ของเราสามารถ overwrite domain name เหล่านั้นได้
 
 ![image](https://user-images.githubusercontent.com/12471844/84898405-66f1d680-b0d1-11ea-8c9d-a4f972feb50b.png)
