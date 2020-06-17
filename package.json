@@ -9,7 +9,8 @@
     "test:ci": "ng test --watch=false --no-progress --browsers=ChromeHeadlessCustom",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "vercel:prod": "yarn vercel ./dist/open-reg-frontend -A ./vercel.json --prod --confirm"
   },
   "private": true,
   "dependencies": {
