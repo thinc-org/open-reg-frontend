@@ -1,4 +1,3 @@
-@import './styles-variables.scss';
 @import './styles-variables-themes.scss';
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
@@ -16,9 +15,6 @@
 // that you are using.
 
 @import './app/core/components/example/example.component-theme.scss';
-
-// import font from google cdn
-@import url(https://fonts.googleapis.com/css?family=Maitree);
 
 @mixin custom-components-theme($theme) {
   @include example-component-theme($theme);
