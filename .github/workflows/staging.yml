@@ -1,6 +1,6 @@
-name: Development Deployment
+name: Staging Deployment
 on:
-  pull_request:
+  push:
     branches: [dev]
 
 jobs:
@@ -40,6 +40,6 @@ jobs:
       - name: Build
         run: |
           yarn build --prod
-      - name: Deploy Build to Development
+      - name: Deploy Build to Staging
         run: |
-          yarn vercel:dev --token ${{ secrets.VERCEL_TOKEN }}
+          yarn vercel:staging --token ${{ secrets.VERCEL_TOKEN }}
