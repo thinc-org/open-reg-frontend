@@ -5,9 +5,9 @@
 
 ## environments
 
-- development URL: https://development-frontend-open-reg.now.sh -- lastest pull request to dev
-- staging URL: https://frontend-open-reg.now.sh -- dev branch
-- production URL: https://frontend.openreg.thinc.in.th/ -- master branch
+- development URL: <https://development-frontend-open-reg.now.sh> -- lastest pull request to dev
+- staging URL: <https://frontend-open-reg.now.sh> -- dev branch
+- production URL: <https://frontend.openreg.thinc.in.th> -- master branch
 
 ## eol problem
 
