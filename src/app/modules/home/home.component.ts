@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from 'src/backend-client';
 import { HomeService } from './home.service';
@@ -8,7 +8,7 @@ import { HomeService } from './home.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   event$: Observable<any>;
 
   org$: Observable<any>;
@@ -16,6 +16,12 @@ export class HomeComponent {
   constructor(public service: HomeService, private apiService: ApiService) {
     this.event$ = this.apiService.eventControllerFindAll();
     this.org$ = this.apiService.organizationControllerGetMembers('ad'); // should throw error
+  }
+
+  ngOnInit() {
+    this.apiService
+      .authControllerLogin({ email: 'new5558', password: 'password' }) // unauthorized
+      .subscribe((e) => console.log(e, 'login'));
   }
 
   changeMessage() {
