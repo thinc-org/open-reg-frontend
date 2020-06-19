@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Injectable } from '@angular/core';
 import { timer, of, throwError } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
@@ -6,212 +7,194 @@ import {
   AddMemberDTO,
   CreateOrganizationDTO,
   CreateUserDTO,
+  DefaultServiceInterface,
+  OrganizationMember,
+  Organization,
+  UserDTO,
+  Configuration,
+  SetTagsDTO,
 } from 'src/backend-client';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { Event } from 'src/backend-client/model/event';
 
 @Injectable({
   providedIn: 'root',
 })
-export class MockApiService {
+export class MockApiService implements DefaultServiceInterface {
   public forceBadRequest = false;
+  defaultHeaders = new HttpHeaders();
+  configuration = new Configuration();
 
-  private createMockApiResponse(
-    data: Record<string, any> | Record<string, any>[],
-    forceBadRequest: boolean
-  ) {
+  private createMockApiResponse<T>(data: T) {
     return timer(1000).pipe(
       switchMap(() =>
-        forceBadRequest ? throwError(new HttpErrorResponse({ status: 400 })) : of(data)
+        this.forceBadRequest ? throwError(new HttpErrorResponse({ status: 400 })) : of(data)
       )
     );
   }
 
   constructor() {}
 
+  authControllerCurrentUser() {
+    return this.createMockApiResponse<any>([]);
+  }
+
+  authControllerLogin() {
+    return this.createMockApiResponse<any>([]);
+  }
+
+  // find tag
   eventControllerCreateEvent(body: CreateEventDTO) {
-    return this.createMockApiResponse(
-      {
-        _id: '5ee4d592387493001b961a18',
-        name: body.name,
-        description: body.description,
-        organizationID: body.organizationID,
-        __v: 0,
-      },
-      this.forceBadRequest
-    );
+    return this.createMockApiResponse<Event>({
+      name: body.name,
+      description: body.description,
+      organizationID: body.organizationID,
+      tags: ['?'],
+    });
   }
 
+  // find tag
   eventControllerFindAll() {
-    return this.createMockApiResponse(
-      [
-        {
-          _id: '5ee475d8a811fe001b208b51',
-          name: 'Test Event 1',
-          description: 'Suphon is very godlike',
-          organizationID: '5ee475b4a811fe001b208b50',
-          __v: 0,
-        },
-        {
-          _id: '5ee4766ca811fe001b208b52',
-          name: 'Test Event 2',
-          description: 'Suphon is very intelligent',
-          organizationID: '5ee475b4a811fe001b208b50',
-          __v: 0,
-        },
-        {
-          _id: '5ee4b4a8387493001b961a15',
-          name: 'Test Event 3',
-          description: 'Suphon is a quadrillionaire',
-          organizationID: '5ee475b4a811fe001b208b50',
-          __v: 0,
-        },
-      ],
-      this.forceBadRequest
-    );
-  }
-
-  eventControllerFindById(id: string) {
-    return this.createMockApiResponse(
+    return this.createMockApiResponse<Event[]>([
       {
-        _id: id,
         name: 'Test Event 1',
         description: 'Suphon is very godlike',
         organizationID: '5ee475b4a811fe001b208b50',
-        __v: 0,
+        tags: ['?'],
       },
-      this.forceBadRequest
-    );
+      {
+        name: 'Test Event 2',
+        description: 'Suphon is very intelligent',
+        organizationID: '5ee475b4a811fe001b208b50',
+        tags: ['?'],
+      },
+      {
+        name: 'Test Event 3',
+        description: 'Suphon is a quadrillionaire',
+        organizationID: '5ee475b4a811fe001b208b50',
+        tags: ['?'],
+      },
+    ]);
+  }
+
+  eventControllerFindAllTags(id: string) {
+    return this.createMockApiResponse<string[]>(['?']);
+  }
+
+  eventControllerFindById(id: string) {
+    return this.createMockApiResponse<Event>({
+      name: 'Test Event 1',
+      description: 'Suphon is very godlike',
+      organizationID: '5ee475b4a811fe001b208b50',
+      tags: ['?'],
+    });
+  }
+
+  eventControllerSetTags(body: SetTagsDTO, id: string) {
+    return this.createMockApiResponse<string[]>(body.tags);
   }
 
   organizationControllerAddMember(body: AddMemberDTO) {
-    return this.createMockApiResponse(
-      [{ userID: body.memberid, permissions: [] }],
-      this.forceBadRequest
-    );
+    return this.createMockApiResponse<OrganizationMember[]>([
+      { userID: body.memberid, permissions: [] },
+    ]);
   }
 
   organizationControllerCreateOrganization(body: CreateOrganizationDTO) {
-    return this.createMockApiResponse(
-      {
-        events: [],
-        members: [],
-        _id: '5ee4d9de387493001b961a3a',
-        name: body.name,
-        __v: 0,
-      },
-      this.forceBadRequest
-    );
+    return this.createMockApiResponse<Organization>({
+      events: [],
+      members: [],
+      name: body.name,
+    });
   }
 
   organizationControllerFindAll() {
-    return this.createMockApiResponse(
-      [
-        {
-          events: [],
-          members: [],
-          _id: '5ee475b4a811fe001b208b50',
-          name: 'Suphon Corporation',
-          __v: 0,
-        },
-        { events: [], members: [], _id: '5ee4d9de387493001b961a3a', name: 'new company', __v: 0 },
-        { events: [], members: [], _id: '5ee4d9de387493001b961a3b', name: 'new company', __v: 0 },
-        { events: [], members: [], _id: '5ee4d9f0387493001b961a3c', name: 'new company', __v: 0 },
-        { events: [], members: [], _id: '5ee4d9f0387493001b961a3d', name: 'new company', __v: 0 },
-        { events: [], members: [], _id: '5ee4d9fa387493001b961a3e', name: 'new company', __v: 0 },
-        { events: [], members: [], _id: '5ee4d9fa387493001b961a3f', name: 'new company', __v: 0 },
-        { events: [], members: [], _id: '5ee4d9fd387493001b961a40', name: 'new company', __v: 0 },
-        { events: [], members: [], _id: '5ee4d9fe387493001b961a41', name: 'new company', __v: 0 },
-        { events: [], members: [], _id: '5ee4d9ff387493001b961a42', name: 'new company', __v: 0 },
-        { events: [], members: [], _id: '5ee4da08387493001b961a43', name: 'new company', __v: 0 },
-        { events: [], members: [], _id: '5ee4da0b387493001b961a44', name: 'new company', __v: 0 },
-        { events: [], members: [], _id: '5ee4da51387493001b961a45', name: 'new company', __v: 0 },
-        { events: [], members: [], _id: '5ee4da51387493001b961a46', name: 'new company', __v: 0 },
-      ],
-      this.forceBadRequest
-    );
+    return this.createMockApiResponse<Organization[]>([
+      {
+        events: [],
+        members: [],
+        name: 'Suphon Corporation',
+      },
+      { events: [], members: [], name: 'new company' },
+      { events: [], members: [], name: 'new company' },
+      { events: [], members: [], name: 'new company' },
+      { events: [], members: [], name: 'new company' },
+      { events: [], members: [], name: 'new company' },
+      { events: [], members: [], name: 'new company' },
+      { events: [], members: [], name: 'new company' },
+      { events: [], members: [], name: 'new company' },
+      { events: [], members: [], name: 'new company' },
+      { events: [], members: [], name: 'new company' },
+      { events: [], members: [], name: 'new company' },
+      { events: [], members: [], name: 'new company' },
+      { events: [], members: [], name: 'new company' },
+    ]);
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  organizationControllerGetMembers(orgid: string) {
-    return this.createMockApiResponse(
-      [{ userID: '5ee4da95387493001b961a47', permissions: [] }],
-      this.forceBadRequest
-    );
+  organizationControllerGetMembers(id: string) {
+    return this.createMockApiResponse<OrganizationMember[]>([
+      { userID: '5ee4da95387493001b961a47', permissions: [] },
+    ]);
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  organizationControllerRemoveMember(orgid: string) {
-    return this.createMockApiResponse(
-      [{ userID: '5ee4da95387493001b961a47', permissions: [] }],
-      this.forceBadRequest
-    );
+  organizationControllerRemoveMember(id: string) {
+    return this.createMockApiResponse<OrganizationMember[]>([
+      { userID: '5ee4da95387493001b961a47', permissions: [] },
+    ]);
   }
 
   userControllerCreate(body: CreateUserDTO) {
-    return this.createMockApiResponse(
-      {
-        organizations: [],
-        termsOfService: [],
-        _id: '5ee4db6b387493001b961a53',
-        title: { _id: '5ee4db6b387493001b961a54', ...body.title },
-        firstName: { _id: '5ee4db6b387493001b961a55', ...body.firstName },
-        lastName: { _id: '5ee4db6b387493001b961a56', ...body.lastName },
-        dateOfBirth: body.dateOfBirth.toISOString(),
-        email: body.email,
-        password: '$2a$10$phBx91fXC5t37UdF1x3Hyuv3KT/XmDmiF.kSKdtXICqfUAwfSynO.',
-        __v: 0,
-      },
-      this.forceBadRequest
-    );
+    return this.createMockApiResponse<UserDTO>({
+      id: '5ee4da95387493001b961a47',
+      organizations: [],
+      termsOfService: [],
+      title: body.title,
+      firstName: body.firstName,
+      lastName: body.lastName,
+      dateOfBirth: (body.dateOfBirth.toISOString() as unknown) as Date,
+      email: body.email,
+      password: '$2a$10$phBx91fXC5t37UdF1x3Hyuv3KT/XmDmiF.kSKdtXICqfUAwfSynO.',
+    });
   }
 
   userControllerFindAll() {
-    return this.createMockApiResponse(
-      [
-        {
-          organizations: [],
-          termsOfService: [],
-          _id: '5ee4da95387493001b961a47',
-          title: { _id: '5ee4da95387493001b961a48', en: 'new', th: 'new' },
-          firstName: { _id: '5ee4da95387493001b961a49', en: 'new', th: 'new' },
-          lastName: { _id: '5ee4da95387493001b961a4a', en: 'new', th: 'new' },
-          dateOfBirth: '2020-06-13T13:54:29.808Z',
-          email: 'new.com',
-          password: '$2a$10$CESfxmv4C0/N/xXobO.O5OAYD3eUQfSeRx.NGSWM3LvwUhqY8p3N6',
-          __v: 0,
-        },
-        {
-          organizations: [],
-          termsOfService: [],
-          _id: '5ee4db6b387493001b961a53',
-          title: { _id: '5ee4db6b387493001b961a54', en: 'new', th: 'new' },
-          firstName: { _id: '5ee4db6b387493001b961a55', en: 'new', th: 'new' },
-          lastName: { _id: '5ee4db6b387493001b961a56', en: 'new', th: 'new' },
-          dateOfBirth: '2020-06-13T13:58:03.469Z',
-          email: 'new.comd',
-          password: '$2a$10$phBx91fXC5t37UdF1x3Hyuv3KT/XmDmiF.kSKdtXICqfUAwfSynO.',
-          __v: 0,
-        },
-      ],
-      this.forceBadRequest
-    );
-  }
-
-  userControllerFindById(id: string) {
-    return this.createMockApiResponse(
+    return this.createMockApiResponse<UserDTO[]>([
       {
         organizations: [],
         termsOfService: [],
-        _id: id,
-        title: { _id: '5ee4da95387493001b961a48', en: 'new', th: 'new' },
-        firstName: { _id: '5ee4da95387493001b961a49', en: 'new', th: 'new' },
-        lastName: { _id: '5ee4da95387493001b961a4a', en: 'new', th: 'new' },
-        dateOfBirth: '2020-06-13T13:54:29.808Z',
+        id: '5ee4da95387493001b961a47',
+        title: { en: 'new', th: 'new' },
+        firstName: { en: 'new', th: 'new' },
+        lastName: { en: 'new', th: 'new' },
+        dateOfBirth: ('2020-06-13T13:54:29.808Z' as unknown) as Date,
         email: 'new.com',
         password: '$2a$10$CESfxmv4C0/N/xXobO.O5OAYD3eUQfSeRx.NGSWM3LvwUhqY8p3N6',
-        __v: 0,
       },
-      this.forceBadRequest
-    );
+      {
+        organizations: [],
+        termsOfService: [],
+        id: '5ee4db6b387493001b961a53',
+        title: { en: 'new', th: 'new' },
+        firstName: { en: 'new', th: 'new' },
+        lastName: { en: 'new', th: 'new' },
+        dateOfBirth: ('2020-06-13T13:58:03.469Z' as unknown) as Date,
+        email: 'new.comd',
+        password: '$2a$10$phBx91fXC5t37UdF1x3Hyuv3KT/XmDmiF.kSKdtXICqfUAwfSynO.',
+      },
+    ]);
+  }
+
+  userControllerFindById(id: string) {
+    return this.createMockApiResponse<UserDTO>({
+      organizations: [],
+      termsOfService: [],
+      id,
+      title: { en: 'new', th: 'new' },
+      firstName: { en: 'new', th: 'new' },
+      lastName: { en: 'new', th: 'new' },
+      dateOfBirth: ('2020-06-13T13:54:29.808Z' as unknown) as Date,
+      email: 'new.com',
+      password: '$2a$10$CESfxmv4C0/N/xXobO.O5OAYD3eUQfSeRx.NGSWM3LvwUhqY8p3N6',
+    });
   }
 }

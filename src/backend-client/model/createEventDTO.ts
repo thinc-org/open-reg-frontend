@@ -14,4 +14,5 @@ export interface CreateEventDTO {
   name: string;
   description: string;
   organizationID: string;
+  tags: Array<string>;
 }

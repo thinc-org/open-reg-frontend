@@ -20,12 +20,18 @@ import { AddMemberDTO } from '../model/addMemberDTO';
 import { CreateEventDTO } from '../model/createEventDTO';
 import { CreateOrganizationDTO } from '../model/createOrganizationDTO';
 import { CreateUserDTO } from '../model/createUserDTO';
+import { Event } from '../model/event';
+import { Organization } from '../model/organization';
+import { OrganizationMember } from '../model/organizationMember';
+import { SetTagsDTO } from '../model/setTagsDTO';
+import { UserDTO } from '../model/userDTO';
 
 import { BASE_PATH, COLLECTION_FORMATS } from '../variables';
 import { Configuration } from '../configuration';
+import { DefaultServiceInterface } from './default.serviceInterface';
 
 @Injectable()
-export class DefaultService {
+export class DefaultService implements DefaultServiceInterface {
   protected basePath = '/';
   public defaultHeaders = new HttpHeaders();
   public configuration = new Configuration();
@@ -64,16 +70,16 @@ export class DefaultService {
    * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
    * @param reportProgress flag to report request and response progress.
    */
-  public appControllerGetHello(observe?: 'body', reportProgress?: boolean): Observable<any>;
-  public appControllerGetHello(
+  public authControllerCurrentUser(observe?: 'body', reportProgress?: boolean): Observable<any>;
+  public authControllerCurrentUser(
     observe?: 'response',
     reportProgress?: boolean
   ): Observable<HttpResponse<any>>;
-  public appControllerGetHello(
+  public authControllerCurrentUser(
     observe?: 'events',
     reportProgress?: boolean
   ): Observable<HttpEvent<any>>;
-  public appControllerGetHello(
+  public authControllerCurrentUser(
     observe: any = 'body',
     reportProgress: boolean = false
   ): Observable<any> {
@@ -91,7 +97,7 @@ export class DefaultService {
     // to determine the Content-Type header
     const consumes: string[] = [];
 
-    return this.httpClient.request<any>('get', `${this.basePath}/`, {
+    return this.httpClient.request<any>('get', `${this.basePath}/auth/me`, {
       withCredentials: this.configuration.withCredentials,
       headers: headers,
       observe: observe,
@@ -102,6 +108,47 @@ export class DefaultService {
   /**
    *
    *
+   * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+   * @param reportProgress flag to report request and response progress.
+   */
+  public authControllerLogin(observe?: 'body', reportProgress?: boolean): Observable<any>;
+  public authControllerLogin(
+    observe?: 'response',
+    reportProgress?: boolean
+  ): Observable<HttpResponse<any>>;
+  public authControllerLogin(
+    observe?: 'events',
+    reportProgress?: boolean
+  ): Observable<HttpEvent<any>>;
+  public authControllerLogin(
+    observe: any = 'body',
+    reportProgress: boolean = false
+  ): Observable<any> {
+    let headers = this.defaultHeaders;
+
+    // to determine the Accept header
+    let httpHeaderAccepts: string[] = [];
+    const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(
+      httpHeaderAccepts
+    );
+    if (httpHeaderAcceptSelected != undefined) {
+      headers = headers.set('Accept', httpHeaderAcceptSelected);
+    }
+
+    // to determine the Content-Type header
+    const consumes: string[] = [];
+
+    return this.httpClient.request<any>('post', `${this.basePath}/auth/sign-in`, {
+      withCredentials: this.configuration.withCredentials,
+      headers: headers,
+      observe: observe,
+      reportProgress: reportProgress,
+    });
+  }
+
+  /**
+   * Create an event
+   *
    * @param body
    * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
    * @param reportProgress flag to report request and response progress.
@@ -110,17 +157,17 @@ export class DefaultService {
     body: CreateEventDTO,
     observe?: 'body',
     reportProgress?: boolean
-  ): Observable<any>;
+  ): Observable<Event>;
   public eventControllerCreateEvent(
     body: CreateEventDTO,
     observe?: 'response',
     reportProgress?: boolean
-  ): Observable<HttpResponse<any>>;
+  ): Observable<HttpResponse<Event>>;
   public eventControllerCreateEvent(
     body: CreateEventDTO,
     observe?: 'events',
     reportProgress?: boolean
-  ): Observable<HttpEvent<any>>;
+  ): Observable<HttpEvent<Event>>;
   public eventControllerCreateEvent(
     body: CreateEventDTO,
     observe: any = 'body',
@@ -135,7 +182,7 @@ export class DefaultService {
     let headers = this.defaultHeaders;
 
     // to determine the Accept header
-    let httpHeaderAccepts: string[] = [];
+    let httpHeaderAccepts: string[] = ['application/json'];
     const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(
       httpHeaderAccepts
     );
@@ -152,7 +199,7 @@ export class DefaultService {
       headers = headers.set('Content-Type', httpContentTypeSelected);
     }
 
-    return this.httpClient.request<any>('post', `${this.basePath}/event`, {
+    return this.httpClient.request<Event>('post', `${this.basePath}/event`, {
       body: body,
       withCredentials: this.configuration.withCredentials,
       headers: headers,
@@ -162,20 +209,23 @@ export class DefaultService {
   }
 
   /**
-   *
+   * List all events
    *
    * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
    * @param reportProgress flag to report request and response progress.
    */
-  public eventControllerFindAll(observe?: 'body', reportProgress?: boolean): Observable<any>;
+  public eventControllerFindAll(
+    observe?: 'body',
+    reportProgress?: boolean
+  ): Observable<Array<Event>>;
   public eventControllerFindAll(
     observe?: 'response',
     reportProgress?: boolean
-  ): Observable<HttpResponse<any>>;
+  ): Observable<HttpResponse<Array<Event>>>;
   public eventControllerFindAll(
     observe?: 'events',
     reportProgress?: boolean
-  ): Observable<HttpEvent<any>>;
+  ): Observable<HttpEvent<Array<Event>>>;
   public eventControllerFindAll(
     observe: any = 'body',
     reportProgress: boolean = false
@@ -183,7 +233,7 @@ export class DefaultService {
     let headers = this.defaultHeaders;
 
     // to determine the Accept header
-    let httpHeaderAccepts: string[] = [];
+    let httpHeaderAccepts: string[] = ['application/json'];
     const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(
       httpHeaderAccepts
     );
@@ -194,7 +244,7 @@ export class DefaultService {
     // to determine the Content-Type header
     const consumes: string[] = [];
 
-    return this.httpClient.request<any>('get', `${this.basePath}/event`, {
+    return this.httpClient.request<Array<Event>>('get', `${this.basePath}/event`, {
       withCredentials: this.configuration.withCredentials,
       headers: headers,
       observe: observe,
@@ -203,7 +253,66 @@ export class DefaultService {
   }
 
   /**
+   * List tags of an event
    *
+   * @param id
+   * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+   * @param reportProgress flag to report request and response progress.
+   */
+  public eventControllerFindAllTags(
+    id: string,
+    observe?: 'body',
+    reportProgress?: boolean
+  ): Observable<Array<string>>;
+  public eventControllerFindAllTags(
+    id: string,
+    observe?: 'response',
+    reportProgress?: boolean
+  ): Observable<HttpResponse<Array<string>>>;
+  public eventControllerFindAllTags(
+    id: string,
+    observe?: 'events',
+    reportProgress?: boolean
+  ): Observable<HttpEvent<Array<string>>>;
+  public eventControllerFindAllTags(
+    id: string,
+    observe: any = 'body',
+    reportProgress: boolean = false
+  ): Observable<any> {
+    if (id === null || id === undefined) {
+      throw new Error(
+        'Required parameter id was null or undefined when calling eventControllerFindAllTags.'
+      );
+    }
+
+    let headers = this.defaultHeaders;
+
+    // to determine the Accept header
+    let httpHeaderAccepts: string[] = ['application/json'];
+    const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(
+      httpHeaderAccepts
+    );
+    if (httpHeaderAcceptSelected != undefined) {
+      headers = headers.set('Accept', httpHeaderAcceptSelected);
+    }
+
+    // to determine the Content-Type header
+    const consumes: string[] = [];
+
+    return this.httpClient.request<Array<string>>(
+      'get',
+      `${this.basePath}/event/${encodeURIComponent(String(id))}/tags`,
+      {
+        withCredentials: this.configuration.withCredentials,
+        headers: headers,
+        observe: observe,
+        reportProgress: reportProgress,
+      }
+    );
+  }
+
+  /**
+   * Find an event from ID
    *
    * @param id
    * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
@@ -213,17 +322,17 @@ export class DefaultService {
     id: string,
     observe?: 'body',
     reportProgress?: boolean
-  ): Observable<any>;
+  ): Observable<Event>;
   public eventControllerFindById(
     id: string,
     observe?: 'response',
     reportProgress?: boolean
-  ): Observable<HttpResponse<any>>;
+  ): Observable<HttpResponse<Event>>;
   public eventControllerFindById(
     id: string,
     observe?: 'events',
     reportProgress?: boolean
-  ): Observable<HttpEvent<any>>;
+  ): Observable<HttpEvent<Event>>;
   public eventControllerFindById(
     id: string,
     observe: any = 'body',
@@ -238,7 +347,7 @@ export class DefaultService {
     let headers = this.defaultHeaders;
 
     // to determine the Accept header
-    let httpHeaderAccepts: string[] = [];
+    let httpHeaderAccepts: string[] = ['application/json'];
     const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(
       httpHeaderAccepts
     );
@@ -249,7 +358,7 @@ export class DefaultService {
     // to determine the Content-Type header
     const consumes: string[] = [];
 
-    return this.httpClient.request<any>(
+    return this.httpClient.request<Event>(
       'get',
       `${this.basePath}/event/${encodeURIComponent(String(id))}`,
       {
@@ -262,53 +371,53 @@ export class DefaultService {
   }
 
   /**
-   *
+   * Set tags of an event
    *
    * @param body
-   * @param orgid
+   * @param id
    * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
    * @param reportProgress flag to report request and response progress.
    */
-  public organizationControllerAddMember(
-    body: AddMemberDTO,
-    orgid: string,
+  public eventControllerSetTags(
+    body: SetTagsDTO,
+    id: string,
     observe?: 'body',
     reportProgress?: boolean
-  ): Observable<any>;
-  public organizationControllerAddMember(
-    body: AddMemberDTO,
-    orgid: string,
+  ): Observable<Array<string>>;
+  public eventControllerSetTags(
+    body: SetTagsDTO,
+    id: string,
     observe?: 'response',
     reportProgress?: boolean
-  ): Observable<HttpResponse<any>>;
-  public organizationControllerAddMember(
-    body: AddMemberDTO,
-    orgid: string,
+  ): Observable<HttpResponse<Array<string>>>;
+  public eventControllerSetTags(
+    body: SetTagsDTO,
+    id: string,
     observe?: 'events',
     reportProgress?: boolean
-  ): Observable<HttpEvent<any>>;
-  public organizationControllerAddMember(
-    body: AddMemberDTO,
-    orgid: string,
+  ): Observable<HttpEvent<Array<string>>>;
+  public eventControllerSetTags(
+    body: SetTagsDTO,
+    id: string,
     observe: any = 'body',
     reportProgress: boolean = false
   ): Observable<any> {
     if (body === null || body === undefined) {
       throw new Error(
-        'Required parameter body was null or undefined when calling organizationControllerAddMember.'
+        'Required parameter body was null or undefined when calling eventControllerSetTags.'
       );
     }
 
-    if (orgid === null || orgid === undefined) {
+    if (id === null || id === undefined) {
       throw new Error(
-        'Required parameter orgid was null or undefined when calling organizationControllerAddMember.'
+        'Required parameter id was null or undefined when calling eventControllerSetTags.'
       );
     }
 
     let headers = this.defaultHeaders;
 
     // to determine the Accept header
-    let httpHeaderAccepts: string[] = [];
+    let httpHeaderAccepts: string[] = ['application/json'];
     const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(
       httpHeaderAccepts
     );
@@ -325,9 +434,9 @@ export class DefaultService {
       headers = headers.set('Content-Type', httpContentTypeSelected);
     }
 
-    return this.httpClient.request<any>(
+    return this.httpClient.request<Array<string>>(
       'put',
-      `${this.basePath}/organization/${encodeURIComponent(String(orgid))}/member`,
+      `${this.basePath}/event/${encodeURIComponent(String(id))}/tags`,
       {
         body: body,
         withCredentials: this.configuration.withCredentials,
@@ -339,7 +448,84 @@ export class DefaultService {
   }
 
   /**
+   * Add a user to an organization
    *
+   * @param body
+   * @param id
+   * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+   * @param reportProgress flag to report request and response progress.
+   */
+  public organizationControllerAddMember(
+    body: AddMemberDTO,
+    id: string,
+    observe?: 'body',
+    reportProgress?: boolean
+  ): Observable<Array<OrganizationMember>>;
+  public organizationControllerAddMember(
+    body: AddMemberDTO,
+    id: string,
+    observe?: 'response',
+    reportProgress?: boolean
+  ): Observable<HttpResponse<Array<OrganizationMember>>>;
+  public organizationControllerAddMember(
+    body: AddMemberDTO,
+    id: string,
+    observe?: 'events',
+    reportProgress?: boolean
+  ): Observable<HttpEvent<Array<OrganizationMember>>>;
+  public organizationControllerAddMember(
+    body: AddMemberDTO,
+    id: string,
+    observe: any = 'body',
+    reportProgress: boolean = false
+  ): Observable<any> {
+    if (body === null || body === undefined) {
+      throw new Error(
+        'Required parameter body was null or undefined when calling organizationControllerAddMember.'
+      );
+    }
+
+    if (id === null || id === undefined) {
+      throw new Error(
+        'Required parameter id was null or undefined when calling organizationControllerAddMember.'
+      );
+    }
+
+    let headers = this.defaultHeaders;
+
+    // to determine the Accept header
+    let httpHeaderAccepts: string[] = ['application/json'];
+    const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(
+      httpHeaderAccepts
+    );
+    if (httpHeaderAcceptSelected != undefined) {
+      headers = headers.set('Accept', httpHeaderAcceptSelected);
+    }
+
+    // to determine the Content-Type header
+    const consumes: string[] = ['application/json'];
+    const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(
+      consumes
+    );
+    if (httpContentTypeSelected != undefined) {
+      headers = headers.set('Content-Type', httpContentTypeSelected);
+    }
+
+    return this.httpClient.request<Array<OrganizationMember>>(
+      'put',
+      `${this.basePath}/organization/${encodeURIComponent(String(id))}/member`,
+      {
+        body: body,
+        withCredentials: this.configuration.withCredentials,
+        headers: headers,
+        observe: observe,
+        reportProgress: reportProgress,
+      }
+    );
+  }
+
+  /**
+   * Create an organization
    *
    * @param body
    * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
@@ -349,17 +535,17 @@ export class DefaultService {
     body: CreateOrganizationDTO,
     observe?: 'body',
     reportProgress?: boolean
-  ): Observable<any>;
+  ): Observable<Organization>;
   public organizationControllerCreateOrganization(
     body: CreateOrganizationDTO,
     observe?: 'response',
     reportProgress?: boolean
-  ): Observable<HttpResponse<any>>;
+  ): Observable<HttpResponse<Organization>>;
   public organizationControllerCreateOrganization(
     body: CreateOrganizationDTO,
     observe?: 'events',
     reportProgress?: boolean
-  ): Observable<HttpEvent<any>>;
+  ): Observable<HttpEvent<Organization>>;
   public organizationControllerCreateOrganization(
     body: CreateOrganizationDTO,
     observe: any = 'body',
@@ -374,7 +560,7 @@ export class DefaultService {
     let headers = this.defaultHeaders;
 
     // to determine the Accept header
-    let httpHeaderAccepts: string[] = [];
+    let httpHeaderAccepts: string[] = ['application/json'];
     const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(
       httpHeaderAccepts
     );
@@ -391,7 +577,7 @@ export class DefaultService {
       headers = headers.set('Content-Type', httpContentTypeSelected);
     }
 
-    return this.httpClient.request<any>('post', `${this.basePath}/organization`, {
+    return this.httpClient.request<Organization>('post', `${this.basePath}/organization`, {
       body: body,
       withCredentials: this.configuration.withCredentials,
       headers: headers,
@@ -401,20 +587,23 @@ export class DefaultService {
   }
 
   /**
-   *
+   * List all organizations
    *
    * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
    * @param reportProgress flag to report request and response progress.
    */
-  public organizationControllerFindAll(observe?: 'body', reportProgress?: boolean): Observable<any>;
+  public organizationControllerFindAll(
+    observe?: 'body',
+    reportProgress?: boolean
+  ): Observable<Array<Organization>>;
   public organizationControllerFindAll(
     observe?: 'response',
     reportProgress?: boolean
-  ): Observable<HttpResponse<any>>;
+  ): Observable<HttpResponse<Array<Organization>>>;
   public organizationControllerFindAll(
     observe?: 'events',
     reportProgress?: boolean
-  ): Observable<HttpEvent<any>>;
+  ): Observable<HttpEvent<Array<Organization>>>;
   public organizationControllerFindAll(
     observe: any = 'body',
     reportProgress: boolean = false
@@ -422,7 +611,7 @@ export class DefaultService {
     let headers = this.defaultHeaders;
 
     // to determine the Accept header
-    let httpHeaderAccepts: string[] = [];
+    let httpHeaderAccepts: string[] = ['application/json'];
     const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(
       httpHeaderAccepts
     );
@@ -433,7 +622,7 @@ export class DefaultService {
     // to determine the Content-Type header
     const consumes: string[] = [];
 
-    return this.httpClient.request<any>('get', `${this.basePath}/organization`, {
+    return this.httpClient.request<Array<Organization>>('get', `${this.basePath}/organization`, {
       withCredentials: this.configuration.withCredentials,
       headers: headers,
       observe: observe,
@@ -442,42 +631,42 @@ export class DefaultService {
   }
 
   /**
+   * List all members in an organization
    *
-   *
-   * @param orgid
+   * @param id
    * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
    * @param reportProgress flag to report request and response progress.
    */
   public organizationControllerGetMembers(
-    orgid: string,
+    id: string,
     observe?: 'body',
     reportProgress?: boolean
-  ): Observable<any>;
+  ): Observable<Array<OrganizationMember>>;
   public organizationControllerGetMembers(
-    orgid: string,
+    id: string,
     observe?: 'response',
     reportProgress?: boolean
-  ): Observable<HttpResponse<any>>;
+  ): Observable<HttpResponse<Array<OrganizationMember>>>;
   public organizationControllerGetMembers(
-    orgid: string,
+    id: string,
     observe?: 'events',
     reportProgress?: boolean
-  ): Observable<HttpEvent<any>>;
+  ): Observable<HttpEvent<Array<OrganizationMember>>>;
   public organizationControllerGetMembers(
-    orgid: string,
+    id: string,
     observe: any = 'body',
     reportProgress: boolean = false
   ): Observable<any> {
-    if (orgid === null || orgid === undefined) {
+    if (id === null || id === undefined) {
       throw new Error(
-        'Required parameter orgid was null or undefined when calling organizationControllerGetMembers.'
+        'Required parameter id was null or undefined when calling organizationControllerGetMembers.'
       );
     }
 
     let headers = this.defaultHeaders;
 
     // to determine the Accept header
-    let httpHeaderAccepts: string[] = [];
+    let httpHeaderAccepts: string[] = ['application/json'];
     const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(
       httpHeaderAccepts
     );
@@ -488,9 +677,9 @@ export class DefaultService {
     // to determine the Content-Type header
     const consumes: string[] = [];
 
-    return this.httpClient.request<any>(
+    return this.httpClient.request<Array<OrganizationMember>>(
       'get',
-      `${this.basePath}/organization/${encodeURIComponent(String(orgid))}/member`,
+      `${this.basePath}/organization/${encodeURIComponent(String(id))}/member`,
       {
         withCredentials: this.configuration.withCredentials,
         headers: headers,
@@ -501,40 +690,40 @@ export class DefaultService {
   }
 
   /**
+   * Remove a user from an organization
    *
-   *
-   * @param orgid
+   * @param id
    * @param memberid
    * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
    * @param reportProgress flag to report request and response progress.
    */
   public organizationControllerRemoveMember(
-    orgid: string,
+    id: string,
     memberid: string,
     observe?: 'body',
     reportProgress?: boolean
-  ): Observable<any>;
+  ): Observable<Array<OrganizationMember>>;
   public organizationControllerRemoveMember(
-    orgid: string,
+    id: string,
     memberid: string,
     observe?: 'response',
     reportProgress?: boolean
-  ): Observable<HttpResponse<any>>;
+  ): Observable<HttpResponse<Array<OrganizationMember>>>;
   public organizationControllerRemoveMember(
-    orgid: string,
+    id: string,
     memberid: string,
     observe?: 'events',
     reportProgress?: boolean
-  ): Observable<HttpEvent<any>>;
+  ): Observable<HttpEvent<Array<OrganizationMember>>>;
   public organizationControllerRemoveMember(
-    orgid: string,
+    id: string,
     memberid: string,
     observe: any = 'body',
     reportProgress: boolean = false
   ): Observable<any> {
-    if (orgid === null || orgid === undefined) {
+    if (id === null || id === undefined) {
       throw new Error(
-        'Required parameter orgid was null or undefined when calling organizationControllerRemoveMember.'
+        'Required parameter id was null or undefined when calling organizationControllerRemoveMember.'
       );
     }
 
@@ -547,7 +736,7 @@ export class DefaultService {
     let headers = this.defaultHeaders;
 
     // to determine the Accept header
-    let httpHeaderAccepts: string[] = [];
+    let httpHeaderAccepts: string[] = ['application/json'];
     const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(
       httpHeaderAccepts
     );
@@ -558,11 +747,11 @@ export class DefaultService {
     // to determine the Content-Type header
     const consumes: string[] = [];
 
-    return this.httpClient.request<any>(
+    return this.httpClient.request<Array<OrganizationMember>>(
       'delete',
-      `${this.basePath}/organization/${encodeURIComponent(
-        String(orgid)
-      )}/member/${encodeURIComponent(String(memberid))}`,
+      `${this.basePath}/organization/${encodeURIComponent(String(id))}/member/${encodeURIComponent(
+        String(memberid)
+      )}`,
       {
         withCredentials: this.configuration.withCredentials,
         headers: headers,
@@ -573,7 +762,7 @@ export class DefaultService {
   }
 
   /**
-   *
+   * Create a user
    *
    * @param body
    * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
@@ -583,17 +772,17 @@ export class DefaultService {
     body: CreateUserDTO,
     observe?: 'body',
     reportProgress?: boolean
-  ): Observable<any>;
+  ): Observable<UserDTO>;
   public userControllerCreate(
     body: CreateUserDTO,
     observe?: 'response',
     reportProgress?: boolean
-  ): Observable<HttpResponse<any>>;
+  ): Observable<HttpResponse<UserDTO>>;
   public userControllerCreate(
     body: CreateUserDTO,
     observe?: 'events',
     reportProgress?: boolean
-  ): Observable<HttpEvent<any>>;
+  ): Observable<HttpEvent<UserDTO>>;
   public userControllerCreate(
     body: CreateUserDTO,
     observe: any = 'body',
@@ -608,7 +797,7 @@ export class DefaultService {
     let headers = this.defaultHeaders;
 
     // to determine the Accept header
-    let httpHeaderAccepts: string[] = [];
+    let httpHeaderAccepts: string[] = ['application/json'];
     const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(
       httpHeaderAccepts
     );
@@ -625,7 +814,7 @@ export class DefaultService {
       headers = headers.set('Content-Type', httpContentTypeSelected);
     }
 
-    return this.httpClient.request<any>('post', `${this.basePath}/user`, {
+    return this.httpClient.request<UserDTO>('post', `${this.basePath}/user`, {
       body: body,
       withCredentials: this.configuration.withCredentials,
       headers: headers,
@@ -635,20 +824,23 @@ export class DefaultService {
   }
 
   /**
-   *
+   * List all users
    *
    * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
    * @param reportProgress flag to report request and response progress.
    */
-  public userControllerFindAll(observe?: 'body', reportProgress?: boolean): Observable<any>;
+  public userControllerFindAll(
+    observe?: 'body',
+    reportProgress?: boolean
+  ): Observable<Array<UserDTO>>;
   public userControllerFindAll(
     observe?: 'response',
     reportProgress?: boolean
-  ): Observable<HttpResponse<any>>;
+  ): Observable<HttpResponse<Array<UserDTO>>>;
   public userControllerFindAll(
     observe?: 'events',
     reportProgress?: boolean
-  ): Observable<HttpEvent<any>>;
+  ): Observable<HttpEvent<Array<UserDTO>>>;
   public userControllerFindAll(
     observe: any = 'body',
     reportProgress: boolean = false
@@ -656,7 +848,7 @@ export class DefaultService {
     let headers = this.defaultHeaders;
 
     // to determine the Accept header
-    let httpHeaderAccepts: string[] = [];
+    let httpHeaderAccepts: string[] = ['application/json'];
     const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(
       httpHeaderAccepts
     );
@@ -667,7 +859,7 @@ export class DefaultService {
     // to determine the Content-Type header
     const consumes: string[] = [];
 
-    return this.httpClient.request<any>('get', `${this.basePath}/user`, {
+    return this.httpClient.request<Array<UserDTO>>('get', `${this.basePath}/user`, {
       withCredentials: this.configuration.withCredentials,
       headers: headers,
       observe: observe,
@@ -676,8 +868,9 @@ export class DefaultService {
   }
 
   /**
+   * Find a user from ID
    *
-   *
+   * @param id
    * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
    * @param reportProgress flag to report request and response progress.
    */
@@ -685,26 +878,32 @@ export class DefaultService {
     id: string,
     observe?: 'body',
     reportProgress?: boolean
-  ): Observable<any>;
+  ): Observable<UserDTO>;
   public userControllerFindById(
     id: string,
     observe?: 'response',
     reportProgress?: boolean
-  ): Observable<HttpResponse<any>>;
+  ): Observable<HttpResponse<UserDTO>>;
   public userControllerFindById(
     id: string,
     observe?: 'events',
     reportProgress?: boolean
-  ): Observable<HttpEvent<any>>;
+  ): Observable<HttpEvent<UserDTO>>;
   public userControllerFindById(
     id: string,
     observe: any = 'body',
     reportProgress: boolean = false
   ): Observable<any> {
+    if (id === null || id === undefined) {
+      throw new Error(
+        'Required parameter id was null or undefined when calling userControllerFindById.'
+      );
+    }
+
     let headers = this.defaultHeaders;
 
     // to determine the Accept header
-    let httpHeaderAccepts: string[] = [];
+    let httpHeaderAccepts: string[] = ['application/json'];
     const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(
       httpHeaderAccepts
     );
@@ -715,7 +914,7 @@ export class DefaultService {
     // to determine the Content-Type header
     const consumes: string[] = [];
 
-    return this.httpClient.request<any>(
+    return this.httpClient.request<UserDTO>(
       'get',
       `${this.basePath}/user/${encodeURIComponent(String(id))}`,
       {
