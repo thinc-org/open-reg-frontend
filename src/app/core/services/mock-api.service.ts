@@ -7,7 +7,7 @@ import {
   AddMemberDTO,
   CreateOrganizationDTO,
   CreateUserDTO,
-  DefaultServiceInterface,
+  ApiServiceInterface,
   OrganizationMember,
   Organization,
   UserDTO,
@@ -20,7 +20,7 @@ import { Event } from 'src/backend-client/model/event';
 @Injectable({
   providedIn: 'root',
 })
-export class MockApiService implements DefaultServiceInterface {
+export class MockApiService implements ApiServiceInterface {
   public forceBadRequest = false;
   defaultHeaders = new HttpHeaders();
   configuration = new Configuration();

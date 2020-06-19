@@ -14,6 +14,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
 import { AddMemberDTO } from '../model/addMemberDTO';
+import { AuthToken } from '../model/authToken';
 import { CreateEventDTO } from '../model/createEventDTO';
 import { CreateOrganizationDTO } from '../model/createOrganizationDTO';
 import { CreateUserDTO } from '../model/createUserDTO';
@@ -25,7 +26,7 @@ import { UserDTO } from '../model/userDTO';
 
 import { Configuration } from '../configuration';
 
-export interface DefaultServiceInterface {
+export interface ApiServiceInterface {
   defaultHeaders: HttpHeaders;
   configuration: Configuration;
 
@@ -36,10 +37,10 @@ export interface DefaultServiceInterface {
   authControllerCurrentUser(extraHttpRequestParams?: any): Observable<{}>;
 
   /**
-   *
+   * Sign in
    *
    */
-  authControllerLogin(extraHttpRequestParams?: any): Observable<{}>;
+  authControllerLogin(extraHttpRequestParams?: any): Observable<AuthToken>;
 
   /**
    * Create an event

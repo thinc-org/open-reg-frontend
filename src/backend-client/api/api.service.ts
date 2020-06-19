@@ -17,6 +17,7 @@ import { CustomHttpUrlEncodingCodec } from '../encoder';
 import { Observable } from 'rxjs';
 
 import { AddMemberDTO } from '../model/addMemberDTO';
+import { AuthToken } from '../model/authToken';
 import { CreateEventDTO } from '../model/createEventDTO';
 import { CreateOrganizationDTO } from '../model/createOrganizationDTO';
 import { CreateUserDTO } from '../model/createUserDTO';
@@ -28,10 +29,10 @@ import { UserDTO } from '../model/userDTO';
 
 import { BASE_PATH, COLLECTION_FORMATS } from '../variables';
 import { Configuration } from '../configuration';
-import { DefaultServiceInterface } from './default.serviceInterface';
+import { ApiServiceInterface } from './api.serviceInterface';
 
 @Injectable()
-export class DefaultService implements DefaultServiceInterface {
+export class ApiService implements ApiServiceInterface {
   protected basePath = '/';
   public defaultHeaders = new HttpHeaders();
   public configuration = new Configuration();
@@ -106,20 +107,20 @@ export class DefaultService implements DefaultServiceInterface {
   }
 
   /**
-   *
+   * Sign in
    *
    * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
    * @param reportProgress flag to report request and response progress.
    */
-  public authControllerLogin(observe?: 'body', reportProgress?: boolean): Observable<any>;
+  public authControllerLogin(observe?: 'body', reportProgress?: boolean): Observable<AuthToken>;
   public authControllerLogin(
     observe?: 'response',
     reportProgress?: boolean
-  ): Observable<HttpResponse<any>>;
+  ): Observable<HttpResponse<AuthToken>>;
   public authControllerLogin(
     observe?: 'events',
     reportProgress?: boolean
-  ): Observable<HttpEvent<any>>;
+  ): Observable<HttpEvent<AuthToken>>;
   public authControllerLogin(
     observe: any = 'body',
     reportProgress: boolean = false
@@ -127,7 +128,7 @@ export class DefaultService implements DefaultServiceInterface {
     let headers = this.defaultHeaders;
 
     // to determine the Accept header
-    let httpHeaderAccepts: string[] = [];
+    let httpHeaderAccepts: string[] = ['application/json'];
     const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(
       httpHeaderAccepts
     );
@@ -136,9 +137,9 @@ export class DefaultService implements DefaultServiceInterface {
     }
 
     // to determine the Content-Type header
-    const consumes: string[] = [];
+    const consumes: string[] = ['application/json'];
 
-    return this.httpClient.request<any>('post', `${this.basePath}/auth/sign-in`, {
+    return this.httpClient.request<AuthToken>('post', `${this.basePath}/auth/sign-in`, {
       withCredentials: this.configuration.withCredentials,
       headers: headers,
       observe: observe,
