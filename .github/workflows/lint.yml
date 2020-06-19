@@ -26,17 +26,7 @@ jobs:
           VALIDATE_JSON: true
           VALIDATE_XML: true
           VALIDATE_MD: true
-          VALIDATE_BASH: true
-          VALIDATE_PERL: true
-          VALIDATE_PYTHON: true
-          VALIDATE_RUBY: true
-          VALIDATE_COFFEE: true
-          VALIDATE_ANSIBLE: true
           VALIDATE_JAVASCRIPT_ES: true
-          VALIDATE_JAVASCRIPT_STANDARD: false
           VALIDATE_TYPESCRIPT_ES: true
-          VALIDATE_TYPESCRIPT_STANDARD: false
           VALIDATE_DOCKER: true
-          VALIDATE_GO: true
-          VALIDATE_TERRAFORM: true
           VALIDATE_CSS: true
