@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { DefaultService as ApiService } from 'src/backend-client';
+import { ApiService } from 'src/backend-client';
 import { HomeService } from './home.service';
 
 @Component({
@@ -23,6 +23,9 @@ export class HomeComponent {
     const char = characters.shift();
     characters.push(char || '');
     this.service.message = characters.join('');
+    this.apiService
+      .authControllerLogin({ email: 'new5558', password: 'password' })
+      .subscribe((e) => console.log(e, 'login'));
   }
 
   changeRxMessage() {

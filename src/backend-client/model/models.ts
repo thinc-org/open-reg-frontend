@@ -1,4 +1,6 @@
 export * from './addMemberDTO';
+export * from './authSignInDTO';
+export * from './authToken';
 export * from './createEventDTO';
 export * from './createOrganizationDTO';
 export * from './createUserDTO';

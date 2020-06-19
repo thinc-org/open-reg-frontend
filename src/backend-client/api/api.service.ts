@@ -17,6 +17,7 @@ import { CustomHttpUrlEncodingCodec } from '../encoder';
 import { Observable } from 'rxjs';
 
 import { AddMemberDTO } from '../model/addMemberDTO';
+import { AuthSignInDTO } from '../model/authSignInDTO';
 import { AuthToken } from '../model/authToken';
 import { CreateEventDTO } from '../model/createEventDTO';
 import { CreateOrganizationDTO } from '../model/createOrganizationDTO';
@@ -109,22 +110,36 @@ export class ApiService implements ApiServiceInterface {
   /**
    * Sign in
    *
+   * @param body
    * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
    * @param reportProgress flag to report request and response progress.
    */
-  public authControllerLogin(observe?: 'body', reportProgress?: boolean): Observable<AuthToken>;
   public authControllerLogin(
+    body: AuthSignInDTO,
+    observe?: 'body',
+    reportProgress?: boolean
+  ): Observable<AuthToken>;
+  public authControllerLogin(
+    body: AuthSignInDTO,
     observe?: 'response',
     reportProgress?: boolean
   ): Observable<HttpResponse<AuthToken>>;
   public authControllerLogin(
+    body: AuthSignInDTO,
     observe?: 'events',
     reportProgress?: boolean
   ): Observable<HttpEvent<AuthToken>>;
   public authControllerLogin(
+    body: AuthSignInDTO,
     observe: any = 'body',
     reportProgress: boolean = false
   ): Observable<any> {
+    if (body === null || body === undefined) {
+      throw new Error(
+        'Required parameter body was null or undefined when calling authControllerLogin.'
+      );
+    }
+
     let headers = this.defaultHeaders;
 
     // to determine the Accept header
@@ -138,8 +153,15 @@ export class ApiService implements ApiServiceInterface {
 
     // to determine the Content-Type header
     const consumes: string[] = ['application/json'];
+    const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(
+      consumes
+    );
+    if (httpContentTypeSelected != undefined) {
+      headers = headers.set('Content-Type', httpContentTypeSelected);
+    }
 
     return this.httpClient.request<AuthToken>('post', `${this.basePath}/auth/sign-in`, {
+      body: body,
       withCredentials: this.configuration.withCredentials,
       headers: headers,
       observe: observe,

@@ -14,6 +14,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
 import { AddMemberDTO } from '../model/addMemberDTO';
+import { AuthSignInDTO } from '../model/authSignInDTO';
 import { AuthToken } from '../model/authToken';
 import { CreateEventDTO } from '../model/createEventDTO';
 import { CreateOrganizationDTO } from '../model/createOrganizationDTO';
@@ -39,8 +40,9 @@ export interface ApiServiceInterface {
   /**
    * Sign in
    *
+   * @param body
    */
-  authControllerLogin(extraHttpRequestParams?: any): Observable<AuthToken>;
+  authControllerLogin(body: AuthSignInDTO, extraHttpRequestParams?: any): Observable<AuthToken>;
 
   /**
    * Create an event
