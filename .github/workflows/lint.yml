@@ -1,8 +1,5 @@
 name: Super Linter
-on:
-  pull_request:
-    - 'master'
-    - 'dev'
+on: [pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
