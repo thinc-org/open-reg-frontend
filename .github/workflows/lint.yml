@@ -22,3 +22,4 @@ jobs:
           VALIDATE_TYPESCRIPT_ES: true
           VALIDATE_DOCKER: true
           VALIDATE_CSS: true
+          VALIDATE_ENV: true
