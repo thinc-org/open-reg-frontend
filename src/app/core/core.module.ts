@@ -22,6 +22,6 @@ import { FullLogoComponent } from './components/full-logo/full-logo.component';
   ],
   providers: [],
   bootstrap: [],
-  exports: [NavbarComponent, ExampleComponent, ThemeControllerComponent],
+  exports: [NavbarComponent, ExampleComponent, ThemeControllerComponent, FullLogoComponent],
 })
 export class CoreModules {}

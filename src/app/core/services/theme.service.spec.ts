@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/dot-notation */
-import { ThemeTypes } from 'src/types/constants';
+import { ThemeTypes } from 'types/constants';
 import { TestBed } from '@angular/core/testing';
-import { Theme } from 'src/types';
+import { Theme } from 'types';
 import { ThemeService } from './theme.service';
 
 describe('ThemeService', () => {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ThemeTypes } from 'src/types/constants';
-import { Theme } from 'src/types';
+import { ThemeTypes } from 'types/constants';
+import { Theme } from 'types';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { ThemeService } from '../../services/theme.service';
 
