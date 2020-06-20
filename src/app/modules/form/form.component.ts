@@ -6,8 +6,34 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./form.component.scss'],
 })
 export class FormComponent implements OnInit {
-  currentPage = 2;
-  item = [].constructor(100);
+  item = [
+    '123',
+    '123',
+    '123',
+    '123',
+    '123',
+    '123',
+    '123',
+    '123',
+    '123',
+    '123',
+    '123',
+    '123',
+    '123',
+    '123',
+    '123',
+    '123',
+    '123',
+    '123',
+    '123',
+    '123',
+    '123',
+    '123',
+    '123',
+    '123',
+    '123',
+    '123',
+  ];
   constructor() {}
 
   ngOnInit() {}
