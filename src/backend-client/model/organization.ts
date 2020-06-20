@@ -10,9 +10,8 @@
  * Do not edit the class manually.
  */
 
-export interface CreateEventDTO {
+export interface Organization {
   name: string;
-  description: string;
-  organizationID: string;
-  tags: Array<string>;
+  members: Array<string>;
+  events: Array<string>;
 }

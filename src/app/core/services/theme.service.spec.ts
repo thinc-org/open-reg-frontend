@@ -2,13 +2,12 @@
 import { ThemeTypes } from 'src/types/constants';
 import { TestBed } from '@angular/core/testing';
 import { Theme } from 'src/types';
-import { configureTestSuite } from 'ng-bullet';
 import { ThemeService } from './theme.service';
 
 describe('ThemeService', () => {
   let service: ThemeService;
 
-  configureTestSuite(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(ThemeService);
   });

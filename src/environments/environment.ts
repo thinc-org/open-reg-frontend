@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  basePath: 'https://api-staging.openreg.app',
+  basePath: 'https://api-staging.openreg.thinc.in.th',
 };
 
 /*

@@ -9,10 +9,15 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { InternationalizedStringDTO } from './internationalizedStringDTO';
 
-export interface CreateEventDTO {
-  name: string;
-  description: string;
-  organizationID: string;
-  tags: Array<string>;
+export interface UserDTO {
+  id: string;
+  title: InternationalizedStringDTO;
+  firstName: InternationalizedStringDTO;
+  lastName: InternationalizedStringDTO;
+  dateOfBirth: Date;
+  email: string;
+  termsOfService: Array<string>;
+  organizations: Array<string>;
 }

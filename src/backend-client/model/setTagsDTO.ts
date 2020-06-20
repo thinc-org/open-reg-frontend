@@ -10,9 +10,6 @@
  * Do not edit the class manually.
  */
 
-export interface CreateEventDTO {
-  name: string;
-  description: string;
-  organizationID: string;
+export interface SetTagsDTO {
   tags: Array<string>;
 }

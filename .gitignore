@@ -47,3 +47,5 @@ Thumbs.db
 
 .now
 .vercel
+swagger-codegen-cli.jar
+api.json
