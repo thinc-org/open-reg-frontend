@@ -1,0 +1,23 @@
+@import 'src/styles-variables.scss';
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .logo {
+    width: 36px;
+    height: 36px;
+    background-color: grey;
+    margin-right: 1em;
+  }
+  .app-name {
+    @include text-style-h6;
+    font-size: 20px;
+    color: $mono-0;
+  }
+  .powered {
+    @include text-style-body2;
+    font-size: 14px;
+    color: $mono-0;
+  }
+}

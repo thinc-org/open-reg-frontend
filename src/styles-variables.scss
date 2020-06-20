@@ -1,9 +1,113 @@
-/* these variable (still) not included in current angular material custom theme 
+@mixin text-style-h1 {
+  font: 96px normal chulalongkornbold, Roboto, Arial;
+  letter-spacing: -1.5px;
+}
+
+@mixin text-style-h2 {
+  font: 60px chulalongkornbold, Roboto, Arial;
+  letter-spacing: -0.5px;
+}
+
+@mixin text-style-h3 {
+  font: 48px chulalongkornregular, Roboto, Arial;
+}
+
+@mixin text-style-h4 {
+  font: 34px chulalongkornbold, Roboto, Arial;
+  letter-spacing: 0.25px;
+}
+
+@mixin text-style-h5 {
+  font: 24px chulalongkornregular, Roboto, Arial;
+}
+
+@mixin text-style-h6 {
+  font: 20px chulalongkornbold, Roboto, Arial;
+  letter-spacing: 0.15px;
+}
+
+@mixin text-style-body1 {
+  font: 18px Maitree, Roboto, Arial;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  line-height: 28px;
+}
+
+@mixin text-style-body2 {
+  font: 14px Maitree, Roboto, Arial;
+  font-weight: 400;
+  letter-spacing: 0.25px;
+  line-height: 20px;
+}
+
+@mixin text-style-subtitle1 {
+  font: 16px Maitree, Roboto, Arial;
+  font-weight: 400;
+  letter-spacing: 0.15px;
+  line-height: 24px;
+}
+
+@mixin text-style-subtitle2 {
+  font: 24px Maitree, Roboto, Arial;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+@mixin text-style-button {
+  font: 18px chulalongkornbold, Roboto, Arial;
+  letter-spacing: 0.75px;
+  line-height: 16px;
+}
+
+@mixin text-style-caption {
+  font: 12px Maitree, Roboto, Arial;
+  font-weight: 400;
+  letter-spacing: 0.4px;
+  line-height: 16px;
+}
+
+@mixin text-style-overline {
+  font: 10px chulalongkornbold, Roboto, Arial;
+  letter-spacing: 1.5px;
+  line-height: 16px;
+}
+
+@mixin text-style-label {
+  font: 18px Maitree, Roboto, Arial;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  line-height: 16px;
+}
+
+@mixin text-style-error {
+  font: 14px Maitree, Roboto, Arial;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  line-height: 16px;
+}
+
+/* these variable not included in current angular material custom theme
 feel free to use it directly */
+
+$cream-light: #fff0d3;
+$cream-main: #fee9c2;
+$cream-dark: #ffde9e;
 
 $yellow-light: #ffef5b;
 $yellow-main: #ffde30;
 $yellow-dark: #f4c315;
+
+$mint-light: #afffd4;
+$mint-main: #8effc2;
+$mint-dark: #5bf9a4;
+
+$black-light: #545454;
+$black-main: #333333;
+$black-dark: #222121;
+
+$indigo-light: #39397a;
+$indigo-main: #1f1f42;
+$indigo-dark: #181834;
 
 $error-light: #ff72a6;
 $error-main: #ff498b;
@@ -12,6 +116,10 @@ $error-dark: #e82d72;
 $success-light: #19d2a6;
 $success-main: #18b28d;
 $success-dark: #0b9674;
+
+$warning-light: #ffb37c;
+$warning-main: #ff974c;
+$warning-dark: #ff7d1e;
 
 $purple-light: #8f6af8;
 $purple-main: #6d46db;
@@ -25,6 +133,5 @@ $mono-4: #828282;
 $mono-5: #4f4f4f;
 $mono-6: #333333;
 
-$cream-main: #fee9c2;
 $red-main: #ff495f;
 $blue-main: #25c3f5;
