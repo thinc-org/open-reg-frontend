@@ -19,7 +19,7 @@ we fix this issue by define core.autocrlf in .git/config as false
 โปรเจคนี้ generate API service จาก Swagger-codegen โดยทุกครั้งที่ API มีการเปลี่ยนแปลงต้อง generate api ใหม่ทุกครั้งดังนี้
 
 1. โหลด API documentation มาเป็น json ตั้งชื่อว่า api.json
-2. แก้ tags: [] ในตัว json ให้เป็นคำว่า 'default' ให้หมด
+2. แก้ tags: [] ในตัว json ให้เป็นคำว่า 'api' ให้หมด
 3. ติดตั้ง swagger-codegen-cli 3.X.X ลงมาบนเครื่อง
 4. รันคำสั่ง `swagger-codegen generate -i api.json -l typescript-angular -o src/backend-client/ -c swagger.json`
 5. แก้ MockApiService ให้ตรงกับ breaking changes ที่ interface แจ้งเตือนขึ้นมา
