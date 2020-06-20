@@ -10,9 +10,11 @@ import {
   ApiServiceInterface,
   OrganizationMember,
   Organization,
-  UserDTO,
   Configuration,
   SetTagsDTO,
+  AuthSignInDTO,
+  AuthToken,
+  UserDTO,
 } from 'src/backend-client';
 import { HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Event } from 'src/backend-client/model/event';
@@ -36,43 +38,50 @@ export class MockApiService implements ApiServiceInterface {
   constructor() {}
 
   authControllerCurrentUser() {
-    return this.createMockApiResponse<any>([]);
+    return this.createMockApiResponse<UserDTO>({
+      organizations: [],
+      termsOfService: [],
+      id: '5ee4da95387493001b961a47',
+      title: { en: 'new', th: 'new' },
+      firstName: { en: 'new', th: 'new' },
+      lastName: { en: 'new', th: 'new' },
+      dateOfBirth: ('2020-06-13T13:54:29.808Z' as unknown) as Date,
+      email: 'new.com',
+    });
   }
 
-  authControllerLogin() {
-    return this.createMockApiResponse<any>([]);
+  authControllerLogin(body: AuthSignInDTO) {
+    return this.createMockApiResponse<AuthToken>({ accessToken: 'token' });
   }
 
-  // find tag
   eventControllerCreateEvent(body: CreateEventDTO) {
     return this.createMockApiResponse<Event>({
       name: body.name,
       description: body.description,
       organizationID: body.organizationID,
-      tags: ['?'],
+      tags: ['name1'],
     });
   }
 
-  // find tag
   eventControllerFindAll() {
     return this.createMockApiResponse<Event[]>([
       {
         name: 'Test Event 1',
         description: 'Suphon is very godlike',
         organizationID: '5ee475b4a811fe001b208b50',
-        tags: ['?'],
+        tags: ['name1'],
       },
       {
         name: 'Test Event 2',
         description: 'Suphon is very intelligent',
         organizationID: '5ee475b4a811fe001b208b50',
-        tags: ['?'],
+        tags: ['name1'],
       },
       {
         name: 'Test Event 3',
         description: 'Suphon is a quadrillionaire',
         organizationID: '5ee475b4a811fe001b208b50',
-        tags: ['?'],
+        tags: ['name2'],
       },
     ]);
   }
@@ -86,7 +95,7 @@ export class MockApiService implements ApiServiceInterface {
       name: 'Test Event 1',
       description: 'Suphon is very godlike',
       organizationID: '5ee475b4a811fe001b208b50',
-      tags: ['?'],
+      tags: ['name1'],
     });
   }
 
@@ -153,7 +162,6 @@ export class MockApiService implements ApiServiceInterface {
       lastName: body.lastName,
       dateOfBirth: (body.dateOfBirth.toISOString() as unknown) as Date,
       email: body.email,
-      password: '$2a$10$phBx91fXC5t37UdF1x3Hyuv3KT/XmDmiF.kSKdtXICqfUAwfSynO.',
     });
   }
 
@@ -168,7 +176,6 @@ export class MockApiService implements ApiServiceInterface {
         lastName: { en: 'new', th: 'new' },
         dateOfBirth: ('2020-06-13T13:54:29.808Z' as unknown) as Date,
         email: 'new.com',
-        password: '$2a$10$CESfxmv4C0/N/xXobO.O5OAYD3eUQfSeRx.NGSWM3LvwUhqY8p3N6',
       },
       {
         organizations: [],
@@ -179,7 +186,6 @@ export class MockApiService implements ApiServiceInterface {
         lastName: { en: 'new', th: 'new' },
         dateOfBirth: ('2020-06-13T13:58:03.469Z' as unknown) as Date,
         email: 'new.comd',
-        password: '$2a$10$phBx91fXC5t37UdF1x3Hyuv3KT/XmDmiF.kSKdtXICqfUAwfSynO.',
       },
     ]);
   }
@@ -194,7 +200,6 @@ export class MockApiService implements ApiServiceInterface {
       lastName: { en: 'new', th: 'new' },
       dateOfBirth: ('2020-06-13T13:54:29.808Z' as unknown) as Date,
       email: 'new.com',
-      password: '$2a$10$CESfxmv4C0/N/xXobO.O5OAYD3eUQfSeRx.NGSWM3LvwUhqY8p3N6',
     });
   }
 }

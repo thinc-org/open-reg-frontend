@@ -72,15 +72,15 @@ export class ApiService implements ApiServiceInterface {
    * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
    * @param reportProgress flag to report request and response progress.
    */
-  public authControllerCurrentUser(observe?: 'body', reportProgress?: boolean): Observable<any>;
+  public authControllerCurrentUser(observe?: 'body', reportProgress?: boolean): Observable<UserDTO>;
   public authControllerCurrentUser(
     observe?: 'response',
     reportProgress?: boolean
-  ): Observable<HttpResponse<any>>;
+  ): Observable<HttpResponse<UserDTO>>;
   public authControllerCurrentUser(
     observe?: 'events',
     reportProgress?: boolean
-  ): Observable<HttpEvent<any>>;
+  ): Observable<HttpEvent<UserDTO>>;
   public authControllerCurrentUser(
     observe: any = 'body',
     reportProgress: boolean = false
@@ -88,7 +88,7 @@ export class ApiService implements ApiServiceInterface {
     let headers = this.defaultHeaders;
 
     // to determine the Accept header
-    let httpHeaderAccepts: string[] = [];
+    let httpHeaderAccepts: string[] = ['application/json'];
     const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(
       httpHeaderAccepts
     );
@@ -99,7 +99,7 @@ export class ApiService implements ApiServiceInterface {
     // to determine the Content-Type header
     const consumes: string[] = [];
 
-    return this.httpClient.request<any>('get', `${this.basePath}/auth/me`, {
+    return this.httpClient.request<UserDTO>('get', `${this.basePath}/auth/me`, {
       withCredentials: this.configuration.withCredentials,
       headers: headers,
       observe: observe,

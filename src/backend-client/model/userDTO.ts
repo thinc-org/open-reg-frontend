@@ -18,7 +18,6 @@ export interface UserDTO {
   lastName: InternationalizedStringDTO;
   dateOfBirth: Date;
   email: string;
-  password: string;
   termsOfService: Array<string>;
   organizations: Array<string>;
 }

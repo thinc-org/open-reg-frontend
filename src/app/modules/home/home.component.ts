@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.apiService
-      .authControllerLogin({ email: 'new5558', password: 'password' }) // unauthorized
+      .authControllerLogin({ email: 'new@norapat.com', password: '12345678' }) // unauthorized
       .subscribe((e) => console.log(e, 'login'));
   }
 
@@ -29,9 +29,17 @@ export class HomeComponent implements OnInit {
     const char = characters.shift();
     characters.push(char || '');
     this.service.message = characters.join('');
-    this.apiService
-      .authControllerLogin({ email: 'new5558', password: 'password' })
-      .subscribe((e) => console.log(e, 'login'));
+    // create new user
+    // this.apiService
+    //   .userControllerCreate({
+    //     dateOfBirth: new Date(),
+    //     email: 'new@norapat.com',
+    //     password: '12345678',
+    //     firstName: { en: 'norapat', th: 'norapat' },
+    //     lastName: { en: 'norapat', th: 'norapat' },
+    //     title: { en: 'mr', th: 'mr' },
+    //   })
+    //   .subscribe((result) => console.log(result, 'create result'));
   }
 
   changeRxMessage() {

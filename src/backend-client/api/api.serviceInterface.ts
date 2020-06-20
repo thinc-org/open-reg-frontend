@@ -35,7 +35,7 @@ export interface ApiServiceInterface {
    *
    *
    */
-  authControllerCurrentUser(extraHttpRequestParams?: any): Observable<{}>;
+  authControllerCurrentUser(extraHttpRequestParams?: any): Observable<UserDTO>;
 
   /**
    * Sign in
