@@ -6,6 +6,7 @@ import {
   ElementRef,
   HostListener,
   ChangeDetectorRef,
+  OnInit,
 } from '@angular/core';
 
 @Component({
@@ -13,14 +14,19 @@ import {
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.scss'],
 })
-export class PaginationComponent {
+export class PaginationComponent implements OnInit {
   @Input() items: any[] = [];
   @Input() itemsPerPage = 2;
   @Output() pageChange = new EventEmitter<number>();
   currentPage = 0;
   startPage = 0;
+  lastPageNumberToDisplay = 0;
 
   constructor(private el: ElementRef, private cdr: ChangeDetectorRef) {}
+
+  ngOnInit() {
+    this.calculateLastPageNumberToDisplay();
+  }
 
   get maxPage() {
     return Math.ceil(this.items.length / this.itemsPerPage);
@@ -30,7 +36,7 @@ export class PaginationComponent {
     return [].constructor(this.maxPage);
   }
 
-  get lastPageNumberToDisplay() {
+  calculateLastPageNumberToDisplay() {
     const FIRST_PAGE_WIDTH = 57;
     const EACH_PAGE_WIDTH = 59.4;
     const PAGE_BUTTON_WIDTH = 72;
@@ -40,7 +46,7 @@ export class PaginationComponent {
         (this.width - PAGINATION_PADDING - PAGE_BUTTON_WIDTH * 2 - FIRST_PAGE_WIDTH) /
           EACH_PAGE_WIDTH
       ) - 1;
-    return lastPageToDisplay;
+    this.lastPageNumberToDisplay = lastPageToDisplay;
   }
 
   get width() {
@@ -49,6 +55,7 @@ export class PaginationComponent {
 
   @HostListener('window:resize', ['$event'])
   onResize() {
+    this.calculateLastPageNumberToDisplay();
     this.adjustStartPage(true);
   }
 
