@@ -74,7 +74,7 @@ export class PaginationComponent implements OnInit {
     const isLessThanStartPage = this.startPage > this.currentPage;
     if (isPageUp && isMoreThanLastPage && !isMaxPage) {
       this.startPage = this.currentPage;
-    } else if (!isPageUp && isLessThanStartPage) {
+    } else if ((!isPageUp && isLessThanStartPage) || isMaxPage) {
       this.startPage = this.currentPage + 1 - this.lastPageNumberToDisplay;
     }
     this.cdr.detectChanges();
