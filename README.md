@@ -1,13 +1,13 @@
+# OpenRegFrontend
+
 ![Staging Deployment](https://github.com/thinc-org/open-reg-frontend/workflows/Staging%20Deployment/badge.svg?branch=dev)
 ![Production Deployment](https://github.com/thinc-org/open-reg-frontend/workflows/Production%20Deployment/badge.svg?branch=master)
 
-# OpenRegFrontend
-
 ## environments
 
-- development URL: https://development-frontend-open-reg.now.sh -- lastest pull request to dev
-- staging URL: https://frontend-open-reg.now.sh -- dev branch
-- production URL: https://frontend.openreg.thinc.in.th/ -- master branch
+- development URL: <https://development-frontend-open-reg.now.sh> -- lastest pull request to dev
+- staging URL: <https://frontend-open-reg.now.sh> -- dev branch
+- production URL: <https://frontend.openreg.thinc.in.th> -- master branch
 
 ## eol problem
 

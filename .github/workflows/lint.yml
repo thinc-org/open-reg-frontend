@@ -1,0 +1,25 @@
+name: Super Linter
+on:
+  pull_request:
+    branches:
+      - dev
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+      - name: Lint Code Base
+        uses: docker://github/super-linter:v2.0.0
+        env:
+          VALIDATE_ALL_CODEBASE: false
+          VALIDATE_YAML: true
+          VALIDATE_JSON: true
+          VALIDATE_XML: true
+          VALIDATE_MD: true
+          VALIDATE_JAVASCRIPT_ES: true
+          VALIDATE_TYPESCRIPT_ES: true
+          VALIDATE_DOCKER: true
+          VALIDATE_CSS: true
+          VALIDATE_ENV: true
