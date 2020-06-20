@@ -10,7 +10,9 @@
  * Do not edit the class manually.
  */
 
-export interface InternationalizedString {
-  th: string;
-  en: string;
+export interface Event {
+  name: string;
+  description: string;
+  organizationID: string;
+  tags: Array<string>;
 }

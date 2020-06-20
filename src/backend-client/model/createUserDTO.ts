@@ -9,14 +9,13 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { InternationalizedString } from './internationalizedString';
+import { InternationalizedStringDTO } from './internationalizedStringDTO';
 
 export interface CreateUserDTO {
-  title: InternationalizedString;
-  firstName: InternationalizedString;
-  lastName: InternationalizedString;
+  title: InternationalizedStringDTO;
+  firstName: InternationalizedStringDTO;
+  lastName: InternationalizedStringDTO;
   dateOfBirth: Date;
   email: string;
   password: string;
-  termsOfService: Array<string>;
 }
