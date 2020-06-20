@@ -1,0 +1,40 @@
+@import 'src/styles-variables.scss';
+
+.pagination {
+  @include text-style-h5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $indigo-dark;
+  border-radius: 3px;
+  padding: 0 15px;
+  button {
+    color: $mono-3;
+    padding: 9px;
+    margin: 10px 15px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    &:focus {
+      outline: none;
+    }
+  }
+  &-page {
+    display: flex;
+    overflow: hidden;
+    button:first-child {
+      font-weight: bold;
+      color: $mono-0;
+    }
+  }
+  &-controller {
+    display: flex;
+    align-items: center;
+  }
+  button.current-page {
+    font-weight: normal;
+    background: #ffde30;
+    border-radius: 3px;
+    color: $indigo-main;
+  }
+}
