@@ -97,7 +97,7 @@ export class PaginationComponent implements AfterViewInit {
 
   getCompleteWidth(el?: ElementRef<any>) {
     const element = el?.nativeElement;
-    const style = element.currentStyle || window.getComputedStyle(element);
+    const style = element?.currentStyle || window.getComputedStyle(element);
     const { offsetWidth } = element;
     const margin = parseFloat(style.marginLeft) + parseFloat(style.marginRight);
     return offsetWidth + margin;
@@ -105,7 +105,7 @@ export class PaginationComponent implements AfterViewInit {
 
   getPadding(el?: ElementRef<any>) {
     const element = el?.nativeElement;
-    const style = element.currentStyle || window.getComputedStyle(element);
+    const style = element?.currentStyle || window.getComputedStyle(element);
     const padding = parseFloat(style.paddingLeft) + parseFloat(style.paddingRight);
     return padding;
   }
