@@ -6,7 +6,10 @@ import {
   ElementRef,
   HostListener,
   ChangeDetectorRef,
-  OnInit,
+  ViewChild,
+  AfterViewInit,
+  ViewChildren,
+  QueryList,
 } from '@angular/core';
 
 @Component({
@@ -14,18 +17,31 @@ import {
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.scss'],
 })
-export class PaginationComponent implements OnInit {
+export class PaginationComponent implements AfterViewInit {
   @Input() items: any[] = [];
+  @Input() currentPage = 0;
   @Input() itemsPerPage = 2;
   @Output() pageChange = new EventEmitter<number>();
-  currentPage = 0;
+
   startPage = 0;
-  lastPageNumberToDisplay = 0;
+  maxPageNumberToDisplay = 0;
 
-  constructor(private el: ElementRef, private cdr: ChangeDetectorRef) {}
+  @ViewChild('pagination') paginationEl?: ElementRef;
+  @ViewChild('paginationNavigation') paginationNavEl?: ElementRef;
+  @ViewChildren('paginationPage') paginationPageEls?: QueryList<any>;
 
-  ngOnInit() {
+  EACH_PAGE_WIDTH = 0;
+  PAGE_BUTTON_WIDTH = 0;
+  PAGINATION_PADDING = 0;
+
+  constructor(private cdr: ChangeDetectorRef) {}
+
+  ngAfterViewInit() {
+    this.EACH_PAGE_WIDTH = this.getCompleteWidth(this.paginationPageEls?.last);
+    this.PAGE_BUTTON_WIDTH = this.getCompleteWidth(this.paginationNavEl);
+    this.PAGINATION_PADDING = this.getPadding(this.paginationEl);
     this.calculateLastPageNumberToDisplay();
+    this.adjustStartPage(true);
   }
 
   get maxPage() {
@@ -37,20 +53,13 @@ export class PaginationComponent implements OnInit {
   }
 
   calculateLastPageNumberToDisplay() {
-    const FIRST_PAGE_WIDTH = 57;
-    const EACH_PAGE_WIDTH = 59.4;
-    const PAGE_BUTTON_WIDTH = 72;
-    const PAGINATION_PADDING = 30;
+    const CONTAINER_WIDTH = this.paginationEl?.nativeElement.offsetWidth;
     const lastPageToDisplay =
       Math.floor(
-        (this.width - PAGINATION_PADDING - PAGE_BUTTON_WIDTH * 2 - FIRST_PAGE_WIDTH) /
-          EACH_PAGE_WIDTH
+        (CONTAINER_WIDTH - this.PAGINATION_PADDING - this.PAGE_BUTTON_WIDTH * 2) /
+          this.EACH_PAGE_WIDTH
       ) - 1;
-    this.lastPageNumberToDisplay = lastPageToDisplay;
-  }
-
-  get width() {
-    return this.el.nativeElement.children[0].offsetWidth;
+    this.maxPageNumberToDisplay = lastPageToDisplay;
   }
 
   @HostListener('window:resize', ['$event'])
@@ -68,25 +77,41 @@ export class PaginationComponent implements OnInit {
     }
   }
 
+  shouldShow(page: number) {
+    const isLessThanPageToDisplay = page < this.maxPageNumberToDisplay + this.startPage;
+    const isMoreThanStartPage = page >= this.startPage;
+    const isMaxPage = page === this.maxPage - 1;
+    return (isLessThanPageToDisplay && isMoreThanStartPage) || isMaxPage;
+  }
+
+  isPriorMaxPage(page: number) {
+    return page === this.maxPage - 2;
+  }
+
   private adjustStartPage(isPageUp: boolean) {
-    const isMoreThanLastPage = this.lastPageNumberToDisplay + this.startPage < this.currentPage + 1;
+    const isMoreThanLastPage = this.maxPageNumberToDisplay + this.startPage < this.currentPage + 1;
     const isMaxPage = this.currentPage === this.maxPage - 1;
     const isLessThanStartPage = this.startPage > this.currentPage;
     if (isPageUp && isMoreThanLastPage && !isMaxPage) {
       this.startPage = this.currentPage;
     } else if ((!isPageUp && isLessThanStartPage) || isMaxPage) {
-      this.startPage = this.currentPage + 1 - this.lastPageNumberToDisplay;
+      this.startPage = this.currentPage + 1 - this.maxPageNumberToDisplay;
     }
     this.cdr.detectChanges();
   }
 
-  shouldShow(page: number) {
-    const isLessThanPageToDisplay = page < this.lastPageNumberToDisplay + this.startPage;
-    const isMoreThanStartPage = page >= this.startPage;
-    return (isLessThanPageToDisplay && isMoreThanStartPage) || page === this.maxPage - 1;
+  private getCompleteWidth(el?: ElementRef<any>) {
+    const element = el?.nativeElement;
+    const style = element.currentStyle || window.getComputedStyle(element);
+    const { offsetWidth } = element;
+    const margin = parseFloat(style.marginLeft) + parseFloat(style.marginRight);
+    return offsetWidth + margin;
   }
 
-  isPriorMaxPage(page: number) {
-    return page === this.maxPage - 2;
+  private getPadding(el?: ElementRef<any>) {
+    const element = el?.nativeElement;
+    const style = element.currentStyle || window.getComputedStyle(element);
+    const padding = parseFloat(style.paddingLeft) + parseFloat(style.paddingRight);
+    return padding;
   }
 }
