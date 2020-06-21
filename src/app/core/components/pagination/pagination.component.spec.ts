@@ -5,12 +5,10 @@ import { ElementRef, Component } from '@angular/core';
 import { PaginationComponent } from './pagination.component';
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'test-component-wrapper',
+  selector: 'app-test-component-wrapper',
   template: '<app-pagination (pageChange)="changePage($event)" [items]="items"></app-pagination>',
 })
-// eslint-disable-next-line @angular-eslint/component-class-suffix
-class TestComponentWrapper {
+class TestWrapperComponent {
   items = [].constructor(100);
   changePage() {}
 }
@@ -26,7 +24,7 @@ describe('PaginationComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [PaginationComponent, TestComponentWrapper],
+      declarations: [PaginationComponent, TestWrapperComponent],
       imports: [MatIconModule],
     }).compileComponents();
   }));
@@ -65,7 +63,7 @@ describe('PaginationComponent', () => {
   });
 
   it('should create with items', () => {
-    const fixture2 = TestBed.createComponent(TestComponentWrapper);
+    const fixture2 = TestBed.createComponent(TestWrapperComponent);
     const component2 = fixture2.componentInstance;
     component2.items = MOCK_ITEMS_100;
     fixture2.detectChanges();
@@ -298,7 +296,7 @@ describe('PaginationComponent', () => {
   });
 
   it('should navigate correctly', fakeAsync(() => {
-    const fixture2 = TestBed.createComponent(TestComponentWrapper);
+    const fixture2 = TestBed.createComponent(TestWrapperComponent);
     const component2 = fixture2.componentInstance;
     component2.items = MOCK_ITEMS_100;
     const changePageSpy = spyOn(component2, 'changePage').and.callThrough();
