@@ -40,7 +40,7 @@ export class PaginationComponent implements AfterViewInit {
     this.EACH_PAGE_WIDTH = this.getCompleteWidth(this.paginationPageEls?.last);
     this.PAGE_BUTTON_WIDTH = this.getCompleteWidth(this.paginationNavEl);
     this.PAGINATION_PADDING = this.getPadding(this.paginationEl);
-    this.calculateLastPageNumberToDisplay();
+    this.calculateMaxPageNumberToDisplay();
     this.adjustStartPage(true);
     this.cdr.detectChanges();
   }
@@ -55,7 +55,7 @@ export class PaginationComponent implements AfterViewInit {
 
   @HostListener('window:resize', ['$event'])
   onResize() {
-    this.calculateLastPageNumberToDisplay();
+    this.calculateMaxPageNumberToDisplay();
     this.adjustStartPage(true);
   }
 
@@ -80,14 +80,14 @@ export class PaginationComponent implements AfterViewInit {
   }
 
   adjustStartPage(isPageUp: boolean) {
-    const isMoreThanLastPage = this.maxPageNumberToDisplay + this.startPage < this.currentPage + 1;
-    const isMaxPage = this.currentPage === this.maxPage - 1;
+    const isMoreThanLastPage = this.maxPageNumberToDisplay + this.startPage < this.currentPage;
+    const isInMaxPageRange = this.maxPage - 1 - this.currentPage <= this.maxPageNumberToDisplay;
     const isLessThanStartPage = this.startPage > this.currentPage;
-    if (isPageUp && isMoreThanLastPage && !isMaxPage) {
-      this.startPage = this.currentPage;
-      this.cdr.detectChanges();
-    } else if (isMaxPage) {
+    if (isInMaxPageRange) {
       this.startPage = Math.min(this.maxPage - this.maxPageNumberToDisplay - 1, this.maxPage);
+      this.cdr.detectChanges();
+    } else if (isPageUp && isMoreThanLastPage) {
+      this.startPage = this.currentPage;
       this.cdr.detectChanges();
     } else if (!isPageUp && isLessThanStartPage) {
       this.startPage = Math.max(this.startPage - this.maxPageNumberToDisplay - 1, 0);
@@ -116,7 +116,7 @@ export class PaginationComponent implements AfterViewInit {
     return padding;
   }
 
-  calculateLastPageNumberToDisplay() {
+  calculateMaxPageNumberToDisplay() {
     const CONTAINER_WIDTH = this.paginationEl?.nativeElement.offsetWidth;
     const PAGE_NUMBER_WIDTH =
       CONTAINER_WIDTH - this.PAGINATION_PADDING - this.PAGE_BUTTON_WIDTH * 2;

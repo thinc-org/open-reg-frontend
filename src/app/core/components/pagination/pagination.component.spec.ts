@@ -1,8 +1,19 @@
 /* eslint-disable @typescript-eslint/dot-notation */
 import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { MatIconModule } from '@angular/material/icon';
-import { ElementRef } from '@angular/core';
+import { ElementRef, Component } from '@angular/core';
 import { PaginationComponent } from './pagination.component';
+
+@Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'test-component-wrapper',
+  template: '<app-pagination (pageChange)="changePage($event)" [items]="items"></app-pagination>',
+})
+// eslint-disable-next-line @angular-eslint/component-class-suffix
+class TestComponentWrapper {
+  items = [].constructor(100);
+  changePage() {}
+}
 
 describe('PaginationComponent', () => {
   let component: PaginationComponent;
@@ -11,12 +22,11 @@ describe('PaginationComponent', () => {
   let detectChangesSpy: jasmine.Spy<() => void>;
   let pageChangeEmitSpy: jasmine.Spy<() => void>;
   let adjustStartPageSpy: jasmine.Spy<() => void>;
-  let calculateLastPageNumberToDisplaySpy: jasmine.Spy<() => void>;
-  let changePageSpy: jasmine.Spy<() => void>;
+  let calculateMaxPageNumberToDisplaySpy: jasmine.Spy<() => void>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [PaginationComponent],
+      declarations: [PaginationComponent, TestComponentWrapper],
       imports: [MatIconModule],
     }).compileComponents();
   }));
@@ -31,19 +41,17 @@ describe('PaginationComponent', () => {
     detectChangesSpy = spyOn(component['cdr'], 'detectChanges').and.callThrough();
     pageChangeEmitSpy = spyOn(component.pageChange, 'emit').and.callThrough();
     adjustStartPageSpy = spyOn(component, 'adjustStartPage').and.callThrough();
-    calculateLastPageNumberToDisplaySpy = spyOn(
+    calculateMaxPageNumberToDisplaySpy = spyOn(
       component,
-      'calculateLastPageNumberToDisplay'
+      'calculateMaxPageNumberToDisplay'
     ).and.callThrough();
-    changePageSpy = spyOn(component, 'changePage').and.callThrough();
   });
 
   afterEach(() => {
     detectChangesSpy.calls.reset();
     pageChangeEmitSpy.calls.reset();
     adjustStartPageSpy.calls.reset();
-    calculateLastPageNumberToDisplaySpy.calls.reset();
-    changePageSpy.calls.reset();
+    calculateMaxPageNumberToDisplaySpy.calls.reset();
   });
 
   it('should create with no items', () => {
@@ -57,18 +65,19 @@ describe('PaginationComponent', () => {
   });
 
   it('should create with items', () => {
-    component.items = MOCK_ITEMS_100;
-    fixture.detectChanges();
+    const fixture2 = TestBed.createComponent(TestComponentWrapper);
+    const component2 = fixture2.componentInstance;
+    component2.items = MOCK_ITEMS_100;
+    fixture2.detectChanges();
 
-    const buttons = fixture.nativeElement.querySelector('.pagination-page').children;
+    const buttons = fixture2.nativeElement.querySelector('.pagination-page').children;
     const currentPageButton = buttons[0];
     const currentPageInnerText = currentPageButton.innerText;
-    const navigations = fixture.nativeElement.querySelectorAll('.pagination-controller');
+    const navigations = fixture2.nativeElement.querySelectorAll('.pagination-controller');
 
     expect(currentPageButton.classList[0]).toEqual('current-page');
     expect(currentPageInnerText).toMatch('1');
-    expect(buttons.length).toBe(50);
-    expect(buttons[49].innerText).toMatch('50');
+    expect(buttons[buttons.length - 1].innerText).toMatch('50');
     expect(navigations.length).toBe(2);
     expect(navigations[0].innerText).toBe('navigate_before');
     expect(navigations[1].innerText).toBe('navigate_next');
@@ -166,9 +175,8 @@ describe('PaginationComponent', () => {
   it('should adjustStartPage correctly when pageUp', () => {
     component.items = MOCK_ITEMS_100;
     component.startPage = 3;
-    component.currentPage = 8;
+    component.currentPage = 9;
     component.maxPageNumberToDisplay = 5;
-
     component.adjustStartPage(true);
 
     expect(detectChangesSpy).toHaveBeenCalledTimes(1);
@@ -176,16 +184,16 @@ describe('PaginationComponent', () => {
     detectChangesSpy.calls.reset();
 
     component.startPage = 5;
-    component.currentPage = 8;
+    component.currentPage = 18;
     component.maxPageNumberToDisplay = 5;
 
     component.adjustStartPage(true);
 
-    expect(detectChangesSpy).not.toHaveBeenCalled();
-    expect(component.startPage).not.toBe(component.currentPage);
+    expect(detectChangesSpy).toHaveBeenCalledTimes(1);
+    expect(component.startPage).toBe(component.currentPage);
   });
 
-  it('should adjustStartPage correctly when go to max page', () => {
+  it('should adjustStartPage correctly when go to max page range', () => {
     component.items = MOCK_ITEMS_100;
 
     component.startPage = 5;
@@ -196,6 +204,16 @@ describe('PaginationComponent', () => {
 
     expect(detectChangesSpy).toHaveBeenCalledTimes(1);
     expect(component.startPage).toBe(44);
+    detectChangesSpy.calls.reset();
+
+    component.startPage = 5;
+    component.currentPage = 44;
+    component.maxPageNumberToDisplay = 5;
+
+    component.adjustStartPage(true);
+
+    expect(detectChangesSpy).toHaveBeenCalledTimes(1);
+    expect(component.startPage).toBe(component.currentPage);
   });
 
   it('should adjustStartPage correctly when pageDown', () => {
@@ -225,7 +243,7 @@ describe('PaginationComponent', () => {
 
     component.startPage = 5;
     component.currentPage = 8;
-    component.maxPageNumberToDisplay = 4;
+    component.maxPageNumberToDisplay = 3;
 
     component.adjustStartPage(true);
 
@@ -275,16 +293,19 @@ describe('PaginationComponent', () => {
 
   it('should resize correctly', () => {
     component.onResize();
-    expect(calculateLastPageNumberToDisplaySpy).toHaveBeenCalledTimes(1);
+    expect(calculateMaxPageNumberToDisplaySpy).toHaveBeenCalledTimes(1);
     expect(adjustStartPageSpy).toHaveBeenCalledWith(true);
   });
 
   it('should navigate correctly', fakeAsync(() => {
-    component.items = MOCK_ITEMS_100;
-    fixture.detectChanges();
+    const fixture2 = TestBed.createComponent(TestComponentWrapper);
+    const component2 = fixture2.componentInstance;
+    component2.items = MOCK_ITEMS_100;
+    const changePageSpy = spyOn(component2, 'changePage').and.callThrough();
+    fixture2.detectChanges();
 
-    const buttons = fixture.nativeElement.querySelector('.pagination-page').children;
-    const navigations = fixture.nativeElement.querySelectorAll('.pagination-controller');
+    const buttons = fixture2.nativeElement.querySelector('.pagination-page').children;
+    const navigations = fixture2.nativeElement.querySelectorAll('.pagination-controller');
 
     navigations[1].click();
     tick();
@@ -303,9 +324,7 @@ describe('PaginationComponent', () => {
 
     navigations[0].click();
     tick();
-    navigations[0].click();
-    tick();
-    expect(changePageSpy).toHaveBeenCalledWith(-1);
+    expect(changePageSpy).toHaveBeenCalledWith(0);
     changePageSpy.calls.reset();
 
     buttons[10].click();
