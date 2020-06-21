@@ -53,14 +53,6 @@ export class PaginationComponent implements AfterViewInit {
     return [].constructor(this.maxPage);
   }
 
-  calculateLastPageNumberToDisplay() {
-    const CONTAINER_WIDTH = this.paginationEl?.nativeElement.offsetWidth;
-    const PAGE_NUMBER_WIDTH =
-      CONTAINER_WIDTH - this.PAGINATION_PADDING - this.PAGE_BUTTON_WIDTH * 2;
-    const lastPageToDisplay = Math.floor(PAGE_NUMBER_WIDTH / this.EACH_PAGE_WIDTH) - 2;
-    this.maxPageNumberToDisplay = lastPageToDisplay;
-  }
-
   @HostListener('window:resize', ['$event'])
   onResize() {
     this.calculateLastPageNumberToDisplay();
@@ -116,5 +108,13 @@ export class PaginationComponent implements AfterViewInit {
     const style = element.currentStyle || window.getComputedStyle(element);
     const padding = parseFloat(style.paddingLeft) + parseFloat(style.paddingRight);
     return padding;
+  }
+
+  calculateLastPageNumberToDisplay() {
+    const CONTAINER_WIDTH = this.paginationEl?.nativeElement.offsetWidth;
+    const PAGE_NUMBER_WIDTH =
+      CONTAINER_WIDTH - this.PAGINATION_PADDING - this.PAGE_BUTTON_WIDTH * 2;
+    const lastPageToDisplay = Math.floor(PAGE_NUMBER_WIDTH / this.EACH_PAGE_WIDTH) - 2;
+    this.maxPageNumberToDisplay = lastPageToDisplay;
   }
 }
