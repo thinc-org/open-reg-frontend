@@ -7,34 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormComponent implements OnInit {
   currentPage = 2;
-  item = [
-    '123',
-    '123',
-    '123',
-    '123',
-    '123',
-    '123',
-    '123',
-    '123',
-    '123',
-    '123',
-    '123',
-    '123',
-    '123',
-    '123',
-    '123',
-    '123',
-    '123',
-    '123',
-    '123',
-    '123',
-    '123',
-    '123',
-    '123',
-    '123',
-    '123',
-    '123',
-  ];
+  item = [].constructor(100);
   constructor() {}
 
   ngOnInit() {}
