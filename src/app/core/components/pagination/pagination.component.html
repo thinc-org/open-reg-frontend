@@ -12,7 +12,7 @@
       >
         {{ i + 1 }}
       </button>
-      <button disabled *ngIf="isPriorMaxPage(i) && !shouldShow(i)">...</button>
+      <button class="pagination-more" disabled *ngIf="isPriorMaxPage(i) && !shouldShow(i)"></button>
     </ng-container>
   </div>
   <button class="pagination-controller" (click)="changePage(currentPage + 1)">
