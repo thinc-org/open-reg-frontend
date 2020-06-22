@@ -1,1 +1,27 @@
-<p>navbar works!</p>
+<mat-toolbar class="background-transparent">
+  <mat-toolbar-row class="row">
+    <div class="left">
+      <app-full-logo></app-full-logo>
+    </div>
+    <div class="right">
+      <a [routerLink]="['/getting-start']">
+        Getting Start
+      </a>
+      <a [routerLink]="['/getting-start']">
+        Getting Start
+      </a>
+      <a [routerLink]="['/getting-start']">
+        Getting Start
+      </a>
+      <div class="group">
+        <a [routerLink]="['/sign-up']">
+          Sign Up
+        </a>
+        <div class="verticle-divider"></div>
+        <a [routerLink]="['/log-in']">
+          Log In
+        </a>
+      </div>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>

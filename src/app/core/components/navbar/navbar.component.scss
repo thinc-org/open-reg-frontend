@@ -1,0 +1,46 @@
+@import 'src/styles-variables.scss';
+
+.background-transparent {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  background: transparent;
+  background-color: transparent;
+}
+
+.verticle-divider {
+  border-left: 3px solid $mono-0;
+  height: 24px;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 150px;
+  padding-right: 150px;
+  .left,
+  .right {
+    display: flex;
+    align-items: center;
+    & > * {
+      @include text-style-h6;
+      margin: 0 0 0 51px;
+      color: $mono-0;
+      text-decoration: none;
+    }
+  }
+  .right {
+    margin-left: auto;
+    .group {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      & > * {
+        @include text-style-h6;
+        margin: 0 0.2em;
+        color: $mono-0;
+        text-decoration: none;
+      }
+    }
+  }
+}
