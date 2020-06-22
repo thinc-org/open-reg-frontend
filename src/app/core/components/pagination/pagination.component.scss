@@ -4,37 +4,34 @@
   @include text-style-h5;
   display: flex;
   align-items: center;
-  justify-content: center;
-  background: $indigo-dark;
+  justify-content: space-between;
   border-radius: 3px;
-  padding: 0 15px;
-  button {
-    color: $mono-3;
-    padding: 9px;
-    margin: 10px 15px;
-    border: none;
-    background: none;
-    cursor: pointer;
-    &:focus {
-      outline: none;
-    }
-  }
+  padding: 0 5px;
   &-page {
     display: flex;
     overflow: hidden;
     button:first-child {
       font-weight: bold;
-      color: $mono-0;
     }
   }
   &-controller {
     display: flex;
     align-items: center;
   }
-  button.current-page {
-    font-weight: normal;
-    background: #ffde30;
-    border-radius: 3px;
-    color: $indigo-main;
+  &-more:after {
+    content: '\B7 \B7 \B7';
+  }
+  button {
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    cursor: pointer;
+    &:focus {
+      outline: none;
+    }
+    &.current-page {
+      font-weight: normal;
+      border-radius: 3px;
+    }
   }
 }
