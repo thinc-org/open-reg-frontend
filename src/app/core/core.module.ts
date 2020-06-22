@@ -9,9 +9,16 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { ExampleComponent } from './components/example/example.component';
 import { ThemeControllerComponent } from './components/theme-controller/theme-controller.component';
 import { FullLogoComponent } from './components/full-logo/full-logo.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 @NgModule({
-  declarations: [NavbarComponent, ExampleComponent, ThemeControllerComponent, FullLogoComponent],
+  declarations: [
+    NavbarComponent,
+    ExampleComponent,
+    ThemeControllerComponent,
+    FullLogoComponent,
+    PaginationComponent,
+  ],
   imports: [
     MatToolbarModule,
     MatDividerModule,
@@ -22,6 +29,12 @@ import { FullLogoComponent } from './components/full-logo/full-logo.component';
   ],
   providers: [],
   bootstrap: [],
-  exports: [NavbarComponent, ExampleComponent, ThemeControllerComponent, FullLogoComponent],
+  exports: [
+    NavbarComponent,
+    ExampleComponent,
+    ThemeControllerComponent,
+    FullLogoComponent,
+    PaginationComponent,
+  ],
 })
 export class CoreModules {}

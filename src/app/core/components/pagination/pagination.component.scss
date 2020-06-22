@@ -1,0 +1,37 @@
+@import 'src/styles-variables.scss';
+
+.pagination {
+  @include text-style-h5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 3px;
+  padding: 0 5px;
+  &-page {
+    display: flex;
+    overflow: hidden;
+    button:first-child {
+      font-weight: bold;
+    }
+  }
+  &-controller {
+    display: flex;
+    align-items: center;
+  }
+  &-more:after {
+    content: '\B7 \B7 \B7';
+  }
+  button {
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    cursor: pointer;
+    &:focus {
+      outline: none;
+    }
+    &.current-page {
+      font-weight: normal;
+      border-radius: 3px;
+    }
+  }
+}
