@@ -11,6 +11,7 @@ import {
   ViewChildren,
   QueryList,
 } from '@angular/core';
+import { getCompleteWidth, getPadding } from 'src/app/core/utils/dom';
 
 @Component({
   selector: 'app-pagination',
@@ -37,9 +38,9 @@ export class PaginationComponent implements AfterViewInit {
   constructor(private cdr: ChangeDetectorRef) {}
 
   ngAfterViewInit() {
-    this.EACH_PAGE_WIDTH = this.getCompleteWidth(this.paginationPageEls?.last);
-    this.PAGE_BUTTON_WIDTH = this.getCompleteWidth(this.paginationNavEl);
-    this.PAGINATION_PADDING = this.getPadding(this.paginationEl);
+    this.EACH_PAGE_WIDTH = getCompleteWidth(this.paginationPageEls?.last);
+    this.PAGE_BUTTON_WIDTH = getCompleteWidth(this.paginationNavEl);
+    this.PAGINATION_PADDING = getPadding(this.paginationEl);
     this.calculateMaxPageNumberToDisplay();
     this.adjustStartPage(true);
     this.cdr.detectChanges();
@@ -93,27 +94,6 @@ export class PaginationComponent implements AfterViewInit {
       this.startPage = Math.max(this.startPage - this.maxPageNumberToDisplay - 1, 0);
       this.cdr.detectChanges();
     }
-  }
-
-  getCompleteWidth(el?: ElementRef<any>) {
-    const element = el?.nativeElement;
-    if (element === undefined) {
-      return 0;
-    }
-    const style = element.currentStyle || window.getComputedStyle(element);
-    const { offsetWidth } = element;
-    const margin = parseFloat(style.marginLeft) + parseFloat(style.marginRight);
-    return offsetWidth + margin;
-  }
-
-  getPadding(el?: ElementRef<any>) {
-    const element = el?.nativeElement;
-    if (element === undefined) {
-      return 0;
-    }
-    const style = element.currentStyle || window.getComputedStyle(element);
-    const padding = parseFloat(style.paddingLeft) + parseFloat(style.paddingRight);
-    return padding;
   }
 
   calculateMaxPageNumberToDisplay() {
