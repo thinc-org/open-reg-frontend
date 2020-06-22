@@ -1,0 +1,23 @@
+@import '~@angular/material/theming';
+@import 'src/styles-variables.scss';
+
+@mixin pagination-component-theme($theme) {
+  $primary: map-get($theme, primary);
+
+  .pagination {
+    background: mat-color($primary, darker);
+    &-page {
+      button:first-child {
+        color: $mono-0;
+      }
+    }
+    button {
+      color: $mono-3;
+      background: none;
+      &.current-page {
+        color: mat-color($primary);
+        background-color: $yellow-main;
+      }
+    }
+  }
+}
