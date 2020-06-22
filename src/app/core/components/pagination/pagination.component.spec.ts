@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/dot-notation */
 import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { MatIconModule } from '@angular/material/icon';
-import { ElementRef, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { PaginationComponent } from './pagination.component';
 
 @Component({
@@ -258,35 +258,6 @@ describe('PaginationComponent', () => {
     expect(detectChangesSpy).not.toHaveBeenCalled();
     expect(component.startPage).not.toBe(component.currentPage);
     detectChangesSpy.calls.reset();
-  });
-
-  it('should getCompleteWidth correctly', () => {
-    const MOCK_ELEMENT = {
-      nativeElement: {
-        offsetWidth: 100,
-        currentStyle: { marginLeft: '10px', marginRight: '10px' },
-      },
-    };
-    const result = component.getCompleteWidth(MOCK_ELEMENT);
-    expect(result).toBe(120);
-
-    const MOCK_ELEMENT2 = {} as ElementRef;
-    const result2 = component.getCompleteWidth(MOCK_ELEMENT2);
-    expect(result2).toBe(0);
-  });
-
-  it('should getPadding correctly', () => {
-    const MOCK_ELEMENT = {
-      nativeElement: {
-        currentStyle: { paddingLeft: '10px', paddingRight: '10px' },
-      },
-    };
-    const result = component.getPadding(MOCK_ELEMENT);
-    expect(result).toBe(20);
-
-    const MOCK_ELEMENT2 = {} as ElementRef;
-    const result2 = component.getPadding(MOCK_ELEMENT2);
-    expect(result2).toBe(0);
   });
 
   it('should resize correctly', () => {
