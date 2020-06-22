@@ -2,8 +2,7 @@
 
 .event-card {
   &.pocket {
-    min-width: 80px;
-    width: 240px;
+    min-width: 240px;
     .content {
       .title {
         @include text-style-h5;
@@ -18,9 +17,11 @@
       }
     }
   }
-  &.bar-list-small {
+  &.list-small {
     min-height: 80px;
-    height: 12em;
+
+    width: 100%;
+
     display: flex;
     align-items: center;
 
@@ -29,7 +30,7 @@
 
     .image-container {
       overflow: hidden;
-      flex-basis: 25%;
+      flex-basis: 22.5%;
       img {
         width: 100%;
         height: 100%;
@@ -40,7 +41,7 @@
 
     .content {
       flex-basis: auto;
-      padding: 24px;
+      padding: 2em;
       .title {
         @include text-style-h5;
       }
@@ -53,6 +54,100 @@
           width: 1em;
           height: 1em;
         }
+      }
+    }
+  }
+  &.list-regular {
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+
+    border-radius: 0;
+    padding: 12px;
+
+    .image-container {
+      $length: 8%;
+
+      position: relative;
+      width: $length;
+      padding: $length;
+      max-width: 0;
+      border-radius: 3px;
+      overflow: hidden;
+      img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        min-width: 80px;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+    }
+
+    .content {
+      margin-left: 2em;
+      margin-right: 5em;
+      flex: 1 1 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: no-wrap;
+      .title {
+        @include text-style-h6;
+        margin-right: 2em;
+      }
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+
+        @include text-style-label;
+        .tag {
+          padding: 0.5em 1em;
+          margin: 6px 12px;
+          border-radius: 5px;
+          background-color: $yellow-light;
+        }
+        margin-right: 2em;
+      }
+      .datetime {
+        @include text-style-body2;
+        p {
+          .mat-icon {
+            margin-right: 1rem;
+          }
+          display: flex;
+          align-items: center;
+        }
+        margin-right: 2em;
+      }
+      .organization {
+        @include text-style-body1;
+        margin-right: 2em;
+      }
+    }
+  }
+  &.full-card {
+    @extend .event-card, .pocket;
+
+    .content {
+      .datetime {
+        @include text-style-h5;
+        color: $purple-light;
+      }
+      .title {
+        @include text-style-h4;
+      }
+      .location {
+        @include text-style-body1;
+        display: flex;
+        align-items: center;
+        color: $mono-3;
       }
     }
   }

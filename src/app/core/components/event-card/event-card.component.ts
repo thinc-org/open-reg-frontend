@@ -1,10 +1,6 @@
-import { Event } from 'src/backend-client/model/models';
 import { Component, OnInit, Input } from '@angular/core';
-
-enum EventCardType {
-  POCKET = 'pocket',
-  BAR_LIST_SMALL = 'bar-list-small',
-}
+import { Event } from 'src/backend-client/model/models';
+import { EventCardType } from '../../types/constant';
 
 @Component({
   selector: 'app-event-card',
@@ -17,5 +13,9 @@ export class EventCardComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (!Object.values(EventCardType).includes(this.type)) {
+      this.type = EventCardType.POCKET;
+    }
+  }
 }
