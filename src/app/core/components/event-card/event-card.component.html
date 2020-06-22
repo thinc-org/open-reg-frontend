@@ -1,0 +1,32 @@
+<ng-container [ngSwitch]="type">
+  <ng-container *ngSwitchCase="'pocket'">
+    <mat-card class="event-card" [ngClass]="type">
+      <img
+        mat-card-image
+        src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+        alt="Photo of a Shiba Inu"
+      />
+      <mat-card-content class="content">
+        <h5 class="title">Name of The Event.</h5>
+        <p class="datetime"><mat-icon>calendar_today</mat-icon>YYYY/MM/DD - YYYY/MM/DD</p>
+      </mat-card-content>
+    </mat-card>
+  </ng-container>
+  <ng-container *ngSwitchCase="'bar-list-small'">
+    <mat-card class="event-card" [ngClass]="type">
+      <div class="image-container">
+        <img
+          src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+          alt="Photo of a Shiba Inu"
+        />
+      </div>
+      <mat-card-content class="content">
+        <h5 class="title">Name of The Event.</h5>
+        <p class="datetime"><mat-icon>calendar_today</mat-icon>YYYY/MM/DD - YYYY/MM/DD</p>
+      </mat-card-content>
+    </mat-card>
+  </ng-container>
+  <ng-container *ngSwitchDefault>
+    <p>DDD</p>
+  </ng-container>
+</ng-container>
