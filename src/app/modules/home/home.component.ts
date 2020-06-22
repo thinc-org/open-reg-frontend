@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ApiService } from 'src/backend-client';
+import { ApiService } from 'backend-client';
 import { HomeService } from './home.service';
 
 @Component({

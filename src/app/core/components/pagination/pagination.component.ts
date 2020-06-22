@@ -11,7 +11,7 @@ import {
   ViewChildren,
   QueryList,
 } from '@angular/core';
-import { getCompleteWidth, getPadding } from 'src/app/core/utils/dom';
+import { getCompleteWidth, getPadding } from 'app/core/utils/dom';
 
 @Component({
   selector: 'app-pagination',

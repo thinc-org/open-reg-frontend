@@ -1,5 +1,5 @@
-@import './styles-variables-themes.scss';
-@import './styles-texts.scss';
+@import 'styles-variables-themes.scss';
+@import 'styles-texts.scss';
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @import '~@angular/material/theming';
@@ -9,14 +9,14 @@
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
 @include mat-core();
-@import './themes/default-theme/index.scss';
+@import 'themes/default-theme/index.scss';
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 
-@import './app/core/components/example/example.component-theme.scss';
-@import './app/core/components/pagination/pagination.component-theme.scss';
+@import 'app/core/components/example/example.component-theme.scss';
+@import 'app/core/components/pagination/pagination.component-theme.scss';
 
 @mixin custom-components-theme($theme) {
   @include example-component-theme($theme);
@@ -33,7 +33,7 @@
   @include custom-components-theme($openreg-default-theme-dark);
 }
 
-@import './styles-reset.scss';
+@import 'styles-reset.scss';
 
 /* You can add global styles to this file, and also import other style files */
 
