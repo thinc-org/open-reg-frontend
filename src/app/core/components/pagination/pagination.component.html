@@ -1,0 +1,21 @@
+<div #pagination class="pagination">
+  <button #paginationNavigation class="pagination-controller" (click)="changePage(currentPage - 1)">
+    <mat-icon aria-hidden="false" aria-label="Previous Page">navigate_before</mat-icon>
+  </button>
+  <div class="pagination-page">
+    <ng-container *ngFor="let item of maxPageArray; index as i">
+      <button
+        #paginationPage
+        *ngIf="shouldShow(i)"
+        [class.current-page]="currentPage === i"
+        (click)="changePage(i)"
+      >
+        {{ i + 1 }}
+      </button>
+      <button class="pagination-more" disabled *ngIf="isPriorMaxPage(i) && !shouldShow(i)"></button>
+    </ng-container>
+  </div>
+  <button class="pagination-controller" (click)="changePage(currentPage + 1)">
+    <mat-icon aria-hidden="false" aria-label="Next Page">navigate_next</mat-icon>
+  </button>
+</div>

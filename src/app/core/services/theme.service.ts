@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { distinctUntilChanged, skip } from 'rxjs/operators';
-import { Theme } from 'src/types';
-import { ThemeTypes } from 'src/types/constants';
+import { Theme } from 'types';
+import { ThemeTypes } from 'types/constants';
 
 @Injectable({
   providedIn: 'root',

@@ -11,6 +11,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { ExampleComponent } from './components/example/example.component';
 import { ThemeControllerComponent } from './components/theme-controller/theme-controller.component';
 import { FullLogoComponent } from './components/full-logo/full-logo.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 import { EventCardComponent } from './components/event-card/event-card.component';
 
 @NgModule({
@@ -19,6 +20,7 @@ import { EventCardComponent } from './components/event-card/event-card.component
     ExampleComponent,
     ThemeControllerComponent,
     FullLogoComponent,
+    PaginationComponent,
     EventCardComponent,
   ],
   imports: [
@@ -33,6 +35,13 @@ import { EventCardComponent } from './components/event-card/event-card.component
   ],
   providers: [],
   bootstrap: [],
-  exports: [NavbarComponent, ExampleComponent, ThemeControllerComponent, EventCardComponent],
+  exports: [
+    NavbarComponent,
+    ExampleComponent,
+    ThemeControllerComponent,
+    FullLogoComponent,
+    PaginationComponent,
+    EventCardComponent,
+  ],
 })
 export class CoreModules {}

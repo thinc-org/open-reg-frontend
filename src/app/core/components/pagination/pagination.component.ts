@@ -1,0 +1,106 @@
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  ElementRef,
+  HostListener,
+  ChangeDetectorRef,
+  ViewChild,
+  AfterViewInit,
+  ViewChildren,
+  QueryList,
+} from '@angular/core';
+import { getCompleteWidth, getPadding } from 'app/core/utils/dom';
+
+@Component({
+  selector: 'app-pagination',
+  templateUrl: './pagination.component.html',
+  styleUrls: ['./pagination.component.scss'],
+})
+export class PaginationComponent implements AfterViewInit {
+  @Input() items: any[] = [];
+  @Input() currentPage = 0;
+  @Input() itemsPerPage = 2;
+  @Output() pageChange = new EventEmitter<number>();
+
+  startPage = 0;
+  maxPageNumberToDisplay = 0;
+
+  @ViewChild('pagination') paginationEl?: ElementRef;
+  @ViewChild('paginationNavigation') paginationNavEl?: ElementRef;
+  @ViewChildren('paginationPage') paginationPageEls?: QueryList<any>;
+
+  EACH_PAGE_WIDTH = 0;
+  PAGE_BUTTON_WIDTH = 0;
+  PAGINATION_PADDING = 0;
+
+  constructor(private cdr: ChangeDetectorRef) {}
+
+  ngAfterViewInit() {
+    this.EACH_PAGE_WIDTH = getCompleteWidth(this.paginationPageEls?.last);
+    this.PAGE_BUTTON_WIDTH = getCompleteWidth(this.paginationNavEl);
+    this.PAGINATION_PADDING = getPadding(this.paginationEl);
+    this.calculateMaxPageNumberToDisplay();
+    this.adjustStartPage(true);
+    this.cdr.detectChanges();
+  }
+
+  get maxPage() {
+    return Math.ceil(this.items.length / this.itemsPerPage);
+  }
+
+  get maxPageArray() {
+    return [].constructor(this.maxPage);
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.calculateMaxPageNumberToDisplay();
+    this.adjustStartPage(true);
+  }
+
+  changePage(page: number) {
+    if (page >= 0 && page < this.maxPage) {
+      const isPageUp = page > this.currentPage;
+      this.currentPage = page;
+      this.pageChange.emit(page);
+      this.adjustStartPage(isPageUp);
+    }
+  }
+
+  shouldShow(page: number) {
+    const isLessThanPageToDisplay = page <= this.maxPageNumberToDisplay + this.startPage;
+    const isMoreThanStartPage = page >= this.startPage;
+    const isMaxPage = page === this.maxPage - 1;
+    return (isLessThanPageToDisplay && isMoreThanStartPage) || isMaxPage;
+  }
+
+  isPriorMaxPage(page: number) {
+    return page === this.maxPage - 2;
+  }
+
+  adjustStartPage(isPageUp: boolean) {
+    const isMoreThanLastPage = this.maxPageNumberToDisplay + this.startPage < this.currentPage;
+    const isInMaxPageRange = this.maxPage - 1 - this.currentPage <= this.maxPageNumberToDisplay;
+    const isLessThanStartPage = this.startPage > this.currentPage;
+    if (isInMaxPageRange) {
+      this.startPage = Math.min(this.maxPage - this.maxPageNumberToDisplay - 1, this.maxPage);
+      this.cdr.detectChanges();
+    } else if (isPageUp && isMoreThanLastPage) {
+      this.startPage = this.currentPage;
+      this.cdr.detectChanges();
+    } else if (!isPageUp && isLessThanStartPage) {
+      this.startPage = Math.max(this.startPage - this.maxPageNumberToDisplay - 1, 0);
+      this.cdr.detectChanges();
+    }
+  }
+
+  calculateMaxPageNumberToDisplay() {
+    const CONTAINER_WIDTH = this.paginationEl?.nativeElement.offsetWidth;
+    const PAGE_NUMBER_WIDTH =
+      CONTAINER_WIDTH - this.PAGINATION_PADDING - this.PAGE_BUTTON_WIDTH * 2;
+    const lastPageToDisplay = Math.floor(PAGE_NUMBER_WIDTH / this.EACH_PAGE_WIDTH) - 2;
+    this.maxPageNumberToDisplay = lastPageToDisplay;
+  }
+}

@@ -15,9 +15,9 @@ import {
   AuthSignInDTO,
   AuthToken,
   UserDTO,
-} from 'src/backend-client';
+} from 'backend-client';
 import { HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { Event } from 'src/backend-client/model/event';
+import { Event } from 'backend-client/model/event';
 
 @Injectable({
   providedIn: 'root',
