@@ -1,0 +1,46 @@
+// setting breakpoint sizes here
+$xs: 0px;
+$sm: 480px;
+$md: 600px;
+$lg: 1024px;
+$xl: 1366px;
+
+$breakpoint-names: 'xs', 'sm', 'md', 'lg', 'xl';
+$breakpoint-sizes: $xs, $sm, $md, $lg, $xl;
+
+@function contains($list, $var) {
+  @return (false == index($list, $var));
+}
+
+@mixin breakpoint($name, $mode) {
+  @if (contains($breakpoint-names, $name)) {
+    $size: nth($breakpoint-sizes, $index);
+    @if ($mode == 'up') {
+      @media (min-width: #{$size}) {
+        @content;
+      }
+    } @else if ($mode == 'down') {
+      @media (max-width: #{$size}) {
+        @content;
+      }
+    } @else if ($mode == 'only') {
+      $index: index($breakpoint-names, $name);
+      @if (index == 1 or index == length($breakpoint-names)) {
+        $size: nth($breakpoint-sizes, $index);
+        @media screen and (min-width: #{$size}) {
+          @content;
+        }
+      } @else {
+        $prev-size: nth($breakpoint-sizes, $index-1);
+        $next-size: nth($breakpoint-sizes, $index + 1);
+        @media screen and (min-width: #{$prev-size}) and (max-width: #{$next-size}) {
+          @content;
+        }
+      }
+    } @else {
+      @warn "There are no " + $mode + " mode";
+    }
+  } @else {
+    @warn "There are no " + $name + " breakpoint";
+  }
+}
