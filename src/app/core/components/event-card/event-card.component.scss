@@ -1,153 +1,53 @@
 @import 'src/styles-variables.scss';
 
-.event-card {
-  &.pocket {
-    min-width: 240px;
-    .content {
-      .title {
-        @include text-style-h5;
-      }
-      .datetime {
-        @include text-style-body2;
-        display: flex;
-        align-items: center;
-        .mat-icon {
-          margin-right: 1rem;
-        }
-      }
+.card-container {
+  max-width: 20%;
+  &.list-small {
+    max-width: 100%;
+    max-height: 100px;
+  }
+
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  &.list-small {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  overflow: hidden;
+
+  .image-container {
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: 100%;
+      margin-bottom: 0;
+      object-fit: cover;
+      object-position: 0 50%;
     }
   }
   &.list-small {
-    min-height: 80px;
-
-    width: 100%;
-
-    display: flex;
-    align-items: center;
-
-    padding: 0;
-    overflow: hidden;
-
     .image-container {
-      overflow: hidden;
-      flex-basis: 22.5%;
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: 0 0;
-      }
-    }
-
-    .content {
-      flex-basis: auto;
-      padding: 2em;
-      .title {
-        @include text-style-h5;
-      }
-      .datetime {
-        @include text-style-body2;
-        display: flex;
-        align-items: center;
-        .mat-icon {
-          margin-right: 1rem;
-          width: 1em;
-          height: 1em;
-        }
-      }
+      min-width: 100px;
+      max-width: 200px;
+      flex-basis: 30%;
     }
   }
-  &.list-regular {
-    height: 100%;
 
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-
-    border-radius: 0;
-    padding: 12px;
-
-    .image-container {
-      $length: 8%;
-
-      position: relative;
-      width: $length;
-      padding: $length;
-      max-width: 0;
-      border-radius: 3px;
-      overflow: hidden;
-      img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        min-width: 80px;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
-      }
+  .content-container {
+    padding: 1em;
+    .title {
+      @include text-style-h6;
     }
-
-    .content {
-      margin-left: 2em;
-      margin-right: 5em;
-      flex: 1 1 auto;
-      display: flex;
-      justify-content: space-between;
+    .datetime {
+      display: inline-flex;
       align-items: center;
-      flex-wrap: no-wrap;
-      .title {
-        @include text-style-h6;
-        margin-right: 2em;
-      }
-      .tags {
-        display: flex;
-        flex-wrap: wrap;
-
-        @include text-style-label;
-        .tag {
-          padding: 0.5em 1em;
-          margin: 6px 12px;
-          border-radius: 5px;
-          background-color: $yellow-light;
-        }
-        margin-right: 2em;
-      }
-      .datetime {
-        @include text-style-body2;
-        p {
-          .mat-icon {
-            margin-right: 1rem;
-          }
-          display: flex;
-          align-items: center;
-        }
-        margin-right: 2em;
-      }
-      .organization {
-        @include text-style-body1;
-        margin-right: 2em;
-      }
-    }
-  }
-  &.full-card {
-    @extend .event-card, .pocket;
-
-    .content {
-      .datetime {
-        @include text-style-h5;
-        color: $purple-light;
-      }
-      .title {
-        @include text-style-h4;
-      }
-      .location {
-        @include text-style-body1;
-        display: flex;
-        align-items: center;
-        color: $mono-3;
+      @include text-style-body2;
+      .mat-icon {
+        margin-right: 0.5em;
       }
     }
   }

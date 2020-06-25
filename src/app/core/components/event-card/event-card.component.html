@@ -1,81 +1,17 @@
-<ng-container [ngSwitch]="type">
-  <ng-container *ngSwitchCase="'list-small'">
-    <ng-container *ngTemplateOutlet="list_small"></ng-container>
-  </ng-container>
-  <ng-container *ngSwitchCase="'list-regular'">
-    <ng-container *ngTemplateOutlet="list_regular"></ng-container>
-  </ng-container>
-  <ng-container *ngSwitchCase="'full-card'">
-    <ng-container *ngTemplateOutlet="full_card"></ng-container>
-  </ng-container>
-  <ng-container *ngSwitchDefault>
-    <ng-container *ngTemplateOutlet="pocket"></ng-container>
-  </ng-container>
-</ng-container>
-
-<ng-template #pocket>
-  <mat-card class="event-card" [ngClass]="type">
+<mat-card class="card-container" [ngClass]="type">
+  <div class="image-container">
     <img
-      mat-card-image
       src="https://material.angular.io/assets/img/examples/shiba2.jpg"
       alt="Photo of a Shiba Inu"
     />
-    <mat-card-content class="content">
-      <h5 class="title">Name of The Event.</h5>
-      <p class="datetime"><mat-icon>calendar_today</mat-icon>YYYY/MM/DD - YYYY/MM/DD</p>
-    </mat-card-content>
-  </mat-card>
-</ng-template>
-
-<ng-template #list_small>
-  <mat-card class="event-card" [ngClass]="type">
-    <div class="image-container">
-      <img
-        src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-        alt="Photo of a Shiba Inu"
-      />
-    </div>
-    <mat-card-content class="content">
-      <h5 class="title">Name of The Event.</h5>
-      <p class="datetime"><mat-icon>calendar_today</mat-icon>YYYY/MM/DD - YYYY/MM/DD</p>
-    </mat-card-content>
-  </mat-card>
-</ng-template>
-
-<ng-template #list_regular>
-  <mat-card class="event-card" [ngClass]="type">
-    <div class="image-container">
-      <img
-        mat-card-md-imange
-        src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-        alt="Photo of a Shiba Inu"
-      />
-    </div>
-    <mat-card-content class="content">
-      <h6 class="title">Name of The Event.</h6>
-      <mat-chip-list class="tags">
-        <mat-chip class="tag" *ngFor="let tag of [1, 2, 3]">TAG {{ tag }}</mat-chip>
-      </mat-chip-list>
-      <div class="datetime">
-        <p><mat-icon>calendar_today</mat-icon> DD MMM YYYY</p>
-        <p><mat-icon>watch_later</mat-icon> HH.MM - HH.MM</p>
-      </div>
-      <p class="organization">Organiztion</p>
-    </mat-card-content>
-  </mat-card>
-</ng-template>
-
-<ng-template #full_card>
-  <mat-card class="event-card" [ngClass]="type">
-    <img
-      mat-card-image
-      src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-      alt="Photo of a Shiba Inu"
-    />
-    <mat-card-content class="content">
-      <p class="datetime"><mat-icon>calendar_today</mat-icon>DD MMM YYYY - DD MMM YYYY</p>
-      <h5 class="title">Name of The Event.</h5>
-      <p class="location"><mat-icon>location_on</mat-icon> Location</p>
-    </mat-card-content>
-  </mat-card>
-</ng-template>
+  </div>
+  <mat-card-content class="content-container">
+    <h6 class="title">
+      {{ data?.name }}
+    </h6>
+    <p class="datetime">
+      <mat-icon>calendar_today</mat-icon> {{ data?.startDate | date: 'd MMM yyyy' }} -
+      {{ data?.endDate | date: 'd MMM yyyy' }}
+    </p>
+  </mat-card-content>
+</mat-card>

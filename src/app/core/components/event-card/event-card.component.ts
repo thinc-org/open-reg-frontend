@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Event } from 'src/backend-client/model/models';
+import { Event } from 'backend-client/model/models';
 import { EventCardType } from '../../types/constant';
 
 @Component({
@@ -13,9 +13,5 @@ export class EventCardComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
-    if (!Object.values(EventCardType).includes(this.type)) {
-      this.type = EventCardType.POCKET;
-    }
-  }
+  ngOnInit(): void {}
 }
