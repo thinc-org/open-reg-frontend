@@ -23,7 +23,6 @@
     overflow: hidden;
     img {
       width: 100%;
-      height: 100%;
       margin-bottom: 0;
       object-fit: cover;
       object-position: 0 50%;
@@ -41,12 +40,16 @@
     padding: 1em;
     .title {
       @include text-style-h6;
+      color: $mono-5;
     }
     .datetime {
       display: inline-flex;
       align-items: center;
       @include text-style-body2;
+      color: $mono-5;
       .mat-icon {
+        width: 1em;
+        height: 1em;
         margin-right: 0.5em;
       }
     }
