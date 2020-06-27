@@ -21,6 +21,7 @@ example
 <app-example></app-example>
 Event Card
 <app-event-card type="list-small" [data]="(event$ | async)[0]" routerLink="#"></app-event-card>
+<app-event-card [data]="(event$ | async)[0]" routerLink="#"></app-event-card>
 
 <mat-card class="example-card">
   <mat-card-header>
