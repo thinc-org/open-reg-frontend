@@ -15,4 +15,6 @@ export interface Event {
   description: string;
   organizationID: string;
   tags: Array<string>;
+  startDate?: Date;
+  endDate?: Date;
 }

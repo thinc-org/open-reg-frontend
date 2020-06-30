@@ -60,6 +60,8 @@ export class MockApiService implements ApiServiceInterface {
       description: body.description,
       organizationID: body.organizationID,
       tags: ['name1'],
+      startDate: (Date() as unknown) as Date,
+      endDate: (Date() as unknown) as Date,
     });
   }
 
@@ -70,18 +72,24 @@ export class MockApiService implements ApiServiceInterface {
         description: 'Suphon is very godlike',
         organizationID: '5ee475b4a811fe001b208b50',
         tags: ['name1'],
+        startDate: ('2020-06-13T13:54:29.808Z' as unknown) as Date,
+        endDate: ('2020-06-13T13:54:29.808Z' as unknown) as Date,
       },
       {
         name: 'Test Event 2',
         description: 'Suphon is very intelligent',
         organizationID: '5ee475b4a811fe001b208b50',
         tags: ['name1'],
+        startDate: ('2020-06-13T13:54:29.808Z' as unknown) as Date,
+        endDate: ('2020-06-13T13:54:29.808Z' as unknown) as Date,
       },
       {
         name: 'Test Event 3',
         description: 'Suphon is a quadrillionaire',
         organizationID: '5ee475b4a811fe001b208b50',
         tags: ['name2'],
+        startDate: ('2020-06-13T13:54:29.808Z' as unknown) as Date,
+        endDate: ('2020-06-13T13:54:29.808Z' as unknown) as Date,
       },
     ]);
   }
@@ -96,6 +104,8 @@ export class MockApiService implements ApiServiceInterface {
       description: 'Suphon is very godlike',
       organizationID: '5ee475b4a811fe001b208b50',
       tags: ['name1'],
+      startDate: ('2020-06-13T13:54:29.808Z' as unknown) as Date,
+      endDate: ('2020-06-13T13:54:29.808Z' as unknown) as Date,
     });
   }
 
