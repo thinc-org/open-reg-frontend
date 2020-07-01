@@ -11,7 +11,7 @@ describe('EventCardComponent', () => {
   let fixture: ComponentFixture<EventCardComponent>;
 
   const MOCK_EVENT_OBJECT: Event = {
-    name: 'Mock Test Event 1',
+    name: 'Mock Test Event 2',
     description: 'This is a event abot mocking',
     organizationID: 'Chula.Org',
     tags: ['Hello', 'World'],
