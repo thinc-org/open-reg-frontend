@@ -45,64 +45,64 @@ $breakpoints: (
   }
 }
 
-@mixin breakpoint-xs-only {
+@mixin breakpoint-sm-only {
   @media screen and (min-width: $xs) and (max-width: $md) {
     @content;
   }
 }
 
 // MD breakpoints
-@mixin breakpoint-sm-down {
+@mixin breakpoint-md-down {
   @media screen and (max-width: $md) {
     @content;
   }
 }
 
-@mixin breakpoint-sm-up {
+@mixin breakpoint-md-up {
   @media screen and (min-width: $md) {
     @content;
   }
 }
 
-@mixin breakpoint-xs-only {
+@mixin breakpoint-md-only {
   @media screen and (min-width: $sm) and (max-width: $lg) {
     @content;
   }
 }
 
 // LG breakpoints
-@mixin breakpoint-sm-down {
+@mixin breakpoint-lg-down {
   @media screen and (max-width: $lg) {
     @content;
   }
 }
 
-@mixin breakpoint-sm-up {
+@mixin breakpoint-lg-up {
   @media screen and (min-width: $lg) {
     @content;
   }
 }
 
-@mixin breakpoint-xs-only {
+@mixin breakpoint-lg-only {
   @media screen and (min-width: $md) and (max-width: $xl) {
     @content;
   }
 }
 
 // XL breakpoints
-@mixin breakpoint-sm-down {
+@mixin breakpoint-xl-down {
   @media screen and (max-width: $xl) {
     @content;
   }
 }
 
-@mixin breakpoint-sm-up {
+@mixin breakpoint-xl-up {
   @media screen and (min-width: $xl) {
     @content;
   }
 }
 
-@mixin breakpoint-xs-only {
+@mixin breakpoint-xl-only {
   @media screen and (min-width: $lg) and (max-width: $xl) {
     @content;
   }
