@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../../../backend-client';
 
 @Component({
   selector: 'app-login',
@@ -6,7 +7,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  constructor() {}
+  email = '';
+  password = '';
+
+  constructor(private api: ApiService) {}
 
   ngOnInit(): void {}
+
+  onSubmit() {
+    return this.api
+      .authControllerLogin({
+        email: this.email,
+        password: this.password,
+      })
+      .subscribe(
+        (result) => {
+          // console.log(result)
+          localStorage.setItem('accessToken', result.accessToken);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  }
 }

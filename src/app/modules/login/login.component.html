@@ -1,1 +1,39 @@
-<p>login works!</p>
+<div class="container">
+  <mat-card class="custom-card">
+    <mat-card-title>
+      Login Form
+    </mat-card-title>
+    <mat-card-content class="custom-card-content">
+      <form class="form" (submit)="onSubmit()">
+        <mat-form-field class="full-width">
+          <mat-label>Email</mat-label>
+          <input
+            class="full-width"
+            matInput
+            placeholder="Email"
+            value=""
+            [type]="'email'"
+            [autocomplete]="'email'"
+            [(ngModel)]="email"
+            name="email"
+          />
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <mat-label>Password</mat-label>
+          <input
+            class="full-width"
+            matInput
+            placeholder="Password"
+            value=""
+            [type]="'password'"
+            [autocomplete]="'current-password'"
+            [(ngModel)]="password"
+            name="password"
+          />
+        </mat-form-field>
+        <button class="full-width" mat-raised-button color="primary">Log in</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
