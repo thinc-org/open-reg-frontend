@@ -1,0 +1,21 @@
+<mat-card *ngIf="data; else loadingTemplate" class="card-container" [ngClass]="type">
+  <div class="image-container">
+    <img
+      src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+      alt="Photo of a Shiba Inu"
+    />
+  </div>
+  <mat-card-content class="content-container">
+    <h6 class="title">
+      {{ data?.name }}
+    </h6>
+    <p class="datetime" *ngIf="data?.startDate && data?.endDate">
+      <mat-icon>calendar_today</mat-icon> {{ data?.startDate | date: 'd MMM yyyy' }} -
+      {{ data?.endDate | date: 'd MMM yyyy' }}
+    </p>
+  </mat-card-content>
+</mat-card>
+
+<ng-template #loadingTemplate>
+  <!-- Wait for data -->
+</ng-template>

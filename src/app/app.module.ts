@@ -4,13 +4,13 @@ import { NgModule } from '@angular/core';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { ApiModule, BASE_PATH } from 'backend-client';
+import { ApiModule, BASE_PATH, ApiService } from 'backend-client';
 import { environment } from 'environments/environment';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-// import { MockApiService } from './core/services/mock-api.service';
+import { MockApiService } from './core/services/mock-api.service';
 import { CoreModules } from './core/core.module';
 
 @NgModule({
@@ -27,7 +27,7 @@ import { CoreModules } from './core/core.module';
   ],
   providers: [
     { provide: BASE_PATH, useValue: environment.basePath },
-    // { provide: ApiService, useClass: MockApiService },
+    { provide: ApiService, useClass: MockApiService },
   ],
   bootstrap: [AppComponent],
 })
