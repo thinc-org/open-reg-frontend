@@ -5,42 +5,105 @@ $md: 600px;
 $lg: 1024px;
 $xl: 1366px;
 
-$breakpoint-names: 'xs', 'sm', 'md', 'lg', 'xl';
-$breakpoint-sizes: $xs, $sm, $md, $lg, $xl;
+$breakpoints: (
+  xs: $xs,
+  sm: $sm,
+  md: $md,
+  lg: $lg,
+  xl: $xl,
+);
 
-@function contains($list, $var) {
-  @return (false == index($list, $var));
+// XS breakpoints
+@mixin breakpoint-xs-down {
+  @media screen and (max-width: $xs) {
+    @content;
+  }
 }
 
-@mixin breakpoint($name, $mode) {
-  @if (contains($breakpoint-names, $name)) {
-    $size: nth($breakpoint-sizes, $index);
-    @if ($mode == 'up') {
-      @media (min-width: #{$size}) {
-        @content;
-      }
-    } @else if ($mode == 'down') {
-      @media (max-width: #{$size}) {
-        @content;
-      }
-    } @else if ($mode == 'only') {
-      $index: index($breakpoint-names, $name);
-      @if (index == 1 or index == length($breakpoint-names)) {
-        $size: nth($breakpoint-sizes, $index);
-        @media screen and (min-width: #{$size}) {
-          @content;
-        }
-      } @else {
-        $prev-size: nth($breakpoint-sizes, $index-1);
-        $next-size: nth($breakpoint-sizes, $index + 1);
-        @media screen and (min-width: #{$prev-size}) and (max-width: #{$next-size}) {
-          @content;
-        }
-      }
-    } @else {
-      @warn "There are no " + $mode + " mode";
-    }
-  } @else {
-    @warn "There are no " + $name + " breakpoint";
+@mixin breakpoint-xs-up {
+  @media screen and (min-width: $xs) {
+    @content;
+  }
+}
+
+@mixin breakpoint-xs-only {
+  @media screen and (min-width: $xs) and (max-width: $sm) {
+    @content;
+  }
+}
+
+// SM breakpoints
+@mixin breakpoint-sm-down {
+  @media screen and (max-width: $sm) {
+    @content;
+  }
+}
+
+@mixin breakpoint-sm-up {
+  @media screen and (min-width: $sm) {
+    @content;
+  }
+}
+
+@mixin breakpoint-xs-only {
+  @media screen and (min-width: $xs) and (max-width: $md) {
+    @content;
+  }
+}
+
+// MD breakpoints
+@mixin breakpoint-sm-down {
+  @media screen and (max-width: $md) {
+    @content;
+  }
+}
+
+@mixin breakpoint-sm-up {
+  @media screen and (min-width: $md) {
+    @content;
+  }
+}
+
+@mixin breakpoint-xs-only {
+  @media screen and (min-width: $sm) and (max-width: $lg) {
+    @content;
+  }
+}
+
+// LG breakpoints
+@mixin breakpoint-sm-down {
+  @media screen and (max-width: $lg) {
+    @content;
+  }
+}
+
+@mixin breakpoint-sm-up {
+  @media screen and (min-width: $lg) {
+    @content;
+  }
+}
+
+@mixin breakpoint-xs-only {
+  @media screen and (min-width: $md) and (max-width: $xl) {
+    @content;
+  }
+}
+
+// XL breakpoints
+@mixin breakpoint-sm-down {
+  @media screen and (max-width: $xl) {
+    @content;
+  }
+}
+
+@mixin breakpoint-sm-up {
+  @media screen and (min-width: $xl) {
+    @content;
+  }
+}
+
+@mixin breakpoint-xs-only {
+  @media screen and (min-width: $lg) and (max-width: $xl) {
+    @content;
   }
 }
