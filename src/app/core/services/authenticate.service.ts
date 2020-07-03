@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject, Observable} from "rxjs";
-import {ApiService, AuthToken, UserDTO} from "../../../backend-client";
+import { BehaviorSubject, Observable } from 'rxjs';
+import { ApiService, AuthToken, UserDTO } from '../../../backend-client';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthenticateService {
   private currentUserSubject: BehaviorSubject<Observable<UserDTO> | null>;
@@ -16,8 +16,8 @@ export class AuthenticateService {
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
-  login(email: string, password: string): Observable<AuthToken> {
-    return this.api.authControllerLogin({email, password});
+  login(authToken: AuthToken): void {
+    localStorage.setItem('ACCESS_TOKEN', authToken.accessToken);
   }
 
   logout(): void {
