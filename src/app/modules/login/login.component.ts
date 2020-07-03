@@ -24,11 +24,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    if (this.authService.isLoggedIn()) {
-      this.location.back(); // should use other solution
-    }
-  }
+  ngOnInit(): void {}
 
   onSubmit(): void {
     if (!this.loginForm.invalid) {
