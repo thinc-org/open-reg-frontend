@@ -11,11 +11,8 @@
     width: 100%;
 
     .form {
-      width: 100%;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
 
       .full-width {
         width: 100%;
@@ -24,12 +21,13 @@
   }
 }
 
+.custom-button {
+  margin-top: 36px;
+}
+
 .container {
-  width: 100%;
-  display: block;
+  margin: auto;
   box-sizing: border-box;
-  margin-left: auto;
-  margin-right: auto;
   padding-left: 8 * 2px;
   padding-right: 8 * 2px;
 
