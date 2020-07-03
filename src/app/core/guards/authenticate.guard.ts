@@ -5,11 +5,16 @@ import {AuthenticateService} from "../services/authenticate.service";
 @Injectable({
   providedIn: 'root'
 })
-export class UnauthenticatedGuard implements CanActivate {
+export class AuthenticateGuard implements CanActivate {
   constructor(private router: Router, private authService: AuthenticateService) {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    return this.authService.isLoggedIn() && !this.authService.isTokenExpired();
+    if (this.authService.isLoggedIn() && !this.authService.isTokenExpired()) {
+      return true;
+    }
+
+    this.router.navigate(['/login']);
+    return false;
   }
 }
