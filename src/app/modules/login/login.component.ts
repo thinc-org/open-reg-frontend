@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 import { AuthService } from '../../core/services/auth.service';
 
 @Component({
@@ -14,6 +15,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
+    private location: Location,
     private router: Router
   ) {
     this.loginForm = formBuilder.group({
@@ -22,7 +24,11 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.authService.isLoggedIn()) {
+      this.location.back(); // should use other solution
+    }
+  }
 
   onSubmit(): void {
     if (!this.loginForm.invalid) {
