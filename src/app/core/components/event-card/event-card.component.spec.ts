@@ -15,8 +15,8 @@ describe('EventCardComponent', () => {
     description: 'This is a event abot mocking',
     organizationID: 'Chula.Org',
     tags: ['Hello', 'World'],
-    startDate: ('2020-06-13T13:54:29.808Z' as unknown) as Date,
-    endDate: ('2020-06-13T13:54:29.808Z' as unknown) as Date,
+    startDate: new Date('2020-06-13T13:54:29.808Z'),
+    endDate: new Date('2020-06-13T13:54:29.808Z'),
   };
   const EXPECTED_DATE_RANGE = '13 Jun 2020 - 13 Jun 2020';
 
