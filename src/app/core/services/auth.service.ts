@@ -34,9 +34,10 @@ export class AuthService {
       })
       .subscribe(
         (result) => {
+          console.log('log in success');
           localStorage.setItem('ACCESS_TOKEN', result.accessToken);
         },
-        (error) => console.log(error)
+        (error) => console.log(`Login error${error}`)
       );
   }
 
