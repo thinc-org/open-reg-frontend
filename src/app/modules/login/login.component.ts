@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../../backend-client';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -7,27 +9,26 @@ import { ApiService } from '../../../backend-client';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  email = '';
-  password = '';
+  loginForm: FormGroup;
 
-  constructor(private api: ApiService) {}
+  constructor(
+    private authService: AuthService,
+    private formBuilder: FormBuilder,
+    private router: Router
+  ) {
+    this.loginForm = formBuilder.group({
+      email: ['', Validators.required],
+      password: ['', Validators.required],
+    });
+  }
 
   ngOnInit(): void {}
 
-  onSubmit() {
-    return this.api
-      .authControllerLogin({
-        email: this.email,
-        password: this.password,
-      })
-      .subscribe(
-        (result) => {
-          // console.log(result)
-          localStorage.setItem('accessToken', result.accessToken);
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+  onSubmit(): void {
+    if (!this.loginForm.invalid) {
+      console.log('valid');
+      this.authService.login(this.loginForm.value.email, this.loginForm.value.password);
+      this.router.navigate(['/']);
+    }
   }
 }
