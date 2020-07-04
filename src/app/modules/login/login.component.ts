@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthenticateService } from '../../core/services/authenticate.service';
+import { AuthenticatedService } from '../../core/services/authenticated.service';
 import { ApiService } from '../../../backend-client';
 
 @Component({
@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   redirectUrl = '/';
 
   constructor(
-    private authService: AuthenticateService,
+    private authService: AuthenticatedService,
     private formBuilder: FormBuilder,
     private apiService: ApiService,
     private router: Router

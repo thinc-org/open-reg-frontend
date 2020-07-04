@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthenticateGuard } from './core/guards/authenticate.guard';
-import { UnauthenticatedGuard } from './core/guards/unauthenticated.guard';
+import { AuthenticatedGuard } from './core/guards/authenticated.guard';
 
 const routes: Routes = [
   {
@@ -15,12 +14,13 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./modules/login/login.module').then((m) => m.LoginModule),
-    canActivate: [UnauthenticatedGuard],
+    canActivate: [AuthenticatedGuard],
+    data: { reverse: true },
   },
   {
     path: 'profile',
     loadChildren: () => import('./modules/profile/profile.module').then((m) => m.ProfileModule),
-    canActivate: [AuthenticateGuard],
+    canActivate: [AuthenticatedGuard],
   },
 ];
 
