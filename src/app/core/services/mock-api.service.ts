@@ -45,7 +45,7 @@ export class MockApiService implements ApiServiceInterface {
       title: { en: 'new', th: 'new' },
       firstName: { en: 'new', th: 'new' },
       lastName: { en: 'new', th: 'new' },
-      dateOfBirth: ('2020-06-13T13:54:29.808Z' as unknown) as Date,
+      dateOfBirth: '2020-06-13T13:54:29.808Z',
       email: 'new.com',
     });
   }
@@ -60,8 +60,8 @@ export class MockApiService implements ApiServiceInterface {
       description: body.description,
       organizationID: body.organizationID,
       tags: ['name1'],
-      startDate: (Date() as unknown) as Date,
-      endDate: (Date() as unknown) as Date,
+      startDate: new Date(),
+      endDate: new Date(),
     });
   }
 
@@ -72,24 +72,24 @@ export class MockApiService implements ApiServiceInterface {
         description: 'Suphon is very godlike',
         organizationID: '5ee475b4a811fe001b208b50',
         tags: ['name1'],
-        startDate: ('2020-06-13T13:54:29.808Z' as unknown) as Date,
-        endDate: ('2020-06-13T13:54:29.808Z' as unknown) as Date,
+        startDate: new Date(),
+        endDate: new Date(),
       },
       {
         name: 'Test Event 2',
         description: 'Suphon is very intelligent',
         organizationID: '5ee475b4a811fe001b208b50',
         tags: ['name1'],
-        startDate: ('2020-06-13T13:54:29.808Z' as unknown) as Date,
-        endDate: ('2020-06-13T13:54:29.808Z' as unknown) as Date,
+        startDate: new Date(),
+        endDate: new Date(),
       },
       {
         name: 'Test Event 3',
         description: 'Suphon is a quadrillionaire',
         organizationID: '5ee475b4a811fe001b208b50',
         tags: ['name2'],
-        startDate: ('2020-06-13T13:54:29.808Z' as unknown) as Date,
-        endDate: ('2020-06-13T13:54:29.808Z' as unknown) as Date,
+        startDate: new Date(),
+        endDate: new Date(),
       },
     ]);
   }
@@ -170,7 +170,7 @@ export class MockApiService implements ApiServiceInterface {
       title: body.title,
       firstName: body.firstName,
       lastName: body.lastName,
-      dateOfBirth: (body.dateOfBirth.toISOString() as unknown) as Date,
+      dateOfBirth: body.dateOfBirth.toISOString(),
       email: body.email,
     });
   }
@@ -184,7 +184,7 @@ export class MockApiService implements ApiServiceInterface {
         title: { en: 'new', th: 'new' },
         firstName: { en: 'new', th: 'new' },
         lastName: { en: 'new', th: 'new' },
-        dateOfBirth: ('2020-06-13T13:54:29.808Z' as unknown) as Date,
+        dateOfBirth: '2020-06-13T13:54:29.808Z',
         email: 'new.com',
       },
       {
@@ -194,7 +194,7 @@ export class MockApiService implements ApiServiceInterface {
         title: { en: 'new', th: 'new' },
         firstName: { en: 'new', th: 'new' },
         lastName: { en: 'new', th: 'new' },
-        dateOfBirth: ('2020-06-13T13:58:03.469Z' as unknown) as Date,
+        dateOfBirth: '2020-06-13T13:58:03.469Z',
         email: 'new.comd',
       },
     ]);
@@ -208,7 +208,7 @@ export class MockApiService implements ApiServiceInterface {
       title: { en: 'new', th: 'new' },
       firstName: { en: 'new', th: 'new' },
       lastName: { en: 'new', th: 'new' },
-      dateOfBirth: ('2020-06-13T13:54:29.808Z' as unknown) as Date,
+      dateOfBirth: '2020-06-13T13:54:29.808Z',
       email: 'new.com',
     });
   }

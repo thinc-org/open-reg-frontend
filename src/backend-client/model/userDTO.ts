@@ -16,7 +16,7 @@ export interface UserDTO {
   title: InternationalizedStringDTO;
   firstName: InternationalizedStringDTO;
   lastName: InternationalizedStringDTO;
-  dateOfBirth: Date;
+  dateOfBirth: string;
   email: string;
   termsOfService: Array<string>;
   organizations: Array<string>;
