@@ -29,7 +29,7 @@ import { TokenInterceptor } from './core/interceptors/token.interceptor';
   providers: [
     { provide: BASE_PATH, useValue: environment.basePath },
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
-    { provide: ApiService, useClass: MockApiService },
+    // { provide: ApiService, useClass: MockApiService },
   ],
   bootstrap: [AppComponent],
 })
