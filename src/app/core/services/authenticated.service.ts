@@ -5,15 +5,15 @@ import { ApiService, AuthToken, UserDTO } from '../../../backend-client';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthenticateService {
-  private currentUserSubject: BehaviorSubject<Observable<UserDTO> | null>;
-  public currentUser: Observable<Observable<UserDTO> | null>;
+export class AuthenticatedService {
+  private currentUserSubject$: BehaviorSubject<Observable<UserDTO> | null>;
+  public currentUser$: Observable<Observable<UserDTO> | null>;
 
   constructor(private api: ApiService) {
-    this.currentUserSubject = new BehaviorSubject<Observable<UserDTO> | null>(
+    this.currentUserSubject$ = new BehaviorSubject<Observable<UserDTO> | null>(
       this.api.authControllerCurrentUser()
     );
-    this.currentUser = this.currentUserSubject.asObservable();
+    this.currentUser$ = this.currentUserSubject$.asObservable();
   }
 
   login(authToken: AuthToken): void {
@@ -22,7 +22,7 @@ export class AuthenticateService {
 
   logout(): void {
     localStorage.removeItem('ACCESS_TOKEN');
-    this.currentUserSubject.next(null);
+    this.currentUserSubject$.next(null);
   }
 
   isLoggedIn(): boolean {
@@ -38,7 +38,7 @@ export class AuthenticateService {
   }
 
   getCurrentUserInfo(): Observable<UserDTO> | null {
-    return this.currentUserSubject.value;
+    return this.currentUserSubject$.value;
   }
 
   // may have setCurrentUserInfo for editing user information
