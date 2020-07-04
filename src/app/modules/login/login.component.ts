@@ -34,8 +34,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit(): void {
     if (!this.loginForm.invalid) {
-      const { email } = this.loginForm.value;
-      const { password } = this.loginForm.value;
+      const { email, password } = this.loginForm.value;
       this.apiService.authControllerLogin({ email, password }).subscribe(
         (authToken) => {
           this.authService.login(authToken);
