@@ -7,15 +7,13 @@
   </div>
   <mat-card-content class="content-container">
     <h6 class="title">
-      {{ data?.name }}
+      {{ data.name }}
     </h6>
-    <p class="datetime" *ngIf="data?.startDate && data?.endDate">
-      <mat-icon>calendar_today</mat-icon> {{ data?.startDate | date: 'd MMM yyyy' }} -
-      {{ data?.endDate | date: 'd MMM yyyy' }}
+    <p class="datetime">
+      <mat-icon>calendar_today</mat-icon> {{ data.startDate | date: 'd MMM yyyy' }} -
+      {{ data.endDate | date: 'd MMM yyyy' }}
     </p>
   </mat-card-content>
 </mat-card>
 
-<ng-template #loadingTemplate>
-  <!-- Wait for data -->
-</ng-template>
+<ng-template #loadingTemplate>Loading...</ng-template>
