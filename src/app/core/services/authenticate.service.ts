@@ -33,6 +33,10 @@ export class AuthenticateService {
     return false;
   }
 
+  getToken() {
+    return localStorage.getItem('ACCESS_TOKEN');
+  }
+
   getCurrentUserInfo(): Observable<UserDTO> | null {
     return this.currentUserSubject.value;
   }
