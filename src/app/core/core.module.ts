@@ -9,12 +9,13 @@ import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 import { ButtonComponent } from './components/button/button.component';
-import { EventCardComponent } from './components/event-card/event-card.component';
 import { ExampleComponent } from './components/example/example.component';
 import { FullLogoComponent } from './components/full-logo/full-logo.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { ThemeControllerComponent } from './components/theme-controller/theme-controller.component';
+import { EventCardComponent } from './components/event-card/event-card.component';
+import { SearchBoxComponent } from './components/search-box/search-box.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ThemeControllerComponent } from './components/theme-controller/theme-co
     PaginationComponent,
     EventCardComponent,
     ButtonComponent,
+    SearchBoxComponent,
   ],
   imports: [
     MatToolbarModule,
@@ -47,6 +49,7 @@ import { ThemeControllerComponent } from './components/theme-controller/theme-co
     PaginationComponent,
     EventCardComponent,
     ButtonComponent,
+    SearchBoxComponent,
   ],
 })
 export class CoreModules {}
