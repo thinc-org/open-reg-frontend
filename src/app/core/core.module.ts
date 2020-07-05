@@ -16,6 +16,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
 import { ThemeControllerComponent } from './components/theme-controller/theme-controller.component';
 import { EventCardComponent } from './components/event-card/event-card.component';
 import { SearchBoxComponent } from './components/search-box/search-box.component';
+import { EventTagComponent } from './components/event-tag/event-tag.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { SearchBoxComponent } from './components/search-box/search-box.component
     EventCardComponent,
     ButtonComponent,
     SearchBoxComponent,
+    EventTagComponent,
   ],
   imports: [
     MatToolbarModule,
@@ -50,6 +52,7 @@ import { SearchBoxComponent } from './components/search-box/search-box.component
     EventCardComponent,
     ButtonComponent,
     SearchBoxComponent,
+    EventTagComponent,
   ],
 })
 export class CoreModules {}
