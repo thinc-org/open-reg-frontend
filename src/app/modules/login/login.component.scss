@@ -1,0 +1,39 @@
+@import 'src/styles-variables';
+
+.custom-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 32px 56px;
+
+  &-content {
+    width: 100%;
+
+    .form {
+      display: flex;
+      flex-direction: column;
+
+      .full-width {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.custom-button {
+  margin-top: 36px;
+}
+
+.container {
+  margin: auto;
+  box-sizing: border-box;
+  padding-left: 8 * 2px;
+  padding-right: 8 * 2px;
+
+  @include breakpoint-md-up() {
+    max-width: $md;
+    padding-left: 8 * 3px;
+    padding-right: 8 * 3px;
+  }
+}
