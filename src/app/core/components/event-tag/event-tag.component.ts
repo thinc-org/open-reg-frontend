@@ -8,13 +8,13 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class EventTagComponent implements OnInit {
   @Input() tagName = 'Tag';
   @Input() removable = false;
-  @Output() removeEvent: EventEmitter<string> = new EventEmitter();
+  @Output() removeTag: EventEmitter<string> = new EventEmitter();
 
   constructor() {}
 
   ngOnInit(): void {}
 
   remove(tagName: string) {
-    this.removeEvent.emit(tagName);
+    this.removeTag.emit(tagName);
   }
 }

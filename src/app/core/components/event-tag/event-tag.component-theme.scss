@@ -1,0 +1,10 @@
+@import '~@angular/material/theming';
+@import 'src/styles-variables.scss';
+
+@mixin event-tag-component-theme($theme) {
+  $primary: map-get($theme, primary);
+
+  .tag-card {
+    background: $yellow-light !important;
+  }
+}
