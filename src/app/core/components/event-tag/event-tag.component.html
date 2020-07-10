@@ -1,6 +1,6 @@
-<mat-card class="tag-card" *ngIf="!removable">
-  <mat-card-subtitle>{{ this.tagName | uppercase }}</mat-card-subtitle>
-</mat-card>
+<mat-chip class="tag-card" *ngIf="!removable">
+  {{ tagName | uppercase }}
+</mat-chip>
 <mat-chip
   class="tag-card"
   *ngIf="removable"
@@ -8,6 +8,6 @@
   [selectable]="true"
   [removable]="removable"
 >
-  {{ this.tagName | uppercase }}
+  {{ tagName | uppercase }}
   <mat-icon matChipRemove>clear</mat-icon>
 </mat-chip>
