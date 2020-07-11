@@ -19,12 +19,14 @@
 @import 'app/core/components/pagination/pagination.component-theme.scss';
 @import 'app/core/components/button/button.component-theme.scss';
 @import 'app/core/components/search-box/search-box.component-theme.scss';
+@import 'app/core/components/avatar-card/avatar-card.component-theme.scss';
 
 @mixin custom-components-theme($theme) {
   @include example-component-theme($theme);
   @include pagination-component-theme($theme);
   @include button-component-theme($theme);
   @include search-box-component-theme($theme);
+  @include avatar-card-component-theme($theme);
 }
 
 .openreg-light-theme {
