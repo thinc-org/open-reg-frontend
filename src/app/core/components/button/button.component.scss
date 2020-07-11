@@ -1,0 +1,7 @@
+@import 'src/styles-variables.scss';
+
+.button-normal {
+  @include text-style-body1();
+  padding: 12px 22px;
+  border-radius: 10px;
+}

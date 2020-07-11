@@ -1,0 +1,9 @@
+@import '~@angular/material/theming';
+@import 'src/styles-variables.scss';
+
+@mixin button-component-theme($theme) {
+  .button-normal {
+    background-color: $yellow-main;
+    color: $mono-6;
+  }
+}
