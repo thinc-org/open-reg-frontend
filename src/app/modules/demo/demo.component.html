@@ -1,2 +1,8 @@
 <p>demo works!</p>
 <app-search-box></app-search-box>
+<app-tab
+  [types]="types"
+  [currentType]="currentType"
+  (onsearch)="search($event)"
+  (onselectType)="onSelect($event)"
+></app-tab>

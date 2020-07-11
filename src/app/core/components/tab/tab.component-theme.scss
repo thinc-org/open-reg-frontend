@@ -1,0 +1,13 @@
+@import 'src/styles-variables.scss';
+
+@mixin tab-component-theme($theme) {
+  .tab {
+    border-bottom-color: $mono-3;
+    &-item {
+      color: $mono-4;
+      &-current {
+        color: $error-main;
+      }
+    }
+  }
+}

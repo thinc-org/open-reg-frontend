@@ -1,0 +1,18 @@
+@import 'src/styles-variables.scss';
+
+.tab {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 11px 0;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  &-selector {
+    display: flex;
+  }
+  &-item {
+    cursor: pointer;
+    margin: 0 48px 0 0;
+    @include text-style-h6();
+  }
+}

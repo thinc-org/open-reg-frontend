@@ -1,0 +1,13 @@
+<div class="tab">
+  <div class="tab-selector">
+    <h6
+      class="tab-item"
+      *ngFor="let type of types"
+      [ngClass]="{ 'tab-item-current': type === currentType }"
+      (click)="onSelectType(type)"
+    >
+      {{ type }}
+    </h6>
+  </div>
+  <app-search-box [input]="searchInput" (onchange)="onSearchChange($event)"></app-search-box>
+</div>
