@@ -22,6 +22,10 @@ const routes: Routes = [
     loadChildren: () => import('./modules/profile/profile.module').then((m) => m.ProfileModule),
     canActivate: [AuthenticatedGuard],
   },
+  {
+    path: 'demo',
+    loadChildren: () => import('./modules/demo/demo.module').then((m) => m.DemoModule),
+  },
 ];
 
 @NgModule({

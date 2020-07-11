@@ -1,0 +1,12 @@
+@import 'src/styles-variables.scss';
+
+@mixin search-box-component-theme($theme) {
+  .search {
+    background-color: $mono-0;
+    background: $mono-1;
+    color: $mono-4;
+    &-input {
+      background: $mono-1;
+    }
+  }
+}
