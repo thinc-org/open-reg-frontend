@@ -13,6 +13,7 @@ import { ThemeControllerComponent } from './components/theme-controller/theme-co
 import { FullLogoComponent } from './components/full-logo/full-logo.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { EventCardComponent } from './components/event-card/event-card.component';
+import { AvatarCardComponent } from './components/avatar-card/avatar-card.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { EventCardComponent } from './components/event-card/event-card.component
     FullLogoComponent,
     PaginationComponent,
     EventCardComponent,
+    AvatarCardComponent,
   ],
   imports: [
     MatToolbarModule,
@@ -42,6 +44,7 @@ import { EventCardComponent } from './components/event-card/event-card.component
     FullLogoComponent,
     PaginationComponent,
     EventCardComponent,
+    AvatarCardComponent,
   ],
 })
 export class CoreModules {}

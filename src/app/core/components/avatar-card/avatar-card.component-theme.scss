@@ -1,0 +1,19 @@
+@import '~@angular/material/theming';
+@import 'src/styles-variables.scss';
+
+@mixin avatar-card-component-theme($theme) {
+  .avatar-card {
+    background-color: white;
+    &-image {
+      background-color: $mono-4;
+    }
+    &-info {
+      &-title {
+        color: $mono-5;
+      }
+      &-subtitle {
+        color: $mono-4;
+      }
+    }
+  }
+}
