@@ -1,0 +1,8 @@
+{
+  "printWidth": 150,
+  "packageManager": "yarn",
+  "arrowParens": "avoid",
+  "semi": false,
+  "jsxBracketSameLine": true,
+  "trailingComma": "none"
+}
